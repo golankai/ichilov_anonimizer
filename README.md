@@ -36,13 +36,7 @@ python de_identify.py --input <path_to_csv> --model <path_to_model> --mode <mode
 
 Arguments:
 - `--input`  : Path to your input CSV file.
-- `--model`  : (Optional) Path to your trained model folder or Hugging Face repository. 
-             Note that `HeMed_NER_baseline` is our custom model, however, one can use 
-             any BERT-like Hebrew speaking model from Hugging Face.
-             Examples:
-             - `dicta-il/dictabert`
-             - `onlplab/alephbert-base`
-             - `imvladikon/alephbertgimmel-base-512`
+- `--model`  : (Optional) Path to your trained model folder (e.g., `HeMed_NER_baseline`).
 - `--mode`   : (Optional) 
            'label'    -> Replaces with [ENTITY_TYPE] (e.g., [PER])
            'mask'     -> Replaces with [REDACTED]

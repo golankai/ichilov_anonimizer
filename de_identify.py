@@ -25,7 +25,7 @@ def get_pipeline(model_path: str) -> Any:
     Detects hardware and initializes the NER pipeline.
 
     Args:
-        model_path (str): The path to the Hugging Face model directory or repository name.
+        model_path (str): The path to the trained model directory.
 
     Returns:
         Any: The initialized Hugging Face token classification pipeline.
@@ -140,7 +140,7 @@ def run(input_file: str, model_path: str = "HeMed_NER_baseline", mode: str = "la
 
     Args:
         input_file (str): Path to the input CSV file containing a 'text' column.
-        model_path (str): Path to the model or Hugging Face repository.
+        model_path (str): Path to the trained model directory.
         mode (str): Masking mode to use ('label', 'mask', or 'x').
     """
     setup_nltk()
