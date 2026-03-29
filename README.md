@@ -7,6 +7,19 @@ The pipeline is designed to handle long documents by chunking the text
 into individual sentences using NLTK, rather than processing them all at once. 
 This avoids the token-length limits of standard BERT models.
 
+## IDENTIFIED ENTITIES
+Our local model (`HeMed_NER_baseline`) is trained to identify and mask the following entities:
+- `FIRST_NAME`
+- `LAST_NAME`
+- `DATE`
+- `AGE_ABOVE_89`
+- `LOC` (Location)
+- `ORG` (Organization)
+- `MED_ORG` (Medical Organization)
+- `CONTACT` (Contact Information)
+- `ID` (ID number)
+- `INNER_ID` (Hospital internal ID)
+
 ## INSTALLATION
 1. Install Python 3.9 or higher.
 2. Install dependencies:
