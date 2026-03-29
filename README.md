@@ -40,7 +40,12 @@ Our local model (`HeMed_NER_baseline`) is trained to identify and mask the follo
 - `requirements.txt` : List of Python dependencies.
 
 ## DE-IDENTIFICATION (de_identify.py)
-Run the script from the command line to process a CSV file. The CSV must have a column named "text".
+Run the script from the command line to process a CSV file. The input CSV **must** contain both `id` and `text` columns.
+
+### OUTPUT FORMATS
+The pipeline automatically generates two matched output files in your directory:
+1. **CSV Output (`*_deid_<mode>.csv`)**: Retains 100% of your original data columns (including `id` and `text`), seamlessly appending a `de_identified_text` column and an `identified_entities` column formatted for human grading (e.g., `John(FIRST_NAME)`).
+2. **JSON Output (`*_deid_<mode>.json`)**: A machine-readable structured JSON array mapping out the `id`, original `text`, and a list of entities perfectly tracking the global document `start` and `end` character offsets along with clean base labels (ignoring BIO tag groupings).
 
 Usage:
 ```bash
