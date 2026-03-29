@@ -75,8 +75,21 @@ def apply_ner_mask(text: str, ner_pipe: Any, mode: str) -> Tuple[str, List[Dict[
     if not isinstance(text, str):
         return str(text), []
         
-    tokenizer = nltk.tokenize.punkt.PunktSentenceTokenizer()
-    spans = list(tokenizer.span_tokenize(text))
+    sentences = nltk.sent_tokenize(text)
+    spans = []
+    
+    # Reliably find global start/end character offsets for each sentence 
+    # without relying on internal NLTK pickle loading which crashes on some environments.
+    current_idx = 0
+    for sent in sentences:
+        start_idx = text.find(sent, current_idx)
+        if start_idx == -1:
+            # Fallback if NLTK somehow mutated the sentence
+            start_idx = current_idx 
+        
+        end_idx = start_idx + len(sent)
+        spans.append((start_idx, end_idx))
+        current_idx = end_idx
     
     entities_found: List[Dict[str, Any]] = []
     
