@@ -16,9 +16,9 @@ def setup_nltk() -> None:
     for package in ['punkt', 'punkt_tab']:
         try:
             nltk.data.find(f'tokenizers/{package}')
-        except LookupError:
+        except (LookupError, OSError):
             print(f"--- Downloading NLTK resource: {package} ---")
-            nltk.download(package)
+            nltk.download(package, quiet=True)
 
 def get_pipeline(model_path: str) -> Any:
     """
@@ -109,10 +109,11 @@ def apply_ner_mask(text: str, ner_pipe: Any, mode: str) -> Tuple[str, List[Dict[
             clean_ent_label = clean_label(ent['entity_group'])
             
             # Store structured entity for JSON
+            actual_text = text[ent_start_global:ent_end_global]
             entities_found.append({
                 "start": ent_start_global,
                 "end": ent_end_global,
-                "text": ent['word'],
+                "text": actual_text,
                 "label": clean_ent_label
             })
             
@@ -172,8 +173,11 @@ def save_output(df: pd.DataFrame, original_path: str, deid_col: List[str], ent_c
     # Keep original dataframe columns, add the new ones
     output_df = df.copy()
     output_df['de_identified_text'] = deid_col
-    # Serialize the list of dicts to a JSON string for the CSV column
-    output_df['identified_entities'] = [json.dumps(ents, ensure_ascii=False) for ents in ent_col]
+    # Format the entities for human readability in the CSV
+    output_df['identified_entities'] = [
+        " | ".join([f"{ent['text']}({ent['label']})" for ent in ents])
+        for ents in ent_col
+    ]
     
     base, ext = os.path.splitext(original_path)
     output_csv_path = f"{base}_deid_{mode}{ext}"
