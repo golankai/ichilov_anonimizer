@@ -62,7 +62,7 @@ Arguments:
 
 Usage Example:
 ```bash
-python de_identify.py --input test.csv --model HeMed_NER_baseline --mode label
+python de_identify.py --input dummy_data/test.csv --model HeMed_NER_baseline --mode label
 ```
 
 ## TROUBLESHOOTING
