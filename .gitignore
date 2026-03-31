@@ -3,4 +3,6 @@
 *.__pycache__/
 *.__cache__/
 HeMed_NER_baseline/
-data/
+data/.python-version  
+uv.lock  
+.python-version
