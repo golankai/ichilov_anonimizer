@@ -1,9 +1,9 @@
--   rn we cut sentences by period,  I think, but it's suboptimal with ids, lab results, etc. 
+-   Right now we cut sentences by period,  I think, but it's suboptimal with ids, lab results, etc. 
 -   Log how we cut sentences to check.
 - See if can integrate our model into safeharbor. 
 https://github.com/8400TheHealthNetwork/HebSafeHarbor
 
--   Integrafe a replacement mechanis, instead of masking - when possible. mails, ids, phone numbers, etc. (regex based)
+-   Integrafe a replacement mechanism, instead of masking - when possible. mails, ids, phone numbers, etc. (regex based)
 -   Detection of list of med orgs and orgs regex.
 -   Pipeline for model-based and regex based de-identification combination.
--   if data contains names or other entitieys, regex them.
+-   if data contains names or other entitiys, regex them.

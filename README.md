@@ -26,7 +26,10 @@ Our local model (`HeMed_NER_baseline`) is trained to identify and mask the follo
    ```bash
    pip install -r requirements.txt
    ```
-
+   Or:
+      ```bash
+   uv sync
+   ```
 3. Download NLTK data (Required for sentence splitting):
    The script will attempt this automatically, but you can run:
    ```bash
@@ -66,8 +69,8 @@ python de_identify.py --input dummy_data/test.csv --model HeMed_NER_baseline --m
 ```
 
 ## TROUBLESHOOTING
-Q: I get a LookupError for 'tokenizers/punkt'?
-A: This means the NLTK data is missing or in the wrong path. 
+*Q*: I get a LookupError for 'tokenizers/punkt'?  
+*A*: This means the NLTK data is missing or in the wrong path. 
    Ensure you have run the 'nltk.download' commands mentioned in the 
    Installation section.
 
