@@ -11,6 +11,10 @@ dependencies = [
     "torch",
     "torchvision",
     "transformers>=5.4.0",
+    "protobuf>=7.34.1",
+    "pytest>=9.0.3",
+    "pytest-sugar>=1.1.1",
+    "toolz>=1.1.0",
 ]
 
 

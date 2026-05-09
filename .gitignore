@@ -1,8 +1,12 @@
 *.pt
 *.bin
-*.__pycache__/
+__pycache__/
+
 *.__cache__/
 HeMed_NER_baseline/
 data/.python-version  
 uv.lock  
 .python-version
+Questions_for_KAI.MD
+
+
