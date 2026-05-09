@@ -100,6 +100,8 @@ This will:
 - Enable the stage observer (`[S]` lines like `[S] [stage=ner_mask       ][after] text_len_after=... entities_after=...`).
 - **Not** enable the replacement observer (no `[R]` lines), so you only see the net effect of each stage on length and entity count.
 Add `--verbose` if you also want the per-stage snippets and full entity lists.
+Add `--log-replacements` if you also want to see a detailed list of each replacement.
+
 ---
 
 ### 5. Adding a new stage
