@@ -140,46 +140,41 @@ def normalize_ids_stage(
     replacement_observer: Optional[ReplacementObserver] = None,
 ) -> DeidDoc:
     """
-    Pipeline stage that normalizes personal identifiers like Israeli ID
-    numbers or passport numbers to a consistent pattern, e.g.:
+    Pipeline stage that masks personal identifier digits while preserving the
+    Hebrew prefix (e.g. ת.ז., מספר דרכון):
 
-        'ת.ז. 345678901' -> ' ID_345678901'
-        'מספר דרכון 12345678' -> ' ID_12345678'
+        'ת.ז. 345678901' -> 'ת.ז. [ID]'
 
-    This removes the language-specific prefixes and leaves a neutral ID
-    token plus the original digits, which can be easier for downstream
-    detectors to work with.
+    Processes matches right-to-left so recorded positions stay valid across
+    multiple IDs in the same document. Detected entities are appended to
+    doc.entities so they survive the downstream NER stage.
     """
     text = doc.text
     if not isinstance(text, str) or not text:
         return doc
 
     stage_name = "normalize_ids"
+    new_entities: List[Dict[str, Any]] = []
 
-    def repl_id(match: re.Match) -> str:
-        original = match.group(0)
+    for match in reversed(list(ID_PREFIX_PATTERN.finditer(text))):
+        prefix = match.group(1)
         digits = match.group(2)
-        # We intentionally drop the original prefix and replace with a
-        # neutral token.
+        between = text[match.end(1):match.start(2)]  # separator between prefix and digits
 
-        # replacement = f" ID_{digits}" # If we want to keep the original prefix
-        replacement = f"[ID]"
+        entity_start = match.start(2)
+        entity_end = match.end(2)
 
-        if replacement_observer and replacement != original:
-            start, end = match.span()
-            replacement_observer(
-                stage_name,
-                original,
-                start,
-                end,
-                replacement,
-                "ID",
-            )
+        new_entities.append(
+            {"start": entity_start, "end": entity_end, "text": digits, "label": "ID"}
+        )
 
-        return replacement
+        if replacement_observer:
+            replacement_observer(stage_name, digits, entity_start, entity_end, "[ID]", "ID")
 
-    text = ID_PREFIX_PATTERN.sub(repl_id, text)
+        text = text[:match.start()] + prefix + between + "[ID]" + text[match.end():]
+
     doc.text = text
+    doc.entities = doc.entities + list(reversed(new_entities))
     return doc
 
 
@@ -283,7 +278,7 @@ def ner_mask_stage(
             deid_text = deid_text[:start] + rep + deid_text[end:]
 
         doc.text = deid_text
-        doc.entities = entities_found
+        doc.entities = doc.entities + entities_found
         return doc
 
     return stage
