@@ -1,0 +1,7 @@
+nltk>=3.9.4
+pandas>=3.0.2
+tqdm>=4.67.3
+torch
+transformers>=5.4.0
+toolz>=1.1.0
+pyarrow==24.0.0

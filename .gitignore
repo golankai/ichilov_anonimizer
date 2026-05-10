@@ -1,8 +1,18 @@
+# ── Model & Binary Files ────────────────────────────────────────────────────
 *.pt
 *.bin
-*.__pycache__/
+
+# ── Python ──────────────────────────────────────────────────────────────────
+__pycache__/
 *.__cache__/
-HeMed_NER_baseline/
-data/.python-version  
-uv.lock  
+
+# ── Environment & Version Managers ──────────────────────────────────────────
 .python-version
+uv.lock
+
+# ── Data & Models (not tracked) ─────────────────────────────────────────────
+data/
+HeMed_NER_baseline/
+
+# ── Misc / Tools ─────────────────────────────────────────────────────────────
+.claude/
