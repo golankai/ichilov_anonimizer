@@ -76,13 +76,13 @@
   {
     "id": 3,
     "text": "מטופל בן 92 עם היסטוריה של יתר לחץ דם הגיע לחדר מיון ברמב\"ם בתאריך 01.02.2024.",
-    "deid text": "מטופל בן [AGE\\_ABOVE\\_89] עם היסטוריה של יתר לחץ דם הגיע לחדר מיון [MED_ORG] בתאריך [DATE].[DATE].[DATE].",
+    "deid text": "מטופל בן [AGE_ABOVE_89] עם היסטוריה של יתר לחץ דם הגיע לחדר מיון [MED_ORG] בתאריך [DATE].[DATE].[DATE].",
     "entities": [
       {
         "start": 9,
         "end": 11,
         "text": "92",
-        "label": "AGE\\_ABOVE\\_89"
+        "label": "AGE_ABOVE_89"
       },
       {
         "start": 53,
@@ -141,12 +141,6 @@
     "deid text": "המטופלת [FIRST_NAME] [LAST_NAME] ת.ז. [ID] נולדה ב-[DATE].[DATE].[DATE] והיא מתגוררת [LOC].",
     "entities": [
       {
-        "start": 21,
-        "end": 30,
-        "text": "123456789",
-        "label": "ID"
-      },
-      {
         "start": 8,
         "end": 11,
         "text": "רחל",
@@ -157,6 +151,12 @@
         "end": 15,
         "text": "כהן",
         "label": "LAST_NAME"
+      },
+      {
+        "start": 21,
+        "end": 30,
+        "text": "123456789",
+        "label": "ID"
       },
       {
         "start": 34,
@@ -329,13 +329,13 @@
   {
     "id": 10,
     "text": "מטופלת בת 94 עם דמנציה אלצהיימר מתגוררת בבית אבות נווה שלום בנתניה.",
-    "deid text": "מטופלת בת [AGE\\_ABOVE\\_89] עם דמנציה אלצהיימר מתגוררת בבית אבות [MED_ORG] [LOC] [LOC].",
+    "deid text": "מטופלת בת [AGE_ABOVE_89] עם דמנציה אלצהיימר מתגוררת בבית אבות [MED_ORG] [LOC] [LOC].",
     "entities": [
       {
         "start": 10,
         "end": 12,
         "text": "94",
-        "label": "AGE\\_ABOVE\\_89"
+        "label": "AGE_ABOVE_89"
       },
       {
         "start": 50,
@@ -382,12 +382,6 @@
     "deid text": "[FIRST_NAME] [LAST_NAME] ת.ז. [ID] עבר ניתוח ב-[DATE].[DATE].[DATE] בבית החולים [MED_ORG] [LOC].",
     "entities": [
       {
-        "start": 17,
-        "end": 26,
-        "text": "234567890",
-        "label": "ID"
-      },
-      {
         "start": 0,
         "end": 4,
         "text": "אורי",
@@ -398,6 +392,12 @@
         "end": 11,
         "text": "בן דוד",
         "label": "LAST_NAME"
+      },
+      {
+        "start": 17,
+        "end": 26,
+        "text": "234567890",
+        "label": "ID"
       },
       {
         "start": 34,
@@ -533,13 +533,13 @@
   {
     "id": 16,
     "text": "מטופל בן 91 עם אי ספיקת לב כרונית מגיע למעקב קבוע במכון הלב בשיבא.",
-    "deid text": "מטופל בן [AGE\\_ABOVE\\_89] עם אי ספיקת לב כרונית מגיע למעקב קבוע במכון הלב [MED_ORG].",
+    "deid text": "מטופל בן [AGE_ABOVE_89] עם אי ספיקת לב כרונית מגיע למעקב קבוע במכון הלב [MED_ORG].",
     "entities": [
       {
         "start": 9,
         "end": 11,
         "text": "91",
-        "label": "AGE\\_ABOVE\\_89"
+        "label": "AGE_ABOVE_89"
       },
       {
         "start": 60,
@@ -648,12 +648,6 @@
     "deid text": "[FIRST_NAME] [LAST_NAME] ת.ז. [ID] מתגורר בקיבוץ [MED_ORG] והגיע לטיפול בתאריך [DATE].[DATE].[DATE].",
     "entities": [
       {
-        "start": 16,
-        "end": 25,
-        "text": "345678901",
-        "label": "ID"
-      },
-      {
         "start": 0,
         "end": 5,
         "text": "אברהם",
@@ -664,6 +658,12 @@
         "end": 10,
         "text": "לוין",
         "label": "LAST_NAME"
+      },
+      {
+        "start": 16,
+        "end": 25,
+        "text": "345678901",
+        "label": "ID"
       },
       {
         "start": 35,
