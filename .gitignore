@@ -1,12 +1,18 @@
+# ── Model & Binary Files ────────────────────────────────────────────────────
 *.pt
 *.bin
+
+# ── Python ──────────────────────────────────────────────────────────────────
 __pycache__/
-
 *.__cache__/
-HeMed_NER_baseline/
-data/.python-version  
-uv.lock  
+
+# ── Environment & Version Managers ──────────────────────────────────────────
 .python-version
-Questions_for_KAI.MD
+uv.lock
 
+# ── Data & Models (not tracked) ─────────────────────────────────────────────
+data/
+HeMed_NER_baseline/
 
+# ── Misc / Tools ─────────────────────────────────────────────────────────────
+.claude/
