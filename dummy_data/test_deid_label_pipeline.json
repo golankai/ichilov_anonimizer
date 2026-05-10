@@ -138,7 +138,7 @@
   {
     "id": 5,
     "text": "המטופלת רחל כהן ת.ז. 123456789 נולדה ב-10/05/1980 והיא מתגוררת בחיפה.",
-    "deid text": "המטופלת [FIRST_NAME] [LAST_NAME] ת.ז. [ID] נולדה ב-[DATE]/[DATE]/[DATE] והיא מתגוררת [LOC].",
+    "deid text": "המטופלת [FIRST_NAME] [LAST_NAME] [[FIRST_NAME]] נולדה ב-[DATE].[DATE].[DATE] והיא מתגוררת [LOC].",
     "entities": [
       {
         "start": 8,
@@ -153,32 +153,32 @@
         "label": "LAST_NAME"
       },
       {
-        "start": 21,
-        "end": 30,
-        "text": "123456789",
-        "label": "ID"
+        "start": 17,
+        "end": 19,
+        "text": "ID",
+        "label": "FIRST_NAME"
       },
       {
-        "start": 39,
-        "end": 41,
+        "start": 29,
+        "end": 31,
         "text": "10",
         "label": "DATE"
       },
       {
-        "start": 42,
-        "end": 44,
+        "start": 32,
+        "end": 34,
         "text": "05",
         "label": "DATE"
       },
       {
-        "start": 45,
-        "end": 49,
+        "start": 35,
+        "end": 39,
         "text": "1980",
         "label": "DATE"
       },
       {
-        "start": 63,
-        "end": 68,
+        "start": 53,
+        "end": 58,
         "text": "בחיפה",
         "label": "LOC"
       }
@@ -379,7 +379,7 @@
   {
     "id": 12,
     "text": "אורי בן דוד ת.ז. 234567890 עבר ניתוח ב-25.11.2023 בבית החולים בני ציון.",
-    "deid text": "[FIRST_NAME] [LAST_NAME] ת.ז. [ID] עבר ניתוח ב-[DATE].[DATE].[DATE] בבית החולים [MED_ORG] [LOC].",
+    "deid text": "[FIRST_NAME] [LAST_NAME] [ID] עבר ניתוח ב-[DATE].[DATE].[DATE] בבית החולים [MED_ORG] [LOC].",
     "entities": [
       {
         "start": 0,
@@ -394,38 +394,32 @@
         "label": "LAST_NAME"
       },
       {
-        "start": 17,
-        "end": 26,
-        "text": "234567890",
-        "label": "ID"
-      },
-      {
-        "start": 39,
-        "end": 41,
+        "start": 29,
+        "end": 31,
         "text": "25",
         "label": "DATE"
       },
       {
-        "start": 42,
-        "end": 44,
+        "start": 32,
+        "end": 34,
         "text": "11",
         "label": "DATE"
       },
       {
-        "start": 45,
-        "end": 49,
+        "start": 35,
+        "end": 39,
         "text": "2023",
         "label": "DATE"
       },
       {
-        "start": 62,
-        "end": 65,
+        "start": 52,
+        "end": 55,
         "text": "בני",
         "label": "MED_ORG"
       },
       {
-        "start": 66,
-        "end": 70,
+        "start": 56,
+        "end": 60,
         "text": "ציון",
         "label": "LOC"
       }
@@ -645,7 +639,7 @@
   {
     "id": 20,
     "text": "אברהם לוין ת.ז. 345678901 מתגורר בקיבוץ יגור והגיע לטיפול בתאריך 14.08.2023.",
-    "deid text": "[FIRST_NAME] [LAST_NAME] ת.ז. [ID][CONTACT] מתגורר בקיבוץ [MED_ORG] והגיע לטיפול בתאריך [DATE].[DATE].[DATE].",
+    "deid text": "[FIRST_NAME] [LAST_NAME] [[FIRST_NAME]] מתגורר בקיבוץ [MED_ORG] והגיע לטיפול בתאריך [DATE].[DATE].[DATE].",
     "entities": [
       {
         "start": 0,
@@ -660,38 +654,32 @@
         "label": "LAST_NAME"
       },
       {
-        "start": 16,
-        "end": 19,
-        "text": "345",
-        "label": "ID"
+        "start": 12,
+        "end": 14,
+        "text": "ID",
+        "label": "FIRST_NAME"
       },
       {
-        "start": 19,
-        "end": 25,
-        "text": "678901",
-        "label": "CONTACT"
-      },
-      {
-        "start": 40,
-        "end": 44,
+        "start": 30,
+        "end": 34,
         "text": "יגור",
         "label": "MED_ORG"
       },
       {
-        "start": 65,
-        "end": 67,
+        "start": 55,
+        "end": 57,
         "text": "14",
         "label": "DATE"
       },
       {
-        "start": 68,
-        "end": 70,
+        "start": 58,
+        "end": 60,
         "text": "08",
         "label": "DATE"
       },
       {
-        "start": 71,
-        "end": 75,
+        "start": 61,
+        "end": 65,
         "text": "2023",
         "label": "DATE"
       }
