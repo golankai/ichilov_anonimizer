@@ -36,6 +36,10 @@ ID_PREFIX_PATTERN = re.compile(
     r"(ת\.?ז\.?|תז|מספר\s+דרכון)\s*[:\-]?\s*([0-9]{7,9})"
 )
 
+# Matches placeholder tokens inserted by normalization stages (e.g. [ID])
+# Used to prevent the NER model from tagging text inside these markers.
+PLACEHOLDER_PATTERN = re.compile(r"\[[A-Z_]+\]")
+
 
 def _normalize_numeric_date_match(match: re.Match) -> str:
     """
@@ -230,6 +234,17 @@ def ner_mask_stage(
             spans.append((start_idx, end_idx))
             current_idx = end_idx
 
+        # Collect spans already occupied by placeholders from prior stages
+        # (e.g. [ID] inserted by normalize_ids). NER predictions that fall
+        # inside these regions are artifacts of the placeholder text, not
+        # real entities, so we discard them.
+        placeholder_spans = [
+            (m.start(), m.end()) for m in PLACEHOLDER_PATTERN.finditer(text)
+        ]
+
+        def _in_placeholder(start: int, end: int) -> bool:
+            return any(ps <= start and end <= pe for ps, pe in placeholder_spans)
+
         entities_found: List[Dict[str, Any]] = []
         edits: List[Tuple[int, int, str]] = []
 
@@ -240,6 +255,10 @@ def ner_mask_stage(
             for ent in results:
                 ent_start_global = start_idx + ent["start"]
                 ent_end_global = start_idx + ent["end"]
+
+                if _in_placeholder(ent_start_global, ent_end_global):
+                    continue
+
                 clean_ent_label = clean_label(ent["entity_group"])
 
                 actual_text = text[ent_start_global:ent_end_global]
