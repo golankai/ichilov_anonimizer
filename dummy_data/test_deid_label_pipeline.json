@@ -138,7 +138,7 @@
   {
     "id": 5,
     "text": "המטופלת רחל כהן ת.ז. 123456789 נולדה ב-10/05/1980 והיא מתגוררת בחיפה.",
-    "deid text": "המטופלת [FIRST_NAME] [LAST_NAME] ת.ז. [[LAST_NAME]] נולדה ב-[DATE].[DATE].[DATE] והיא מתגוררת [LOC].",
+    "deid text": "המטופלת [FIRST_NAME] [LAST_NAME] ת.ז. [ID] נולדה ב-[DATE].[DATE].[DATE] והיא מתגוררת [LOC].",
     "entities": [
       {
         "start": 21,
@@ -156,12 +156,6 @@
         "start": 12,
         "end": 15,
         "text": "כהן",
-        "label": "LAST_NAME"
-      },
-      {
-        "start": 22,
-        "end": 24,
-        "text": "ID",
         "label": "LAST_NAME"
       },
       {
@@ -651,7 +645,7 @@
   {
     "id": 20,
     "text": "אברהם לוין ת.ז. 345678901 מתגורר בקיבוץ יגור והגיע לטיפול בתאריך 14.08.2023.",
-    "deid text": "[FIRST_NAME] [LAST_NAME] ת.ז. [[LAST_NAME]] מתגורר בקיבוץ [MED_ORG] והגיע לטיפול בתאריך [DATE].[DATE].[DATE].",
+    "deid text": "[FIRST_NAME] [LAST_NAME] ת.ז. [ID] מתגורר בקיבוץ [MED_ORG] והגיע לטיפול בתאריך [DATE].[DATE].[DATE].",
     "entities": [
       {
         "start": 16,
@@ -669,12 +663,6 @@
         "start": 6,
         "end": 10,
         "text": "לוין",
-        "label": "LAST_NAME"
-      },
-      {
-        "start": 17,
-        "end": 19,
-        "text": "ID",
         "label": "LAST_NAME"
       },
       {
