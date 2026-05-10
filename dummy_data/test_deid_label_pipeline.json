@@ -138,8 +138,14 @@
   {
     "id": 5,
     "text": "המטופלת רחל כהן ת.ז. 123456789 נולדה ב-10/05/1980 והיא מתגוררת בחיפה.",
-    "deid text": "המטופלת [FIRST_NAME] [LAST_NAME] [[FIRST_NAME]] נולדה ב-[DATE].[DATE].[DATE] והיא מתגוררת [LOC].",
+    "deid text": "המטופלת [FIRST_NAME] [LAST_NAME] ת.ז. [[LAST_NAME]] נולדה ב-[DATE].[DATE].[DATE] והיא מתגוררת [LOC].",
     "entities": [
+      {
+        "start": 21,
+        "end": 30,
+        "text": "123456789",
+        "label": "ID"
+      },
       {
         "start": 8,
         "end": 11,
@@ -153,32 +159,32 @@
         "label": "LAST_NAME"
       },
       {
-        "start": 17,
-        "end": 19,
+        "start": 22,
+        "end": 24,
         "text": "ID",
-        "label": "FIRST_NAME"
+        "label": "LAST_NAME"
       },
       {
-        "start": 29,
-        "end": 31,
+        "start": 34,
+        "end": 36,
         "text": "10",
         "label": "DATE"
       },
       {
-        "start": 32,
-        "end": 34,
+        "start": 37,
+        "end": 39,
         "text": "05",
         "label": "DATE"
       },
       {
-        "start": 35,
-        "end": 39,
+        "start": 40,
+        "end": 44,
         "text": "1980",
         "label": "DATE"
       },
       {
-        "start": 53,
-        "end": 58,
+        "start": 58,
+        "end": 63,
         "text": "בחיפה",
         "label": "LOC"
       }
@@ -379,8 +385,14 @@
   {
     "id": 12,
     "text": "אורי בן דוד ת.ז. 234567890 עבר ניתוח ב-25.11.2023 בבית החולים בני ציון.",
-    "deid text": "[FIRST_NAME] [LAST_NAME] [ID] עבר ניתוח ב-[DATE].[DATE].[DATE] בבית החולים [MED_ORG] [LOC].",
+    "deid text": "[FIRST_NAME] [LAST_NAME] ת.ז. [ID] עבר ניתוח ב-[DATE].[DATE].[DATE] בבית החולים [MED_ORG] [LOC].",
     "entities": [
+      {
+        "start": 17,
+        "end": 26,
+        "text": "234567890",
+        "label": "ID"
+      },
       {
         "start": 0,
         "end": 4,
@@ -394,32 +406,32 @@
         "label": "LAST_NAME"
       },
       {
-        "start": 29,
-        "end": 31,
+        "start": 34,
+        "end": 36,
         "text": "25",
         "label": "DATE"
       },
       {
-        "start": 32,
-        "end": 34,
+        "start": 37,
+        "end": 39,
         "text": "11",
         "label": "DATE"
       },
       {
-        "start": 35,
-        "end": 39,
+        "start": 40,
+        "end": 44,
         "text": "2023",
         "label": "DATE"
       },
       {
-        "start": 52,
-        "end": 55,
+        "start": 57,
+        "end": 60,
         "text": "בני",
         "label": "MED_ORG"
       },
       {
-        "start": 56,
-        "end": 60,
+        "start": 61,
+        "end": 65,
         "text": "ציון",
         "label": "LOC"
       }
@@ -639,8 +651,14 @@
   {
     "id": 20,
     "text": "אברהם לוין ת.ז. 345678901 מתגורר בקיבוץ יגור והגיע לטיפול בתאריך 14.08.2023.",
-    "deid text": "[FIRST_NAME] [LAST_NAME] [[FIRST_NAME]] מתגורר בקיבוץ [MED_ORG] והגיע לטיפול בתאריך [DATE].[DATE].[DATE].",
+    "deid text": "[FIRST_NAME] [LAST_NAME] ת.ז. [[LAST_NAME]] מתגורר בקיבוץ [MED_ORG] והגיע לטיפול בתאריך [DATE].[DATE].[DATE].",
     "entities": [
+      {
+        "start": 16,
+        "end": 25,
+        "text": "345678901",
+        "label": "ID"
+      },
       {
         "start": 0,
         "end": 5,
@@ -654,32 +672,32 @@
         "label": "LAST_NAME"
       },
       {
-        "start": 12,
-        "end": 14,
+        "start": 17,
+        "end": 19,
         "text": "ID",
-        "label": "FIRST_NAME"
+        "label": "LAST_NAME"
       },
       {
-        "start": 30,
-        "end": 34,
+        "start": 35,
+        "end": 39,
         "text": "יגור",
         "label": "MED_ORG"
       },
       {
-        "start": 55,
-        "end": 57,
+        "start": 60,
+        "end": 62,
         "text": "14",
         "label": "DATE"
       },
       {
-        "start": 58,
-        "end": 60,
+        "start": 63,
+        "end": 65,
         "text": "08",
         "label": "DATE"
       },
       {
-        "start": 61,
-        "end": 65,
+        "start": 66,
+        "end": 70,
         "text": "2023",
         "label": "DATE"
       }
