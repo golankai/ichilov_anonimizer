@@ -184,11 +184,13 @@ def normalize_ids_stage(
 
 def clean_label(label: str) -> str:
     """
-    Strips B- and I- prefixes from labels if they exist.
+    Strips B- and I- prefixes and removes backslashes from labels.
+    Some NER models export label maps with backslash-escaped underscores
+    (e.g. AGE\_ABOVE\_89); this normalises them to AGE_ABOVE_89.
     """
     if label.startswith("B-") or label.startswith("I-"):
-        return label[2:]
-    return label
+        label = label[2:]
+    return label.replace("\\", "")
 
 
 def ner_mask_stage(
@@ -297,7 +299,7 @@ def ner_mask_stage(
             deid_text = deid_text[:start] + rep + deid_text[end:]
 
         doc.text = deid_text
-        doc.entities = doc.entities + entities_found
+        doc.entities = sorted(doc.entities + entities_found, key=lambda e: e["start"])
         return doc
 
     return stage
