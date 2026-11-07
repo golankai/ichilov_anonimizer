@@ -10,6 +10,7 @@
 #>
 param(
     [switch]$Install,
+    [switch]$TorchCuda,
     [switch]$Smoke,
     [string]$Py = "C:\ProgramData\anaconda3\envs\deid\python.exe"
 )
@@ -44,6 +45,11 @@ Section "Python packages in env deid"
 if ($Install) {
     Section "pip install (missing training packages)"
     & $Py -m pip install transformers accelerate datasets seqeval scikit-learn scikit-multilearn pandas nltk tqdm pytest
+}
+
+if ($TorchCuda) {
+    Section "pip install torch (CUDA 12.4 build; the driver supports CUDA 12.5)"
+    & $Py -m pip install --upgrade torch --index-url https://download.pytorch.org/whl/cu124 --trusted-host download.pytorch.org
 }
 
 Section "PyTorch / CUDA"
