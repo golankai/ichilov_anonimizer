@@ -1,6 +1,6 @@
 <#
 .SYNOPSIS
-  One-shot check for the GPU machine, using the conda env "PII" (CUDA torch) (no uv needed).
+  One-shot check for the GPU machine, using the conda env "PII" (CUDA torch).
   Writes everything to remote_report.txt in the repo root (metadata only, no document text).
 
 .EXAMPLE

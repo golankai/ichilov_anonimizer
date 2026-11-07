@@ -9,7 +9,7 @@ Ported from [Nminsker/MedNER](https://github.com/Nminsker/MedNER); see "Differen
 ## Setup
 
 ```bash
-uv sync --group training
+pip install -r requirements-training.txt   # needs a CUDA build of torch for the GPU
 ```
 
 ## Data
@@ -20,7 +20,7 @@ One JSON object per line; `end` is exclusive:
 {"id": "12651673.txt", "text": "...", "label": [{"start": 0, "end": 4, "label": "FIRST_NAME"}]}
 ```
 
-Put it under `data/` (git-ignored; it contains patient text and must never be committed).
+Real data goes under `data/` (git-ignored; it contains patient text and must never be committed).
 On load, labels are cleaned (`AGE\_ABOVE\_89` -> `AGE_ABOVE_89`), `DAY/MONTH/YEAR` become `DATE`, any label outside the 10 above
 is dropped, and documents listed in `ignorable_ids.txt` are skipped by the `--data` modes (`cv`, `final`, `train-all --data`). If that file is absent, nothing is skipped. Pre-made split folders (`train`) are never filtered.
 
@@ -28,9 +28,13 @@ is dropped, and documents listed in `ignorable_ids.txt` are skipped by the `--da
 
 ```powershell
 cd "D:\DeID KAI\ichilov_anonimizer"
-uv sync --group training
-uv run python training/train.py train
+C:\ProgramDatanaconda3\envs\PII\python.exe -X utf8 training	rain.py train
 ```
+
+(`PII` is the conda env on that machine with CUDA torch 2.6.0+cu124. The hospital proxy blocks `download.pytorch.org`, so do not try to reinstall torch there.)
+
+No GPU or no real data? Try the pipeline on the tiny fake sample: `python training/train.py train --data-dir training/dummy_data --model <any BERT> --epochs 1`.
+`tools/remote_check.ps1 -Smoke` runs the tests and a 1-epoch training in one command and writes `remote_report.txt`.
 
 Defaults: base model `D:\HeMed All\HeMed Final Model\model_non_anon`, data `D:\De ID All\NER_anon_dataset\regular`
 (a ready-made train/validation/test split; `...\cons` is the other variant), output `models\<model>_<timestamp>`.
@@ -86,7 +90,7 @@ Evaluate any pipeline on exact character spans with `data_utils.evaluate_char_sp
 | `metrics.py` | Trainer metrics: seqeval P/R/F1 and token-level F2 (recall-weighted) |
 | `data_utils.py` | Span merging, word-level IOB, character-span evaluation |
 | `ignorable_ids.txt` | Documents with known-bad annotations |
-| `tests/` | Offline tests (toy tokenizer, no downloads): `uv run --group training pytest training/tests` |
+| `tests/` | Offline tests (toy tokenizer, no downloads): `pytest training/tests` |
 
 Long documents are cut into 512-token windows with a 128-token overlap. Inside multi-window documents the 64 tokens at each inner
 window edge get label `-100`, so every token is trained and scored once, with context on both sides.

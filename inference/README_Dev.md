@@ -90,7 +90,7 @@ Both observers are always defined as callables; they become no‑ops when the co
 ### 4. Example: observe stages without per-replacement logs
 When you want to see how each stage affects the document **in aggregate** (length and entity count), but **do not** want a line per replacement, run:
 ```bash
-uv run .\inference\de_identify.py `
+python .\inference\de_identify.py `
   --input .\inference\dummy_data\test_deid_label_2.csv `
   --model dicta-il/dictabert-ner `
   --mode label `

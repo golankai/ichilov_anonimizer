@@ -34,10 +34,6 @@ Our local model (`HeMed_NER_baseline`) is trained to identify and mask the follo
   ```bash
    pip install -r requirements.txt
   ```
-   Or:
-  ```bash
-    uv sync
-  ```
 3. Download NLTK data (Required for sentence splitting):
   The script will attempt this automatically, but you can run:
    *Note: 'punkt_tab' is the required resource for modern NLTK versions.

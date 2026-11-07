@@ -1,6 +1,11 @@
-# Extra dependencies for fine-tuning (training/). Install on top of requirements.txt.
+# Training / development environment (training/). Self-contained: pip install -r requirements-training.txt
+# Needs a CUDA build of torch for the GPU (pip's default Windows torch is CPU-only).
+torch
+transformers>=4.46
 accelerate>=0.20.0
 datasets>=2.10.0
 scikit-learn>=1.0.0
 scikit-multilearn>=0.2.0
 seqeval>=1.2.2
+numpy
+pytest

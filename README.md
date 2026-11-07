@@ -34,7 +34,7 @@ The repository has two independent parts that meet at one artifact, the trained 
 ├── inference/                   the de-identification pipeline  (README.md, README_Dev.md)
 ├── training/                    fine-tuning a model, ported from Nminsker/MedNER  (README.md)
 ├── tools/                       machine/model inspection scripts
-└── data/, models/               git-ignored: annotated data and trained models
+└── data/, models/               git-ignored: real annotated data and trained models (tiny fake samples: inference/dummy_data, training/dummy_data)
 ```
 
 | I want to...                      | Go to |
@@ -42,6 +42,13 @@ The repository has two independent parts that meet at one artifact, the trained 
 | Extend the pipeline (new stage)   | [`inference/README_Dev.md`](inference/README_Dev.md) |
 | Train / evaluate / compare models | [`training/README.md`](training/README.md) |
 
-Developer setup: `uv sync` (inference) or `uv sync --group training` (+ training packages). Run scripts by path
+Two separate Python environments, one per job (each is just `pip install -r ...`):
+
+| Environment | Install | Used for |
+|---|---|---|
+| run | `pip install -r requirements.txt` (what `setup.bat` does) | `inference/` |
+| train / develop | `pip install -r requirements-training.txt` (with a CUDA torch) | `training/`, tests |
+
+Run scripts by path
 (`python training/train.py`, `python inference/de_identify.py`), not with `-m`.
 After training, copy the resulting model folder to `HeMed_NER_baseline\` (or pass `--model <folder>`) to use it.

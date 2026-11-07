@@ -1,6 +1,6 @@
 # De-identification regression tests
 
-File: `inference/tests/test_deidentification_regression.py`. Run: `uv run pytest inference/tests`.
+File: `inference/tests/test_deidentification_regression.py`. Run: `pytest inference/tests`.
 
 There is a single implementation (`inference/de_identify.py` + `inference/utils/`). The tests need no model: the
 Hugging Face NER pipeline is replaced by small fakes, so they cover everything around the model.
