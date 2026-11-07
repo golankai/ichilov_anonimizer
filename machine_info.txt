@@ -1,4 +1,4 @@
-﻿machine_info generated 2026-11-07T10:34:47
+﻿machine_info generated 2026-11-07T10:53:29
 
 === OS ===
   Microsoft Windows 10 Pro 10.0.19045 (64-bit)
@@ -14,31 +14,28 @@
   nvidia-smi reports CUDA Version: 12.5
 
 === Disk (free space per drive) ===
-  C: free 100.3 GB / total 299.4 GB
+  C: free 100.2 GB / total 299.4 GB
   D: free 310 GB / total 2048 GB
   F: free 0 GB / total 0 GB
   Z: free 0 GB / total 0 GB
 
 === Tools ===
   python : Python 3.12.4 [C:\ProgramData\anaconda3\python.exe]
-  uv : NOT FOUND
+  uv : uv 0.13.7 (316c827e0 2026-11-03 x86_64-pc-windows-msvc) [C:\ProgramData\anaconda3\Scripts\uv.exe]
   git : git version 2.49.0.windows.1 [C:\Program Files\Git\cmd\git.exe]
 
 === Python ML stack (repo .venv if present, else system python) ===
-  using: python
-C:\ProgramData\anaconda3\Lib\site-packages\transformers\utils\hub.py:111: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
-  warnings.warn(
+  using: D:\DeID KAI\ichilov_anonimizer\.venv\Scripts\python.exe
   python 3.12.4
-  torch 2.8.0+cpu
-  transformers 4.56.1
-  datasets 4.1.0
-  accelerate 1.10.1
+  torch MISSING
+  transformers MISSING
+  datasets MISSING
+  accelerate MISSING
   seqeval MISSING
-  sklearn 1.4.2
+  sklearn MISSING
   skmultilearn MISSING
-  tokenizers 0.22.0
-  nltk 3.8.1
-  torch.cuda.is_available: False
+  tokenizers MISSING
+  nltk MISSING
 
 === Model: D:\HeMed All\HeMed Final Model\model_non_anon ===
   absolute path: D:\HeMed All\HeMed Final Model\model_non_anon
