@@ -26,6 +26,8 @@ import dataset as ds
 from labels import ALL_LABELS, LABEL_MAPPING, MANDATORY_LABELS
 
 RECORD_NAME = "training_run.json"
+# A copy of every run record goes here; unlike the models, this folder IS committed (metadata only).
+RUNS_DIR = Path(__file__).resolve().parent / "runs"
 SCHEMA_VERSION = 1
 REPO_ROOT = Path(__file__).resolve().parent.parent
 
@@ -143,6 +145,12 @@ class RunRecord:
         tmp = self.path.with_suffix(".tmp")
         tmp.write_text(json.dumps(self.doc, indent=2, ensure_ascii=False, default=_json_default), encoding="utf-8")
         tmp.replace(self.path)
+        try:  # mirror into the tracked runs folder, so a push from the GPU machine carries the metadata
+            mirror = RUNS_DIR / Path(self.path).parent.name / RECORD_NAME
+            mirror.parent.mkdir(parents=True, exist_ok=True)
+            mirror.write_text(self.path.read_text(encoding="utf-8"), encoding="utf-8")
+        except OSError:
+            pass
 
     def start(self, training_args):
         self.doc["hyperparameters"] = training_args.to_dict()

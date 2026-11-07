@@ -56,6 +56,7 @@ Every run writes **`training_run.json`** into its output folder, next to the mod
 per-label entity counts, labels, windowing settings, all hyperparameters, Python/package/GPU info, and the results
 (per-epoch validation metrics, best epoch, test metrics, duration). It is written when training starts and finalized at
 the end (`status`: `running` -> `completed` or `failed`, with the error). It contains counts only, never document text.
+A copy goes to `training/runs/<run name>/training_run.json`, which **is** committed (models are not). After a run on the GPU machine, double-click or run `training\push_results.bat` to commit and push the metadata, then `git pull` here to see it.
 
 ## Workflow
 
