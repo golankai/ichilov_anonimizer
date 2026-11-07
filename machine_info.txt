@@ -1,0 +1,106 @@
+﻿machine_info generated 2026-11-07T10:34:47
+
+=== OS ===
+  Microsoft Windows 10 Pro 10.0.19045 (64-bit)
+
+=== CPU / RAM ===
+  Intel(R) Xeon(R) Gold 6326 CPU @ 2.90GHz | cores=4 logical=4
+  Intel(R) Xeon(R) Gold 6326 CPU @ 2.90GHz | cores=4 logical=4
+  RAM: 128 GB
+
+=== GPU ===
+  name, memory.total [MiB], memory.used [MiB], driver_version, compute_cap
+  NVIDIA A40, 46068 MiB, 10 MiB, 555.85, 8.6
+  nvidia-smi reports CUDA Version: 12.5
+
+=== Disk (free space per drive) ===
+  C: free 100.3 GB / total 299.4 GB
+  D: free 310 GB / total 2048 GB
+  F: free 0 GB / total 0 GB
+  Z: free 0 GB / total 0 GB
+
+=== Tools ===
+  python : Python 3.12.4 [C:\ProgramData\anaconda3\python.exe]
+  uv : NOT FOUND
+  git : git version 2.49.0.windows.1 [C:\Program Files\Git\cmd\git.exe]
+
+=== Python ML stack (repo .venv if present, else system python) ===
+  using: python
+C:\ProgramData\anaconda3\Lib\site-packages\transformers\utils\hub.py:111: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+  python 3.12.4
+  torch 2.8.0+cpu
+  transformers 4.56.1
+  datasets 4.1.0
+  accelerate 1.10.1
+  seqeval MISSING
+  sklearn 1.4.2
+  skmultilearn MISSING
+  tokenizers 0.22.0
+  nltk 3.8.1
+  torch.cuda.is_available: False
+
+=== Model: D:\HeMed All\HeMed Final Model\model_non_anon ===
+  absolute path: D:\HeMed All\HeMed Final Model\model_non_anon
+  total size: 715.3 MB
+    checkpoint-340000  <dir>
+    checkpoint-340519  <dir>
+    tb_logs  <dir>
+    added_tokens.json  0.05 MB
+    all_results.json  0 MB
+    config.json  0 MB
+    eval_results.json  0 MB
+    generation_config.json  0 MB
+    model.safetensors  709.64 MB
+    NAME.txt  0 MB
+    special_tokens_map.json  0 MB
+    tokenizer.json  3.77 MB
+    tokenizer_config.json  0.36 MB
+    trainer_state.json  0.02 MB
+    training_args.bin  0.01 MB
+    train_results.json  0 MB
+    vocab.txt  1.43 MB
+  config.json: model_type=bert architectures=BertForMaskedLM
+    hidden_size=768 layers=12 heads=12 vocab_size=130011 max_position_embeddings=512
+    id2label entries: 0
+    transformers_version in config: 4.44.0
+  tokenizer files present: True | weights present: True
+
+=== Model: D:\HeMed All\HeMed Final Model\model_anon ===
+  absolute path: D:\HeMed All\HeMed Final Model\model_anon
+  total size: 715.3 MB
+    tb_logs  <dir>
+    added_tokens.json  0.05 MB
+    all_results.json  0 MB
+    config.json  0 MB
+    eval_results.json  0 MB
+    generation_config.json  0 MB
+    model.safetensors  709.64 MB
+    special_tokens_map.json  0 MB
+    tokenizer.json  3.77 MB
+    tokenizer_config.json  0.36 MB
+    trainer_state.json  0.02 MB
+    training_args.bin  0.01 MB
+    train_results.json  0 MB
+    vocab.txt  1.43 MB
+  config.json: model_type=bert architectures=BertForMaskedLM
+    hidden_size=768 layers=12 heads=12 vocab_size=130011 max_position_embeddings=512
+    id2label entries: 0
+    transformers_version in config: 4.44.0
+  tokenizer files present: True | weights present: True
+
+=== Data: D:\De ID All\NER_anon_dataset\regular ===
+  absolute path: D:\De ID All\NER_anon_dataset\regular
+  size: 0 MB
+    dev.jsonl  0.48 MB  lines=470
+    test.jsonl  0.47 MB  lines=470
+    train.jsonl  3.42 MB  lines=3757
+
+=== Data: D:\De ID All\NER_anon_dataset\cons ===
+  absolute path: D:\De ID All\NER_anon_dataset\cons
+  size: 0 MB
+    dev.jsonl  0.13 MB  lines=185
+    test.jsonl  1.81 MB  lines=1000
+    train.jsonl  2.43 MB  lines=3512
+
+=== Search: .json/.jsonl files > 100 KB on fixed drives (path + size only) ===

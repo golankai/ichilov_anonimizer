@@ -1,0 +1,33 @@
+﻿
+##### ROOT: D:\HeMed All\HeMed Final Model
+
+  MODEL: D:\HeMed All\HeMed Final Model\model_anon
+    type=bert vocab=130011 labels=0 backslash_in_labels=False transformers=4.44.0
+    (no NER head: looks like a base model)
+    weights: model.safetensors 709.6 MB, modified 2025-01-28 02:56
+    sha256[0..16]: 0B6DC9DC86080ED5
+    trainer_state: epochs=1.0 steps=340648 best_metric=
+    best_checkpoint: 
+    files: added_tokens.json, all_results.json, config.json, eval_results.json, generation_config.json, model.safetensors, special_tokens_map.json, tokenizer.json, tokenizer_config.json, trainer_state.json, training_args.bin, train_results.json, vocab.txt
+
+  MODEL: D:\HeMed All\HeMed Final Model\model_non_anon
+    type=bert vocab=130011 labels=0 backslash_in_labels=False transformers=4.44.0
+    (no NER head: looks like a base model)
+    weights: model.safetensors 709.6 MB, modified 2024-12-05 11:13
+    sha256[0..16]: 232DE16ECE549765
+    trainer_state: epochs=1.0 steps=340519 best_metric=
+    best_checkpoint: 
+    files: added_tokens.json, all_results.json, config.json, eval_results.json, generation_config.json, model.safetensors, NAME.txt, special_tokens_map.json, tokenizer.json, tokenizer_config.json, trainer_state.json, training_args.bin, train_results.json, vocab.txt
+
+##### ROOT: D:\DeID KAI\ichilov_anonimizer\HeMed_NER_baseline
+
+  MODEL: D:\DeID KAI\ichilov_anonimizer\HeMed_NER_baseline
+    type=bert vocab=130011 labels=21 backslash_in_labels=True transformers=4.57.0
+    entity types (10): AGE\_ABOVE\_89, CONTACT, DATE, FIRST_NAME, ID, INNER_ID, LAST_NAME, LOC, MED_ORG, ORG
+    weights: model.safetensors 706.9 MB, modified 2026-01-24 14:48
+    sha256[0..16]: 40F30B7FF801FCB9
+    trainer_state: none found
+    files: added_tokens.json, config.json, model.safetensors, special_tokens_map.json, tokenizer.json, tokenizer_config.json, training_args.bin, vocab.txt
+
+##### DUPLICATE CHECK (same weights hash)
+  no two scanned models share identical weights
