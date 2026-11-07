@@ -28,7 +28,7 @@ is dropped, and documents listed in `ignorable_ids.txt` are skipped by the `--da
 
 ```powershell
 cd "D:\DeID KAI\ichilov_anonimizer"
-C:\ProgramDatanaconda3\envs\PII\python.exe -X utf8 training	rain.py train
+C:\ProgramData\anaconda3\envs\PII\python.exe -X utf8 training\train.py train
 ```
 
 (`PII` is the conda env on that machine with CUDA torch 2.6.0+cu124. The hospital proxy blocks `download.pytorch.org`, so do not try to reinstall torch there.)
