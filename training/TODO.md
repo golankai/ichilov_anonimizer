@@ -28,8 +28,9 @@
 - Training writes to `training/models/<base>_<timestamp>/` (git-ignored). Nothing there is ever committed.
 - Good models are copied by hand to a general folder **outside the repo** on the GPU machine. Keep the run's
   `training_run.json` next to the model; it says exactly how the model was made.
-- Only the final model that deployers use is named `HeMed_Anonimizer_Model` (also git-ignored), placed in the repo root
-  of the deployed copy. For experiments pass any folder: `python inference/de_identify.py --model <folder>`.
+- To let colleagues try models, they clone the repo and copy model folders into `models/` (git-ignored, one sub-folder per
+  model; `models/HeMed_Anonimizer_Model` is the default). Then `deidentify.bat file.csv label <model_name>` runs one of them,
+  and the output files carry the model name so several runs can be compared.
 
 ## Remote machine notes (hospital network)
 - `pip` (PyPI) works. `uv` and `download.pytorch.org` / `download-r2.pytorch.org` do not (proxy certificate / 503):

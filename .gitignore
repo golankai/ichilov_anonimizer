@@ -12,7 +12,6 @@ uv.lock
 
 # ── Data & Models (not tracked) ─────────────────────────────────────────────
 data/
-HeMed_Anonimizer_Model/
 
 # ── Misc / Tools ─────────────────────────────────────────────────────────────
 .claude/

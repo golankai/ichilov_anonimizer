@@ -136,7 +136,7 @@ from utils.pipeline_utils import DeidDoc
 from utils.doc_pipeline import build_doc_pipeline
 
 setup_nltk()
-ner_pipe = get_pipeline("HeMed_Anonimizer_Model")
+ner_pipe = get_pipeline("models/HeMed_Anonimizer_Model")
 
 doc_pipeline = build_doc_pipeline(
     ner_pipe,

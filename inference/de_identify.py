@@ -25,8 +25,31 @@ from utils.doc_pipeline import build_doc_pipeline
 
 logger = logging.getLogger(__name__)
 
-# Where deployers put the model they received: <repo>/HeMed_Anonimizer_Model
-DEFAULT_MODEL = Path(__file__).resolve().parent.parent / "HeMed_Anonimizer_Model"
+# Models live side by side in <repo>/models/<name>/ (git-ignored); `--model <name>` picks one.
+MODELS_DIR = Path(__file__).resolve().parent.parent / "models"
+DEFAULT_MODEL_NAME = "HeMed_Anonimizer_Model"
+
+
+def available_models() -> List[str]:
+    if not MODELS_DIR.is_dir():
+        return []
+    return sorted(p.name for p in MODELS_DIR.iterdir() if (p / "config.json").is_file())
+
+
+def resolve_model(arg: Optional[str]) -> Optional[str]:
+    """None = default model; a name = models/<name>; an existing folder or a Hugging Face id is used as is."""
+    if arg is None:
+        names = available_models()
+        if DEFAULT_MODEL_NAME in names:
+            return str(MODELS_DIR / DEFAULT_MODEL_NAME)
+        return str(MODELS_DIR / names[0]) if len(names) == 1 else None
+    if Path(arg).is_dir():
+        return arg
+    if (MODELS_DIR / arg).is_dir():
+        return str(MODELS_DIR / arg)
+    if re.fullmatch(r"[\w.-]+/[\w.-]+", arg):
+        return arg  # Hugging Face model id
+    return None
 
 
 def run_processing_loop(
@@ -77,6 +100,7 @@ def save_output(
     ent_col: List[List[Dict[str, Any]]],
     mode: str,
     output_format: str = "both",
+    output_tag: str = "",
 ) -> None:
     """
     Constructs the output path, saves the original dataframe with new columns to a CSV file,
@@ -90,12 +114,12 @@ def save_output(
 
     base, ext = os.path.splitext(original_path)
     if output_format in ("csv", "both"):
-        output_csv_path = f"{base}_deid_{mode}_pipeline{ext}"
+        output_csv_path = f"{base}_deid_{mode}_pipeline{output_tag}{ext}"
         output_df.to_csv(output_csv_path, index=False, encoding="utf-8-sig")
         print(f"\nSuccess! CSV saved to:   {output_csv_path}")
     if output_format in ("txt", "both"):
         # Tab-separated; TABs inside values were already replaced by spaces on load.
-        output_txt_path = f"{base}_deid_{mode}_pipeline.txt"
+        output_txt_path = f"{base}_deid_{mode}_pipeline{output_tag}.txt"
         output_df.to_csv(output_txt_path, index=False, sep="\t", encoding="utf-8-sig")
         print(f"Success! TXT saved to:   {output_txt_path}")
 
@@ -110,7 +134,7 @@ def save_output(
             }
         )
 
-    output_json_path = f"{base}_deid_{mode}_pipeline.json"
+    output_json_path = f"{base}_deid_{mode}_pipeline{output_tag}.json"
     with open(output_json_path, "w", encoding="utf-8") as f:
         json.dump(json_data, f, ensure_ascii=False, indent=2)
     print(f"Success! JSON saved to:  {output_json_path}")
@@ -118,13 +142,14 @@ def save_output(
 
 def run(
     input_file: str,
-    model_path: str = "HeMed_Anonimizer_Model",
+    model_path: str = str(MODELS_DIR / DEFAULT_MODEL_NAME),
     mode: str = "label",
     observe_stages: bool = False,
     log_replacements: bool = False,
     max_tokens: Optional[int] = None,
     overlap_tokens: int = DEFAULT_OVERLAP,
     output_format: str = "both",
+    output_tag: str = "",
 ) -> None:
     """
     The main execution flow for the pipeline-based variant.
@@ -164,7 +189,7 @@ def run(
         max_tokens=max_tokens,
         overlap_tokens=overlap_tokens,
     )
-    save_output(df, input_file, deid_col, ent_col, mode, output_format)
+    save_output(df, input_file, deid_col, ent_col, mode, output_format, output_tag)
     print(f"End time:   {datetime.now():%Y-%m-%d %H:%M:%S} (took {time.time() - started:.0f}s)")
 
 
@@ -176,8 +201,11 @@ def main() -> None:
     parser.add_argument("--input", required=True, help="Path to input CSV")
     parser.add_argument(
         "--model",
-        default=str(DEFAULT_MODEL),
-        help="Path to the model folder (default: %(default)s) or a Hugging Face model id",
+        default=None,
+        help=(
+            "Model name (a folder in models/), a path to a model folder, or a Hugging Face model id. "
+            f"Default: models/{DEFAULT_MODEL_NAME}, or the only model in models/."
+        ),
     )
     parser.add_argument(
         "--mode",
@@ -227,19 +255,23 @@ def main() -> None:
     )
     parser.add_argument(
         "--output-format",
-        choices=["csv", "txt"],
-        default="csv",
-        help="Main output file: csv (default) or tab-separated txt. A JSON file is always written too.",
+        choices=["csv", "txt", "both"],
+        default="both",
+        help="Main output file(s): csv, tab-separated txt, or both (default). A JSON file is always written too.",
     )
     args = parser.parse_args()
 
-    model_is_hf_id = re.fullmatch(r"[\w.-]+/[\w.-]+", args.model) is not None
-    if not Path(args.model).is_dir() and not model_is_hf_id:
+    model = resolve_model(args.model)
+    if model is None:
+        found = ", ".join(available_models()) or "none yet"
         parser.error(
-            f"model folder not found: {args.model}\n"
-            f"Copy the model you received into '{DEFAULT_MODEL}' (it contains config.json and "
-            "model.safetensors), or pass its location with --model."
+            f"model not found: {args.model or '(default)'}\n"
+            f"Put each model in its own folder under '{MODELS_DIR}' (it contains config.json and "
+            f"model.safetensors) and pick one with --model <folder name>. Models found there: {found}."
         )
+    # Output files of non-default models carry the model name, so runs with several models do not overwrite each other.
+    name = re.sub(r"[^\w.-]", "_", Path(model).name)
+    output_tag = "" if name == DEFAULT_MODEL_NAME else f"_{name}"
     if not Path(args.input).is_file():
         parser.error(f"input file not found: {args.input}")
 
@@ -253,13 +285,14 @@ def main() -> None:
 
     run(
         args.input,
-        args.model,
+        model,
         args.mode,
         observe_stages=args.observe_stages,
         log_replacements=args.log_replacements,
         max_tokens=args.max_chunk_tokens,
         overlap_tokens=args.chunk_overlap,
         output_format=args.output_format,
+        output_tag=output_tag,
     )
 
 

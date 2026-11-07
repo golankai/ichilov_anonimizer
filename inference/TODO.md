@@ -1,11 +1,11 @@
 # Inference: status, to-dos, ideas
 
 ## Status (2026-11-07)
-- Deployer flow: `setup.bat`, put the model in `HeMed_Anonimizer_Model\`, `deidentify.bat file.csv [label|mask|x]`.
+- Deployer flow: `setup.bat`, put model folders in `models\` (several allowed, one sub-folder each), `deidentify.bat file.csv [label|mask|x] [model_name]`.
 - Output is now **CSV and TXT (tab-separated) plus JSON** by default (`--output-format csv|txt|both`).
 - Input is read with `utf-8-sig`; TABs in the text become spaces; row progress and start/end time are printed.
-- The model folder was renamed from `HeMed_NER_baseline` to `HeMed_Anonimizer_Model`. Anyone who already placed the
-  model under the old name must rename the folder (or pass `--model`).
+- The old `HeMed_NER_baseline` folder in the repo root is gone: models now go in `models/<name>/`; the default is
+  `models/HeMed_Anonimizer_Model` (or the only model there). Move the old folder there. Non-default models add their name to the output files.
 - Tests: `pytest inference/tests`. Fake sample data: `inference/dummy_data/` (committed).
 
 ## To do

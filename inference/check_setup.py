@@ -2,7 +2,7 @@
 import sys
 from pathlib import Path
 
-MODEL = Path(__file__).resolve().parent.parent / "HeMed_Anonimizer_Model"
+MODELS = Path(__file__).resolve().parent.parent / "models"
 ok = True
 for mod in ("torch", "transformers", "pandas", "nltk"):
     try:
@@ -16,8 +16,9 @@ try:
     print(f"[info]    GPU available: {torch.cuda.is_available()} (CPU also works, just slower)")
 except Exception:
     pass
-if (MODEL / "config.json").is_file():
-    print(f"[ok]      model folder: {MODEL}")
+found = sorted(p.name for p in MODELS.glob("*") if (p / "config.json").is_file()) if MODELS.is_dir() else []
+if found:
+    print(f"[ok]      models in {MODELS}: {', '.join(found)}")
 else:
-    print(f"[todo]    model not found yet. Copy the model files into: {MODEL}")
+    print(f"[todo]    no model yet. Copy a model folder (config.json, model.safetensors, ...) into: {MODELS}")
 sys.exit(0 if ok else 1)

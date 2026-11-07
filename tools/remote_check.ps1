@@ -39,7 +39,7 @@ Section "Machine, models, data (machine_info.ps1)"
 Run powershell -ExecutionPolicy Bypass -File .\tools\machine_info.ps1 -ModelPath "D:\HeMed All\HeMed Final Model\model_non_anon,D:\HeMed All\HeMed Final Model\model_anon" -DataPath "D:\De ID All\NER_anon_dataset\regular,D:\De ID All\NER_anon_dataset\cons"
 
 Section "Model folders (scan_models.ps1)"
-Run powershell -ExecutionPolicy Bypass -File .\tools\scan_models.ps1 -Hash -Root "D:\HeMed All\HeMed Final Model,D:\DeID KAI\ichilov_anonimizer\HeMed_Anonimizer_Model"
+Run powershell -ExecutionPolicy Bypass -File .\tools\scan_models.ps1 -Hash -Root "D:\HeMed All\HeMed Final Model,D:\DeID KAI\ichilov_anonimizer\models"
 
 Section "GPU driver"
 Run nvidia-smi

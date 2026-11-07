@@ -9,7 +9,7 @@ You received this repository (or a zip of it) and the model on a USB stick.
 
 1. **Install once.** Needs Python 3.12. Double-click `setup.bat` (Linux/macOS: `./setup.sh`).
 2. **Place the model.** Copy the model folder from the USB so that this exists:
-   `HeMed_Anonimizer_Model\config.json` (next to `model.safetensors` and the tokenizer files), directly inside this folder.
+   `models\HeMed_Anonimizer_Model\config.json` (next to `model.safetensors` and the tokenizer files). The `models` folder can hold several models, each in its own sub-folder.
 3. **Run.** Prepare a CSV with the columns `id` and `text` (UTF-8), then:
    ```
    deidentify.bat C:\path\to\your_file.csv
@@ -19,6 +19,7 @@ You received this repository (or a zip of it) and the model on a USB stick.
    `identified_entities`) and a JSON with exact entity positions.
 
 Optional second argument: `label` (default, `[FIRST_NAME]`), `mask` (`[REDACTED]`), or `x` (`XXXX`), e.g. `deidentify.bat file.csv mask`.
+Optional third argument: the name of a model folder inside `models\`, e.g. `deidentify.bat file.csv label MyOtherModel`. The result files of that run carry the model name, so you can run several models on the same file and compare them.
 Try it first on the sample: `deidentify.bat inference\dummy_data\test.csv`.
 
 A GPU is used automatically if present; otherwise it runs on CPU (slower, same results).
@@ -51,6 +52,6 @@ Two separate Python environments, one per job (each is just `pip install -r ...`
 
 Run scripts by path
 (`python training/train.py`, `python inference/de_identify.py`), not with `-m`.
-Training writes models to `training/models/` (git-ignored); good ones are copied by hand outside the repo. `HeMed_Anonimizer_Model\` is only the final model that deployers use; for other models pass `--model <folder>`.
+Training writes models to `training/models/` (git-ignored); good ones are copied by hand outside the repo. For others to try several models, they clone the repo and put each model in its own folder under `models/` (git-ignored; `models/HeMed_Anonimizer_Model` is the default one). Pick one with `--model <folder name>`.
 
 To-do lists: [`training/TODO.md`](training/TODO.md), [`inference/TODO.md`](inference/TODO.md).

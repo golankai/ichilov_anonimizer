@@ -14,7 +14,7 @@ This makes each step a small, testable building block while still leveraging a p
 
 ## IDENTIFIED ENTITIES
 
-Our local model (`HeMed_Anonimizer_Model`) is trained to identify and mask the following entities:
+Our fine-tuned model (`models/HeMed_Anonimizer_Model`) is trained to identify and mask the following entities:
 
 - `FIRST_NAME`
 - `LAST_NAME`
@@ -67,7 +67,7 @@ python inference/de_identify.py --input <path_to_csv> --model <path_to_model> --
 Arguments:
 
 - `--input`            : Path to your input CSV file. (**Required**)
-- `--model`            : Path to your trained model folder. (**Required**, e.g., `HeMed_Anonimizer_Model` or a HF model name like `dicta-il/dictabert-ner`)
+- `--model`            : (Optional) Name of a folder inside `models/`, a path to a model folder, or a HF model name like `dicta-il/dictabert-ner`. Default: `models/HeMed_Anonimizer_Model`, or the only model in `models/`. For a model other than the default, its name is added to the output file names (`..._pipeline_<model>.csv`).
 - `--mode`             : (Optional, default: `label`) How to mask identified entities:
       - `label` -> replaces with `[ENTITY_TYPE]` (e.g., `[PER]`)
       - `mask`  -> replaces with `[REDACTED]`
