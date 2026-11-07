@@ -1,6 +1,6 @@
 ## Developer notes – de-identification pipeline
 
-This document supplements `README.md` and `docs/Deid_Pipeline_Usage.MD` with a concise, developer‑oriented view of the pipeline design and extension points.
+This document supplements `README.md` and `inference/docs/Deid_Pipeline_Usage.MD` with a concise, developer‑oriented view of the pipeline design and extension points.
 
 ---
 
@@ -9,17 +9,17 @@ This document supplements `README.md` and `docs/Deid_Pipeline_Usage.MD` with a c
 - **Core document type**: `DeidDoc`
   - Small dataclass holding the current working `text` and accumulated `entities`.
   - Gives every stage the same simple signature (`DeidDoc -> DeidDoc`), which makes pipelines easy to compose, test, and extend.
-- **Entry point**: `de_identify.py`
+- **Entry point**: `inference/de_identify.py`
   - CLI, argument parsing, logging configuration.
   - Loads data, model, builds a document pipeline, saves CSV/JSON outputs.
-- **Pipeline wiring**: `utils/doc_pipeline.py`
+- **Pipeline wiring**: `inference/utils/doc_pipeline.py`
   - `build_doc_pipeline(ner_pipe, mode, observer, replacement_observer, normalize_dates, normalize_ids)` returns a `DeidDoc -> DeidDoc` callable.
   - Composes named stages into a linear pipeline and plugs in the per‑stage observer.
-- **Stage implementations**: `utils/pipeline_stages.py`
+- **Stage implementations**: `inference/utils/pipeline_stages.py`
   - Regex-based stages: `normalize_ids_stage`, `normalize_dates_stage`.
   - Network-based stage: `ner_mask_stage` (HF pipeline).
   - Post-processing: `label_clean_stage`, plus helper `clean_label`.
-- **Infrastructure**: `utils/pipeline_utils.py`
+- **Infrastructure**: `inference/utils/pipeline_utils.py`
   - `DeidDoc` dataclass and `build_pipeline_with_optional_observers`, which wraps stages with an observer tap while preserving left‑to‑right semantics.
 
 ---
@@ -58,7 +58,7 @@ To achieve this, two orthogonal hooks are available to all stages:
     - Inspect snippets and entity lists at different points in the pipeline (e.g. “what did NER see after normalization?”).
     - Compare different pipeline configurations in a reproducible way.
   - Implementation:
-    - Installed in `de_identify.py` as `stage_observer`.
+    - Installed in `inference/de_identify.py` as `stage_observer`.
     - Wired by `build_doc_pipeline` / `build_pipeline_with_optional_observers`.
     - Activated from the CLI with `--observe-stages` (plus `--verbose` for DEBUG‑level detail).
     - Logs are prefixed with `[S]` (for “stage”), for example:
@@ -77,7 +77,7 @@ To achieve this, two orthogonal hooks are available to all stages:
     - Debug mismatch between expected vs. actual masking (e.g. wrong span or label).
     - Build external analytics around replacement patterns without modifying stage logic.
   - Implementation:
-    - Installed in `de_identify.py` as `replacement_observer`.
+    - Installed in `inference/de_identify.py` as `replacement_observer`.
     - Passed into stages via `build_doc_pipeline` (e.g. `normalize_ids_stage`, `normalize_dates_stage`, `ner_mask_stage`).
     - Activated from the CLI with `--log-replacements`.
     - Logs are prefixed with an indented `[R]` (for “replacement”), for example:
@@ -90,8 +90,8 @@ Both observers are always defined as callables; they become no‑ops when the co
 ### 4. Example: observe stages without per-replacement logs
 When you want to see how each stage affects the document **in aggregate** (length and entity count), but **do not** want a line per replacement, run:
 ```bash
-uv run .\de_identify.py `
-  --input .\dummy_data\test_deid_label_2.csv `
+uv run .\inference\de_identify.py `
+  --input .\inference\dummy_data\test_deid_label_2.csv `
   --model dicta-il/dictabert-ner `
   --mode label `
   --observe-stages
@@ -113,7 +113,7 @@ To add a new pipeline stage that can be reused across tools:
    - Pure stage: `def my_stage(doc: DeidDoc) -> DeidDoc: ...`
    - Replacement‑reporting stage: `def my_stage(doc: DeidDoc, replacement_observer: Optional[ReplacementObserver] = None) -> DeidDoc: ...`
      - Call `replacement_observer(...)` whenever you apply a replacement (it may be `None`, so check before calling).
-2. **Register the stage in the pipeline** in `utils/doc_pipeline.py`:
+2. **Register the stage in the pipeline** in `inference/utils/doc_pipeline.py`:
    - For a simple stage, add it to `core_stages` or `prefix_stages` as `(name, fn)`.
    - For a replacement‑reporting stage, route it through `stage_with_replacements` so it receives the shared `replacement_observer`.
 3. **Optionally expose toggles**:
@@ -152,5 +152,5 @@ result = doc_pipeline(doc)
 print(result.text, result.entities)
 ```
 
-For concrete CLI commands and logging combinations, use this alongside `docs/Deid_Pipeline_Usage.MD`.
+For concrete CLI commands and logging combinations, use this alongside `inference/docs/Deid_Pipeline_Usage.MD`.
 

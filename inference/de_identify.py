@@ -15,6 +15,7 @@ from utils.pipeline_utils import (
     make_pipeline_start_stage,
 )
 from utils.pipeline_stages import ReplacementObserver
+from utils.chunking import DEFAULT_OVERLAP
 from utils.doc_pipeline import build_doc_pipeline
 
 
@@ -28,6 +29,8 @@ def run_processing_loop(
     observer: Optional[Callable[[str, DeidDoc], None]] = None,
     replacement_observer: Optional[ReplacementObserver] = None,
     header_stage: Optional[Callable[[DeidDoc], DeidDoc]] = None,
+    max_tokens: Optional[int] = None,
+    overlap_tokens: int = DEFAULT_OVERLAP,
 ) -> Tuple[List[str], List[List[Dict[str, Any]]]]:
     """
     Iterates through the dataframe and returns processed columns for all records,
@@ -41,6 +44,8 @@ def run_processing_loop(
         normalize_dates=True,
         normalize_ids=True,
         header_stage=header_stage,
+        max_tokens=max_tokens,
+        overlap_tokens=overlap_tokens,
     )
 
     deid_texts: List[str] = []
@@ -101,6 +106,8 @@ def run(
     mode: str = "label",
     observe_stages: bool = False,
     log_replacements: bool = False,
+    max_tokens: Optional[int] = None,
+    overlap_tokens: int = DEFAULT_OVERLAP,
 ) -> None:
     """
     The main execution flow for the pipeline-based variant.
@@ -131,6 +138,8 @@ def run(
         observer=stage_observer,
         replacement_observer=replacement_observer,
         header_stage=header,
+        max_tokens=max_tokens,
+        overlap_tokens=overlap_tokens,
     )
     save_output(df, input_file, deid_col, ent_col, mode)
 
@@ -172,6 +181,22 @@ def main() -> None:
             "replacement token."
         ),
     )
+    parser.add_argument(
+        "--max-chunk-tokens",
+        type=int,
+        default=None,
+        help=(
+            "Max text tokens per NER window. Default: the model limit minus "
+            "special tokens and a small margin (e.g. 502 for a 512 model). "
+            "Lower it if the model was trained on short inputs."
+        ),
+    )
+    parser.add_argument(
+        "--chunk-overlap",
+        type=int,
+        default=DEFAULT_OVERLAP,
+        help="Tokens of shared context between neighbouring windows (default %(default)s).",
+    )
     args = parser.parse_args()
 
     # Global default: only WARNING+ from all libraries
@@ -188,6 +213,8 @@ def main() -> None:
         args.mode,
         observe_stages=args.observe_stages,
         log_replacements=args.log_replacements,
+        max_tokens=args.max_chunk_tokens,
+        overlap_tokens=args.chunk_overlap,
     )
 
 

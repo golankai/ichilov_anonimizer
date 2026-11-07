@@ -1,6 +1,7 @@
 from functools import partial
 from typing import Any, Callable, List, Optional, Tuple
 
+from utils.chunking import DEFAULT_OVERLAP
 from utils.pipeline_utils import DeidDoc, build_pipeline_with_optional_observers
 from utils.pipeline_stages import (
     ReplacementObserver,
@@ -35,6 +36,8 @@ def build_doc_pipeline(
     normalize_dates: bool = False,
     normalize_ids: bool = False,
     header_stage: Optional[Stage] = None,
+    max_tokens: Optional[int] = None,
+    overlap_tokens: int = DEFAULT_OVERLAP,
 ) -> Stage:
     """
     Builds a document-level pipeline.
@@ -99,6 +102,8 @@ def build_doc_pipeline(
         mode=mode,
         ner_pipe=ner_pipe,
         replacement_observer=padded_replacement,
+        max_tokens=max_tokens,
+        overlap_tokens=overlap_tokens,
     )
 
     core_stages: List[Tuple[str, Stage]] = [

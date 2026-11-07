@@ -44,10 +44,10 @@ Our local model (`HeMed_NER_baseline`) is trained to identify and mask the follo
 
 ## FILE STRUCTURE
 
-- `de_identify.py` : Main CLI script (processes CSVs and masks text via the pipeline).
-- `utils/doc_pipeline.py` : Pipeline composition logic (how stages are wired together).
-- `utils/pipeline_stages.py` : Reusable pipeline stages (date/ID normalization, NER masking, label cleanup).
-- `docs/Deid_Pipeline_Usage.MD` : Brief usage guide with concrete CLI examples and logging options.
+- `inference/de_identify.py` : Main CLI script (processes CSVs and masks text via the pipeline).
+- `inference/utils/doc_pipeline.py` : Pipeline composition logic (how stages are wired together).
+- `inference/utils/pipeline_stages.py` : Reusable pipeline stages (date/ID normalization, NER masking, label cleanup).
+- `inference/docs/Deid_Pipeline_Usage.MD` : Brief usage guide with concrete CLI examples and logging options.
 - `requirements.txt` : List of Python dependencies.
 
 ## DE-IDENTIFICATION (de_identify.py)
@@ -64,7 +64,7 @@ The pipeline automatically generates two matched output files in your directory:
 Usage (basic run):
 
 ```bash
-python de_identify.py --input <path_to_csv> --model <path_to_model> --mode <mode>
+python inference/de_identify.py --input <path_to_csv> --model <path_to_model> --mode <mode>
 ```
 
 Arguments:
@@ -77,18 +77,22 @@ Arguments:
       - `x`     -> replaces with a string of `X` characters
 - `--observe-stages`   : (Optional) Log a short summary after each pipeline stage (text length + entity count).
 - `--log-replacements` : (Optional) Log each string replacement applied by any stage (original text, span, label, replacement token).
+- `--max-chunk-tokens` : (Optional) Max text tokens per NER window. Default: the model's limit minus special tokens and a small margin (e.g. 502 for a 512-token model).
+- `--chunk-overlap`    : (Optional) Tokens of shared context between neighbouring windows (default 64).
+
+**How long texts are handled:** the text is not sent to the model sentence by sentence. It is cut into overlapping windows that use as much of the model's context as possible; each window ends at the last sentence boundary that fits (never between `ת.ז.` and its number, never inside a word), and every entity is taken from the window where it sits most centrally. See `utils/chunking.py`.
 - `-v`, `--verbose`    : (Optional) Enable DEBUG-level logging for this tool (e.g., text snippets and full entity lists per stage).
 
 Usage examples:
 
 ```bash
-python de_identify.py --input dummy_data/test.csv --model HeMed_NER_baseline --mode label
+python inference/de_identify.py --input inference/dummy_data/test.csv --model HeMed_NER_baseline --mode label
 ```
 
 - **With full observability (research / debugging)**:
   ```bash
-  python de_identify.py \
-    --input dummy_data/test.csv \
+  python inference/de_identify.py \
+    --input inference/dummy_data/test.csv \
     --model HeMed_NER_baseline \
     --mode label \
     --observe-stages \
@@ -97,7 +101,7 @@ python de_identify.py --input dummy_data/test.csv --model HeMed_NER_baseline --m
   ```
   This logs per-stage summaries, detailed per-stage snippets/entities, and every replacement that any stage applies.
 
-For more concrete examples (including logging and different masking modes), see `docs/Deid_Pipeline_Usage.MD`.
+For more concrete examples (including logging and different masking modes), see `inference/docs/Deid_Pipeline_Usage.MD`.
 
 ## TROUBLESHOOTING
 

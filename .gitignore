@@ -16,3 +16,8 @@ HeMed_NER_baseline/
 
 # ── Misc / Tools ─────────────────────────────────────────────────────────────
 .claude/
+
+# ── Training outputs ────────────────────────────────────────────────────────
+models/
+runs/
+*.safetensors

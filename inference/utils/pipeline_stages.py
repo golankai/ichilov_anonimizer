@@ -2,7 +2,7 @@ import logging
 import re
 from typing import Any, Callable, Dict, List, Optional, Tuple
 
-from utils.nlp_utils import get_sentence_tokenizer
+from utils.chunking import DEFAULT_OVERLAP, chunk_text, resolve_token_budget
 from utils.pipeline_utils import DeidDoc
 
 
@@ -197,17 +197,31 @@ def ner_mask_stage(
     mode: str,
     ner_pipe: Any,
     replacement_observer: Optional[ReplacementObserver] = None,
+    max_tokens: Optional[int] = None,
+    overlap_tokens: int = DEFAULT_OVERLAP,
 ):
     """
     Factory returning a stage that:
-    - runs sentence-level NER using the HF pipeline,
+    - runs NER over overlapping context windows (as many tokens as the model
+      accepts, cut at sentence boundaries; see utils/chunking.py),
     - collects structured entities,
     - applies masking to the document text.
 
     If `replacement_observer` is provided, it will be called once for
     each replacement with:
         (stage_name, original_text, start, end, replacement_text, label)
+
+    `max_tokens` overrides the per-window token budget (default: derived from
+    the model/tokenizer limits); `overlap_tokens` is the context shared by
+    neighbouring windows.
     """
+    tokenizer, default_budget = resolve_token_budget(ner_pipe)
+    budget = max_tokens or default_budget
+    model_limit = None
+    if tokenizer is not None:
+        model_limit = budget + tokenizer.num_special_tokens_to_add(pair=False) + (
+            0 if max_tokens else 8
+        )
 
     def stage(doc: DeidDoc) -> DeidDoc:
         if not isinstance(doc.text, str):
@@ -219,22 +233,7 @@ def ner_mask_stage(
         text = doc.text
         stage_name = "ner_mask"
 
-        tokenizer = get_sentence_tokenizer("nltk")
-        sentences = tokenizer(text)
-        spans: List[Tuple[int, int]] = []
-
-        # Reliably find global start/end character offsets for each sentence
-        # without relying on internal NLTK pickle loading which crashes on some environments.
-        current_idx = 0
-        for sent in sentences:
-            start_idx = text.find(sent, current_idx)
-            if start_idx == -1:
-                # Fallback if NLTK somehow mutated the sentence
-                start_idx = current_idx
-
-            end_idx = start_idx + len(sent)
-            spans.append((start_idx, end_idx))
-            current_idx = end_idx
+        chunks = chunk_text(text, tokenizer, budget, overlap_tokens, model_limit)
 
         # Collect spans already occupied by placeholders from prior stages
         # (e.g. [ID] inserted by normalize_ids). NER predictions that fall
@@ -250,13 +249,18 @@ def ner_mask_stage(
         entities_found: List[Dict[str, Any]] = []
         edits: List[Tuple[int, int, str]] = []
 
-        for start_idx, end_idx in spans:
-            sent = text[start_idx:end_idx]
-            results = ner_pipe(sent)
+        for chunk in chunks:
+            start_idx = chunk.start
+            results = ner_pipe(text[chunk.start:chunk.end])
 
             for ent in results:
                 ent_start_global = start_idx + ent["start"]
                 ent_end_global = start_idx + ent["end"]
+
+                # Overlapping windows both see the text near a cut; only the
+                # window that owns the entity's centre reports it.
+                if not chunk.owns(ent_start_global, ent_end_global):
+                    continue
 
                 if _in_placeholder(ent_start_global, ent_end_global):
                     continue
