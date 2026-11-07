@@ -21,6 +21,6 @@ HeMed_NER_baseline/
 models/
 runs/
 *.safetensors
-
-# Hospital document ids (kept local on purpose; copy by hand to a new machine if needed)
-training/ignorable_ids.txt
+.venv/
+input/
+output/

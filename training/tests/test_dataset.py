@@ -79,7 +79,6 @@ def test_normalize_record_drops_unknown_labels():
     assert [s["label"] for s in ds.normalize_record(r)["label"]] == ["DATE"]
 
 
-@pytest.mark.skipif(not ds.DEFAULT_IGNORE_FILE.exists(), reason="ignorable_ids.txt is kept out of git")
 def test_ignorable_ids_loaded():
     assert "11822165.txt" in ds.load_ignorable_ids()
 

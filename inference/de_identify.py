@@ -2,6 +2,8 @@ import os
 import argparse
 import json
 import logging
+import re
+from pathlib import Path
 from typing import Any, Callable, Dict, List, Optional, Tuple
 
 import pandas as pd
@@ -20,6 +22,9 @@ from utils.doc_pipeline import build_doc_pipeline
 
 
 logger = logging.getLogger(__name__)
+
+# Where deployers put the model they received: <repo>/HeMed_NER_baseline
+DEFAULT_MODEL = Path(__file__).resolve().parent.parent / "HeMed_NER_baseline"
 
 
 def run_processing_loop(
@@ -150,7 +155,11 @@ def main() -> None:
     """
     parser = argparse.ArgumentParser(description="NER De-identification Tool (pipeline version)")
     parser.add_argument("--input", required=True, help="Path to input CSV")
-    parser.add_argument("--model", required=True, help="Path to model")
+    parser.add_argument(
+        "--model",
+        default=str(DEFAULT_MODEL),
+        help="Path to the model folder (default: %(default)s) or a Hugging Face model id",
+    )
     parser.add_argument(
         "--mode",
         choices=["label", "mask", "x"],
@@ -198,6 +207,16 @@ def main() -> None:
         help="Tokens of shared context between neighbouring windows (default %(default)s).",
     )
     args = parser.parse_args()
+
+    model_is_hf_id = re.fullmatch(r"[\w.-]+/[\w.-]+", args.model) is not None
+    if not Path(args.model).is_dir() and not model_is_hf_id:
+        parser.error(
+            f"model folder not found: {args.model}\n"
+            f"Copy the model you received into '{DEFAULT_MODEL}' (it contains config.json and "
+            "model.safetensors), or pass its location with --model."
+        )
+    if not Path(args.input).is_file():
+        parser.error(f"input file not found: {args.input}")
 
     # Global default: only WARNING+ from all libraries
     logging.basicConfig(

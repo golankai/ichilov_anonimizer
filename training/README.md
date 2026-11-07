@@ -22,8 +22,7 @@ One JSON object per line; `end` is exclusive:
 
 Put it under `data/` (git-ignored; it contains patient text and must never be committed).
 On load, labels are cleaned (`AGE\_ABOVE\_89` -> `AGE_ABOVE_89`), `DAY/MONTH/YEAR` become `DATE`, any label outside the 10 above
-is dropped, and documents listed in `ignorable_ids.txt` are skipped by the `--data` modes (`cv`, `final`, `train-all --data`). That file holds hospital document ids, so it is
-**not in git**: copy it by hand next to `train.py` on a new machine (if absent, nothing is skipped). Pre-made split folders (`train`) are never filtered.
+is dropped, and documents listed in `ignorable_ids.txt` are skipped by the `--data` modes (`cv`, `final`, `train-all --data`). If that file is absent, nothing is skipped. Pre-made split folders (`train`) are never filtered.
 
 ## Quick start on the GPU machine (replicates MedNER's last run)
 
@@ -86,7 +85,7 @@ Evaluate any pipeline on exact character spans with `data_utils.evaluate_char_sp
 | `labels.py` | Label set, BIO maps, label cleaning |
 | `metrics.py` | Trainer metrics: seqeval P/R/F1 and token-level F2 (recall-weighted) |
 | `data_utils.py` | Span merging, word-level IOB, character-span evaluation |
-| `ignorable_ids.txt` | Documents with known-bad annotations (local only, git-ignored) |
+| `ignorable_ids.txt` | Documents with known-bad annotations |
 | `tests/` | Offline tests (toy tokenizer, no downloads): `uv run --group training pytest training/tests` |
 
 Long documents are cut into 512-token windows with a 128-token overlap. Inside multi-window documents the 64 tokens at each inner

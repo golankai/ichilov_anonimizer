@@ -1,42 +1,47 @@
 # Ichilov Hebrew Medical Text Anonymizer
 
-De-identification of Hebrew medical text with a mix of regex rules and a fine-tuned BERT NER model.
-The repository has two independent parts that meet at one artifact, the **trained model directory**.
+Removes personal details (names, dates, places, IDs, contacts, ...) from Hebrew medical text, using regex rules plus a
+fine-tuned BERT NER model. **Everything runs locally; no text leaves the machine.**
+
+## For deployers: get it running (3 steps)
+
+You received this repository (or a zip of it) and the model on a USB stick.
+
+1. **Install once.** Needs Python 3.12. Double-click `setup.bat` (Linux/macOS: `./setup.sh`).
+2. **Place the model.** Copy the model folder from the USB so that this exists:
+   `HeMed_NER_baseline\config.json` (next to `model.safetensors` and the tokenizer files), directly inside this folder.
+3. **Run.** Prepare a CSV with the columns `id` and `text` (UTF-8), then:
+   ```
+   deidentify.bat C:\path\to\your_file.csv
+   ```
+   Linux/macOS: `./deidentify.sh /path/to/your_file.csv`.
+   Results are written next to your input file: a CSV (original columns plus `de_identified_text` and
+   `identified_entities`) and a JSON with exact entity positions.
+
+Optional second argument: `label` (default, `[FIRST_NAME]`), `mask` (`[REDACTED]`), or `x` (`XXXX`), e.g. `deidentify.bat file.csv mask`.
+Try it first on the sample: `deidentify.bat inference\dummy_data\test.csv`.
+
+A GPU is used automatically if present; otherwise it runs on CPU (slower, same results).
+If something fails, run `setup.bat` again: it prints what is missing. Details and advanced options: [`inference/README.md`](inference/README.md).
+
+## For developers
+
+The repository has two independent parts that meet at one artifact, the trained **model folder**. Deployers can ignore `training/`.
 
 ```
 .
-├── training/    Fine-tune a Hebrew BERT on annotated data  ->  produces a model directory
-├── inference/   Run the de-identification pipeline         <-  consumes a model directory
-├── pyproject.toml / requirements.txt / requirements-training.txt
-└── data/, models/   (git-ignored) your annotated data and trained models
+├── setup.bat / deidentify.bat   deployer entry points (.sh equivalents too)
+├── inference/                   the de-identification pipeline  (README.md, README_Dev.md)
+├── training/                    fine-tuning a model, ported from Nminsker/MedNER  (README.md)
+├── tools/                       machine/model inspection scripts
+└── data/, models/               git-ignored: annotated data and trained models
 ```
 
-| I want to...                         | Go to                                      |
-|--------------------------------------|--------------------------------------------|
-| De-identify a CSV of documents       | [`inference/README.md`](inference/README.md) |
-| Extend the pipeline (new stage)      | [`inference/README_Dev.md`](inference/README_Dev.md) |
-| Train / evaluate / compare models    | [`training/README.md`](training/README.md)   |
+| I want to...                      | Go to |
+|-----------------------------------|-------|
+| Extend the pipeline (new stage)   | [`inference/README_Dev.md`](inference/README_Dev.md) |
+| Train / evaluate / compare models | [`training/README.md`](training/README.md) |
 
-## Setup
-
-```bash
-uv sync                      # inference only
-uv sync --group training     # + training dependencies (datasets, seqeval, scikit-learn, ...)
-```
-
-(`pip install -r requirements.txt`, plus `-r requirements-training.txt` for training, also works.)
-
-## Quick start
-
-```bash
-# train (see training/README.md for data format and splitting)
-uv run --group training python training/train.py train \
-    --model <hf-id-or-path> --data-dir data/splits --output-dir models/my_model
-
-# de-identify with the result
-uv run python inference/de_identify.py --input inference/dummy_data/test.csv --model models/my_model --mode label
-```
-
-Both parts use top-level imports relative to their own folder, so run the scripts by path
-(`python training/train.py`, `python inference/de_identify.py`) rather than `python -m`.
-Training originated from [Nminsker/MedNER](https://github.com/Nminsker/MedNER).
+Developer setup: `uv sync` (inference) or `uv sync --group training` (+ training packages). Run scripts by path
+(`python training/train.py`, `python inference/de_identify.py`), not with `-m`.
+After training, copy the resulting model folder to `HeMed_NER_baseline\` (or pass `--model <folder>`) to use it.
