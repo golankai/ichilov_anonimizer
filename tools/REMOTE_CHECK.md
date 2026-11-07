@@ -58,3 +58,16 @@ uv run python inference/de_identify.py --input inference\dummy_data\test.csv --m
 ```
 
 After one epoch the quality is poor; this only checks that the model loads and runs end to end.
+
+## Shortcut (no uv, conda env `deid`, one command)
+
+The GPU machine cannot reach download.pytorch.org (hospital certificate), so `uv sync` fails there. Use the script instead;
+it runs all the checks above with the `deid` conda env and writes `remote_report.txt` in the repo root:
+
+```powershell
+cd "D:\DeID KAI\ichilov_anonimizer"
+git pull
+powershell -ExecutionPolicy Bypass -File .\tools\remote_check.ps1
+```
+
+Add `-Install` to pip-install missing packages, `-Smoke` to also run the tests and a 1-epoch training.
