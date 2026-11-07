@@ -57,7 +57,8 @@ if ($Install) {
 
 if ($TorchCuda) {
     Section "pip install torch (CUDA 12.4 build; the driver supports CUDA 12.5)"
-    Run $Py -m pip install --upgrade torch --index-url https://download.pytorch.org/whl/cu124 --trusted-host download.pytorch.org
+    # The wheel itself is served from download-r2.pytorch.org (a redirect), so trust both hosts.
+    Run $Py -m pip install --upgrade torch==2.6.0 --index-url https://download.pytorch.org/whl/cu124 --trusted-host download.pytorch.org --trusted-host download-r2.pytorch.org --retries 10 --timeout 120
     Section "PyTorch / CUDA (after install)"
     Run $Py -c "import torch; print('torch', torch.__version__, '| built for CUDA:', torch.version.cuda, '| cuda available:', torch.cuda.is_available()); print(torch.cuda.get_device_name(0) if torch.cuda.is_available() else 'NO GPU VISIBLE TO TORCH')"
 }
