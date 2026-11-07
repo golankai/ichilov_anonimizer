@@ -12,13 +12,14 @@ uv.lock
 
 # ── Data & Models (not tracked) ─────────────────────────────────────────────
 data/
-HeMed_NER_baseline/
+HeMed_Anonimizer_Model/
 
 # ── Misc / Tools ─────────────────────────────────────────────────────────────
 .claude/
 
 # ── Training outputs ────────────────────────────────────────────────────────
 models/
+training/models/
 runs/
 *.safetensors
 .venv/

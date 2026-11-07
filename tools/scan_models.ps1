@@ -2,12 +2,12 @@
 .SYNOPSIS
   Read-only inventory of trained model folders (anything containing a config.json) so we can tell
   which model is which. Prints metadata only; nothing is modified. With -Hash it also computes a
-  SHA-256 of each weights file, so identical copies (e.g. HeMed_NER_baseline vs one of the folders in
+  SHA-256 of each weights file, so identical copies (e.g. HeMed_Anonimizer_Model vs one of the folders in
   models\) show up as "IDENTICAL".
 
 .EXAMPLE
   powershell -ExecutionPolicy Bypass -File .\scan_models.ps1 -Hash `
-     -Root "D:\DeID NOA\DeIdentification\ICHI\models","D:\DeID KAI\ichilov_anonimizer\HeMed_NER_baseline"
+     -Root "D:\DeID NOA\DeIdentification\ICHI\models","D:\DeID KAI\ichilov_anonimizer\HeMed_Anonimizer_Model"
 
   Writes models_scan.txt in the current folder (and prints it). Paste its content back.
 #>

@@ -2,7 +2,7 @@
 import sys
 from pathlib import Path
 
-MODEL = Path(__file__).resolve().parent.parent / "HeMed_NER_baseline"
+MODEL = Path(__file__).resolve().parent.parent / "HeMed_Anonimizer_Model"
 ok = True
 for mod in ("torch", "transformers", "pandas", "nltk"):
     try:

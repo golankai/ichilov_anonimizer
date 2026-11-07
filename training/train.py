@@ -41,8 +41,8 @@ DEFAULT_DATA_DIR = r"D:\De ID All\NER_anon_dataset\regular"
 
 
 def default_output_dir(model_name):
-    """models/<base model name>_<timestamp>: every run gets its own folder."""
-    return str(Path("models") / f"{Path(str(model_name)).name}_{time.strftime('%Y%m%d-%H%M')}")
+    """training/models/<base model name>_<timestamp>: every run gets its own folder."""
+    return str(Path(__file__).resolve().parent / "models" / f"{Path(str(model_name)).name}_{time.strftime('%Y%m%d-%H%M')}")
 
 
 def get_tokenizer_and_model(model_name):
@@ -211,7 +211,7 @@ def build_parser():
     hp.add_argument("--epochs", type=int, default=10)
     hp.add_argument("--weight-decay", type=float, default=0.01)
 
-    out_help = "default: models/<model name>_<timestamp>"
+    out_help = "default: training/models/<model name>_<timestamp>"
 
     s = sub.add_parser("split", help="stratified train/validation/test split of an annotated JSONL")
     s.add_argument("--data", required=True, help="annotated .jsonl")
@@ -232,7 +232,7 @@ def build_parser():
 
     c = sub.add_parser("cv", parents=[hp], help="k-fold cross-validation")
     c.add_argument("--data", required=True)
-    c.add_argument("--output-dir", default="models", help="folder for CV_Fold_<n> subfolders")
+    c.add_argument("--output-dir", default=str(Path(__file__).resolve().parent / "models"), help="folder for CV_Fold_<n> subfolders")
     c.add_argument("-k", type=int, default=5)
 
     f = sub.add_parser("final", parents=[hp], help="95/5 split with early stopping")

@@ -39,7 +39,7 @@ Section "Machine, models, data (machine_info.ps1)"
 Run powershell -ExecutionPolicy Bypass -File .\tools\machine_info.ps1 -ModelPath "D:\HeMed All\HeMed Final Model\model_non_anon,D:\HeMed All\HeMed Final Model\model_anon" -DataPath "D:\De ID All\NER_anon_dataset\regular,D:\De ID All\NER_anon_dataset\cons"
 
 Section "Model folders (scan_models.ps1)"
-Run powershell -ExecutionPolicy Bypass -File .\tools\scan_models.ps1 -Hash -Root "D:\HeMed All\HeMed Final Model,D:\DeID KAI\ichilov_anonimizer\HeMed_NER_baseline"
+Run powershell -ExecutionPolicy Bypass -File .\tools\scan_models.ps1 -Hash -Root "D:\HeMed All\HeMed Final Model,D:\DeID KAI\ichilov_anonimizer\HeMed_Anonimizer_Model"
 
 Section "GPU driver"
 Run nvidia-smi
@@ -82,10 +82,10 @@ if ($Smoke) {
     Section "Tests"
     Run $Py -m pytest training/tests -q
     Section "Smoke training (1 epoch)"
-    Run $Py -X utf8 training\train.py train --epochs 1 --output-dir models\smoke_test
-    if (Test-Path models\smoke_test\training_run.json) {
+    Run $Py -X utf8 training\train.py train --epochs 1 --output-dir training\models\smoke_test
+    if (Test-Path training\models\smoke_test\training_run.json) {
         Section "training_run.json"
-        Get-Content models\smoke_test\training_run.json | Out-Host
+        Get-Content training\models\smoke_test\training_run.json | Out-Host
     }
 }
 

@@ -7,7 +7,7 @@ if not exist .venv (python -m venv .venv || goto :fail)
 ".venv\Scripts\python.exe" -m pip install -r requirements.txt || goto :fail
 ".venv\Scripts\python.exe" inference\check_setup.py || goto :fail
 echo.
-echo Setup finished. Next: put the model in HeMed_NER_baseline\ and run deidentify.bat your_file.csv
+echo Setup finished. Next: put the model in HeMed_Anonimizer_Model\ and run deidentify.bat your_file.csv
 pause
 exit /b 0
 :fail

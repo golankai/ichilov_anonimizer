@@ -9,7 +9,7 @@ You received this repository (or a zip of it) and the model on a USB stick.
 
 1. **Install once.** Needs Python 3.12. Double-click `setup.bat` (Linux/macOS: `./setup.sh`).
 2. **Place the model.** Copy the model folder from the USB so that this exists:
-   `HeMed_NER_baseline\config.json` (next to `model.safetensors` and the tokenizer files), directly inside this folder.
+   `HeMed_Anonimizer_Model\config.json` (next to `model.safetensors` and the tokenizer files), directly inside this folder.
 3. **Run.** Prepare a CSV with the columns `id` and `text` (UTF-8), then:
    ```
    deidentify.bat C:\path\to\your_file.csv
@@ -51,4 +51,6 @@ Two separate Python environments, one per job (each is just `pip install -r ...`
 
 Run scripts by path
 (`python training/train.py`, `python inference/de_identify.py`), not with `-m`.
-After training, copy the resulting model folder to `HeMed_NER_baseline\` (or pass `--model <folder>`) to use it.
+Training writes models to `training/models/` (git-ignored); good ones are copied by hand outside the repo. `HeMed_Anonimizer_Model\` is only the final model that deployers use; for other models pass `--model <folder>`.
+
+To-do lists: [`training/TODO.md`](training/TODO.md), [`inference/TODO.md`](inference/TODO.md).

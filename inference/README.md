@@ -14,7 +14,7 @@ This makes each step a small, testable building block while still leveraging a p
 
 ## IDENTIFIED ENTITIES
 
-Our local model (`HeMed_NER_baseline`) is trained to identify and mask the following entities:
+Our local model (`HeMed_Anonimizer_Model`) is trained to identify and mask the following entities:
 
 - `FIRST_NAME`
 - `LAST_NAME`
@@ -52,10 +52,11 @@ Run the script from the command line to process a CSV file. The input CSV **must
 
 ### OUTPUT FORMATS
 
-The pipeline automatically generates two matched output files in your directory:
+The pipeline automatically generates matched output files in your directory:
 
 1. **CSV Output (`*_deid_<mode>_pipeline.csv`)**: Retains 100% of your original data columns (including `id` and `text`), seamlessly appending a `de_identified_text` column and an `identified_entities` column formatted for human grading (e.g., `John(FIRST_NAME)`).
-2. **JSON Output (`*_deid_<mode>_pipeline.json`)**: A machine-readable structured JSON array mapping out the `id`, original `text`, and a list of entities perfectly tracking the global document `start` and `end` character offsets along with clean base labels (ignoring BIO tag groupings).
+2. **TXT Output (`*_deid_<mode>_pipeline.txt`)**: the same table, tab-separated (TABs inside the text were replaced by spaces).
+3. **JSON Output (`*_deid_<mode>_pipeline.json`)**: A machine-readable structured JSON array mapping out the `id`, original `text`, and a list of entities perfectly tracking the global document `start` and `end` character offsets along with clean base labels (ignoring BIO tag groupings).
 
 Usage (basic run):
 
@@ -66,12 +67,12 @@ python inference/de_identify.py --input <path_to_csv> --model <path_to_model> --
 Arguments:
 
 - `--input`            : Path to your input CSV file. (**Required**)
-- `--model`            : Path to your trained model folder. (**Required**, e.g., `HeMed_NER_baseline` or a HF model name like `dicta-il/dictabert-ner`)
+- `--model`            : Path to your trained model folder. (**Required**, e.g., `HeMed_Anonimizer_Model` or a HF model name like `dicta-il/dictabert-ner`)
 - `--mode`             : (Optional, default: `label`) How to mask identified entities:
       - `label` -> replaces with `[ENTITY_TYPE]` (e.g., `[PER]`)
       - `mask`  -> replaces with `[REDACTED]`
       - `x`     -> replaces with a string of `X` characters
-- `--output-format`   : (Optional, default `csv`) `txt` writes a tab-separated .txt instead of a CSV (a JSON is always written).
+- `--output-format`   : (Optional, default `both`) `csv`, `txt` (tab-separated) or `both`. A JSON is always written too.
 - `--observe-stages`   : (Optional) Log a short summary after each pipeline stage (text length + entity count).
 - `--log-replacements` : (Optional) Log each string replacement applied by any stage (original text, span, label, replacement token).
 - `--max-chunk-tokens` : (Optional) Max text tokens per NER window. Default: the model's limit minus special tokens and a small margin (e.g. 502 for a 512-token model).
@@ -83,14 +84,14 @@ Arguments:
 Usage examples:
 
 ```bash
-python inference/de_identify.py --input inference/dummy_data/test.csv --model HeMed_NER_baseline --mode label
+python inference/de_identify.py --input inference/dummy_data/test.csv --model HeMed_Anonimizer_Model --mode label
 ```
 
 - **With full observability (research / debugging)**:
   ```bash
   python inference/de_identify.py \
     --input inference/dummy_data/test.csv \
-    --model HeMed_NER_baseline \
+    --model HeMed_Anonimizer_Model \
     --mode label \
     --observe-stages \
     --log-replacements \

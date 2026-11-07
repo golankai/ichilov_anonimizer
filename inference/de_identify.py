@@ -25,8 +25,8 @@ from utils.doc_pipeline import build_doc_pipeline
 
 logger = logging.getLogger(__name__)
 
-# Where deployers put the model they received: <repo>/HeMed_NER_baseline
-DEFAULT_MODEL = Path(__file__).resolve().parent.parent / "HeMed_NER_baseline"
+# Where deployers put the model they received: <repo>/HeMed_Anonimizer_Model
+DEFAULT_MODEL = Path(__file__).resolve().parent.parent / "HeMed_Anonimizer_Model"
 
 
 def run_processing_loop(
@@ -76,7 +76,7 @@ def save_output(
     deid_col: List[str],
     ent_col: List[List[Dict[str, Any]]],
     mode: str,
-    output_format: str = "csv",
+    output_format: str = "both",
 ) -> None:
     """
     Constructs the output path, saves the original dataframe with new columns to a CSV file,
@@ -89,14 +89,15 @@ def save_output(
     ]
 
     base, ext = os.path.splitext(original_path)
-    if output_format == "txt":
-        # Tab-separated; TABs inside values were already replaced by spaces on load.
-        output_csv_path = f"{base}_deid_{mode}_pipeline.txt"
-        output_df.to_csv(output_csv_path, index=False, sep="\t", encoding="utf-8-sig")
-    else:
+    if output_format in ("csv", "both"):
         output_csv_path = f"{base}_deid_{mode}_pipeline{ext}"
         output_df.to_csv(output_csv_path, index=False, encoding="utf-8-sig")
-    print(f"\nSuccess! {output_format.upper()} saved to:   {output_csv_path}")
+        print(f"\nSuccess! CSV saved to:   {output_csv_path}")
+    if output_format in ("txt", "both"):
+        # Tab-separated; TABs inside values were already replaced by spaces on load.
+        output_txt_path = f"{base}_deid_{mode}_pipeline.txt"
+        output_df.to_csv(output_txt_path, index=False, sep="\t", encoding="utf-8-sig")
+        print(f"Success! TXT saved to:   {output_txt_path}")
 
     json_data = []
     for idx, row in output_df.iterrows():
@@ -117,13 +118,13 @@ def save_output(
 
 def run(
     input_file: str,
-    model_path: str = "HeMed_NER_baseline",
+    model_path: str = "HeMed_Anonimizer_Model",
     mode: str = "label",
     observe_stages: bool = False,
     log_replacements: bool = False,
     max_tokens: Optional[int] = None,
     overlap_tokens: int = DEFAULT_OVERLAP,
-    output_format: str = "csv",
+    output_format: str = "both",
 ) -> None:
     """
     The main execution flow for the pipeline-based variant.
