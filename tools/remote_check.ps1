@@ -6,6 +6,7 @@
 .EXAMPLE
   powershell -ExecutionPolicy Bypass -File .\tools\remote_check.ps1            # read-only checks
   powershell -ExecutionPolicy Bypass -File .\tools\remote_check.ps1 -Install   # + pip install missing packages
+  powershell -ExecutionPolicy Bypass -File .\tools\remote_check.ps1 -TorchCuda # + replace CPU-only torch by a CUDA build
   powershell -ExecutionPolicy Bypass -File .\tools\remote_check.ps1 -Smoke     # + tests and 1-epoch training
 #>
 param(
@@ -20,49 +21,55 @@ Start-Transcript -Path remote_report.txt -Force | Out-Null
 
 function Section($t) { Write-Host ""; Write-Host "=============== $t ===============" }
 
+# Run a native command and send ALL its output (stdout + stderr) through the host,
+# so that the transcript records it (it does not capture raw native output).
+function Run {
+    $exe = $args[0]
+    $rest = @()
+    if ($args.Count -gt 1) { $rest = $args[1..($args.Count - 1)] }
+    & $exe @rest 2>&1 | ForEach-Object { "$_" } | Out-Host
+}
+
 Section "Repo"
-git log --oneline -3
+Run git log --oneline -3
 Write-Host "Python: $Py (exists: $(Test-Path $Py))"
 
 Section "Machine, models, data (machine_info.ps1)"
-powershell -ExecutionPolicy Bypass -File .\tools\machine_info.ps1 -Search `
-    -ModelPath "D:\HeMed All\HeMed Final Model\model_non_anon,D:\HeMed All\HeMed Final Model\model_anon" `
-    -DataPath "D:\De ID All\NER_anon_dataset\regular,D:\De ID All\NER_anon_dataset\cons" | Out-Null
-if (Test-Path machine_info.txt) { Get-Content machine_info.txt }
+Run powershell -ExecutionPolicy Bypass -File .\tools\machine_info.ps1 -ModelPath "D:\HeMed All\HeMed Final Model\model_non_anon,D:\HeMed All\HeMed Final Model\model_anon" -DataPath "D:\De ID All\NER_anon_dataset\regular,D:\De ID All\NER_anon_dataset\cons"
 
 Section "Model folders (scan_models.ps1)"
-powershell -ExecutionPolicy Bypass -File .\tools\scan_models.ps1 -Hash `
-    -Root "D:\HeMed All\HeMed Final Model,D:\DeID KAI\ichilov_anonimizer\HeMed_NER_baseline" | Out-Null
-if (Test-Path models_scan.txt) { Get-Content models_scan.txt }
+Run powershell -ExecutionPolicy Bypass -File .\tools\scan_models.ps1 -Hash -Root "D:\HeMed All\HeMed Final Model,D:\DeID KAI\ichilov_anonimizer\HeMed_NER_baseline"
 
 Section "GPU driver"
-nvidia-smi
+Run nvidia-smi
 
 Section "Python packages in env deid"
-& $Py --version
-& $Py -m pip list 2>$null | Select-String -Pattern "^(torch|transformers|accelerate|datasets|seqeval|scikit|pandas|nltk|tokenizers|tqdm|pytest|numpy)"
+Run $Py --version
+& $Py -m pip list 2>&1 | ForEach-Object { "$_" } | Select-String -Pattern "^(torch|transformers|accelerate|datasets|seqeval|scikit|pandas|nltk|tokenizers|tqdm|pytest|numpy)" | Out-Host
+
+Section "PyTorch / CUDA (before any install)"
+Run $Py -c "import torch; print('torch', torch.__version__, '| built for CUDA:', torch.version.cuda, '| cuda available:', torch.cuda.is_available()); print(torch.cuda.get_device_name(0) if torch.cuda.is_available() else 'NO GPU VISIBLE TO TORCH')"
 
 if ($Install) {
     Section "pip install (missing training packages)"
-    & $Py -m pip install transformers accelerate datasets seqeval scikit-learn scikit-multilearn pandas nltk tqdm pytest
+    Run $Py -m pip install transformers accelerate datasets seqeval scikit-learn scikit-multilearn pandas nltk tqdm pytest
 }
 
 if ($TorchCuda) {
     Section "pip install torch (CUDA 12.4 build; the driver supports CUDA 12.5)"
-    & $Py -m pip install --upgrade torch --index-url https://download.pytorch.org/whl/cu124 --trusted-host download.pytorch.org
+    Run $Py -m pip install --upgrade torch --index-url https://download.pytorch.org/whl/cu124 --trusted-host download.pytorch.org
+    Section "PyTorch / CUDA (after install)"
+    Run $Py -c "import torch; print('torch', torch.__version__, '| built for CUDA:', torch.version.cuda, '| cuda available:', torch.cuda.is_available()); print(torch.cuda.get_device_name(0) if torch.cuda.is_available() else 'NO GPU VISIBLE TO TORCH')"
 }
-
-Section "PyTorch / CUDA"
-& $Py -c "import torch; print('torch', torch.__version__, '| cuda available:', torch.cuda.is_available()); print(torch.cuda.get_device_name(0) if torch.cuda.is_available() else 'NO GPU VISIBLE TO TORCH')"
 
 if ($Smoke) {
     Section "Tests"
-    & $Py -m pytest training/tests -q
+    Run $Py -m pytest training/tests -q
     Section "Smoke training (1 epoch)"
-    & $Py -X utf8 training\train.py train --epochs 1 --output-dir models\smoke_test
+    Run $Py -X utf8 training\train.py train --epochs 1 --output-dir models\smoke_test
     if (Test-Path models\smoke_test\training_run.json) {
         Section "training_run.json"
-        Get-Content models\smoke_test\training_run.json
+        Get-Content models\smoke_test\training_run.json | Out-Host
     }
 }
 
