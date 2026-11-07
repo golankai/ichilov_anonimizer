@@ -13,6 +13,7 @@ param(
     [switch]$Install,
     [switch]$TorchCuda,
     [switch]$Smoke,
+    [switch]$ScanEnvs,
     [string]$Py = "C:\ProgramData\anaconda3\envs\deid\python.exe"
 )
 
@@ -49,6 +50,20 @@ Run $Py --version
 
 Section "PyTorch / CUDA (before any install)"
 Run $Py -c "import torch; print('torch', torch.__version__, '| built for CUDA:', torch.version.cuda, '| cuda available:', torch.cuda.is_available()); print(torch.cuda.get_device_name(0) if torch.cuda.is_available() else 'NO GPU VISIBLE TO TORCH')"
+
+if ($ScanEnvs) {
+    Section "torch / CUDA in every python environment (find the student's working one)"
+    $pys = @()
+    foreach ($root in "C:\ProgramData\anaconda3", "$env:USERPROFILE\anaconda3", "$env:USERPROFILE\miniconda3", "C:\ProgramData\miniconda3") {
+        if (Test-Path "$root\python.exe") { $pys += "$root\python.exe" }
+        if (Test-Path "$root\envs") { $pys += Get-ChildItem "$root\envs" -Directory | ForEach-Object { "$($_.FullName)\python.exe" } }
+    }
+    $pys += Get-ChildItem "$env:USERPROFILE\.conda\envs" -Directory -ErrorAction SilentlyContinue | ForEach-Object { "$($_.FullName)\python.exe" }
+    foreach ($p in ($pys | Where-Object { Test-Path $_ } | Select-Object -Unique)) {
+        Write-Host "--- $p"
+        Run $p -c "import sys; print('python', sys.version.split()[0]); import torch; print('torch', torch.__version__, '| CUDA build:', torch.version.cuda, '| available:', torch.cuda.is_available()); import transformers; print('transformers', transformers.__version__)"
+    }
+}
 
 if ($Install) {
     Section "pip install (missing training packages)"
