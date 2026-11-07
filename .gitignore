@@ -24,3 +24,9 @@ runs/
 .venv/
 input/
 output/
+
+# Reports written on the GPU machine
+remote_report.txt
+machine_info.txt
+models_scan.txt
+models/
