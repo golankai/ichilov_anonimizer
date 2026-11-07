@@ -18,6 +18,17 @@ dependencies = [
     "pyarrow>=24.0.0",
 ]
 
+[dependency-groups]
+# Only needed to fine-tune models (training/); inference does not need these.
+# Install with: uv sync --group training
+training = [
+    "accelerate>=0.20.0",
+    "datasets>=2.10.0",
+    "scikit-learn>=1.0.0",
+    "scikit-multilearn>=0.2.0",
+    "seqeval>=1.2.2",
+]
+
 
 [[tool.uv.index]]
 name = "pytorch-cu128"

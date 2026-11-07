@@ -1,0 +1,6 @@
+# Extra dependencies for fine-tuning (training/). Install on top of requirements.txt.
+accelerate>=0.20.0
+datasets>=2.10.0
+scikit-learn>=1.0.0
+scikit-multilearn>=0.2.0
+seqeval>=1.2.2
