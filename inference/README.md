@@ -75,6 +75,7 @@ Arguments:
       - `label` -> replaces with `[ENTITY_TYPE]` (e.g., `[PER]`)
       - `mask`  -> replaces with `[REDACTED]`
       - `x`     -> replaces with a string of `X` characters
+- `--output-format`   : (Optional, default `csv`) `txt` writes a tab-separated .txt instead of a CSV (a JSON is always written).
 - `--observe-stages`   : (Optional) Log a short summary after each pipeline stage (text length + entity count).
 - `--log-replacements` : (Optional) Log each string replacement applied by any stage (original text, span, label, replacement token).
 - `--max-chunk-tokens` : (Optional) Max text tokens per NER window. Default: the model's limit minus special tokens and a small margin (e.g. 502 for a 512-token model).

@@ -3,6 +3,8 @@ import argparse
 import json
 import logging
 import re
+import time
+from datetime import datetime
 from pathlib import Path
 from typing import Any, Callable, Dict, List, Optional, Tuple
 
@@ -57,7 +59,9 @@ def run_processing_loop(
     ent_logs: List[List[Dict[str, Any]]] = []
 
     # for _, row in tqdm(df.iterrows(), total=len(df), desc="De-identifying (pipeline)"):
-    for _, row in df.iterrows():
+    total = len(df)
+    for n, (_, row) in enumerate(df.iterrows(), 1):
+        print(f"Row {n}/{total}", flush=True)
         doc = DeidDoc(text=row["text"])
         doc = doc_pipeline(doc)
         deid_texts.append(doc.text)
@@ -72,6 +76,7 @@ def save_output(
     deid_col: List[str],
     ent_col: List[List[Dict[str, Any]]],
     mode: str,
+    output_format: str = "csv",
 ) -> None:
     """
     Constructs the output path, saves the original dataframe with new columns to a CSV file,
@@ -84,9 +89,14 @@ def save_output(
     ]
 
     base, ext = os.path.splitext(original_path)
-    output_csv_path = f"{base}_deid_{mode}_pipeline{ext}"
-    output_df.to_csv(output_csv_path, index=False)
-    print(f"\nSuccess! CSV saved to:   {output_csv_path}")
+    if output_format == "txt":
+        # Tab-separated; TABs inside values were already replaced by spaces on load.
+        output_csv_path = f"{base}_deid_{mode}_pipeline.txt"
+        output_df.to_csv(output_csv_path, index=False, sep="\t", encoding="utf-8-sig")
+    else:
+        output_csv_path = f"{base}_deid_{mode}_pipeline{ext}"
+        output_df.to_csv(output_csv_path, index=False, encoding="utf-8-sig")
+    print(f"\nSuccess! {output_format.upper()} saved to:   {output_csv_path}")
 
     json_data = []
     for idx, row in output_df.iterrows():
@@ -113,12 +123,16 @@ def run(
     log_replacements: bool = False,
     max_tokens: Optional[int] = None,
     overlap_tokens: int = DEFAULT_OVERLAP,
+    output_format: str = "csv",
 ) -> None:
     """
     The main execution flow for the pipeline-based variant.
     """
+    started = time.time()
+    print(f"Start time: {datetime.now():%Y-%m-%d %H:%M:%S}")
     setup_nltk()
-    df = pd.read_csv(input_file)
+    # utf-8-sig reads files with or without a BOM (e.g. saved from Excel).
+    df = pd.read_csv(input_file, encoding="utf-8-sig")
 
     if "id" not in df.columns:
         print("Error: Input CSV must have an 'id' column.")
@@ -127,6 +141,9 @@ def run(
     if "text" not in df.columns:
         print("Error: Input CSV must have a 'text' column.")
         return
+
+    # TABs would break tab-separated output and add nothing to the NER: use a space.
+    df["text"] = df["text"].astype(str).str.replace("\t", " ", regex=False)
 
     ner_pipe = get_pipeline(model_path)
 
@@ -146,7 +163,8 @@ def run(
         max_tokens=max_tokens,
         overlap_tokens=overlap_tokens,
     )
-    save_output(df, input_file, deid_col, ent_col, mode)
+    save_output(df, input_file, deid_col, ent_col, mode, output_format)
+    print(f"End time:   {datetime.now():%Y-%m-%d %H:%M:%S} (took {time.time() - started:.0f}s)")
 
 
 def main() -> None:
@@ -206,6 +224,12 @@ def main() -> None:
         default=DEFAULT_OVERLAP,
         help="Tokens of shared context between neighbouring windows (default %(default)s).",
     )
+    parser.add_argument(
+        "--output-format",
+        choices=["csv", "txt"],
+        default="csv",
+        help="Main output file: csv (default) or tab-separated txt. A JSON file is always written too.",
+    )
     args = parser.parse_args()
 
     model_is_hf_id = re.fullmatch(r"[\w.-]+/[\w.-]+", args.model) is not None
@@ -234,6 +258,7 @@ def main() -> None:
         log_replacements=args.log_replacements,
         max_tokens=args.max_chunk_tokens,
         overlap_tokens=args.chunk_overlap,
+        output_format=args.output_format,
     )
 
 
