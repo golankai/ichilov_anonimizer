@@ -1,6 +1,6 @@
 <#
 .SYNOPSIS
-  One-shot check for the GPU machine, using the conda env "deid" (no uv needed).
+  One-shot check for the GPU machine, using the conda env "PII" (CUDA torch) (no uv needed).
   Writes everything to remote_report.txt in the repo root (metadata only, no document text).
 
 .EXAMPLE
@@ -14,7 +14,7 @@ param(
     [switch]$TorchCuda,
     [switch]$Smoke,
     [switch]$ScanEnvs,
-    [string]$Py = "C:\ProgramData\anaconda3\envs\deid\python.exe"
+    [string]$Py = "C:\ProgramData\anaconda3\envs\PII\python.exe"   # the env with CUDA torch 2.6.0+cu124
 )
 
 Set-Location (Split-Path $PSScriptRoot -Parent)
@@ -44,7 +44,7 @@ Run powershell -ExecutionPolicy Bypass -File .\tools\scan_models.ps1 -Hash -Root
 Section "GPU driver"
 Run nvidia-smi
 
-Section "Python packages in env deid"
+Section "Python packages in the training env"
 Run $Py --version
 & $Py -m pip list 2>&1 | ForEach-Object { "$_" } | Select-String -Pattern "^(torch|transformers|accelerate|datasets|seqeval|scikit|pandas|nltk|tokenizers|tqdm|pytest|numpy)" | Out-Host
 
