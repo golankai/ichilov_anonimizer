@@ -24,11 +24,12 @@ from pathlib import Path
 
 import dataset as ds
 from labels import ALL_LABELS, LABEL_MAPPING, MANDATORY_LABELS
+from metrics import nest_metrics
 
 RECORD_NAME = "training_run.json"
 # A copy of every run record goes here; unlike the models, this folder IS committed (metadata only).
 RUNS_DIR = Path(__file__).resolve().parent / "runs"
-SCHEMA_VERSION = 1
+SCHEMA_VERSION = 2  # 2: nested overall/per_label metrics, seed, synthetic evaluation sets
 REPO_ROOT = Path(__file__).resolve().parent.parent
 
 
@@ -118,8 +119,11 @@ def base_model_info(model_name):
 
 
 class RunRecord:
-    def __init__(self, output_dir, *, kind, base_model, data=None, notes=None):
+    def __init__(self, output_dir, *, kind, base_model, data=None, notes=None, seed=None, run_name=None):
+        """`run_name`: folder (relative, may contain '/') under training/runs/ that receives the committed copy;
+        default is the output folder's name. Multi-seed experiments pass '<experiment>/seed_<n>'."""
         self.path = Path(output_dir) / RECORD_NAME
+        self.run_name = run_name or Path(output_dir).name
         self.t0 = time.time()
         self.doc = {
             "schema_version": SCHEMA_VERSION,
@@ -138,6 +142,7 @@ class RunRecord:
                           "edge_margin_note": "tokens within this distance of an inner window edge get label -100 "
                                               "(ignored by loss and metrics) in multi-window documents"},
             "notes": notes,
+            "seed": seed,
         }
 
     def _write(self):
@@ -146,7 +151,7 @@ class RunRecord:
         tmp.write_text(json.dumps(self.doc, indent=2, ensure_ascii=False, default=_json_default), encoding="utf-8")
         tmp.replace(self.path)
         try:  # mirror into the tracked runs folder, so a push from the GPU machine carries the metadata
-            mirror = RUNS_DIR / Path(self.path).parent.name / RECORD_NAME
+            mirror = RUNS_DIR / self.run_name / RECORD_NAME
             mirror.parent.mkdir(parents=True, exist_ok=True)
             mirror.write_text(self.path.read_text(encoding="utf-8"), encoding="utf-8")
         except OSError:
@@ -157,18 +162,38 @@ class RunRecord:
         self.doc["environment"] = environment_info()
         self._write()
 
-    def finish(self, trainer, test_metrics=None):
+    def finish(self, trainer, test_metrics=None, synthetic_metrics=None):
+        """`test_metrics`: the Trainer result for the real test split (keys prefixed ``test_``).
+        `synthetic_metrics`: ``{set name: Trainer result with keys prefixed by that name}``."""
         state = trainer.state
         history = state.log_history
+        per_epoch = []
+        for h in history:
+            if "eval_f1" in h:
+                nested = nest_metrics(h, "eval")
+                per_epoch.append({"epoch": h.get("epoch"), "step": h.get("step"),
+                                  "eval_loss": nested["other"].get("loss"),
+                                  "overall": nested["overall"], "per_label": nested["per_label"]})
+        best_step = getattr(state, "best_global_step", None)
+        if best_step is None and state.best_model_checkpoint:  # older transformers: ".../checkpoint-<step>"
+            tail = str(state.best_model_checkpoint).replace("\\", "/").rsplit("-", 1)[-1]
+            best_step = int(tail) if tail.isdigit() else None
+        best_epoch = next((e["epoch"] for e in per_epoch if e["step"] == best_step), None)
+        planned = self.doc.get("hyperparameters", {}).get("num_train_epochs")
         self.doc["results"] = {
+            "epochs_planned": planned,
             "epochs_completed": state.epoch,
+            "stopped_early": bool(planned and state.epoch is not None and state.epoch < planned - 1e-6),
+            "best_epoch": best_epoch,
             "global_step": state.global_step,
             "best_metric_f1": state.best_metric,
             "best_model_checkpoint": state.best_model_checkpoint,
-            "per_epoch_validation": [h for h in history if "eval_f1" in h],
+            "per_epoch_validation": per_epoch,
             "train_loss_log": [h for h in history if "loss" in h],
             "train_summary": next((h for h in reversed(history) if "train_runtime" in h), None),
-            "test": test_metrics,
+            "test": nest_metrics(test_metrics, "test") if test_metrics else None,
+            "synthetic": {n: nest_metrics(m, n) for n, m in (synthetic_metrics or {}).items()},
+            "synthetic_note": "Synthetic sets are scored after training only; they never select the epoch.",
         }
         self._close("completed")
 

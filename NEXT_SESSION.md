@@ -7,7 +7,8 @@ Nothing in the pipeline has been fixed yet. Everything below is planned, not don
 2. `python -X utf8 training\check_duplicates.py` -> paste the counts only (the printed report holds no text or ids).
    Key numbers: test/validation documents that also occur in train (inflated scores?), conflicting-label duplicates,
    `second_*` ids, near duplicates, ids of `ignorable_ids.txt` present.
-3. Optional: `python -X utf8 training\train.py train` (about 13 min), or `--epochs 2` first.
+3. `training\run_train.bat` (3 seeds, 6 epochs max with early stopping, about 25 min; `--seeds 42 --epochs 2` first for a quick check),
+   then `training\push_results.bat`. Read `training/runs/<experiment>/summary.md` (per label, synthetic sets, mean ± std).
 
 ## 1. Decide on data cleaning (after the counts)
 `check_duplicates.py --write-clean DIR`: conflicting groups `--conflicts drop|first`; `--drop-near-from-train`.

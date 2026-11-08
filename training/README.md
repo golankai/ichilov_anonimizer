@@ -28,8 +28,11 @@ is dropped, and documents listed in `ignorable_ids.txt` are skipped by the `--da
 
 ```powershell
 cd "D:\DeID KAI\ichilov_anonimizer"
-C:\ProgramData\anaconda3\envs\PII\python.exe -X utf8 training\train.py train
+training\run_train.bat                    # = python -X utf8 training\train.py train  (6 epochs max, early stopping, seeds 42 43 44)
+training\run_train.bat --seeds 42         # one seed only
+training\push_results.bat                 # publish the metadata (counts and metrics only) when it is done
 ```
+(Run it in the `PII` conda env, the one with CUDA torch.)
 
 (`PII` is the conda env on that machine with CUDA torch 2.6.0+cu124. The hospital proxy blocks `download.pytorch.org`, so do not try to reinstall torch there.)
 
@@ -39,7 +42,8 @@ No GPU or no real data? Try the pipeline on the tiny fake sample: `python traini
 Defaults: base model `D:\HeMed All\HeMed Final Model\model_non_anon`, data `D:\De ID All\NER_anon_dataset\regular`
 (a ready-made train/validation/test split; `...\cons` is the other variant), output `models\<model>_<timestamp>`.
 For the anonymized-corpus base model add `--model "D:\HeMed All\HeMed Final Model\model_anon"`.
-After training, the best epoch (by validation F1) is also scored on the test split.
+Each seed trains up to 6 epochs, stops early after 2 epochs without a better validation F1 (`--patience`, 0 = off), keeps the
+best epoch by validation F1, and is then scored on the real test split and on the synthetic sets (below).
 
 ## Checking the data for duplicates (counts only)
 
@@ -48,6 +52,7 @@ sometimes with different annotations; copies in train and test inflate the test 
 model contradictions. `check_duplicates.py` reports this without printing any text or id:
 
 ```
+training\run_check_duplicates.bat                                  # same as the next line, and saves the report to training\duplicates_report.txt
 python -X utf8 training\check_duplicates.py                        # default split folder of the GPU machine
 python -X utf8 training\check_duplicates.py --data-dir <folder>    # or --data one.jsonl
 ```
@@ -59,6 +64,43 @@ Optional: `--groups f.json` (ids of each group, keep out of git), `--write-clean
 touched; identical copies keep the evaluated one, conflicting ones are dropped, `--conflicts first` keeps one,
 `--drop-near-from-train` also removes train near-twins of validation/test documents). Note that the default `train` mode
 reads pre-made split folders and does not apply `ignorable_ids.txt`.
+
+## Two kinds of evaluation (keep them apart)
+
+| | Base model | Full pipeline |
+|---|---|---|
+| What is scored | the fine-tuned token classifier on pre-tokenized windows, as trained | `inference/de_identify.py` on raw text: chunking, model, rules, post-processing |
+| Where | `train.py` after every run | `inference/run_dummy.bat` / `inference/score_dummy.py` |
+| Data | real validation/test splits + the synthetic sets in `training/synth_eval/` | `inference/dummy_data/` (5 tiers, with ground truth) |
+| Metric | entity-level seqeval P/R/F1 (overall and per label), token-level F2 | character coverage per tier/label/situation, leaks, over-masking |
+
+The two fake sets are generated separately (different seeds and templates, no shared text; a test checks that). A pipeline problem (a split
+date, an email prefix) does not show in the base-model numbers, and a weak label in the base model does not show as such in the pipeline numbers.
+
+**Synthetic sets for the base model** (`training/synth_eval/`, see its README): `rare_hard` (586 short documents with 40+ examples of every rare
+label, name/word collisions, prefixes and look-alike numbers that must stay unmasked) and `long` (24 documents of 450-2500 words, several windows).
+They are scored after training, reported separately, and **never select the epoch**. Regenerate with `python training/make_synth_eval.py`;
+skip them with `--no-synth-eval`; use another folder with `--synth-eval-dir`.
+
+## Seeds and the summary table
+
+`train` repeats the whole run for each seed (default `42 43 44`; change with `--seeds`) and writes
+
+```
+training/models/<model>_<timestamp>/seed_42/ ... seed_43/ ... seed_44/     the models (git-ignored), each with training_run.json
+training/models/<model>_<timestamp>/summary.json, summary.md              mean ± std over seeds
+training/runs/<model>_<timestamp>/seed_<n>/training_run.json              committed copies (metadata only)
+training/runs/<model>_<timestamp>/summary.json, summary.md
+```
+
+`summary.md` has: overall P/R/F1/F2 for validation (best epoch), test and each synthetic set (mean ± sample std, min-max, value per seed);
+a per-label table for each of them; and one row per seed (best epoch, epochs run, early stop, minutes, commit). A label that never occurs in a set has
+support 0 and no recall/F1 (undefined, not 0). With three seeds the std is itself rough: treat differences smaller than about two std as noise.
+
+Re-create or compare summaries at any time, e.g. on the dev machine after `git pull`:
+`python training/aggregate_runs.py training/runs/<experiment> [training/runs/<other experiment> ...]` (several folders also print a comparison table).
+Per-label results are recorded for every epoch, the test split and the synthetic sets (`results.per_epoch_validation[].per_label`, `results.test.per_label`,
+`results.synthetic.<set>.per_label` in each `training_run.json`).
 
 ## Development vs production
 
@@ -94,7 +136,8 @@ python training/train.py final     --model <...> --data data/annotated.jsonl --o
 python training/train.py train-all --model <...> --data data/annotated.jsonl --output-dir models/Final_all
 ```
 
-Hyperparameters (defaults match MedNER): `--lr 5e-5 --batch-size 8 --epochs 10 --weight-decay 0.01`.
+Hyperparameters: `--lr 5e-5 --batch-size 8 --epochs 6 --patience 2 --weight-decay 0.01` (MedNER used 10 epochs and no early stopping; the first
+baseline here peaked at epoch 4 and overfit afterwards).
 To compare several base models: `for m in avichr/heBERT dicta-il/dictabert HeNLP/HeRo; do python training/train.py train --model $m --data-dir data/splits --output-dir models/$(basename $m); done`
 
 Evaluate any pipeline on exact character spans with `data_utils.evaluate_char_spans(records, pipe)`.
@@ -105,9 +148,12 @@ Evaluate any pipeline on exact character spans with `data_utils.evaluate_char_sp
 |------|------|
 | `run_record.py` | Writes `training_run.json` (config + results) beside every model |
 | `train.py` | CLI and training loops (`split`, `train`, `train-all`, `cv`, `final`) |
+| `aggregate_runs.py` | Mean/std over the seeds of one experiment -> `summary.json` / `summary.md`; compares experiments |
+| `make_synth_eval.py`, `synth_eval/` | Generator and files of the synthetic evaluation sets for the base model |
+| `run_train.bat`, `run_check_duplicates.bat`, `push_results.bat` | One-command wrappers for the GPU machine |
 | `dataset.py` | JSONL loading, label cleaning, stratified split, sliding-window tokenization + label alignment |
 | `labels.py` | Label set, BIO maps, label cleaning |
-| `metrics.py` | Trainer metrics: seqeval P/R/F1 and token-level F2 (recall-weighted) |
+| `metrics.py` | Trainer metrics: seqeval P/R/F1 (overall and per label) and token-level F2 (recall-weighted) |
 | `data_utils.py` | Span merging, word-level IOB, character-span evaluation |
 | `ignorable_ids.txt` | Documents with known-bad annotations |
 | `check_duplicates.py` | Duplicate / leakage report (counts only) and optional cleaned copy of the splits |

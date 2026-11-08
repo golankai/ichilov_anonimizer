@@ -6,6 +6,14 @@
 - Smoke run (1 epoch, `regular`, base `model_non_anon`): 76 s, validation F1 0.921, test F1 0.898 (recall 0.916).
   That only proves the pipeline works; it is not a result to compare against.
 
+## Update (2026-11-08, later)
+- First baseline (10 epochs, 1 seed): validation F1 0.940 (epoch 4), test P 0.933 / R 0.920 / F1 0.927 / F2 0.934; overfits after epoch 4.
+- Done since: 6 epochs + early stopping (patience 2), 3 seeds per model with `summary.md`, per-label P/R/F1 everywhere, synthetic
+  base-model evaluation sets (`synth_eval/`, separate from the pipeline fake set), `run_train.bat`, `run_check_duplicates.bat`.
+  Not yet run on the GPU machine: next is `training\run_train.bat` (about 3 x 8 min) and reading `summary.md`.
+- ID and INNER_ID have no examples in the real validation/test splits (23 and 3 in train): the synthetic `rare_hard` set is the only measure for them,
+  and its INNER_ID convention is a guess (see `synth_eval/README.md`).
+
 ## To do (in this order)
 0. **Check the data for duplicates before trusting any score** (the original annotator confirmed copies with different annotations remain, e.g. `second_<id>.txt`): `python -X utf8 training\check_duplicates.py`, read the counts, decide on `--write-clean`. If test documents have twins in train, the numbers of every earlier run are inflated.
 1. **Train normally and check the results are good.** On the GPU machine, in `PII`:

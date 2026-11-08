@@ -33,3 +33,5 @@ models/
 
 # Results of running the model next to the dummy inputs (use inference/run_dummy.bat -> inference/dummy_results instead)
 inference/dummy_data/*_deid_*
+wandb/
+training/duplicates_report.txt

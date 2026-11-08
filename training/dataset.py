@@ -82,6 +82,27 @@ def load_records(path, ignore_ids=None, keep_labels=MANDATORY_LABELS):
             if r["id"] not in ignore_ids]
 
 
+def load_extra_eval_sets(directory):
+    """Synthetic evaluation sets: every ``*.jsonl`` in `directory` -> ``{file stem: records}``.
+
+    These are scored after training but never used to pick the epoch. Only ``id``, ``text`` and the
+    start/end/label of each span are kept (extra keys such as ``tag`` would break the tokenizing step).
+    The ignore list is not applied. A missing folder gives an empty dict.
+    """
+    sets = {}
+    directory = Path(directory)
+    if not directory.is_dir():
+        return sets
+    for path in sorted(directory.glob("*.jsonl")):
+        records = []
+        for r in load_records(path, ignore_ids=set()):
+            records.append({"id": str(r["id"]), "text": r["text"],
+                            "label": [{"start": s["start"], "end": s["end"], "label": s["label"]}
+                                      for s in r["label"]]})
+        sets[path.stem] = records
+    return sets
+
+
 # --- splitting --------------------------------------------------------------
 
 def split_sets(dataset, seed=42):

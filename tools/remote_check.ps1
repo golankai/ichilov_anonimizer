@@ -82,7 +82,7 @@ if ($Smoke) {
     Section "Tests"
     Run $Py -m pytest training/tests -q
     Section "Smoke training (1 epoch)"
-    Run $Py -X utf8 training\train.py train --epochs 1 --output-dir training\models\smoke_test
+    Run $Py -X utf8 training\train.py train --epochs 1 --seeds 42 --output-dir training\models\smoke_test
     if (Test-Path training\models\smoke_test\training_run.json) {
         Section "training_run.json"
         Get-Content training\models\smoke_test\training_run.json | Out-Host
