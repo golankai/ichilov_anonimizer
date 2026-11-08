@@ -14,7 +14,7 @@ pipeline* (chunking, rules, post-processing on raw text) is a different thing an
 
 | File | Docs | Content |
 |---|---|---|
-| `rare_hard.jsonl` | 586 | one window each. About 40-120 examples of every label, with the rare ones on purpose: 80 ID, 67 INNER_ID, 42 AGE_ABOVE_89, 71 ORG, 68 MED_ORG, 90 CONTACT, 73 LOC. Hard cases: ID with/without context, 8 digits, dash before the check digit; phone styles, landline, fax, six email shapes; Hebrew prefixes on names, cities and organisations; hyphenated surnames; names that are also words (לב, אושר, גל, אור, שחר, ניסן, אדר); nine date formats, Hebrew-calendar dates, ranges; 40 dense form-like headers with many entities side by side |
+| `rare_hard.jsonl` | 586 | one window each. About 40-330 examples of every label, with the rare ones on purpose: 82 ID, 74 INNER_ID, 42 AGE_ABOVE_89, 69 ORG, 77 MED_ORG, 90 CONTACT, 78 LOC. Hard cases: ID with/without context, 8 digits, dash before the check digit; phone styles, landline, fax, six email shapes; Hebrew prefixes on names, cities and organisations; hyphenated surnames; names that are also words (לב, אושר, גל, אור, שחר, ניסן, אדר); eight date formats, Hebrew-calendar dates, ranges; 40 dense form-like headers with many entities side by side |
 | `long.jsonl` | 24 | 450 to 2500 words (6 each of 450, 800, 1500, 2500), several 512-token windows, entities of every kind spread over the whole text so many fall near window edges, the patient name returning in running text |
 
 **Traps (must stay unmasked).** Ages up to 89, children's ages, and numbers of 90+ that are not ages (oxygen saturation,
@@ -33,3 +33,10 @@ may mean the real convention differs, not only that the model is weak.
 for that label. Compare means over the 3 seeds, not single numbers.
 
 Files carry only `id`, `text`, `label` (`start`, `end` exclusive, `label`), the same shape as the real splits.
+
+## Dates are three spans (found 2026-11-08)
+The real corpus annotates a date as separate DAY, MONTH and YEAR spans (renamed DATE on load) with the separators unlabeled
+(`training/check_date_layout.py`: 2097 spans, median length 2, none over 7 characters, half directly adjacent). The first version of
+these sets used one span per date and scored DATE at about 0.00 while the real test split scored 0.997. The generator now splits every date
+into its pieces (`split_date_spans`) and no longer produces 8-digit dates without separators. Hebrew-calendar dates are split on spaces only;
+how the annotators handled them, and a Hebrew prefix inside a month word (`במרץ`), is not known.

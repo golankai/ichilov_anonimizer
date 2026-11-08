@@ -27,6 +27,7 @@ Run:  python training/make_synth_eval.py
 """
 import json
 import random
+import re
 import sys
 from pathlib import Path
 
@@ -222,7 +223,8 @@ def snip_name(rng):
 
 
 def snip_date(rng):
-    fmts = list(DATE_FORMATS)
+    # 8 digits without separators ("12032020") never occurs as one span in the real data (longest date piece is 7 characters)
+    fmts = [t for t in DATE_FORMATS if t != "date-no-punctuation"]
     d = lambda tag: P("DATE", date_str(rng, tag))
     out = [(lambda tag=tag: ["המטופל אושפז בתאריך ", d(tag), " ושוחרר לאחר מכן."]) for tag in fmts]
     out += [
@@ -328,11 +330,33 @@ def check(text, spans):
     assert all(0 <= a < b <= len(text) for a, b in taken)
 
 
+_DATE_SEP = re.compile(r"[\s./\-]+")
+
+
+def split_date_spans(text, spans):
+    """Real annotation: a date is DAY, MONTH and YEAR spans (renamed DATE on load), the separators are unlabeled.
+    Measured on the real train split: 2097 date spans, median length 2, none longer than 7, half directly adjacent."""
+    out = []
+    for sp in spans:
+        if sp["label"] != "DATE":
+            out.append(sp)
+            continue
+        pos = sp["start"]
+        for piece in _DATE_SEP.split(text[sp["start"]:sp["end"]]):
+            if not piece:
+                continue
+            a = text.index(piece, pos)
+            out.append({**sp, "start": a, "end": a + len(piece)})
+            pos = a + len(piece)
+    return sorted(out, key=lambda x: x["start"])
+
+
 def render(name_, seed):
     """JSONL text of one set (id, text, label with start/end/label only: the training format)."""
     docs = SETS[name_][0](random.Random(seed))
     lines = []
     for i, (text, spans, _keeps) in enumerate(docs, 1):
+        spans = split_date_spans(text, spans)
         check(text, spans)
         label = [{"start": s["start"], "end": s["end"], "label": s["label"]} for s in spans]
         lines.append(json.dumps({"id": f"synth_{name_}_{i:04d}", "text": text, "label": label}, ensure_ascii=False))
@@ -347,7 +371,7 @@ def main(out=OUT):
         (out / f"{name_}.jsonl").write_bytes(data)  # utf-8, LF: identical on every machine
         per_label = {}
         for _t, spans, _k in docs:
-            for s in spans:
+            for s in split_date_spans(_t, spans):
                 per_label[s["label"]] = per_label.get(s["label"], 0) + 1
         print(f"{name_}: {len(docs)} documents, {sum(per_label.values())} entities: "
               + ", ".join(f"{k} {v}" for k, v in sorted(per_label.items())))
