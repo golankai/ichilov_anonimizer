@@ -1,5 +1,9 @@
 # Next session: pick-up list (written 2026-11-08)
 
+## Update (2026-11-09, evening): production model training
+Campaign night-20261108-1846 analysed (report in `training/runs/night-20261108-1846/`). Recipe chosen: **C_mix_half** (real + half the synthetic, mixed); mixing beats staged on ambiguous/rare words, staged is slightly higher on real test F1; full synthetic was a bit worse than half. Production run started on the GPU box (`train-all --epochs 6 --extra-train synth_train_all.jsonl --extra-fraction 0.5`, fixed 6 epochs, no early stopping since `train-all` has no validation). Added `--extra-fraction` to `train-all`.
+Instructions for the user now live in `RUN_ME.md` (keep it short and current). When the user reports done: `git pull` (results come via `training\push_results.bat`), check `training/runs/` for the new `training_run.json`, then hand-over of the model folder. Do not commit/push locally before that pull unless needed; the GPU push is `pull --rebase` + push.
+
 ## Update (2026-11-09): overnight campaign ready
 See `training/TODO.md` ("Update 2026-11-09"). After the night: `training\push_results.bat`, then analyse `training/runs/<campaign>/report.md` + `registry.md`. Decide the recipe, then train the production model with `train-all --extra-train training/synth_train/synth_train_all.jsonl`.
 
