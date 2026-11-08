@@ -29,8 +29,8 @@ Files per tier: `<tier>.csv` (input for `de_identify.py`: `id,text`) and `<tier>
   counts as over-masking.
 
 Conventions (copied from `training/dummy_data`): a Hebrew prefix (ב ל מ ה ו ש) is not part of the entity, titles
-(ד"ר, הגב', מר) are not part of it, first and last name are separate spans, a medical organisation includes its head
-noun (`בית החולים איכילוב`), a date is one span including day, month and year. Known simplification: first names are
+(ד"ר, הגב', מר) are not part of it, first and last name are separate spans, a medical organisation is written with its head
+noun here (`בית החולים איכילוב`), but `score_dummy.py` scores only the bare name (the real annotation labels the bare name only), a date is one span including day, month and year. Known simplification: first names are
 not matched to the grammatical gender of the sentence.
 
 ## Running and scoring

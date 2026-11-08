@@ -71,9 +71,9 @@ def test_train_ner_two_seeds(tiny_model, tmp_path, monkeypatch):
         assert res["epochs_planned"] == 2 and res["best_epoch"] in (1.0, 2.0)
         assert res["per_epoch_validation"] and "per_label" in res["per_epoch_validation"][0]
         assert set(res["test"]) == {"overall", "per_label", "other"}
-        assert set(res["synthetic"]) == {"rare_hard", "long", "ambiguous"}
+        assert set(res["synthetic"]) == {"rare_hard", "long", "ambiguous", "ambig_seen", "ambig_heldout"}
         assert res["synthetic"]["rare_hard"]["per_label"]["ID"]["support"] > 0
-        assert set(rec["data"]["synthetic_eval_sets"]) == {"rare_hard", "long", "ambiguous"}
+        assert set(rec["data"]["synthetic_eval_sets"]) >= {"rare_hard", "long", "ambiguous"}
         assert (runs / "exp_tiny" / f"seed_{seed}" / "training_run.json").exists()
 
     summ = json.loads((out / "summary.json").read_text(encoding="utf-8"))

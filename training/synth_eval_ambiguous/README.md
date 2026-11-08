@@ -22,7 +22,7 @@ Entities: FIRST_NAME 527, LAST_NAME 527, DATE 51, LOC 60, MED_ORG 56, ORG 24. No
 (not ambiguous words).
 
 Conventions as in `inference/dummy_data/README.md`: Hebrew prefix outside the entity (`ב` + `חיפה`), title outside, head noun
-inside a MED_ORG / ORG span (`בית החולים הדסה`, `בנק מזרחי`). **Dates are separate pieces** as in the real annotation (`ambiguous` month + year = two DATE spans; see `training/synth_eval/README.md`,
+is PLAIN TEXT, only the bare name is the MED_ORG / ORG span (`בית החולים` + `הדסה`): corrected 2026-11-09 after measuring the real data (`check_label_layout.py`); earlier versions of this set (and of `rare_hard`/`long`) labeled the head noun too, so their MED_ORG/ORG scores are not comparable with the current ones. **Dates are separate pieces** as in the real annotation (`ambiguous` month + year = two DATE spans; see `training/synth_eval/README.md`,
 "Dates are three spans"). **`policy: true`** (month alone or month + year as a date; Hebrew months get Hebrew years) is a convention we assumed; the hospital counts months, the other synthetic set leaves them out.
 Known simplifications: first names are not matched to grammatical gender; some co-names are themselves in the list.
 

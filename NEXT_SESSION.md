@@ -1,5 +1,8 @@
 # Next session: pick-up list (written 2026-11-08)
 
+## Update (2026-11-09): overnight campaign ready
+See `training/TODO.md` ("Update 2026-11-09"). After the night: `training\push_results.bat`, then analyse `training/runs/<campaign>/report.md` + `registry.md`. Decide the recipe, then train the production model with `train-all --extra-train training/synth_train/synth_train_all.jsonl`.
+
 ## Update (2026-11-08, evening, training side)
 Pushed to main at 14948d9. Details and open points: `training/TODO.md` ("Update 2026-11-08, evening", "Open points", "What belongs where").
 Short version: duplicate check clean; real dates are DAY/MONTH/YEAR pieces and the synthetic sets now match; `train.py` scores rare_hard,

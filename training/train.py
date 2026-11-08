@@ -18,6 +18,9 @@ seed plus ``summary.json`` / ``summary.md`` (mean and std over seeds; see aggreg
 from __future__ import annotations
 
 import argparse
+import json
+import random
+import shutil
 import time
 from pathlib import Path
 
@@ -46,6 +49,9 @@ DEFAULT_PATIENCE = 2           # evaluations without a better validation F1 befo
 SYNTH_EVAL_DIR = Path(__file__).resolve().parent / "synth_eval"
 SYNTH_EVAL_AMBIGUOUS_DIR = Path(__file__).resolve().parent / "synth_eval_ambiguous"
 DEFAULT_SYNTH_DIRS = (SYNTH_EVAL_DIR, SYNTH_EVAL_AMBIGUOUS_DIR)
+SYNTH_TRAIN_DIR = Path(__file__).resolve().parent / "synth_train"
+SYNTH_TRAIN_FILE = SYNTH_TRAIN_DIR / "synth_train.jsonl"
+SYNTH_TRAIN_ALL_FILE = SYNTH_TRAIN_DIR / "synth_train_all.jsonl"   # production variant: every ambiguous word
 
 # Locations on the GPU machine (override with --model / --data-dir).
 DEFAULT_MODEL = r"D:\HeMed All\HeMed Final Model\model_non_anon"
@@ -125,6 +131,8 @@ def run_training(model_name, train_ds, val_ds, output_dir, *, early_stopping=Fal
         print(f"------------- Start training: {model_name} -> {output_dir} (seed {seed}) -------------")
         trainer.train()
         trainer.save_model(str(output_dir))
+        for ckpt in Path(output_dir).glob("checkpoint-*"):   # the best model is saved above; checkpoints are ~3 GB each
+            shutil.rmtree(ckpt, ignore_errors=True)
         test_metrics = None
         if test_ds is not None:
             test_metrics = trainer.evaluate(test_ds, metric_key_prefix="test")
@@ -143,11 +151,50 @@ def run_training(model_name, train_ds, val_ds, output_dir, *, early_stopping=Fal
     return trainer
 
 
+def load_extra_train(paths, fraction=1.0, seed=0):
+    """Synthetic TRAINING records from `paths` (jsonl, same format as the real data); `fraction` keeps a fixed random
+    subset (always the same one for the same fraction, so seeds differ only in the training randomness)."""
+    records = []
+    for path in paths or []:
+        records += load_records(path, ignore_ids=set())
+    if 0 < fraction < 1:
+        records = random.Random(seed).sample(records, int(round(len(records) * fraction)))
+    return records
+
+
+def split_ambiguous_sets(synth, folders):
+    """Add ``ambig_seen`` / ``ambig_heldout``: the ``ambiguous`` evaluation documents whose word is / is not one of the
+    words the synthetic training set uses (training/synth_train/word_split.json). Same split for every run, with or
+    without synthetic training data, so runs stay comparable."""
+    split_file = SYNTH_TRAIN_DIR / "word_split.json"
+    if "ambiguous" not in synth or not split_file.exists():
+        return synth
+    meta = None
+    for d in folders:
+        if (Path(d) / "ambiguous.meta.json").exists():
+            meta = json.loads((Path(d) / "ambiguous.meta.json").read_text(encoding="utf-8"))
+    if meta is None:
+        return synth
+    seen = set(json.loads(split_file.read_text(encoding="utf-8"))["seen"])
+    out = dict(synth)
+    out["ambig_seen"] = [r for r in synth["ambiguous"] if meta.get(str(r["id"]), {}).get("word") in seen]
+    out["ambig_heldout"] = [r for r in synth["ambiguous"] if meta.get(str(r["id"]), {}).get("word") not in seen]
+    return out
+
+
 def train_ner(model_name, data_dir, output_dir, *, seeds=DEFAULT_SEEDS, synth_eval_dir=DEFAULT_SYNTH_DIRS,
-              early_stopping=True, **hparams):
+              early_stopping=True, extra_train=None, extra_fraction=1.0, staged=False, stage1_epochs=1,
+              limit=None, run_group=None, **hparams):
     """Train on the train split, select the best epoch on validation, score on test (if present) and on the
     synthetic evaluation sets in `synth_eval_dir`. Repeated for every seed in `seeds`; each seed gets its own
     folder ``<output_dir>/seed_<n>/`` and, at the end, ``summary.json`` / ``summary.md`` hold mean and std.
+
+    `extra_train`: jsonl file(s) of synthetic training documents. Default (`staged=False`) they are MIXED into the real
+    training split (`extra_fraction` keeps a fixed random share of them). With `staged=True` the model first trains
+    `stage1_epochs` epochs on the synthetic documents alone, then continues on the real split as usual (validation,
+    early stopping, test). Validation and test are always real data only.
+    `limit`: cap the documents of every split/set (smoke tests). `run_group`: nest the committed run copies under
+    ``training/runs/<run_group>/`` (campaigns).
 
     Like MedNER's original, this does NOT apply `ignorable_ids.txt`: a pre-made split
     folder is used exactly as given (the ignore list only applies to `--data` files).
@@ -160,9 +207,17 @@ def train_ner(model_name, data_dir, output_dir, *, seeds=DEFAULT_SEEDS, synth_ev
         "splits": {name: describe_split(find_split_file(data_dir, name), recs)
                    for name, recs in splits.items()},
     }
-    train_ds = prepare_dataset(splits["train"], tokenizer)
-    val_ds = prepare_dataset(splits["validation"], tokenizer)
-    test_ds = prepare_dataset(splits["test"], tokenizer) if "test" in splits else None
+    cap = (lambda recs: recs[:limit]) if limit else (lambda recs: recs)
+    extra_records = cap(load_extra_train(extra_train, extra_fraction))
+    real_train = cap(splits["train"])
+    data_info["extra_train"] = {"files": [str(Path(p).resolve()) for p in (extra_train or [])],
+                                "fraction": extra_fraction, "documents": len(extra_records),
+                                "mode": "none" if not extra_records else ("staged: synthetic first" if staged else "mixed"),
+                                "real_train_documents": len(real_train)}
+    train_ds = prepare_dataset(real_train if (staged or not extra_records) else real_train + extra_records, tokenizer)
+    stage1_ds = prepare_dataset(extra_records, tokenizer) if (staged and extra_records) else None
+    val_ds = prepare_dataset(cap(splits["validation"]), tokenizer)
+    test_ds = prepare_dataset(cap(splits["test"]), tokenizer) if "test" in splits else None
 
     synth, synth_paths = {}, {}
     dirs = [synth_eval_dir] if isinstance(synth_eval_dir, (str, Path)) else list(synth_eval_dir or [])
@@ -173,24 +228,33 @@ def train_ner(model_name, data_dir, output_dir, *, seeds=DEFAULT_SEEDS, synth_ev
             synth[name], synth_paths[name] = recs, Path(d) / f"{name}.jsonl"
     if synth:
         data_info["synthetic_eval_sets"] = {name: describe_split(synth_paths[name], recs) for name, recs in synth.items()}
-    extra_eval = {name: prepare_dataset(recs, tokenizer) for name, recs in synth.items()}
+    synth = split_ambiguous_sets(synth, dirs)
+    extra_eval = {name: prepare_dataset(cap(recs), tokenizer) for name, recs in synth.items()}
 
     experiment = Path(output_dir).name
+    group = f"{run_group}/" if run_group else ""
     done = []
     try:
         for seed in seeds:
             seed_dir = Path(output_dir) / f"seed_{seed}"
-            run_training(model_name, train_ds, val_ds, seed_dir, kind="train", data_info=data_info,
+            base = model_name
+            if stage1_ds is not None:   # stage 1: synthetic documents only, no validation; its model is stage 2's start
+                s1_hparams = dict(hparams, epochs=stage1_epochs)
+                run_training(model_name, stage1_ds, None, seed_dir / "stage1_synth", kind="train-stage1",
+                             data_info=data_info, seed=seed, run_name=f"{group}{experiment}/seed_{seed}_stage1",
+                             notes="Stage 1 of a staged run: synthetic documents only.", **s1_hparams)
+                base = str(seed_dir / "stage1_synth")
+            run_training(base, train_ds, val_ds, seed_dir, kind="train", data_info=data_info,
                          test_ds=test_ds, extra_eval=extra_eval, seed=seed, early_stopping=early_stopping,
-                         run_name=f"{experiment}/seed_{seed}", **hparams)
+                         run_name=f"{group}{experiment}/seed_{seed}", **hparams)
             done.append(seed)
     finally:  # a crash in seed 3 must not lose the table for seeds 1-2
         if done:
-            summarize_experiment(Path(output_dir), mirror_name=experiment)
+            summarize_experiment(Path(output_dir), mirror_name=f"{group}{experiment}")
     return Path(output_dir)
 
 
-def train_on_all(model_name, output_dir, data_path=None, data_dir=None, **hparams):
+def train_on_all(model_name, output_dir, data_path=None, data_dir=None, extra_train=None, **hparams):
     """PRODUCTION model: train on every record (train + validation + test), no validation.
 
     Use only after the recipe is settled with `train` (which holds out validation/test), and set
@@ -212,7 +276,10 @@ def train_on_all(model_name, output_dir, data_path=None, data_dir=None, **hparam
                               for name, recs in splits.items()},
             "all_data": describe_records(records),
         }
-    train_ds = prepare_dataset(records, tokenizer)
+    extra_records = load_extra_train(extra_train)
+    if extra_records:
+        data_info["extra_train"] = {"files": [str(Path(p).resolve()) for p in extra_train], "documents": len(extra_records)}
+    train_ds = prepare_dataset(records + extra_records, tokenizer)
     return run_training(model_name, train_ds, None, output_dir, kind="train-all",
                         data_info=data_info,
                         notes="Production model: trained on ALL data; no held-out evaluation exists for it.",
@@ -286,6 +353,13 @@ def build_parser():
                    help="folder(s) with synthetic evaluation sets (*.jsonl), scored after training "
                         "(default: %(default)s)")
     t.add_argument("--no-synth-eval", action="store_true", help="skip the synthetic evaluation sets")
+    t.add_argument("--extra-train", nargs="+", default=None,
+                   help="synthetic TRAINING jsonl file(s) (e.g. training/synth_train/synth_train.jsonl)")
+    t.add_argument("--extra-fraction", type=float, default=1.0, help="share of the extra documents to use (default 1)")
+    t.add_argument("--staged", action="store_true",
+                   help="train on the extra documents first (--stage1-epochs), then on the real split; default is mixing")
+    t.add_argument("--stage1-epochs", type=int, default=1)
+    t.add_argument("--limit", type=int, default=None, help="cap every split at N documents (smoke tests only)")
 
     a = sub.add_parser("train-all", parents=[hp],
                        help="PRODUCTION: train on all data (train+validation+test), no validation")
@@ -294,6 +368,8 @@ def build_parser():
     a.add_argument("--data-dir", default=DEFAULT_DATA_DIR, help="split folder to merge (default: %(default)s)")
     a.add_argument("--output-dir", default=None, help=out_help)
     a.add_argument("--seed", type=int, default=SEED)
+    a.add_argument("--extra-train", nargs="+", default=None,
+                   help="synthetic training jsonl added to ALL real data (production: synth_train_all.jsonl)")
 
     c = sub.add_parser("cv", parents=[hp], help="k-fold cross-validation")
     c.add_argument("--data", required=True)
@@ -321,10 +397,12 @@ def main(argv=None):
                    weight_decay=args.weight_decay, patience=args.patience)
     if args.command == "train":
         train_ner(args.model, args.data_dir, args.output_dir, seeds=args.seeds,
-                  synth_eval_dir=None if args.no_synth_eval else args.synth_eval_dir, **hparams)
+                  synth_eval_dir=None if args.no_synth_eval else args.synth_eval_dir, extra_train=args.extra_train,
+                  extra_fraction=args.extra_fraction, staged=args.staged, stage1_epochs=args.stage1_epochs,
+                  limit=args.limit, **hparams)
     elif args.command == "train-all":
         train_on_all(args.model, args.output_dir, data_path=args.data, data_dir=args.data_dir,
-                     seed=args.seed, **hparams)
+                     extra_train=args.extra_train, seed=args.seed, **hparams)
     elif args.command == "cv":
         run_kfold_cv(args.model, args.data, args.output_dir, k=args.k, seed=args.seed, **hparams)
     elif args.command == "final":

@@ -16,6 +16,7 @@ Prints no patient text; the test set is fake, so example strings are shown for t
 """
 import argparse
 import json
+import re
 import sys
 from collections import defaultdict
 from pathlib import Path
@@ -52,13 +53,53 @@ def overlaps(a, b):
     return min(a["end"], b["end"]) > max(a["start"], b["start"])
 
 
+_SEP_ONLY = re.compile(r"^[\s./\-]*$")
+
+
+def merge_date_pieces(text, preds):
+    """The model emits a date as DAY/MONTH/YEAR pieces, the rules merge them into one span, and the truth may hold
+    either form. For the `exact` check, DATE predictions separated only by `. / - ` or spaces are merged first."""
+    out = []
+    for p in sorted(preds, key=lambda x: (x["start"], x["end"])):
+        prev = out[-1] if out else None
+        if (prev and p["label"] == "DATE" and prev["label"] == "DATE" and p["start"] >= prev["end"]
+                and _SEP_ONLY.match(text[prev["end"]:p["start"]])):
+            out[-1] = {**prev, "end": p["end"]}
+        else:
+            out.append(dict(p))
+    return out
+
+
+# The fake truth labels MED_ORG / ORG with their head noun ("בית החולים איכילוב"); the REAL annotation labels the bare name
+# only (training/check_label_layout.py), so a model trained on it never covers the head noun. Score the bare name.
+HEAD_WORDS = ["בית החולים", "בית חולים", "המרכז הרפואי", "מרכז רפואי", "קופת חולים", "קופ\"ח", "ביה\"ח", "מרפאת", "מכון",
+              "בנק", "חברת", "עיריית", "משרד", "אוניברסיטת", "רשת", "מפעלי", "בית הספר"]
+
+
+def strip_head(text, span):
+    if span["label"] not in ("MED_ORG", "ORG"):
+        return span
+    value = text[span["start"]:span["end"]]
+    for h in sorted(HEAD_WORDS, key=len, reverse=True):
+        if value.startswith(h + " ") and len(value) > len(h) + 1:
+            cut = len(h) + 1
+            return {**span, "start": span["start"] + cut}
+    return span
+
+
+def merge_truth_dates(text, spans):
+    return [strip_head(text, s) for s in merge_date_pieces(text, spans)]
+
+
 def score_doc(truth, out):
     text, preds = truth["text"], out.get("entities", [])
+    exact_preds = merge_date_pieces(text, preds)
+    truth_spans = merge_truth_dates(text, truth["label"])
     deid = next((out[k] for k in DEID_KEYS if k in out), "")
     drift = any(p.get("text") != text[p["start"]:p["end"]] for p in preds)
     keep_strings = {text[k["start"]:k["end"]] for k in truth["keep"]}
     rows = []
-    for s in truth["label"]:
+    for s in truth_spans:
         value = text[s["start"]:s["end"]]
         row = {"label": s["label"], "tag": s.get("tag") or "-", "policy": s.get("policy", False), "value": value,
                "doc": truth["id"]}
@@ -70,7 +111,7 @@ def score_doc(truth, out):
             row["status"] = "masked" if n == s["end"] - s["start"] else ("partial" if n else "missed")
             row["label_ok"] = bool(best and best["label"] == s["label"]) if n else False
             row["exact"] = any(p["start"] == s["start"] and p["end"] == s["end"] and p["label"] == s["label"]
-                               for p in preds)
+                               for p in exact_preds)
         else:
             row["status"] = row["label_ok"] = row["exact"] = None
         rows.append(row)
@@ -81,7 +122,7 @@ def score_doc(truth, out):
             traps.append({"note": k["note"], "value": text[k["start"]:k["end"]], "hit": bool(hit),
                           "label": hit[0]["label"] if hit else None, "doc": truth["id"]})
         for p in preds:
-            if not any(overlaps(p, s) for s in truth["label"]) and not any(overlaps(p, k) for k in truth["keep"]):
+            if not any(overlaps(p, s) for s in truth_spans) and not any(overlaps(p, k) for k in truth["keep"]):
                 extras.append({"value": text[p["start"]:p["end"]], "label": p["label"], "doc": truth["id"]})
     return rows, traps, extras, drift
 
@@ -103,11 +144,25 @@ def table(title, groups):
               f"{pct(sum(r['exact'] for r in sc), len(sc)):>8s}{sum(bool(r['survive']) for r in sv):>5d}/{len(sv):<3d}")
 
 
+def group_summary(rows):
+    sc = [r for r in rows if r["status"] is not None]
+    cov = [r for r in sc if r["status"] != "missed"]
+    sv = [r for r in rows if r["survive"] is not None]
+    d = lambda n, m: round(n / m, 4) if m else None
+    return {"n": len(rows), "scored": len(sc),
+            "masked": d(sum(r["status"] == "masked" for r in sc), len(sc)),
+            "partial": sum(r["status"] == "partial" for r in sc), "missed": sum(r["status"] == "missed" for r in sc),
+            "label_ok": d(sum(r["label_ok"] for r in cov), len(cov)),
+            "exact": d(sum(r["exact"] for r in sc), len(sc)),
+            "survive_leaks": sum(bool(r["survive"]) for r in sv), "survive_checked": len(sv)}
+
+
 def main(argv=None):
     ap = argparse.ArgumentParser()
     ap.add_argument("--results-dir", default=str(DEFAULT_RESULTS))
     ap.add_argument("--mode", default="label")
     ap.add_argument("--only", help="score just this tier (file stem), e.g. t2_formats")
+    ap.add_argument("--json-out", help="also write the headline numbers (per tier / label / situation) as JSON")
     ap.add_argument("--show", type=int, default=12, help="how many failing examples to list per section")
     args = ap.parse_args(argv)
     if hasattr(sys.stdout, "reconfigure"):
@@ -161,6 +216,16 @@ def main(argv=None):
     print(f"\nLEAKS: {len(bad)} truth spans are not fully masked (listing {min(len(bad), args.show * 2)})")
     for r in bad[: args.show * 2]:
         print(f"    [{r['tier']} #{r['doc']}] {r['status']:7s} {r['label']:13s} {r['tag']:28s} '{r['value']}'")
+    if args.json_out:
+        every = [r for rows in by_label.values() for r in rows]
+        summary = {"results_dir": str(args.results_dir), "tiers": scored_tiers, "overall": group_summary(every),
+                   "per_label": {k: group_summary(v) for k, v in sorted(by_label.items())},
+                   "per_tier": {k: group_summary(v) for k, v in sorted(by_tier.items())},
+                   "per_situation": {k: group_summary(v) for k, v in sorted(by_tag.items())},
+                   "traps_hit": len(hit), "traps_total": len(all_traps), "extra_predictions": len(all_extras),
+                   "leak_spans": len(bad), "offset_drift_docs": sum(drift_docs.values())}
+        Path(args.json_out).parent.mkdir(parents=True, exist_ok=True)
+        Path(args.json_out).write_text(json.dumps(summary, ensure_ascii=False, indent=1), encoding="utf-8")
     drift_total = sum(drift_docs.values())
     if drift_total:
         print(f"\nOFFSET DRIFT: {drift_total} documents have entity offsets that do not fit the original text "

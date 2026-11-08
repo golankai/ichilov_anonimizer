@@ -6,6 +6,17 @@
 - Smoke run (1 epoch, `regular`, base `model_non_anon`): 76 s, validation F1 0.921, test F1 0.898 (recall 0.916).
   That only proves the pipeline works; it is not a result to compare against.
 
+## Update (2026-11-09): overnight campaign, synthetic training data, org convention
+- **MED_ORG/ORG convention corrected**: real data labels the bare name only (head words unlabeled, prefix letter often cut off). `make_synth_eval.py`
+  and `make_ambiguous_eval.py` now do the same and the sets were regenerated (rare_hard/long/ambiguous changed: older synthetic MED_ORG/ORG
+  numbers are NOT comparable). `inference/score_dummy.py` scores the bare name for these labels and accepts a date as pieces or one span.
+- **Synthetic training set** `synth_train/` (`make_synth_train.py`, README there): 3000 short documents; 70% of the ambiguous words used, 30% held out
+  (`word_split.json`); `train.py` reports `ambiguous`, `ambig_seen`, `ambig_heldout`. New `train.py` options: `--extra-train`, `--extra-fraction`, `--staged`,
+  `--stage1-epochs`. Production: `synth_train_all.jsonl` (all words) with `train-all --extra-train`, only after the recipe is chosen.
+- **Campaign** `run_campaign.py` / `run_overnight.bat`: smoke test, then recipes A_real, B_mix_full, D_staged_1ep, C_mix_half, E_mix_quarter, F_staged_2ep x 3 seeds;
+  each model is scored on the base-model sets AND on the full pipeline (rules on; rules off for the first seed). Models:
+  `training/models/<campaign>/<recipe>/seed_<n>/`; table: `training/runs/<campaign>/registry.md|csv|json`, `report.md`. Resume with `--campaign <id>`.
+
 ## Update (2026-11-08, later)
 - First baseline (10 epochs, 1 seed): validation F1 0.940 (epoch 4), test P 0.933 / R 0.920 / F1 0.927 / F2 0.934; overfits after epoch 4.
 - Done since: 6 epochs + early stopping (patience 2), 3 seeds per model with `summary.md`, per-label P/R/F1 everywhere, synthetic

@@ -78,13 +78,13 @@ def name_docs(rng, row):
             out.append((["המטופל מתגורר ב", E("LOC", w), "."], "loc-prefixed-ב", False))
             out.append((["הופנה מ", E("LOC", w), " לבירור נוסף."], "loc-prefixed-מ", False))
         elif lab == "MED_ORG":
-            org = f"{head} {w}"
-            out.append((["הופנה ל", E("MED_ORG", org), " לצורך המשך בירור."], "med-org-prefixed-ל", False))
-            out.append((["אושפז ב", E("MED_ORG", org), " בשבוע שעבר."], "med-org-prefixed-ב", False))
+            hd = head + " " if head else ""  # real convention: only the bare name is the entity, the head word is plain text
+            out.append((["הופנה ל", hd, E("MED_ORG", w), " לצורך המשך בירור."], "med-org-prefixed-ל", False))
+            out.append((["אושפז ב", hd, E("MED_ORG", w), " בשבוע שעבר."], "med-org-prefixed-ב", False))
         elif lab == "ORG":
-            org = f"{head} {w}"
-            out.append((["המטופל עובד ב", E("ORG", org), "."], "org-prefixed-ב", False))
-            out.append((["הבקשה הוגשה אל ", E("ORG", org), " לפני חודשיים."], "org-plain", False))
+            hd = head + " " if head else ""
+            out.append((["המטופל עובד ב", hd, E("ORG", w), "."], "org-prefixed-ב", False))
+            out.append((["הבקשה הוגשה אל ", hd, E("ORG", w), " לפני חודשיים."], "org-plain", False))
     return out
 
 
