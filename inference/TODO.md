@@ -9,7 +9,7 @@
 - Tests: `pytest inference/tests`. Fake test set with ground truth: `inference/dummy_data/` (committed; generator `make_dummy_data.py`, scorer `score_dummy.py`).
 
 ## To do
-0. **Fix the defects from the first GPU run and the hospital's test** (email prefix leak, split dates, lost Hebrew prefix, hyphenated surnames, CaseNum, months, repeated values): the full issue list, candidate fixes (incl. ideas from HebSafeHarbor) and their order are in `docs/HOSPITAL_FEEDBACK_AND_FIXES.md`; measure each fix with `inferenceun_dummy.bat` (fake test set with ground truth, `dummy_data/README.md`).
+0. **Fix the defects from the first GPU run and the hospital's test** (email prefix leak, split dates, lost Hebrew prefix, hyphenated surnames, CaseNum, months, repeated values): the full issue list, candidate fixes (incl. ideas from HebSafeHarbor) and their order are in `docs/HOSPITAL_FEEDBACK_AND_FIXES.md`; measure each fix with `inference\run_dummy.bat` (fake test set with ground truth, `dummy_data/README.md`).
 1. **Edge-margin A/B test.** Training masks 64 tokens at inner window edges; check whether inference should do the same
    (`--edge-margin`): run both on the same documents and compare entities found.
 2. **NLTK clean-up (docs and code).** `inference/README.md` still says "Python 3.9 or higher" and that long text is split
