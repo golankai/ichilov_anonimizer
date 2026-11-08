@@ -65,3 +65,19 @@ Measure each with `inference\run_dummy.bat`; compare against the baseline from s
 - Never push without asking. Commit locally, then ask.
 - Real patient data is never committed; reports contain metadata/counts only.
 - Dummy-result pushing is maintainer-only and guarded (`push_dummy_results.bat`).
+
+## Update 2026-11-08 evening: overnight campaign launched (where we stopped)
+
+- Pushed to origin: 6dd8a2a (campaign runner, synthetic training set, bare-name MED_ORG/ORG convention).
+- GPU machine (`D:\DeID KAI\ichilov_anonimizer`) is running campaign **night-20261108-1846** (started 18:46, smoke test passed 18:48).
+  6 recipes x seeds 42/43/44 (A_real, B_mix_full, D_staged_1ep, C_mix_half, E_mix_quarter, F_staged_2ep), up to 6 epochs, pipeline eval after each model.
+- Models stay on the GPU machine: `training/models/night-20261108-1846/<recipe>/seed_<n>/`. Log: `.../campaign.log`.
+- Resume if interrupted: `training\run_overnight.bat --campaign night-20261108-1846`.
+- User must run `training\push_results.bat` on the GPU machine when the campaign is done, then tell me the campaign id. (Local repo is intentionally NOT committed/pushed further, so the remote push stays fast-forward.)
+
+### Next session
+1. `git pull`; read `training/runs/night-20261108-1846/report.md`, `registry.md` (check errors.txt for failed runs).
+2. Compare recipes: real test F1 (must not drop vs A_real), ambig_heldout vs ambig_seen, rare_hard/long, pipeline scores with rules vs norules (first seed only).
+3. Pick recipe; production model: `train-all --extra-train training\synth_train\synth_train_all.jsonl` (all real + all synthetic words).
+4. Still open: ask annotator about `second_` ids; verify real CONTACT `-`-only spans; enlarge pipeline long set (t5_long has 4 docs); hospital feedback F8-F12.
+- Privacy note: example strings the user pasted earlier remain in the session transcript (~/.claude/projects/.../a44546ad-...jsonl); not in repo.

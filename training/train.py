@@ -254,7 +254,7 @@ def train_ner(model_name, data_dir, output_dir, *, seeds=DEFAULT_SEEDS, synth_ev
     return Path(output_dir)
 
 
-def train_on_all(model_name, output_dir, data_path=None, data_dir=None, extra_train=None, **hparams):
+def train_on_all(model_name, output_dir, data_path=None, data_dir=None, extra_train=None, extra_fraction=1.0, **hparams):
     """PRODUCTION model: train on every record (train + validation + test), no validation.
 
     Use only after the recipe is settled with `train` (which holds out validation/test), and set
@@ -276,9 +276,10 @@ def train_on_all(model_name, output_dir, data_path=None, data_dir=None, extra_tr
                               for name, recs in splits.items()},
             "all_data": describe_records(records),
         }
-    extra_records = load_extra_train(extra_train)
+    extra_records = load_extra_train(extra_train, extra_fraction)
     if extra_records:
-        data_info["extra_train"] = {"files": [str(Path(p).resolve()) for p in extra_train], "documents": len(extra_records)}
+        data_info["extra_train"] = {"files": [str(Path(p).resolve()) for p in extra_train], "fraction": extra_fraction,
+                                    "documents": len(extra_records)}
     train_ds = prepare_dataset(records + extra_records, tokenizer)
     return run_training(model_name, train_ds, None, output_dir, kind="train-all",
                         data_info=data_info,
@@ -370,6 +371,7 @@ def build_parser():
     a.add_argument("--seed", type=int, default=SEED)
     a.add_argument("--extra-train", nargs="+", default=None,
                    help="synthetic training jsonl added to ALL real data (production: synth_train_all.jsonl)")
+    a.add_argument("--extra-fraction", type=float, default=1.0, help="share of the extra documents to use (default 1)")
 
     c = sub.add_parser("cv", parents=[hp], help="k-fold cross-validation")
     c.add_argument("--data", required=True)
@@ -402,7 +404,7 @@ def main(argv=None):
                   limit=args.limit, **hparams)
     elif args.command == "train-all":
         train_on_all(args.model, args.output_dir, data_path=args.data, data_dir=args.data_dir,
-                     extra_train=args.extra_train, seed=args.seed, **hparams)
+                     extra_train=args.extra_train, extra_fraction=args.extra_fraction, seed=args.seed, **hparams)
     elif args.command == "cv":
         run_kfold_cv(args.model, args.data, args.output_dir, k=args.k, seed=args.seed, **hparams)
     elif args.command == "final":
