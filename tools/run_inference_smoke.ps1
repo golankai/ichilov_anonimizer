@@ -10,12 +10,22 @@
   powershell -ExecutionPolicy Bypass -File .\tools\run_inference_smoke.ps1 -Model "D:\HeMed All\HeMed Final Model\model_anon"
 #>
 param(
-    [string]$Model = "D:\HeMed All\HeMed Final Model\model_non_anon",
+    [string]$Model = "",   # empty = models\HeMed_Anonimizer_Model in the repo (the NER-trained model). The D:\HeMed All base models have NO NER head.
     [string]$Py = "C:\ProgramData\anaconda3\envs\PII\python.exe"
 )
 
 Set-Location (Split-Path $PSScriptRoot -Parent)
 Start-Transcript -Path remote_report.txt -Force | Out-Null
+
+if (-not $Model) { $Model = Join-Path (Get-Location) "models\HeMed_Anonimizer_Model" }
+if (-not (Test-Path "$Model\config.json")) {
+    Write-Host "NO NER MODEL at $Model. Copy the trained model folder (config.json, model.safetensors, tokenizer files) there, or pass -Model <folder>."
+    Stop-Transcript | Out-Null
+    exit 1
+}
+
+# Only toolz was missing in the PII env (pure python, no dependencies, PyPI works through the proxy).
+& $Py -m pip install toolz 2>&1 | ForEach-Object { "$_" } | Out-Host
 
 $out = "output\smoke"
 New-Item -ItemType Directory -Force $out | Out-Null
