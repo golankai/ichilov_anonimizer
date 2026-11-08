@@ -44,6 +44,8 @@ DEFAULT_SEEDS = (42, 43, 44)   # `train` runs every model with all three and rep
 DEFAULT_EPOCHS = 6
 DEFAULT_PATIENCE = 2           # evaluations without a better validation F1 before stopping (0 = no early stopping)
 SYNTH_EVAL_DIR = Path(__file__).resolve().parent / "synth_eval"
+SYNTH_EVAL_AMBIGUOUS_DIR = Path(__file__).resolve().parent / "synth_eval_ambiguous"
+DEFAULT_SYNTH_DIRS = (SYNTH_EVAL_DIR, SYNTH_EVAL_AMBIGUOUS_DIR)
 
 # Locations on the GPU machine (override with --model / --data-dir).
 DEFAULT_MODEL = r"D:\HeMed All\HeMed Final Model\model_non_anon"
@@ -141,7 +143,7 @@ def run_training(model_name, train_ds, val_ds, output_dir, *, early_stopping=Fal
     return trainer
 
 
-def train_ner(model_name, data_dir, output_dir, *, seeds=DEFAULT_SEEDS, synth_eval_dir=SYNTH_EVAL_DIR,
+def train_ner(model_name, data_dir, output_dir, *, seeds=DEFAULT_SEEDS, synth_eval_dir=DEFAULT_SYNTH_DIRS,
               early_stopping=True, **hparams):
     """Train on the train split, select the best epoch on validation, score on test (if present) and on the
     synthetic evaluation sets in `synth_eval_dir`. Repeated for every seed in `seeds`; each seed gets its own
@@ -162,10 +164,15 @@ def train_ner(model_name, data_dir, output_dir, *, seeds=DEFAULT_SEEDS, synth_ev
     val_ds = prepare_dataset(splits["validation"], tokenizer)
     test_ds = prepare_dataset(splits["test"], tokenizer) if "test" in splits else None
 
-    synth = load_extra_eval_sets(synth_eval_dir) if synth_eval_dir else {}
+    synth, synth_paths = {}, {}
+    dirs = [synth_eval_dir] if isinstance(synth_eval_dir, (str, Path)) else list(synth_eval_dir or [])
+    for d in dirs:  # one or several folders of *.jsonl sets; a set name must be unique
+        for name, recs in load_extra_eval_sets(d).items():
+            if name in synth:
+                raise ValueError(f"synthetic set {name!r} found in more than one folder")
+            synth[name], synth_paths[name] = recs, Path(d) / f"{name}.jsonl"
     if synth:
-        data_info["synthetic_eval_sets"] = {
-            name: describe_split(Path(synth_eval_dir) / f"{name}.jsonl", recs) for name, recs in synth.items()}
+        data_info["synthetic_eval_sets"] = {name: describe_split(synth_paths[name], recs) for name, recs in synth.items()}
     extra_eval = {name: prepare_dataset(recs, tokenizer) for name, recs in synth.items()}
 
     experiment = Path(output_dir).name
@@ -275,8 +282,8 @@ def build_parser():
     t.add_argument("--output-dir", default=None, help=out_help + "; holds one seed_<n> folder per seed")
     t.add_argument("--seeds", type=int, nargs="+", default=list(DEFAULT_SEEDS),
                    help="random seeds, one full run each (default: %(default)s)")
-    t.add_argument("--synth-eval-dir", default=str(SYNTH_EVAL_DIR),
-                   help="folder with synthetic evaluation sets (*.jsonl), scored after training "
+    t.add_argument("--synth-eval-dir", nargs="+", default=[str(d) for d in DEFAULT_SYNTH_DIRS],
+                   help="folder(s) with synthetic evaluation sets (*.jsonl), scored after training "
                         "(default: %(default)s)")
     t.add_argument("--no-synth-eval", action="store_true", help="skip the synthetic evaluation sets")
 

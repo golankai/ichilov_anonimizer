@@ -79,8 +79,8 @@ date, an email prefix) does not show in the base-model numbers, and a weak label
 
 **Synthetic sets for the base model** (`training/synth_eval/`, see its README): `rare_hard` (586 short documents with 40+ examples of every rare
 label, name/word collisions, prefixes and look-alike numbers that must stay unmasked) and `long` (24 documents of 450-2500 words, several windows).
-They are scored after training, reported separately, and **never select the epoch**. Regenerate with `python training/make_synth_eval.py`;
-skip them with `--no-synth-eval`; use another folder with `--synth-eval-dir`.
+A third set, `training/synth_eval_ambiguous/` (`ambiguous`, 809 documents: words that are a value in one use and an ordinary word in another, see its README), is scored with them by default. They are scored after training, reported separately, and **never select the epoch**. Regenerate with `python training/make_synth_eval.py`;
+skip them with `--no-synth-eval`; use other folders with `--synth-eval-dir DIR [DIR ...]` (default: both folders).
 
 ## Seeds and the summary table
 

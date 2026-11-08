@@ -60,7 +60,7 @@ def test_train_ner_two_seeds(tiny_model, tmp_path, monkeypatch):
     monkeypatch.setattr(aggregate_runs, "RUNS_DIR", runs)
     out = tmp_path / "exp_tiny"
     train.train_ner(tiny_model, str(TRAINING / "dummy_data"), str(out), seeds=[1, 2], epochs=2, patience=1,
-                    batch_size=8, synth_eval_dir=str(TRAINING / "synth_eval"))
+                    batch_size=8, synth_eval_dir=train.DEFAULT_SYNTH_DIRS)
 
     for seed in (1, 2):
         rec = json.loads((out / f"seed_{seed}" / "training_run.json").read_text(encoding="utf-8"))
@@ -71,9 +71,9 @@ def test_train_ner_two_seeds(tiny_model, tmp_path, monkeypatch):
         assert res["epochs_planned"] == 2 and res["best_epoch"] in (1.0, 2.0)
         assert res["per_epoch_validation"] and "per_label" in res["per_epoch_validation"][0]
         assert set(res["test"]) == {"overall", "per_label", "other"}
-        assert set(res["synthetic"]) == {"rare_hard", "long"}
+        assert set(res["synthetic"]) == {"rare_hard", "long", "ambiguous"}
         assert res["synthetic"]["rare_hard"]["per_label"]["ID"]["support"] > 0
-        assert set(rec["data"]["synthetic_eval_sets"]) == {"rare_hard", "long"}
+        assert set(rec["data"]["synthetic_eval_sets"]) == {"rare_hard", "long", "ambiguous"}
         assert (runs / "exp_tiny" / f"seed_{seed}" / "training_run.json").exists()
 
     summ = json.loads((out / "summary.json").read_text(encoding="utf-8"))
