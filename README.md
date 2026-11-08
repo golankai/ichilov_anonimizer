@@ -20,7 +20,8 @@ You received this repository (or a zip of it) and the model on a USB stick.
 
 Optional second argument: `label` (default, `[FIRST_NAME]`), `mask` (`[REDACTED]`), or `x` (`XXXX`), e.g. `deidentify.bat file.csv mask`.
 Optional third argument: the name of a model folder inside `models\`, e.g. `deidentify.bat file.csv label MyOtherModel`. The result files of that run carry the model name, so you can run several models on the same file and compare them.
-Try it first on the sample: `deidentify.bat inference\dummy_data\test.csv`.
+Try it first on the sample: `deidentify.bat inference\dummy_data\test.csv`. Without `setup.bat` (e.g. in a conda env) it uses the `python` of the active environment, so `python inference/de_identify.py --input file.csv` works too. `inference\run_dummy.bat` runs the model on the samples and commits the results to `inference/dummy_results/` for review.
+un_dummy.bat` runs the model on the samples and commits the results to `inference/dummy_results/` for review.
 
 A GPU is used automatically if present; otherwise it runs on CPU (slower, same results).
 If something fails, run `setup.bat` again: it prints what is missing. Details and advanced options: [`inference/README.md`](inference/README.md).

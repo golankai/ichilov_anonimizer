@@ -101,6 +101,7 @@ def save_output(
     mode: str,
     output_format: str = "both",
     output_tag: str = "",
+    output_dir: Optional[str] = None,
 ) -> None:
     """
     Constructs the output path, saves the original dataframe with new columns to a CSV file,
@@ -113,6 +114,9 @@ def save_output(
     ]
 
     base, ext = os.path.splitext(original_path)
+    if output_dir:  # default: next to the input file
+        os.makedirs(output_dir, exist_ok=True)
+        base = os.path.join(output_dir, os.path.basename(base))
     if output_format in ("csv", "both"):
         output_csv_path = f"{base}_deid_{mode}_pipeline{output_tag}{ext}"
         output_df.to_csv(output_csv_path, index=False, encoding="utf-8-sig")
@@ -150,6 +154,7 @@ def run(
     overlap_tokens: int = DEFAULT_OVERLAP,
     output_format: str = "both",
     output_tag: str = "",
+    output_dir: Optional[str] = None,
 ) -> None:
     """
     The main execution flow for the pipeline-based variant.
@@ -189,7 +194,7 @@ def run(
         max_tokens=max_tokens,
         overlap_tokens=overlap_tokens,
     )
-    save_output(df, input_file, deid_col, ent_col, mode, output_format, output_tag)
+    save_output(df, input_file, deid_col, ent_col, mode, output_format, output_tag, output_dir)
     print(f"End time:   {datetime.now():%Y-%m-%d %H:%M:%S} (took {time.time() - started:.0f}s)")
 
 
@@ -259,6 +264,11 @@ def main() -> None:
         default="both",
         help="Main output file(s): csv, tab-separated txt, or both (default). A JSON file is always written too.",
     )
+    parser.add_argument(
+        "--output-dir",
+        default=None,
+        help="Folder for the result files (created if missing). Default: next to the input file.",
+    )
     args = parser.parse_args()
 
     model = resolve_model(args.model)
@@ -293,6 +303,7 @@ def main() -> None:
         overlap_tokens=args.chunk_overlap,
         output_format=args.output_format,
         output_tag=output_tag,
+        output_dir=args.output_dir,
     )
 
 
