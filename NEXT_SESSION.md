@@ -5,7 +5,7 @@ Implemented in `inference/utils/rules.py` (on by default, `--no-rules` = old sta
 F1/F2 digit runs + ID checksum, F3 e-mail as one span, F4/F5 dates (numeric, written, ISO, Hebrew calendar, months),
 F7 hyphenated surnames. The old date/ID stages no longer rewrite the text before the model (offsets fit the text).
 Rules alone vs fake truth: 225/226 date/email/ID/case-number spans exact, 0 spans outside truth. **Not yet measured with
-the model: run `inferenceun_dummy.bat` and compare with the 2026-11-08 first run.**
+the model: run `inference\run_dummy.bat` and compare with the 2026-11-08 first run.**
 Decisions: F6 dropped (prefix inside the masked span is fine; score `*-prefixed` tags leniently); months alone are masked
 (policy, hospital counts them); F8 will propagate only names NOT in `inference/lexicons/ambiguous_words.tsv`.
 Still open from section 2 below: F8 (+ strict/lenient switch), F9, F10, F11, F12.
