@@ -41,6 +41,25 @@ Defaults: base model `D:\HeMed All\HeMed Final Model\model_non_anon`, data `D:\D
 For the anonymized-corpus base model add `--model "D:\HeMed All\HeMed Final Model\model_anon"`.
 After training, the best epoch (by validation F1) is also scored on the test split.
 
+## Checking the data for duplicates (counts only)
+
+The split code compares ids, never texts. The same document can exist twice under different ids (e.g. `second_<id>.txt`),
+sometimes with different annotations; copies in train and test inflate the test score, and copies that disagree teach the
+model contradictions. `check_duplicates.py` reports this without printing any text or id:
+
+```
+python -X utf8 training\check_duplicates.py                        # default split folder of the GPU machine
+python -X utf8 training\check_duplicates.py --data-dir <folder>    # or --data one.jsonl
+```
+
+It prints: documents per split, ids with a `second_`/`copy_` prefix, exact duplicates (after whitespace normalisation) split
+into identical and **conflicting** annotations, how many test/validation documents also occur in train, near duplicates
+(5-word shingles, Jaccard >= 0.9), how many ids of `ignorable_ids.txt` are present, and what a cleaning would leave.
+Optional: `--groups f.json` (ids of each group, keep out of git), `--write-clean <dir>` (cleaned copy; originals are never
+touched; identical copies keep the evaluated one, conflicting ones are dropped, `--conflicts first` keeps one,
+`--drop-near-from-train` also removes train near-twins of validation/test documents). Note that the default `train` mode
+reads pre-made split folders and does not apply `ignorable_ids.txt`.
+
 ## Development vs production
 
 1. **Develop** with `train`: it trains on the *train* split only, picks the best epoch on *validation*, and scores
@@ -91,6 +110,7 @@ Evaluate any pipeline on exact character spans with `data_utils.evaluate_char_sp
 | `metrics.py` | Trainer metrics: seqeval P/R/F1 and token-level F2 (recall-weighted) |
 | `data_utils.py` | Span merging, word-level IOB, character-span evaluation |
 | `ignorable_ids.txt` | Documents with known-bad annotations |
+| `check_duplicates.py` | Duplicate / leakage report (counts only) and optional cleaned copy of the splits |
 | `tests/` | Offline tests (toy tokenizer, no downloads): `pytest training/tests` |
 
 Long documents are cut into 512-token windows with a 128-token overlap. Inside multi-window documents the 64 tokens at each inner

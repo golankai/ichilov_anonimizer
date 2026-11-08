@@ -7,6 +7,7 @@
   That only proves the pipeline works; it is not a result to compare against.
 
 ## To do (in this order)
+0. **Check the data for duplicates before trusting any score** (the original annotator confirmed copies with different annotations remain, e.g. `second_<id>.txt`): `python -X utf8 training\check_duplicates.py`, read the counts, decide on `--write-clean`. If test documents have twins in train, the numbers of every earlier run are inflated.
 1. **Train normally and check the results are good.** On the GPU machine, in `PII`:
    `python -X utf8 training\train.py train` (10 epochs, train split only, best epoch by validation, test scored once).
    Look at `training_run.json`: validation curve, best epoch, test precision/recall/F1/F2. Recall matters most here
