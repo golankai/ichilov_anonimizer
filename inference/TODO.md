@@ -9,6 +9,7 @@
 - Tests: `pytest inference/tests`. Fake sample data: `inference/dummy_data/` (committed).
 
 ## To do
+0. **Fix the defects from the first GPU run** (email prefix leak, split dates, lost Hebrew prefix, hyphenated surnames): see `docs/DUMMY_RUN_2026-11-08.md`.
 1. **Edge-margin A/B test.** Training masks 64 tokens at inner window edges; check whether inference should do the same
    (`--edge-margin`): run both on the same documents and compare entities found.
 2. **NLTK clean-up (docs and code).** `inference/README.md` still says "Python 3.9 or higher" and that long text is split
