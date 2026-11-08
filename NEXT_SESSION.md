@@ -1,5 +1,12 @@
 # Next session: pick-up list (written 2026-11-08)
 
+## Update (2026-11-08, evening, training side)
+Pushed to main at 14948d9. Details and open points: `training/TODO.md` ("Update 2026-11-08, evening", "Open points", "What belongs where").
+Short version: duplicate check clean; real dates are DAY/MONTH/YEAR pieces and the synthetic sets now match; `train.py` scores rare_hard,
+long and ambiguous by default; next on the GPU box is a 1-epoch re-check (last line must read `rare_hard (586 docs ...)`), then the full
+3-seed run and `training\push_results.bat`. Base-model eval and pipeline eval stay separate; long documents mainly belong to the pipeline
+set (`t5_long` has only 4 docs, to be enlarged). Still unverified: `second_` ids = same patient across splits? (ask the annotator).
+
 ## Update (end of 2026-11-08, second session): deterministic rules are in
 Implemented in `inference/utils/rules.py` (on by default, `--no-rules` = old stages), tests in `inference/tests/test_rules.py`:
 F1/F2 digit runs + ID checksum, F3 e-mail as one span, F4/F5 dates (numeric, written, ISO, Hebrew calendar, months),

@@ -14,6 +14,38 @@
 - ID and INNER_ID have no examples in the real validation/test splits (23 and 3 in train): the synthetic `rare_hard` set is the only measure for them,
   and its INNER_ID convention is a guess (see `synth_eval/README.md`).
 
+## Update (2026-11-08, evening): what was found and changed
+- **Duplicates**: `check_duplicates.py` clean (no exact duplicates, no leakage between splits). 3456 ids carry a second_/copy_/dup_ prefix
+  and 30 base ids exist in several forms, all with different texts. Whether `second_` means the same patient across splits (patient-level
+  leakage) is unverified; only the annotator can say. Ask them.
+- **Dates are three spans in the real corpus** (DAY/MONTH/YEAR, renamed DATE on load; separators unlabeled; 2097 spans in train, median length 2,
+  1062 directly adjacent, no 8-digit spans). The synthetic sets used one span per date, so synthetic DATE scored badly for a reason that
+  is not the model. Fixed in `make_synth_eval.py` (`split_date_spans`); tool: `check_date_layout.py` (counts only).
+- `train.py` now scores **three** synthetic sets by default: `rare_hard` (586 docs), `long` (24), `ambiguous` (809, from `synth_eval_ambiguous/`).
+  `--synth-eval-dir DIR [DIR ...]`. Still never used to pick the epoch.
+- The 1-epoch run of 2026-11-08 was a plumbing check only (ORG scored 0 on real data too after 1 epoch). Its synthetic numbers came from the OLD
+  generator (846 docs): ignore them. After `git pull` the last line must say `rare_hard (586 docs, 1076 entities ...)`.
+
+## Open points (not done, in order of value)
+1. Re-run `run_train.bat --seeds 42 --epochs 1` on the new code; DATE on synthetic should be near the real 0.9+.
+2. Full run `run_train.bat` (3 seeds, up to 6 epochs): the first baseline with the final recipe (the only earlier baseline is 10 epochs, 1 seed,
+   and it was before any of: early stopping, per-label metrics, seeds). It gives mean ± std, which is what any later model is compared against.
+3. Synthetic ORG and MED_ORG scored 0 with the old code; MED_ORG recall on real data is 0.77, so the synthetic convention may differ from
+   the real one. Look at real MED_ORG/ORG span shapes (counts only, like `check_date_layout.py`) before believing the synthetic numbers.
+4. ID / INNER_ID: only 23 / 3 real train examples and none in val/test; synthetic is the only measure, and its INNER_ID convention is a guess.
+5. `make_ambiguous_eval.py` has its own copy of `split_date_spans`: keep the two in step if the date convention changes.
+6. Long documents: see "What belongs where" below.
+
+## What belongs where (base model vs pipeline)
+- **Base-model evaluation** (`train.py`, `training/synth_eval*`): one 512-token window at a time. Question: how good is the NER model on each label,
+  including rare labels and ambiguous words. Real val/test + `rare_hard` + `ambiguous`.
+- **Pipeline evaluation** (`inference/dummy_data`, `score_dummy.py`): chunking, rules (dates, IDs, e-mail), propagation, masking. Question: does a whole
+  document come out clean. Long documents are mainly a pipeline question (chunking, window edges, repeated names, memory/time). `t5_long` has
+  only 4 documents (700 to 5000 words): too few; `training/synth_eval/long.jsonl` (24 docs) tests mostly the window logic in the training
+  evaluation, not the model. Proposal (not yet done, needs a decision): keep `long` in train.py as a small window-edge sanity check reported
+  separately, and put the weight on a larger pipeline long set (e.g. 20+ documents of several lengths).
+- The two never share texts, seeds or numbers. Pipeline date truth is one span per date, the model emits pieces: `score_dummy.py` must accept both.
+
 ## To do (in this order)
 0. **Check the data for duplicates before trusting any score** (the original annotator confirmed copies with different annotations remain, e.g. `second_<id>.txt`): `python -X utf8 training\check_duplicates.py`, read the counts, decide on `--write-clean`. If test documents have twins in train, the numbers of every earlier run are inflated.
 1. **Train normally and check the results are good.** On the GPU machine, in `PII`:
