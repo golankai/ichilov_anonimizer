@@ -7,7 +7,7 @@ Every block says where to run it (LOCAL = laptop, GPU = hospital machine) and wh
 
 Campaign `night-20261108-1846` is analysed (3 seeds per recipe). Pick: **C_mix_half** = real data + half the synthetic set, mixed.
 Best test F1 among the mixed recipes, best pipeline masked (0.956) and fewest leaks (32), lowest extra predictions (1.3), small seed spread.
-Production uses **6 epochs, fixed** (`train-all` has no validation split, so no early stopping; epoch 6 was the best epoch in most campaign runs). The production synthetic file is the all-words variant (no held-out words).
+Production uses **6 epochs, fixed** (`train-all` has no validation split, so no early stopping; epoch 6 was the best epoch in 8 of 18 campaign runs, the rest mostly 4-5). The production synthetic file is the all-words variant (no held-out words).
 
 ```
 cd "D:\DeID KAI\ichilov_anonimizer"
