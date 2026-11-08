@@ -22,7 +22,7 @@ from utils.nlp_utils import setup_nltk
 from utils.pipeline_utils import DeidDoc
 
 DATA_DIR = INFERENCE_ROOT / "dummy_data"
-GOLD_JSON_PATH = DATA_DIR / "test_deid_label_pipeline.json"
+GOLD_JSON_PATH = Path(__file__).parent / "gold" / "test_deid_label_pipeline.json"
 
 
 @pytest.fixture(scope="module", autouse=True)

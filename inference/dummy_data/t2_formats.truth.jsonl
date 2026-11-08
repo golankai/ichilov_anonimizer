@@ -1,0 +1,119 @@
+{"id": 1, "tier": "t2_formats", "text": "המטופל אושפז בתאריך 26.01.1963 ושוחרר לביתו לאחר שלושה ימים.", "label": [{"start": 20, "end": 30, "label": "DATE", "tag": "date-numeric-dot"}], "keep": []}
+{"id": 2, "tier": "t2_formats", "text": "המטופל אושפז בתאריך 28.02.2009 ושוחרר לביתו לאחר שלושה ימים.", "label": [{"start": 20, "end": 30, "label": "DATE", "tag": "date-numeric-dot"}], "keep": []}
+{"id": 3, "tier": "t2_formats", "text": "המטופל אושפז בתאריך 13.03.1990 ושוחרר לביתו לאחר שלושה ימים.", "label": [{"start": 20, "end": 30, "label": "DATE", "tag": "date-numeric-dot"}], "keep": []}
+{"id": 4, "tier": "t2_formats", "text": "המטופל אושפז בתאריך 24.6.2010 ושוחרר לביתו לאחר שלושה ימים.", "label": [{"start": 20, "end": 29, "label": "DATE", "tag": "date-numeric-dot-nopad"}], "keep": []}
+{"id": 5, "tier": "t2_formats", "text": "המטופל אושפז בתאריך 21.7.2011 ושוחרר לביתו לאחר שלושה ימים.", "label": [{"start": 20, "end": 29, "label": "DATE", "tag": "date-numeric-dot-nopad"}], "keep": []}
+{"id": 6, "tier": "t2_formats", "text": "המטופל אושפז בתאריך 7.10.1944 ושוחרר לביתו לאחר שלושה ימים.", "label": [{"start": 20, "end": 29, "label": "DATE", "tag": "date-numeric-dot-nopad"}], "keep": []}
+{"id": 7, "tier": "t2_formats", "text": "המטופל אושפז בתאריך 01/12/2001 ושוחרר לביתו לאחר שלושה ימים.", "label": [{"start": 20, "end": 30, "label": "DATE", "tag": "date-numeric-slash"}], "keep": []}
+{"id": 8, "tier": "t2_formats", "text": "המטופל אושפז בתאריך 23/12/2021 ושוחרר לביתו לאחר שלושה ימים.", "label": [{"start": 20, "end": 30, "label": "DATE", "tag": "date-numeric-slash"}], "keep": []}
+{"id": 9, "tier": "t2_formats", "text": "המטופל אושפז בתאריך 20/12/1962 ושוחרר לביתו לאחר שלושה ימים.", "label": [{"start": 20, "end": 30, "label": "DATE", "tag": "date-numeric-slash"}], "keep": []}
+{"id": 10, "tier": "t2_formats", "text": "המטופל אושפז בתאריך 17-12-2016 ושוחרר לביתו לאחר שלושה ימים.", "label": [{"start": 20, "end": 30, "label": "DATE", "tag": "date-numeric-dash"}], "keep": []}
+{"id": 11, "tier": "t2_formats", "text": "המטופל אושפז בתאריך 05-01-2010 ושוחרר לביתו לאחר שלושה ימים.", "label": [{"start": 20, "end": 30, "label": "DATE", "tag": "date-numeric-dash"}], "keep": []}
+{"id": 12, "tier": "t2_formats", "text": "המטופל אושפז בתאריך 04-11-1990 ושוחרר לביתו לאחר שלושה ימים.", "label": [{"start": 20, "end": 30, "label": "DATE", "tag": "date-numeric-dash"}], "keep": []}
+{"id": 13, "tier": "t2_formats", "text": "המטופל אושפז בתאריך 22.03.50 ושוחרר לביתו לאחר שלושה ימים.", "label": [{"start": 20, "end": 28, "label": "DATE", "tag": "date-two-digit-year"}], "keep": []}
+{"id": 14, "tier": "t2_formats", "text": "המטופל אושפז בתאריך 28.05.93 ושוחרר לביתו לאחר שלושה ימים.", "label": [{"start": 20, "end": 28, "label": "DATE", "tag": "date-two-digit-year"}], "keep": []}
+{"id": 15, "tier": "t2_formats", "text": "המטופל אושפז בתאריך 19.02.07 ושוחרר לביתו לאחר שלושה ימים.", "label": [{"start": 20, "end": 28, "label": "DATE", "tag": "date-two-digit-year"}], "keep": []}
+{"id": 16, "tier": "t2_formats", "text": "המטופל אושפז בתאריך 1949-07-18 ושוחרר לביתו לאחר שלושה ימים.", "label": [{"start": 20, "end": 30, "label": "DATE", "tag": "date-iso"}], "keep": []}
+{"id": 17, "tier": "t2_formats", "text": "המטופל אושפז בתאריך 1959-06-10 ושוחרר לביתו לאחר שלושה ימים.", "label": [{"start": 20, "end": 30, "label": "DATE", "tag": "date-iso"}], "keep": []}
+{"id": 18, "tier": "t2_formats", "text": "המטופל אושפז בתאריך 1957-01-13 ושוחרר לביתו לאחר שלושה ימים.", "label": [{"start": 20, "end": 30, "label": "DATE", "tag": "date-iso"}], "keep": []}
+{"id": 19, "tier": "t2_formats", "text": "המטופל אושפז בתאריך 28022015 ושוחרר לביתו לאחר שלושה ימים.", "label": [{"start": 20, "end": 28, "label": "DATE", "tag": "date-no-punctuation"}], "keep": []}
+{"id": 20, "tier": "t2_formats", "text": "המטופל אושפז בתאריך 07011993 ושוחרר לביתו לאחר שלושה ימים.", "label": [{"start": 20, "end": 28, "label": "DATE", "tag": "date-no-punctuation"}], "keep": []}
+{"id": 21, "tier": "t2_formats", "text": "המטופל אושפז בתאריך 19061963 ושוחרר לביתו לאחר שלושה ימים.", "label": [{"start": 20, "end": 28, "label": "DATE", "tag": "date-no-punctuation"}], "keep": []}
+{"id": 22, "tier": "t2_formats", "text": "המטופל אושפז בתאריך 28 מרץ 2006 ושוחרר לביתו לאחר שלושה ימים.", "label": [{"start": 20, "end": 31, "label": "DATE", "tag": "date-written-hebrew"}], "keep": []}
+{"id": 23, "tier": "t2_formats", "text": "המטופל אושפז בתאריך 15 אפריל 2011 ושוחרר לביתו לאחר שלושה ימים.", "label": [{"start": 20, "end": 33, "label": "DATE", "tag": "date-written-hebrew"}], "keep": []}
+{"id": 24, "tier": "t2_formats", "text": "המטופל אושפז בתאריך 2 ינואר 1985 ושוחרר לביתו לאחר שלושה ימים.", "label": [{"start": 20, "end": 32, "label": "DATE", "tag": "date-written-hebrew"}], "keep": []}
+{"id": 25, "tier": "t2_formats", "text": "המטופל אושפז בתאריך 14 במרץ 1952 ושוחרר לביתו לאחר שלושה ימים.", "label": [{"start": 20, "end": 32, "label": "DATE", "tag": "date-written-prefixed-month"}], "keep": []}
+{"id": 26, "tier": "t2_formats", "text": "המטופל אושפז בתאריך 23 ביוני 2005 ושוחרר לביתו לאחר שלושה ימים.", "label": [{"start": 20, "end": 33, "label": "DATE", "tag": "date-written-prefixed-month"}], "keep": []}
+{"id": 27, "tier": "t2_formats", "text": "המטופל אושפז בתאריך 28 באפריל 1943 ושוחרר לביתו לאחר שלושה ימים.", "label": [{"start": 20, "end": 34, "label": "DATE", "tag": "date-written-prefixed-month"}], "keep": []}
+{"id": 28, "tier": "t2_formats", "text": "הבדיקה בוצעה ב20.02.1967 במרפאה.", "label": [{"start": 14, "end": 24, "label": "DATE", "tag": "date-with-prefix"}], "keep": []}
+{"id": 29, "tier": "t2_formats", "text": "הבדיקה בוצעה ב-17.10.1984 במרפאה.", "label": [{"start": 15, "end": 25, "label": "DATE", "tag": "date-with-prefix"}], "keep": []}
+{"id": 30, "tier": "t2_formats", "text": "הבדיקה בוצעה מ-16.01.2023 במרפאה.", "label": [{"start": 15, "end": 25, "label": "DATE", "tag": "date-with-prefix"}], "keep": []}
+{"id": 31, "tier": "t2_formats", "text": "הבדיקה בוצעה ל-25.08.1945 במרפאה.", "label": [{"start": 15, "end": 25, "label": "DATE", "tag": "date-with-prefix"}], "keep": []}
+{"id": 32, "tier": "t2_formats", "text": "הבדיקה בוצעה ב21.03.1956 במרפאה.", "label": [{"start": 14, "end": 24, "label": "DATE", "tag": "date-with-prefix"}], "keep": []}
+{"id": 33, "tier": "t2_formats", "text": "הבדיקה בוצעה ב-04.12.1998 במרפאה.", "label": [{"start": 15, "end": 25, "label": "DATE", "tag": "date-with-prefix"}], "keep": []}
+{"id": 34, "tier": "t2_formats", "text": "הבדיקה בוצעה מ-21.05.1971 במרפאה.", "label": [{"start": 15, "end": 25, "label": "DATE", "tag": "date-with-prefix"}], "keep": []}
+{"id": 35, "tier": "t2_formats", "text": "הבדיקה בוצעה ל-27.02.1941 במרפאה.", "label": [{"start": 15, "end": 25, "label": "DATE", "tag": "date-with-prefix"}], "keep": []}
+{"id": 36, "tier": "t2_formats", "text": "הבדיקה בוצעה ב08.02.2000 במרפאה.", "label": [{"start": 14, "end": 24, "label": "DATE", "tag": "date-with-prefix"}], "keep": []}
+{"id": 37, "tier": "t2_formats", "text": "הבדיקה בוצעה ב-07.09.2004 במרפאה.", "label": [{"start": 15, "end": 25, "label": "DATE", "tag": "date-with-prefix"}], "keep": []}
+{"id": 38, "tier": "t2_formats", "text": "הבדיקה בוצעה מ-12.02.1946 במרפאה.", "label": [{"start": 15, "end": 25, "label": "DATE", "tag": "date-with-prefix"}], "keep": []}
+{"id": 39, "tier": "t2_formats", "text": "הבדיקה בוצעה ל-20.06.2005 במרפאה.", "label": [{"start": 15, "end": 25, "label": "DATE", "tag": "date-with-prefix"}], "keep": []}
+{"id": 40, "tier": "t2_formats", "text": "המטופל נולד בי״א בתשרי תשפ״ד והתגורר בעיר כל חייו.", "label": [{"start": 13, "end": 28, "label": "DATE", "tag": "date-hebrew-calendar"}], "keep": []}
+{"id": 41, "tier": "t2_formats", "text": "המטופל נולד בג׳ באדר תשפ״ג והתגורר בעיר כל חייו.", "label": [{"start": 13, "end": 26, "label": "DATE", "tag": "date-hebrew-calendar"}], "keep": []}
+{"id": 42, "tier": "t2_formats", "text": "המטופל נולד בכ״ה בניסן תשפ״ד והתגורר בעיר כל חייו.", "label": [{"start": 13, "end": 28, "label": "DATE", "tag": "date-hebrew-calendar"}], "keep": []}
+{"id": 43, "tier": "t2_formats", "text": "המטופל נולד בט״ו בשבט תשפ״ה והתגורר בעיר כל חייו.", "label": [{"start": 13, "end": 27, "label": "DATE", "tag": "date-hebrew-calendar"}], "keep": []}
+{"id": 44, "tier": "t2_formats", "text": "המטופל נולד בכ״ט בסיון תשפ״ב והתגורר בעיר כל חייו.", "label": [{"start": 13, "end": 28, "label": "DATE", "tag": "date-hebrew-calendar"}], "keep": []}
+{"id": 45, "tier": "t2_formats", "text": "הופיעו תסמינים חדשים ביוני ולכן נשלח לבירור.", "label": [{"start": 22, "end": 26, "label": "DATE", "tag": "date-month-only", "policy": true}], "keep": []}
+{"id": 46, "tier": "t2_formats", "text": "הוא נבדק לאחרונה ביוני 2022 ונמצא תקין.", "label": [{"start": 18, "end": 27, "label": "DATE", "tag": "date-month-year", "policy": true}], "keep": []}
+{"id": 47, "tier": "t2_formats", "text": "הופיעו תסמינים חדשים בינואר ולכן נשלח לבירור.", "label": [{"start": 22, "end": 27, "label": "DATE", "tag": "date-month-only", "policy": true}], "keep": []}
+{"id": 48, "tier": "t2_formats", "text": "הוא נבדק לאחרונה בינואר 2022 ונמצא תקין.", "label": [{"start": 18, "end": 28, "label": "DATE", "tag": "date-month-year", "policy": true}], "keep": []}
+{"id": 49, "tier": "t2_formats", "text": "הופיעו תסמינים חדשים במאי ולכן נשלח לבירור.", "label": [{"start": 22, "end": 25, "label": "DATE", "tag": "date-month-only", "policy": true}], "keep": []}
+{"id": 50, "tier": "t2_formats", "text": "הוא נבדק לאחרונה במאי 2020 ונמצא תקין.", "label": [{"start": 18, "end": 26, "label": "DATE", "tag": "date-month-year", "policy": true}], "keep": []}
+{"id": 51, "tier": "t2_formats", "text": "הופיעו תסמינים חדשים באוגוסט ולכן נשלח לבירור.", "label": [{"start": 22, "end": 28, "label": "DATE", "tag": "date-month-only", "policy": true}], "keep": []}
+{"id": 52, "tier": "t2_formats", "text": "הוא נבדק לאחרונה באוגוסט 2021 ונמצא תקין.", "label": [{"start": 18, "end": 29, "label": "DATE", "tag": "date-month-year", "policy": true}], "keep": []}
+{"id": 53, "tier": "t2_formats", "text": "ת.ז. 588531426 של המטופל אומתה בקבלה.", "label": [{"start": 5, "end": 14, "label": "ID", "tag": "id-with-context"}], "keep": []}
+{"id": 54, "tier": "t2_formats", "text": "מספר זהות: 921348413.", "label": [{"start": 11, "end": 20, "label": "ID", "tag": "id-with-context"}], "keep": []}
+{"id": 55, "tier": "t2_formats", "text": "ת\"ז 11113131 (ללא אפס מוביל).", "label": [{"start": 4, "end": 12, "label": "ID", "tag": "id-eight-digits"}], "keep": []}
+{"id": 56, "tier": "t2_formats", "text": "המטופל זוהה לפי מספר 976891705 במערכת.", "label": [{"start": 21, "end": 30, "label": "ID", "tag": "id-no-context"}], "keep": []}
+{"id": 57, "tier": "t2_formats", "text": "ת.ז. 45880117-2.", "label": [{"start": 5, "end": 15, "label": "ID", "tag": "id-dash-check-digit"}], "keep": []}
+{"id": 58, "tier": "t2_formats", "text": "דרכון 33722915 הוצג בקבלה.", "label": [{"start": 6, "end": 14, "label": "ID", "tag": "passport-number", "policy": true}], "keep": []}
+{"id": 59, "tier": "t2_formats", "text": "מספר תיק 9471714 במערכת בית החולים.", "label": [{"start": 9, "end": 16, "label": "INNER_ID", "tag": "inner-id"}], "keep": []}
+{"id": 60, "tier": "t2_formats", "text": "מס' מקרה 6702627 במערכת בית החולים.", "label": [{"start": 9, "end": 16, "label": "INNER_ID", "tag": "inner-id"}], "keep": []}
+{"id": 61, "tier": "t2_formats", "text": "מספר פנימי 43189588 במערכת בית החולים.", "label": [{"start": 11, "end": 19, "label": "INNER_ID", "tag": "inner-id"}], "keep": []}
+{"id": 62, "tier": "t2_formats", "text": "תיק רפואי 7282382 במערכת בית החולים.", "label": [{"start": 10, "end": 17, "label": "INNER_ID", "tag": "inner-id"}], "keep": []}
+{"id": 63, "tier": "t2_formats", "text": "אירוע מספר 0460198 במערכת בית החולים.", "label": [{"start": 11, "end": 18, "label": "INNER_ID", "tag": "inner-id"}], "keep": []}
+{"id": 64, "tier": "t2_formats", "text": "מספר מטופל H-4945180 במערכת בית החולים.", "label": [{"start": 13, "end": 20, "label": "INNER_ID", "tag": "inner-id-letter"}], "keep": []}
+{"id": 65, "tier": "t2_formats", "text": "ראו 8726492 במערכת בית החולים.", "label": [{"start": 4, "end": 11, "label": "INNER_ID", "tag": "inner-id-no-context"}], "keep": []}
+{"id": 66, "tier": "t2_formats", "text": "מקרה 084657 במערכת בית החולים.", "label": [{"start": 5, "end": 11, "label": "INNER_ID", "tag": "inner-id"}], "keep": []}
+{"id": 67, "tier": "t2_formats", "text": "ניתן ליצור קשר בטלפון 050-9096363.", "label": [{"start": 22, "end": 33, "label": "CONTACT", "tag": "phone-mobile-0"}], "keep": []}
+{"id": 68, "tier": "t2_formats", "text": "ניתן ליצור קשר בטלפון 0537193689.", "label": [{"start": 22, "end": 32, "label": "CONTACT", "tag": "phone-mobile-1"}], "keep": []}
+{"id": 69, "tier": "t2_formats", "text": "ניתן ליצור קשר בטלפון +972-54-1071719.", "label": [{"start": 22, "end": 37, "label": "CONTACT", "tag": "phone-mobile-2"}], "keep": []}
+{"id": 70, "tier": "t2_formats", "text": "ניתן ליצור קשר בטלפון 052 015 0825.", "label": [{"start": 22, "end": 34, "label": "CONTACT", "tag": "phone-mobile-3"}], "keep": []}
+{"id": 71, "tier": "t2_formats", "text": "מספר הטלפון במרפאה הוא 03-9184910.", "label": [{"start": 23, "end": 33, "label": "CONTACT", "tag": "phone-landline"}], "keep": []}
+{"id": 72, "tier": "t2_formats", "text": "מספר הטלפון במרפאה הוא 03-2175254.", "label": [{"start": 23, "end": 33, "label": "CONTACT", "tag": "phone-landline"}], "keep": []}
+{"id": 73, "tier": "t2_formats", "text": "מספר הטלפון במרפאה הוא 02-7849664.", "label": [{"start": 23, "end": 33, "label": "CONTACT", "tag": "phone-landline"}], "keep": []}
+{"id": 74, "tier": "t2_formats", "text": "פקס: 03-0272811 (שעות פעילות בלבד).", "label": [{"start": 5, "end": 15, "label": "CONTACT", "tag": "phone-fax"}], "keep": []}
+{"id": 75, "tier": "t2_formats", "text": "לשאלות ניתן לכתוב לכתובת genetics.clinic@demo-med.org.il בלבד.", "label": [{"start": 25, "end": 56, "label": "CONTACT", "tag": "email-dotted-local"}], "keep": []}
+{"id": 76, "tier": "t2_formats", "text": "לשאלות ניתן לכתוב לכתובת dr.cohen83@gmail.com בלבד.", "label": [{"start": 25, "end": 45, "label": "CONTACT", "tag": "email-digits"}], "keep": []}
+{"id": 77, "tier": "t2_formats", "text": "לשאלות ניתן לכתוב לכתובת rachel_levi@walla.co.il בלבד.", "label": [{"start": 25, "end": 48, "label": "CONTACT", "tag": "email-underscore"}], "keep": []}
+{"id": 78, "tier": "t2_formats", "text": "לשאלות ניתן לכתוב לכתובת secretary@demo-med.org.il בלבד.", "label": [{"start": 25, "end": 50, "label": "CONTACT", "tag": "email-simple"}], "keep": []}
+{"id": 79, "tier": "t2_formats", "text": "לשאלות ניתן לכתוב לכתובת info-dept@demo-med.org.il בלבד.", "label": [{"start": 25, "end": 50, "label": "CONTACT", "tag": "email-hyphen"}], "keep": []}
+{"id": 80, "tier": "t2_formats", "text": "לשאלות ניתן לכתוב לכתובת a.b.c.d@demo-med.org.il בלבד.", "label": [{"start": 25, "end": 48, "label": "CONTACT", "tag": "email-many-dots"}], "keep": []}
+{"id": 81, "tier": "t2_formats", "text": "אימייל: yossi.k@walla.co.il, טלפון: 055-9780318.", "label": [{"start": 8, "end": 27, "label": "CONTACT", "tag": "email-after-label"}, {"start": 36, "end": 47, "label": "CONTACT", "tag": "phone-mobile"}], "keep": []}
+{"id": 82, "tier": "t2_formats", "text": "הומלץ ליוסף חדד להמשיך בטיפול.", "label": [{"start": 7, "end": 11, "label": "FIRST_NAME", "tag": "name-prefixed"}, {"start": 12, "end": 15, "label": "LAST_NAME", "tag": "name-prefixed"}], "keep": []}
+{"id": 83, "tier": "t2_formats", "text": "התקבל מכתב מאסף מזרחי.", "label": [{"start": 12, "end": 15, "label": "FIRST_NAME", "tag": "name-prefixed"}, {"start": 16, "end": 21, "label": "LAST_NAME", "tag": "name-prefixed"}], "keep": []}
+{"id": 84, "tier": "t2_formats", "text": "הוסבר לנועם מה צפוי בהמשך.", "label": [{"start": 7, "end": 11, "label": "FIRST_NAME", "tag": "name-prefixed"}], "keep": []}
+{"id": 85, "tier": "t2_formats", "text": "ידוע כי רונית נוטל תרופות באופן קבוע.", "label": [{"start": 8, "end": 13, "label": "FIRST_NAME", "tag": "name-bare"}], "keep": []}
+{"id": 86, "tier": "t2_formats", "text": "המטופלת גיא אבו-חצירה הגיעה לביקורת.", "label": [{"start": 8, "end": 11, "label": "FIRST_NAME", "tag": ""}, {"start": 12, "end": 21, "label": "LAST_NAME", "tag": "surname-hyphenated"}], "keep": []}
+{"id": 87, "tier": "t2_formats", "text": "המטופלת נעמה שטרן-לוי הגיעה לביקורת.", "label": [{"start": 8, "end": 12, "label": "FIRST_NAME", "tag": ""}, {"start": 13, "end": 21, "label": "LAST_NAME", "tag": "surname-hyphenated"}], "keep": []}
+{"id": 88, "tier": "t2_formats", "text": "המטופלת גיא שטרן-לוי הגיעה לביקורת.", "label": [{"start": 8, "end": 11, "label": "FIRST_NAME", "tag": ""}, {"start": 12, "end": 20, "label": "LAST_NAME", "tag": "surname-hyphenated"}], "keep": []}
+{"id": 89, "tier": "t2_formats", "text": "המטופלת דוד אבו-חצירה הגיעה לביקורת.", "label": [{"start": 8, "end": 11, "label": "FIRST_NAME", "tag": ""}, {"start": 12, "end": 21, "label": "LAST_NAME", "tag": "surname-hyphenated"}], "keep": []}
+{"id": 90, "tier": "t2_formats", "text": "ד\"ר נעמה חדד ביצע את ההערכה.", "label": [{"start": 4, "end": 8, "label": "FIRST_NAME", "tag": "name-with-title"}, {"start": 9, "end": 12, "label": "LAST_NAME", "tag": "name-with-title"}], "keep": []}
+{"id": 91, "tier": "t2_formats", "text": "פרופ' חיים אזולאי ביצע את ההערכה.", "label": [{"start": 6, "end": 10, "label": "FIRST_NAME", "tag": "name-with-title"}, {"start": 11, "end": 17, "label": "LAST_NAME", "tag": "name-with-title"}], "keep": []}
+{"id": 92, "tier": "t2_formats", "text": "הגב' דוד אברהם ביצע את ההערכה.", "label": [{"start": 5, "end": 8, "label": "FIRST_NAME", "tag": "name-with-title"}, {"start": 9, "end": 14, "label": "LAST_NAME", "tag": "name-with-title"}], "keep": []}
+{"id": 93, "tier": "t2_formats", "text": "מר הדס קדוש ביצע את ההערכה.", "label": [{"start": 3, "end": 6, "label": "FIRST_NAME", "tag": "name-with-title"}, {"start": 7, "end": 11, "label": "LAST_NAME", "tag": "name-with-title"}], "keep": []}
+{"id": 94, "tier": "t2_formats", "text": "האחות אלון אברהם ביצע את ההערכה.", "label": [{"start": 6, "end": 10, "label": "FIRST_NAME", "tag": "name-with-title"}, {"start": 11, "end": 16, "label": "LAST_NAME", "tag": "name-with-title"}], "keep": []}
+{"id": 95, "tier": "t2_formats", "text": "מר אברהם הגיע לביקורת מתוכננת.", "label": [{"start": 3, "end": 8, "label": "LAST_NAME", "tag": "last-name-only"}], "keep": []}
+{"id": 96, "tier": "t2_formats", "text": "לגיא יש רגישות לפניצילין.", "label": [{"start": 1, "end": 4, "label": "FIRST_NAME", "tag": "first-name-only"}], "keep": []}
+{"id": 97, "tier": "t2_formats", "text": "המטופל מתגורר ברחובות.", "label": [{"start": 15, "end": 21, "label": "LOC", "tag": "city-prefixed"}], "keep": []}
+{"id": 98, "tier": "t2_formats", "text": "המטופל הגיע מבאר שבע.", "label": [{"start": 13, "end": 20, "label": "LOC", "tag": "city-prefixed"}], "keep": []}
+{"id": 99, "tier": "t2_formats", "text": "המטופל הופנה לעפולה.", "label": [{"start": 14, "end": 19, "label": "LOC", "tag": "city-prefixed"}], "keep": []}
+{"id": 100, "tier": "t2_formats", "text": "המטופל אשתו גרה בעיר בני ברק.", "label": [{"start": 21, "end": 28, "label": "LOC", "tag": "city-bare"}], "keep": []}
+{"id": 101, "tier": "t2_formats", "text": "כתובת המטופל: רחוב הרימון 68, פתח תקווה.", "label": [{"start": 14, "end": 39, "label": "LOC", "tag": "address", "policy": true}], "keep": []}
+{"id": 102, "tier": "t2_formats", "text": "כתובת המטופל: רחוב רוטשילד 14, פתח תקווה.", "label": [{"start": 14, "end": 40, "label": "LOC", "tag": "address", "policy": true}], "keep": []}
+{"id": 103, "tier": "t2_formats", "text": "כתובת המטופל: רחוב הגפן 100, עפולה.", "label": [{"start": 14, "end": 34, "label": "LOC", "tag": "address", "policy": true}], "keep": []}
+{"id": 104, "tier": "t2_formats", "text": "הועבר לקופת חולים מכבי להמשך בירור.", "label": [{"start": 7, "end": 22, "label": "MED_ORG", "tag": "medorg-prefixed"}], "keep": []}
+{"id": 105, "tier": "t2_formats", "text": "הועבר למרכז רפואי סורוקה להמשך בירור.", "label": [{"start": 7, "end": 24, "label": "MED_ORG", "tag": "medorg-prefixed"}], "keep": []}
+{"id": 106, "tier": "t2_formats", "text": "הועבר למרכז רפואי שיבא להמשך בירור.", "label": [{"start": 7, "end": 22, "label": "MED_ORG", "tag": "medorg-prefixed"}], "keep": []}
+{"id": 107, "tier": "t2_formats", "text": "הועבר לקופת חולים מכבי להמשך בירור.", "label": [{"start": 7, "end": 22, "label": "MED_ORG", "tag": "medorg-prefixed"}], "keep": []}
+{"id": 108, "tier": "t2_formats", "text": "הגיע ברמב\"ם באמבולנס.", "label": [{"start": 6, "end": 11, "label": "MED_ORG", "tag": "medorg-short-prefixed"}], "keep": []}
+{"id": 109, "tier": "t2_formats", "text": "שוחרר מאיכילוב לביתו.", "label": [{"start": 7, "end": 14, "label": "MED_ORG", "tag": "medorg-short-prefixed"}], "keep": []}
+{"id": 110, "tier": "t2_formats", "text": "הוא עובד בחברת הראל ביטוח כבר עשר שנים.", "label": [{"start": 10, "end": 25, "label": "ORG", "tag": "org-prefixed"}], "keep": []}
+{"id": 111, "tier": "t2_formats", "text": "הוא עובד בעיריית חולון כבר עשר שנים.", "label": [{"start": 10, "end": 22, "label": "ORG", "tag": "org-prefixed"}], "keep": []}
+{"id": 112, "tier": "t2_formats", "text": "הוא עובד במשרד הביטחון כבר עשר שנים.", "label": [{"start": 10, "end": 22, "label": "ORG", "tag": "org-prefixed"}], "keep": []}
+{"id": 113, "tier": "t2_formats", "text": "מטופלת בת 45 הגיעה עם בנה.", "label": [], "keep": [{"start": 10, "end": 12, "note": "age 45 is not above 89"}]}
+{"id": 114, "tier": "t2_formats", "text": "מטופלת בת 88 הגיעה עם בנה.", "label": [], "keep": [{"start": 10, "end": 12, "note": "age 88 is not above 89"}]}
+{"id": 115, "tier": "t2_formats", "text": "מטופלת בת 89 הגיעה עם בנה.", "label": [], "keep": [{"start": 10, "end": 12, "note": "age 89 is not above 89"}]}
+{"id": 116, "tier": "t2_formats", "text": "מטופלת בת 90 הגיעה עם בנה.", "label": [{"start": 10, "end": 12, "label": "AGE_ABOVE_89", "tag": "age-above-89"}], "keep": []}
+{"id": 117, "tier": "t2_formats", "text": "מטופלת בת 93 הגיעה עם בנה.", "label": [{"start": 10, "end": 12, "label": "AGE_ABOVE_89", "tag": "age-above-89"}], "keep": []}
+{"id": 118, "tier": "t2_formats", "text": "מטופלת בת 101 הגיעה עם בנה.", "label": [{"start": 10, "end": 13, "label": "AGE_ABOVE_89", "tag": "age-above-89"}], "keep": []}
+{"id": 119, "tier": "t2_formats", "text": "גיל 95, עצמאי בפעולות היומיום.", "label": [{"start": 4, "end": 6, "label": "AGE_ABOVE_89", "tag": "age-above-89-context"}], "keep": []}
