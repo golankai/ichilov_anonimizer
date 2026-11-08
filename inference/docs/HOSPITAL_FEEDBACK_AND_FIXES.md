@@ -3,7 +3,8 @@
 Source: the e-mail thread "ichilov_anonimizer DOC pipeline - תוצאות בדיקה" (Apr-Nov 2026) and the three result tables in
 it, plus our own dummy-run findings ([DUMMY_RUN_2026-11-08.md](DUMMY_RUN_2026-11-08.md)) and a read of
 [HebSafeHarbor](https://github.com/8400TheHealthNetwork/HebSafeHarbor) (HSH, MIT licence).
-Status: **analysis only, nothing here is fixed yet.** The fake test set with ground truth
+Status: **F1-F5 and F7 are implemented (2026-11-08) in `utils/rules.py`, on by default (`--no-rules` restores the old stages); F6, F8-F12 and everything under 4.2/4.3 are open.** Not yet measured with the model: run `inference
+un_dummy.bat`. The fake test set with ground truth
 (`inference/dummy_data/`, see its README) is how each fix will be measured.
 
 ## 1. How the hospital measures (read this before comparing any numbers)
@@ -130,9 +131,9 @@ import its Presidio / HebSpacy stack or its large lexicons.
 | F3 | **Email as one unit:** extend any CONTACT span that touches an `@` to the whole address (previous whitespace to next whitespace), also mask bare emails the model misses | P1 | Regex, trivial |
 | F4 | **Merge adjacent DATE pieces** separated only by `. / - ,` or spaces, and stop rewriting written dates (or keep an offset map) | P2, D1, D2, H3 | Our code |
 | F5 | **Hebrew date grammar:** Hebrew calendar dates (`י״א בתשרי תשפ״ד`), month-year, day-month, written months with prefixes (ב ל מ מה ה), no-punctuation dates (`10122018`), dates with spaces around the separator | H3 | HSH `date_regex.py` has these patterns |
-| F6 | **Prefix-aware span repair:** if a prediction starts with ב/ל/מ/ה/ו/ש and the rest is a known entity or the prefix is followed by the entity, move the boundary | P3 | Training convention: prefix outside |
+| F6 | ~~**Prefix-aware span repair:** if a prediction starts with ב/ל/מ/ה/ו/ש and the rest is a known entity or the prefix is followed by the entity, move the boundary | P3 | Training convention: prefix outside |
 | F7 | **Hyphen joining:** merge two LAST_NAME predictions separated by a hyphen into one | P4 | Trivial |
-| F8 | **Document-level consistency:** after detection, mask every other occurrence of a masked name / city / organisation value in the same document (prefix tolerant), with a stop-list of ordinary words (לב, גל, אושר...) and a strict/lenient switch | H4, H1, H2, H10 | The hospital's "mode" idea. Needs the tier-3 and tier-4 tests, because it can over-mask the organ "לב" |
+| F8 | **Document-level consistency:** after detection, mask every other occurrence of a masked name / city / organisation value in the same document (prefix tolerant), **only for strings that are not in `lexicons/ambiguous_words.tsv`** (decision 2026-11-08, see 5c; no stop-list that blocks masking), plus a strict/lenient switch | H4, H1, H2, H10 | The hospital's "mode" idea. Needs the tier-3 and tier-4 tests, because it can over-mask the organ "לב" |
 | F9 | **Medical stop-list:** drop name/organisation predictions that coincide with a disease, drug or test term (eponyms: פרקינסון, דאון, קרוהן...) | over-masking | HSH `MedicalPostConsolidator`; build a small list from our own false positives, not their lexicons |
 | F10 | **City and institution gazetteer** as a data file (names only), prefix tolerant, used to catch what the model misses | H5, H6 | HSH `city_utils.py`, hospital lexicon; take the names, not the code |
 | F11 | Birth date vs medical date by context (`נולד`, `ת.לידה` within 10 characters before the date) | later policy | HSH `DateEntitySplitter`; not needed for masking |
@@ -178,6 +179,49 @@ hospital's own "string still survives" check, plus over-masking on declared trap
 Rules of the test set: everything is invented; truth is generated together with the text, so it is exact; tags marked
 `policy` are conventions we assumed (month alone as a date, a street address as one LOC span, a passport number as ID)
 and must be confirmed against the real annotation guidelines before anyone treats a failure there as a bug.
+
+## 5b. Implemented rules (what changed)
+
+`utils/rules.py` works on spans of the ORIGINAL text; the old `normalize_dates`/`normalize_ids` stages (which rewrote
+the text before the model) are off when rules are on, so offsets always fit the text (D1, D2 gone) and the model sees
+written dates as written (P2 cause). Rules alone, no model, against the fake truth: 225 of 226 date/email/ID/case-number
+spans exact, 0 spans outside the truth (so no trap is touched). `tests/test_rules.py`.
+
+| Fix | What it does |
+|---|---|
+| F3 | whole e-mail address is one CONTACT span |
+| F4 | numeric (`.`/`/`/`-`, 2- or 4-digit year, `ב-` prefix), written, ISO, `28022015` after "תאריך" are one DATE span; neighbouring DATE pieces merged |
+| F5 (part) | Hebrew calendar dates need a day or a year; months alone only with a prefix, a year or "חודש" (**policy: months are masked because the hospital counts them**) |
+| F1/F2 | digit runs the model left: 7+ digits always, 5-6 digits only after an identifier word; skipped before a unit or a lab/dose word; checksum decides ID vs INNER_ID; "תיק/מקרה/אירוע/פנימי" force INNER_ID |
+| F7 | two FIRST/LAST_NAME spans joined by a hyphen are one span |
+
+Dropped by decision (2026-11-08): F6 - a Hebrew prefix inside the masked span (`בחיפה` -> `[LOC]`) is acceptable; the test set's "prefixed" tags should be scored leniently.
+Left out for now:
+F8 (document consistency: needs a stop-list and the strict/lenient switch), F9-F12.
+
+## 5c. Ambiguous words list (started, decisions of 2026-11-08)
+
+`inference/lexicons/ambiguous_words.tsv` (217 words): only words that **could be PHI** and also mean something else, so a
+patient's value can look like an ordinary word, or the reverse. Columns: `word`, `can_be_phi_as` (the labels it can
+legitimately carry, e.g. `DATE|FIRST_NAME` for יוני, `MED_ORG|LAST_NAME` for מאיר), `other_meaning`, `category`
+(month, season, nature, plant, common_word, verb, function_word, organ, family, hospital, hmo, place, disease_eponym),
+`clinical_frequency`. First collection from memory, not verified against corpus counts.
+Deliberately **not** in the list: words that are never a name, date, place or organisation (חולי, חולה, כאב, חום, דופק,
+body parts used as a surname, titles מר/רב, drugs); they are not an ambiguity problem because nobody has them as a value.
+
+How the list will be used (decided):
+1. **Not a stop-list for masking.** Words such as לב, גיל, אושר, טרם must stay readable when they are clinical words,
+   and a stop-list that blocks masking could hide a real name. Where such a word is a name, only the model's own
+   decision (in context) masks it.
+2. **Document-level consistency (F8) works in the opposite direction:** if the model finds a name/city/organisation and
+   that string is **not** in this list, every other occurrence in the same document is masked too (prefix tolerant).
+   If the string **is** in the list, no propagation: each occurrence is left to the model.
+3. **Test cases (later, not created yet):** each word in plain use and as a name, added to the fake test set
+   (`make_dummy_data.py`, traps tier) to see which ones the model gets wrong.
+4. **Synthetic training data (later, not created yet):** the same words in both uses as hard cases for T2/T3, once
+   synthetic training data is made.
+5. Next improvement of the list: counts of each word in real discharge text (script run on the hospital side, only
+   counts leave), then split into frequent and rare; add the hospital's own examples.
 
 ## 6. Suggested order
 

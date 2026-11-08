@@ -4,6 +4,7 @@ from typing import Any, Callable, Dict, List, Optional, Tuple
 
 from utils.chunking import DEFAULT_OVERLAP, chunk_text, resolve_token_budget
 from utils.pipeline_utils import DeidDoc
+from utils.rules import apply_rules
 
 
 logger = logging.getLogger(__name__)
@@ -199,6 +200,7 @@ def ner_mask_stage(
     replacement_observer: Optional[ReplacementObserver] = None,
     max_tokens: Optional[int] = None,
     overlap_tokens: int = DEFAULT_OVERLAP,
+    use_rules: bool = False,
 ):
     """
     Factory returning a stage that:
@@ -267,34 +269,34 @@ def ner_mask_stage(
 
                 clean_ent_label = clean_label(ent["entity_group"])
 
-                actual_text = text[ent_start_global:ent_end_global]
                 entities_found.append(
                     {
                         "start": ent_start_global,
                         "end": ent_end_global,
-                        "text": actual_text,
+                        "text": text[ent_start_global:ent_end_global],
                         "label": clean_ent_label,
                     }
                 )
 
-                if mode == "label":
-                    rep = f"[{clean_ent_label}]"
-                elif mode == "x":
-                    rep = "X" * (ent["end"] - ent["start"])
-                else:
-                    rep = "[REDACTED]"
+        if use_rules:
+            # Deterministic repairs/additions on spans of the original text (utils/rules.py).
+            entities_found = apply_rules(text, entities_found)
 
-                if replacement_observer:
-                    replacement_observer(
-                        stage_name,
-                        actual_text,
-                        ent_start_global,
-                        ent_end_global,
-                        rep,
-                        clean_ent_label,
-                    )
+        for ent in entities_found:
+            label = ent["label"]
+            if mode == "label":
+                rep = f"[{label}]"
+            elif mode == "x":
+                rep = "X" * (ent["end"] - ent["start"])
+            else:
+                rep = "[REDACTED]"
 
-                edits.append((ent_start_global, ent_end_global, rep))
+            if replacement_observer:
+                replacement_observer(
+                    stage_name, ent["text"], ent["start"], ent["end"], rep, label
+                )
+
+            edits.append((ent["start"], ent["end"], rep))
 
         edits.sort(key=lambda x: x[0], reverse=True)
 

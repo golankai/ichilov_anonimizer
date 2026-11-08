@@ -9,6 +9,7 @@
 - Tests: `pytest inference/tests`. Fake test set with ground truth: `inference/dummy_data/` (committed; generator `make_dummy_data.py`, scorer `score_dummy.py`).
 
 ## To do
+00. **Rules are implemented (F1-F5, F7), unmeasured with the model.** Run `inferenceun_dummy.bat`, compare with `docs/DUMMY_RUN_2026-11-08.md`. Next: F8 using `lexicons/ambiguous_words.tsv` (propagate only names not in the list), F9-F12. Later: put the list's words into the fake test set and the synthetic training data (not created yet). Details: `docs/HOSPITAL_FEEDBACK_AND_FIXES.md` sections 5b, 5c.
 0. **Fix the defects from the first GPU run and the hospital's test** (email prefix leak, split dates, lost Hebrew prefix, hyphenated surnames, CaseNum, months, repeated values): the full issue list, candidate fixes (incl. ideas from HebSafeHarbor) and their order are in `docs/HOSPITAL_FEEDBACK_AND_FIXES.md`; measure each fix with `inference\run_dummy.bat` (fake test set with ground truth, `dummy_data/README.md`).
 1. **Edge-margin A/B test.** Training masks 64 tokens at inner window edges; check whether inference should do the same
    (`--edge-margin`): run both on the same documents and compare entities found.

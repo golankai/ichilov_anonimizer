@@ -61,6 +61,7 @@ def run_processing_loop(
     header_stage: Optional[Callable[[DeidDoc], DeidDoc]] = None,
     max_tokens: Optional[int] = None,
     overlap_tokens: int = DEFAULT_OVERLAP,
+    use_rules: bool = True,
 ) -> Tuple[List[str], List[List[Dict[str, Any]]]]:
     """
     Iterates through the dataframe and returns processed columns for all records,
@@ -71,11 +72,13 @@ def run_processing_loop(
         mode,
         observer=observer,
         replacement_observer=replacement_observer,
-        normalize_dates=True,
-        normalize_ids=True,
+        # With the rules the text is never rewritten before the model (offsets stay in the original text).
+        normalize_dates=not use_rules,
+        normalize_ids=not use_rules,
         header_stage=header_stage,
         max_tokens=max_tokens,
         overlap_tokens=overlap_tokens,
+        use_rules=use_rules,
     )
 
     deid_texts: List[str] = []
@@ -155,6 +158,7 @@ def run(
     output_format: str = "both",
     output_tag: str = "",
     output_dir: Optional[str] = None,
+    use_rules: bool = True,
 ) -> None:
     """
     The main execution flow for the pipeline-based variant.
@@ -193,6 +197,7 @@ def run(
         header_stage=header,
         max_tokens=max_tokens,
         overlap_tokens=overlap_tokens,
+        use_rules=use_rules,
     )
     save_output(df, input_file, deid_col, ent_col, mode, output_format, output_tag, output_dir)
     print(f"End time:   {datetime.now():%Y-%m-%d %H:%M:%S} (took {time.time() - started:.0f}s)")
@@ -269,6 +274,11 @@ def main() -> None:
         default=None,
         help="Folder for the result files (created if missing). Default: next to the input file.",
     )
+    parser.add_argument(
+        "--no-rules",
+        action="store_true",
+        help="Switch off the deterministic rules (utils/rules.py) and use the old date/ID rewriting stages.",
+    )
     args = parser.parse_args()
 
     model = resolve_model(args.model)
@@ -304,6 +314,7 @@ def main() -> None:
         output_format=args.output_format,
         output_tag=output_tag,
         output_dir=args.output_dir,
+        use_rules=not args.no_rules,
     )
 
 

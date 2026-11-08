@@ -38,6 +38,7 @@ def build_doc_pipeline(
     header_stage: Optional[Stage] = None,
     max_tokens: Optional[int] = None,
     overlap_tokens: int = DEFAULT_OVERLAP,
+    use_rules: bool = False,
 ) -> Stage:
     """
     Builds a document-level pipeline.
@@ -104,6 +105,7 @@ def build_doc_pipeline(
         replacement_observer=padded_replacement,
         max_tokens=max_tokens,
         overlap_tokens=overlap_tokens,
+        use_rules=use_rules,
     )
 
     core_stages: List[Tuple[str, Stage]] = [

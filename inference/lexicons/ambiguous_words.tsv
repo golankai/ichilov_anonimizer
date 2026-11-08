@@ -1,0 +1,234 @@
+word	can_be_phi_as	other_meaning	category	clinical_frequency
+יוני	DATE|FIRST_NAME	June	month	medium
+יולי	DATE|FIRST_NAME	July	month	medium
+מאי	DATE|FIRST_NAME	May	month	medium
+אוגוסט	DATE|FIRST_NAME	August	month	low
+אדר	DATE|FIRST_NAME	Adar (Hebrew month)	month	low
+ניסן	DATE|FIRST_NAME	Nisan (Hebrew month)	month	low
+אייר	DATE|FIRST_NAME	Iyar (Hebrew month)	month	low
+סיון	DATE|FIRST_NAME	Sivan (Hebrew month)	month	low
+סיוון	DATE|FIRST_NAME	Sivan (Hebrew month)	month	low
+תמוז	DATE|FIRST_NAME	Tammuz (Hebrew month)	month	low
+אב	DATE|FIRST_NAME	Av (Hebrew month); father	month	high
+אלול	DATE|FIRST_NAME	Elul (Hebrew month)	month	low
+תשרי	DATE|FIRST_NAME	Tishrei (Hebrew month)	month	low
+טבת	DATE|FIRST_NAME	Tevet (Hebrew month)	month	low
+שבט	DATE|FIRST_NAME	Shevat (Hebrew month); tribe, rod	month	low
+כסלו	DATE|FIRST_NAME	Kislev (Hebrew month)	month	low
+חשוון	DATE|FIRST_NAME	Cheshvan (Hebrew month)	month	low
+אביב	FIRST_NAME	spring	season	low
+סתיו	FIRST_NAME	autumn	season	low
+חורף	LAST_NAME	winter	season	low
+קיץ	LAST_NAME	summer	season	low
+לב	FIRST_NAME	heart	organ	high
+גל	FIRST_NAME	wave; also short for Galit	common_word	high
+גיל	FIRST_NAME	age; joy	common_word	high
+אושר	FIRST_NAME	happiness; was approved (verb)	verb	high
+טרם	FIRST_NAME	before, not yet	function_word	high
+נטלי	FIRST_NAME	Natalie; take! (imperative fem. pl. of לקחת)	verb	medium
+נטל	FIRST_NAME	took (verb); burden	verb	medium
+חן	FIRST_NAME	grace, charm	common_word	medium
+נעם	FIRST_NAME	pleasantness	common_word	low
+טוב	FIRST_NAME	good	common_word	high
+שלום	FIRST_NAME	hello, peace	common_word	medium
+שלום	LAST_NAME	hello, peace	common_word	medium
+יפה	FIRST_NAME	beautiful	common_word	medium
+חיים	FIRST_NAME	life	common_word	high
+חיים	LAST_NAME	life	common_word	high
+אמונה	FIRST_NAME	faith	common_word	low
+תקווה	FIRST_NAME	hope	common_word	low
+אהבה	FIRST_NAME	love	common_word	low
+שמחה	FIRST_NAME	joy	common_word	low
+נחמה	FIRST_NAME	comfort	common_word	low
+מנוחה	FIRST_NAME	rest	common_word	medium
+ישע	FIRST_NAME	salvation	common_word	low
+דרור	FIRST_NAME	freedom; sparrow	common_word	low
+זיו	MED_ORG|FIRST_NAME	radiance; Ziv hospital (Safed)	hospital	low
+נוגה	FIRST_NAME	radiant; Venus	common_word	low
+ברק	FIRST_NAME	lightning	nature	low
+ברק	LAST_NAME	lightning	nature	low
+רעם	FIRST_NAME	thunder	nature	low
+סער	FIRST_NAME	storm	nature	low
+שלג	FIRST_NAME	snow	nature	low
+ענן	FIRST_NAME	cloud	nature	low
+טל	FIRST_NAME	dew	nature	low
+גשם	FIRST_NAME	rain	nature	low
+שחר	FIRST_NAME	dawn	nature	low
+שחר	LAST_NAME	dawn	nature	low
+שמש	LAST_NAME	sun	nature	low
+ירח	FIRST_NAME	moon	nature	low
+כוכב	LAST_NAME	star	nature	low
+אור	FIRST_NAME	light	common_word	high
+אורי	FIRST_NAME	my light	common_word	medium
+אורן	FIRST_NAME	pine	plant	low
+אילן	FIRST_NAME	tree	plant	low
+אלון	FIRST_NAME	oak	plant	low
+ארז	FIRST_NAME	cedar	plant	low
+דקל	FIRST_NAME	palm	plant	low
+תמר	FIRST_NAME	date, palm	plant	low
+רותם	FIRST_NAME	broom shrub	plant	low
+שקד	FIRST_NAME	almond; also tonsil (שקדים)	organ	medium
+זית	FIRST_NAME	olive	plant	low
+רימון	FIRST_NAME	pomegranate	plant	low
+תפוח	LAST_NAME	apple; swollen (adj.)	common_word	medium
+ורד	FIRST_NAME	rose	plant	low
+שושן	FIRST_NAME	lily	plant	low
+כלנית	FIRST_NAME	anemone	plant	low
+נרקיס	FIRST_NAME	narcissus	plant	low
+לילך	FIRST_NAME	lilac	plant	low
+יסמין	FIRST_NAME	jasmine	plant	low
+דליה	FIRST_NAME	dahlia	plant	low
+גפן	FIRST_NAME	vine	plant	low
+מור	FIRST_NAME	myrrh; Mor	plant	low
+לבנה	FIRST_NAME	moon; white (fem.)	common_word	low
+ים	FIRST_NAME	sea	nature	low
+נהר	FIRST_NAME	river	nature	low
+גיא	FIRST_NAME	valley	nature	low
+הר	FIRST_NAME	mountain	nature	low
+רום	FIRST_NAME	height	nature	low
+סלע	FIRST_NAME	rock; shekel	nature	low
+אבן	FIRST_NAME	stone; also kidney stone (אבן בכליה)	common_word	medium
+חול	FIRST_NAME	sand; weekday; secular	common_word	low
+מזל	FIRST_NAME	luck; Mazal	common_word	medium
+ברכה	FIRST_NAME	blessing; pool	common_word	medium
+תודה	FIRST_NAME	thanks	common_word	medium
+נעמה	FIRST_NAME	pleasant	common_word	low
+עוז	FIRST_NAME	strength	common_word	low
+עדי	FIRST_NAME	"adornment; ""up to"" (עד)"	common_word	medium
+עדן	FIRST_NAME	Eden; delicacy	common_word	low
+עידן	FIRST_NAME	era	common_word	low
+רז	FIRST_NAME	secret	common_word	low
+רן	FIRST_NAME	sing! (imperative)	verb	low
+שי	FIRST_NAME	gift	common_word	medium
+שיר	FIRST_NAME	song, poem	common_word	medium
+דור	FIRST_NAME	generation	common_word	medium
+תמיר	FIRST_NAME	tall; tamir	common_word	low
+אמיר	FIRST_NAME	treetop; said (verb)	verb	low
+עמית	FIRST_NAME	colleague, peer	common_word	medium
+עמוס	FIRST_NAME	loaded; busy (adj.)	common_word	medium
+אסף	FIRST_NAME	collected (verb); Assaf Harofe hospital	verb	medium
+אסף	LAST_NAME	collected (verb)	verb	medium
+נוי	FIRST_NAME	ornament	common_word	low
+נועה	FIRST_NAME	moves (verb fem.)	verb	low
+בר	FIRST_NAME	"grain; field; Aramaic ""son"""	common_word	medium
+בר	LAST_NAME	"grain; field; Aramaic ""son"""	common_word	medium
+בן	FIRST_NAME	"son; ""in the age of"""	function_word	high
+בת	FIRST_NAME	"daughter; ""aged"""	function_word	high
+בן	LAST_NAME	"son; ""aged"""	function_word	high
+קרן	FIRST_NAME	fund; ray; horn	common_word	high
+קרן	LAST_NAME	fund; ray; horn	common_word	high
+דוד	FIRST_NAME	uncle; David; boiler (דוד שמש)	common_word	high
+דוד	LAST_NAME	uncle; David	common_word	high
+גב	LAST_NAME	back (body part)	organ	high
+גב	FIRST_NAME	back (body part)	organ	high
+רפי	FIRST_NAME	Rafi; weak (rafe)	common_word	low
+אריאל	LOC|FIRST_NAME	Ariel (lion of God); name of a city	place	low
+כרמל	MED_ORG|FIRST_NAME	Carmel (mount, hospital)	hospital	medium
+כרמל	MED_ORG|LAST_NAME	Carmel (mount, hospital)	hospital	medium
+הדסה	MED_ORG|FIRST_NAME	Hadassah hospital; Hadassah (myrtle)	hospital	high
+הדס	FIRST_NAME	myrtle	plant	medium
+מאיר	MED_ORG|FIRST_NAME	Meir hospital (Kfar Saba); illuminates	hospital	high
+מאיר	MED_ORG|LAST_NAME	Meir hospital; illuminates	hospital	high
+שיבא	MED_ORG|LAST_NAME	Sheba hospital (Tel HaShomer)	hospital	high
+סורוקה	MED_ORG|LAST_NAME	Soroka hospital	hospital	medium
+בילינסון	MED_ORG|LAST_NAME	Beilinson hospital	hospital	medium
+וולפסון	MED_ORG|LAST_NAME	Wolfson hospital	hospital	medium
+קפלן	MED_ORG|LAST_NAME	Kaplan hospital	hospital	medium
+ברזילי	MED_ORG|LAST_NAME	Barzilai hospital	hospital	medium
+פוריה	MED_ORG|LAST_NAME	Poriya hospital	hospital	medium
+העמק	MED_ORG|LAST_NAME	Emek hospital; the valley	hospital	medium
+שמיר	MED_ORG|FIRST_NAME	Shamir (Assaf Harofe); dill, thorn	hospital	low
+לניאדו	MED_ORG|LAST_NAME	Laniado hospital	hospital	low
+הלל	MED_ORG|FIRST_NAME	Hillel Yaffe hospital; praise	hospital	medium
+יפה	MED_ORG|LAST_NAME	Hillel Yaffe (יפה); beautiful	hospital	medium
+אסותא	MED_ORG|LAST_NAME	"Assuta hospital; ""healing"""	hospital	medium
+אלישע	MED_ORG|FIRST_NAME	Elisha (Haifa private hospital); Elisha	hospital	low
+"רמב""ם"	MED_ORG|LAST_NAME	Rambam hospital; Maimonides	hospital	high
+איכילוב	MED_ORG|LAST_NAME	Ichilov hospital (Sourasky)	hospital	high
+סוראסקי	MED_ORG|LAST_NAME	Sourasky medical center	hospital	high
+שערי צדק	MED_ORG|FIRST_NAME	"Shaare Zedek hospital; ""gates of justice"""	hospital	medium
+מכבי	MED_ORG|LAST_NAME	Maccabi HMO; Maccabi sport club	hmo	high
+כללית	MED_ORG|LAST_NAME	"Clalit HMO; ""general"" (adj. fem.)"	hmo	high
+מאוחדת	MED_ORG|LAST_NAME	"Meuhedet HMO; ""united"""	hmo	high
+לאומית	MED_ORG|LAST_NAME	"Leumit HMO; ""national"" (adj. fem.)"	hmo	high
+דן	LOC|FIRST_NAME	Dan; Dan region; judges	place	medium
+שרון	LOC|FIRST_NAME	Sharon region; Sharon	place	medium
+גולן	LOC|FIRST_NAME	Golan Heights	place	low
+גליל	LOC|FIRST_NAME	Galilee	place	low
+נגב	LOC|FIRST_NAME	Negev	place	low
+עמק	LOC|FIRST_NAME	valley	place	low
+ירדן	LOC|FIRST_NAME	Jordan (river, country)	place	low
+כנרת	LOC|FIRST_NAME	Kinneret; violin	place	low
+גילה	LOC|FIRST_NAME	Gilo; joy (verb: rejoiced)	place	medium
+אילת	LOC|FIRST_NAME	Eilat (city); deer (doe)	place	low
+ערד	LOC|FIRST_NAME	Arad (city)	place	low
+עומר	LOC|FIRST_NAME	Omer (town); sheaf	place	low
+אפרת	LOC|FIRST_NAME	Efrat (town)	place	low
+אלעד	LOC|FIRST_NAME	Elad (city)	place	low
+בארי	LOC|FIRST_NAME	Be'eri (kibbutz); my well	place	low
+שילה	LOC|FIRST_NAME	Shiloh	place	low
+עלי	LOC|FIRST_NAME	Eli (settlement); on me; leaf	place	medium
+עכו	LOC|LAST_NAME	Acre (city)	place	low
+לוד	LOC|LAST_NAME	Lod (city)	place	low
+חולון	LOC|LAST_NAME	Holon (city; from חול sand)	place	low
+יבנה	LOC|LAST_NAME	Yavne (city)	place	low
+שדרות	LOC|LAST_NAME	Sderot (city); boulevards	place	low
+מעלות	LOC|LAST_NAME	Ma'alot (city); degrees, steps	place	low
+דימונה	LOC|LAST_NAME	Dimona (city)	place	low
+טירה	LOC|LAST_NAME	Tira (city); palace	place	low
+צפת	LOC|LAST_NAME	Safed (city)	place	low
+נתניה	LOC|LAST_NAME	Netanya (city)	place	low
+חדרה	LOC|LAST_NAME	Hadera (city)	place	low
+נוף	LOC|FIRST_NAME	landscape	place	low
+פרץ	LAST_NAME	breach; erupted (verb)	verb	medium
+פרץ	FIRST_NAME	breach; erupted (verb)	verb	medium
+נסים	FIRST_NAME	miracles	common_word	low
+ניסים	LAST_NAME	miracles	common_word	low
+עוזר	FIRST_NAME	assistant; helps (verb)	verb	medium
+עוזר	LAST_NAME	assistant	verb	medium
+מלך	LAST_NAME	king	common_word	low
+נחום	FIRST_NAME	Nahum; comfort	common_word	low
+אדם	FIRST_NAME	man, human being; Adam	common_word	high
+אדם	LAST_NAME	man, human being	common_word	high
+אנוש	FIRST_NAME	mankind	common_word	low
+חכם	LAST_NAME	wise; Sephardic rabbi	common_word	low
+דאון	LAST_NAME	Down (syndrome)	disease_eponym	high
+פרקינסון	LAST_NAME	Parkinson (disease)	disease_eponym	high
+אלצהיימר	LAST_NAME	Alzheimer (disease)	disease_eponym	high
+הנטינגטון	LAST_NAME	Huntington (disease)	disease_eponym	low
+קרוהן	LAST_NAME	Crohn (disease)	disease_eponym	high
+הודג'קין	LAST_NAME	Hodgkin (lymphoma)	disease_eponym	medium
+גרייבס	LAST_NAME	Graves (disease)	disease_eponym	medium
+הוטשימוטו	LAST_NAME	Hashimoto (thyroiditis)	disease_eponym	medium
+בכטרב	LAST_NAME	Bechterew (ankylosing spondylitis)	disease_eponym	low
+וילסון	LAST_NAME	Wilson (disease)	disease_eponym	low
+מרפן	LAST_NAME	Marfan (syndrome)	disease_eponym	low
+טורט	LAST_NAME	Tourette (syndrome)	disease_eponym	medium
+אספרגר	LAST_NAME	Asperger (syndrome)	disease_eponym	medium
+קושינג	LAST_NAME	Cushing (syndrome)	disease_eponym	low
+אדיסון	LAST_NAME	Addison (disease)	disease_eponym	low
+ברקיט	LAST_NAME	Burkitt (lymphoma)	disease_eponym	low
+שוגרן	LAST_NAME	Sjogren (syndrome)	disease_eponym	low
+בהצ'ט	LAST_NAME	Behcet (disease)	disease_eponym	low
+ווגנר	LAST_NAME	Wegener (granulomatosis)	disease_eponym	low
+ליים	LAST_NAME	Lyme (disease); lime	disease_eponym	low
+קוקסאקי	LAST_NAME	Coxsackie (virus)	disease_eponym	low
+אבולה	LAST_NAME	Ebola; a name	disease_eponym	low
+זיקה	LAST_NAME	Zika (virus)	disease_eponym	low
+רייטר	LAST_NAME	Reiter (syndrome)	disease_eponym	low
+גילברט	LAST_NAME	Gilbert (syndrome)	disease_eponym	low
+פאג'ט	LAST_NAME	Paget (disease)	disease_eponym	low
+קאווסאקי	LAST_NAME	Kawasaki (disease)	disease_eponym	low
+שינגלס	LAST_NAME	Shingles (herpes zoster)	disease_eponym	low
+אפשטיין	LAST_NAME	Epstein (Barr virus)	disease_eponym	low
+מרקל	LAST_NAME	Merkel (cell carcinoma)	disease_eponym	low
+טובה	FIRST_NAME	good (fem.); favour	common_word	medium
+שמר	FIRST_NAME	guarded (verb)	verb	low
+זכר	FIRST_NAME	male; remembered (verb)	verb	medium
+מתן	FIRST_NAME	giving; dose, gift	common_word	medium
+מתנה	FIRST_NAME	gift	common_word	low
+שלמה	FIRST_NAME	Solomon; whole (fem.)	common_word	low
+שלם	LAST_NAME	whole, intact; pays (verb)	common_word	medium
+אמת	FIRST_NAME	truth	common_word	low
+צדק	FIRST_NAME	justice	common_word	low
+חסד	FIRST_NAME	grace, kindness	common_word	low
