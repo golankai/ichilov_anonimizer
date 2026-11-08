@@ -11,9 +11,12 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from dataset import find_split_file, load_jsonl  # noqa: E402
+from dataset import find_split_file, load_jsonl, merge_adjacent_labels  # noqa: E402
 
 DEFAULT_DIR = r"D:\De ID All\NER_anon_dataset\regular"
+# generic institution words (not names): counted inside the span and as the word right before it
+INST_WORDS = {"בית", "החולים", "בבית", "לבית", "מבית", "הבית", "מרכז", "המרכז", "רפואי", "הרפואי", "מכון", "המכון",
+              "קופת", "קופה", "מחלקת", "המחלקה", "מחלקה", "חולים", "בי\"ח", "ביה\"ח"}
 HERE = Path(__file__).resolve().parent
 SYNTH = [HERE / "synth_eval" / "rare_hard.jsonl", HERE / "synth_eval" / "long.jsonl",
          HERE / "synth_eval_ambiguous" / "ambiguous.jsonl"]
@@ -32,21 +35,29 @@ def report(name, recs, labels):
     for lab in labels:
         words = collections.Counter()
         shapes = collections.Counter()
-        n = prefix = cut_l = cut_r = 0
+        n = prefix = cut_l = cut_r = raw = inst_in = inst_before = 0
         for r in recs:
             t = r["text"]
-            for s in r.get("label", []):
-                if str(s["label"]).replace("\\", "") != lab:
+            spans = [dict(x, label=str(x["label"]).replace("\\", "")) for x in r.get("label", [])]
+            raw += sum(x["label"] == lab for x in spans)
+            for s in merge_adjacent_labels(t, spans):  # same as training: whitespace-separated pieces become one span
+                if s["label"] != lab:
                     continue
                 n += 1
+                inside = t[s["start"]:s["end"]].split()
+                before = t[:s["start"]].split()[-1:] 
+                inst_in += any(w in INST_WORDS for w in inside)
+                inst_before += bool(before) and before[0] in INST_WORDS
                 sp = t[s["start"]:s["end"]]
                 words[min(len(sp.split()), 5)] += 1
                 shapes[shape(sp)] += 1
                 prefix += sp[:1] in "הבלמושכ" and len(sp) > 3
                 cut_l += s["start"] > 0 and t[s["start"] - 1].isalpha()
                 cut_r += s["end"] < len(t) and t[s["end"]].isalpha()
-        print("[%s] %s: %d spans | words/span %s | starts with prefix-like letter %d | cut inside a word: left %d right %d"
-              % (name, lab, n, dict(sorted(words.items())), prefix, cut_l, cut_r))
+        print("[%s] %s: %d raw spans -> %d after merging | institution words inside %d, right before %d"
+              % (name, lab, raw, n, inst_in, inst_before))
+        print("      words/span %s | starts with prefix-like letter %d | cut inside a word: left %d right %d"
+              % (dict(sorted(words.items())), prefix, cut_l, cut_r))
         for sh, c in shapes.most_common(6):
             print("      %-16s %d" % (sh, c))
 
