@@ -1,0 +1,4856 @@
+{
+ "1": {
+  "word": "יוני",
+  "kind": "name",
+  "tag": "month-alone",
+  "policy": true
+ },
+ "2": {
+  "word": "יוני",
+  "kind": "name",
+  "tag": "month-year",
+  "policy": true
+ },
+ "3": {
+  "word": "יוני",
+  "kind": "name",
+  "tag": "first-name-header",
+  "policy": false
+ },
+ "4": {
+  "word": "יוני",
+  "kind": "name",
+  "tag": "first-name-running",
+  "policy": false
+ },
+ "5": {
+  "word": "יולי",
+  "kind": "name",
+  "tag": "month-alone",
+  "policy": true
+ },
+ "6": {
+  "word": "יולי",
+  "kind": "name",
+  "tag": "month-year",
+  "policy": true
+ },
+ "7": {
+  "word": "יולי",
+  "kind": "name",
+  "tag": "first-name-header",
+  "policy": false
+ },
+ "8": {
+  "word": "יולי",
+  "kind": "name",
+  "tag": "first-name-running",
+  "policy": false
+ },
+ "9": {
+  "word": "מאי",
+  "kind": "name",
+  "tag": "month-alone",
+  "policy": true
+ },
+ "10": {
+  "word": "מאי",
+  "kind": "name",
+  "tag": "month-year",
+  "policy": true
+ },
+ "11": {
+  "word": "מאי",
+  "kind": "name",
+  "tag": "first-name-header",
+  "policy": false
+ },
+ "12": {
+  "word": "מאי",
+  "kind": "name",
+  "tag": "first-name-running",
+  "policy": false
+ },
+ "13": {
+  "word": "אוגוסט",
+  "kind": "name",
+  "tag": "month-alone",
+  "policy": true
+ },
+ "14": {
+  "word": "אוגוסט",
+  "kind": "name",
+  "tag": "month-year",
+  "policy": true
+ },
+ "15": {
+  "word": "אוגוסט",
+  "kind": "name",
+  "tag": "first-name-header",
+  "policy": false
+ },
+ "16": {
+  "word": "אוגוסט",
+  "kind": "name",
+  "tag": "first-name-running",
+  "policy": false
+ },
+ "17": {
+  "word": "אדר",
+  "kind": "name",
+  "tag": "month-alone",
+  "policy": true
+ },
+ "18": {
+  "word": "אדר",
+  "kind": "name",
+  "tag": "month-year",
+  "policy": true
+ },
+ "19": {
+  "word": "אדר",
+  "kind": "name",
+  "tag": "first-name-header",
+  "policy": false
+ },
+ "20": {
+  "word": "אדר",
+  "kind": "name",
+  "tag": "first-name-running",
+  "policy": false
+ },
+ "21": {
+  "word": "ניסן",
+  "kind": "name",
+  "tag": "month-alone",
+  "policy": true
+ },
+ "22": {
+  "word": "ניסן",
+  "kind": "name",
+  "tag": "month-year",
+  "policy": true
+ },
+ "23": {
+  "word": "ניסן",
+  "kind": "name",
+  "tag": "first-name-header",
+  "policy": false
+ },
+ "24": {
+  "word": "ניסן",
+  "kind": "name",
+  "tag": "first-name-running",
+  "policy": false
+ },
+ "25": {
+  "word": "אייר",
+  "kind": "name",
+  "tag": "month-alone",
+  "policy": true
+ },
+ "26": {
+  "word": "אייר",
+  "kind": "name",
+  "tag": "month-year",
+  "policy": true
+ },
+ "27": {
+  "word": "אייר",
+  "kind": "name",
+  "tag": "first-name-header",
+  "policy": false
+ },
+ "28": {
+  "word": "אייר",
+  "kind": "name",
+  "tag": "first-name-running",
+  "policy": false
+ },
+ "29": {
+  "word": "סיון",
+  "kind": "name",
+  "tag": "month-alone",
+  "policy": true
+ },
+ "30": {
+  "word": "סיון",
+  "kind": "name",
+  "tag": "month-year",
+  "policy": true
+ },
+ "31": {
+  "word": "סיון",
+  "kind": "name",
+  "tag": "first-name-header",
+  "policy": false
+ },
+ "32": {
+  "word": "סיון",
+  "kind": "name",
+  "tag": "first-name-running",
+  "policy": false
+ },
+ "33": {
+  "word": "סיוון",
+  "kind": "name",
+  "tag": "month-alone",
+  "policy": true
+ },
+ "34": {
+  "word": "סיוון",
+  "kind": "name",
+  "tag": "month-year",
+  "policy": true
+ },
+ "35": {
+  "word": "סיוון",
+  "kind": "name",
+  "tag": "first-name-header",
+  "policy": false
+ },
+ "36": {
+  "word": "סיוון",
+  "kind": "name",
+  "tag": "first-name-running",
+  "policy": false
+ },
+ "37": {
+  "word": "תמוז",
+  "kind": "name",
+  "tag": "month-alone",
+  "policy": true
+ },
+ "38": {
+  "word": "תמוז",
+  "kind": "name",
+  "tag": "month-year",
+  "policy": true
+ },
+ "39": {
+  "word": "אב",
+  "kind": "name",
+  "tag": "month-alone",
+  "policy": true
+ },
+ "40": {
+  "word": "אב",
+  "kind": "name",
+  "tag": "month-year",
+  "policy": true
+ },
+ "41": {
+  "word": "אב",
+  "kind": "plain",
+  "tag": "plain-use",
+  "policy": false
+ },
+ "42": {
+  "word": "אלול",
+  "kind": "name",
+  "tag": "month-alone",
+  "policy": true
+ },
+ "43": {
+  "word": "אלול",
+  "kind": "name",
+  "tag": "month-year",
+  "policy": true
+ },
+ "44": {
+  "word": "תשרי",
+  "kind": "name",
+  "tag": "month-alone",
+  "policy": true
+ },
+ "45": {
+  "word": "תשרי",
+  "kind": "name",
+  "tag": "month-year",
+  "policy": true
+ },
+ "46": {
+  "word": "טבת",
+  "kind": "name",
+  "tag": "month-alone",
+  "policy": true
+ },
+ "47": {
+  "word": "טבת",
+  "kind": "name",
+  "tag": "month-year",
+  "policy": true
+ },
+ "48": {
+  "word": "שבט",
+  "kind": "name",
+  "tag": "month-alone",
+  "policy": true
+ },
+ "49": {
+  "word": "שבט",
+  "kind": "name",
+  "tag": "month-year",
+  "policy": true
+ },
+ "50": {
+  "word": "כסלו",
+  "kind": "name",
+  "tag": "month-alone",
+  "policy": true
+ },
+ "51": {
+  "word": "כסלו",
+  "kind": "name",
+  "tag": "month-year",
+  "policy": true
+ },
+ "52": {
+  "word": "חשוון",
+  "kind": "name",
+  "tag": "month-alone",
+  "policy": true
+ },
+ "53": {
+  "word": "חשוון",
+  "kind": "name",
+  "tag": "month-year",
+  "policy": true
+ },
+ "54": {
+  "word": "אביב",
+  "kind": "name",
+  "tag": "first-name-header",
+  "policy": false
+ },
+ "55": {
+  "word": "אביב",
+  "kind": "name",
+  "tag": "first-name-running",
+  "policy": false
+ },
+ "56": {
+  "word": "אביב",
+  "kind": "plain",
+  "tag": "plain-use",
+  "policy": false
+ },
+ "57": {
+  "word": "אביב",
+  "kind": "mixed",
+  "tag": "plain-then-first_name",
+  "policy": false
+ },
+ "58": {
+  "word": "סתיו",
+  "kind": "name",
+  "tag": "first-name-header",
+  "policy": false
+ },
+ "59": {
+  "word": "סתיו",
+  "kind": "name",
+  "tag": "first-name-running",
+  "policy": false
+ },
+ "60": {
+  "word": "סתיו",
+  "kind": "plain",
+  "tag": "plain-use",
+  "policy": false
+ },
+ "61": {
+  "word": "סתיו",
+  "kind": "mixed",
+  "tag": "plain-then-first_name",
+  "policy": false
+ },
+ "62": {
+  "word": "חורף",
+  "kind": "name",
+  "tag": "last-name-header",
+  "policy": false
+ },
+ "63": {
+  "word": "חורף",
+  "kind": "name",
+  "tag": "last-name-running",
+  "policy": false
+ },
+ "64": {
+  "word": "חורף",
+  "kind": "plain",
+  "tag": "plain-use",
+  "policy": false
+ },
+ "65": {
+  "word": "חורף",
+  "kind": "mixed",
+  "tag": "plain-then-last_name",
+  "policy": false
+ },
+ "66": {
+  "word": "קיץ",
+  "kind": "name",
+  "tag": "last-name-header",
+  "policy": false
+ },
+ "67": {
+  "word": "קיץ",
+  "kind": "name",
+  "tag": "last-name-running",
+  "policy": false
+ },
+ "68": {
+  "word": "קיץ",
+  "kind": "plain",
+  "tag": "plain-use",
+  "policy": false
+ },
+ "69": {
+  "word": "קיץ",
+  "kind": "mixed",
+  "tag": "plain-then-last_name",
+  "policy": false
+ },
+ "70": {
+  "word": "לב",
+  "kind": "name",
+  "tag": "first-name-header",
+  "policy": false
+ },
+ "71": {
+  "word": "לב",
+  "kind": "name",
+  "tag": "first-name-running",
+  "policy": false
+ },
+ "72": {
+  "word": "לב",
+  "kind": "plain",
+  "tag": "plain-use",
+  "policy": false
+ },
+ "73": {
+  "word": "לב",
+  "kind": "mixed",
+  "tag": "plain-then-first_name",
+  "policy": false
+ },
+ "74": {
+  "word": "גל",
+  "kind": "name",
+  "tag": "first-name-header",
+  "policy": false
+ },
+ "75": {
+  "word": "גל",
+  "kind": "name",
+  "tag": "first-name-running",
+  "policy": false
+ },
+ "76": {
+  "word": "גל",
+  "kind": "plain",
+  "tag": "plain-use",
+  "policy": false
+ },
+ "77": {
+  "word": "גל",
+  "kind": "mixed",
+  "tag": "plain-then-first_name",
+  "policy": false
+ },
+ "78": {
+  "word": "גיל",
+  "kind": "name",
+  "tag": "first-name-header",
+  "policy": false
+ },
+ "79": {
+  "word": "גיל",
+  "kind": "name",
+  "tag": "first-name-running",
+  "policy": false
+ },
+ "80": {
+  "word": "גיל",
+  "kind": "plain",
+  "tag": "plain-use",
+  "policy": false
+ },
+ "81": {
+  "word": "גיל",
+  "kind": "mixed",
+  "tag": "plain-then-first_name",
+  "policy": false
+ },
+ "82": {
+  "word": "אושר",
+  "kind": "name",
+  "tag": "first-name-header",
+  "policy": false
+ },
+ "83": {
+  "word": "אושר",
+  "kind": "name",
+  "tag": "first-name-running",
+  "policy": false
+ },
+ "84": {
+  "word": "אושר",
+  "kind": "plain",
+  "tag": "plain-use",
+  "policy": false
+ },
+ "85": {
+  "word": "אושר",
+  "kind": "mixed",
+  "tag": "plain-then-first_name",
+  "policy": false
+ },
+ "86": {
+  "word": "טרם",
+  "kind": "name",
+  "tag": "first-name-header",
+  "policy": false
+ },
+ "87": {
+  "word": "טרם",
+  "kind": "name",
+  "tag": "first-name-running",
+  "policy": false
+ },
+ "88": {
+  "word": "טרם",
+  "kind": "plain",
+  "tag": "plain-use",
+  "policy": false
+ },
+ "89": {
+  "word": "טרם",
+  "kind": "mixed",
+  "tag": "plain-then-first_name",
+  "policy": false
+ },
+ "90": {
+  "word": "נטלי",
+  "kind": "name",
+  "tag": "first-name-header",
+  "policy": false
+ },
+ "91": {
+  "word": "נטלי",
+  "kind": "name",
+  "tag": "first-name-running",
+  "policy": false
+ },
+ "92": {
+  "word": "נטלי",
+  "kind": "plain",
+  "tag": "plain-use",
+  "policy": false
+ },
+ "93": {
+  "word": "נטלי",
+  "kind": "mixed",
+  "tag": "plain-then-first_name",
+  "policy": false
+ },
+ "94": {
+  "word": "נטל",
+  "kind": "name",
+  "tag": "first-name-header",
+  "policy": false
+ },
+ "95": {
+  "word": "נטל",
+  "kind": "name",
+  "tag": "first-name-running",
+  "policy": false
+ },
+ "96": {
+  "word": "נטל",
+  "kind": "plain",
+  "tag": "plain-use",
+  "policy": false
+ },
+ "97": {
+  "word": "נטל",
+  "kind": "mixed",
+  "tag": "plain-then-first_name",
+  "policy": false
+ },
+ "98": {
+  "word": "חן",
+  "kind": "name",
+  "tag": "first-name-header",
+  "policy": false
+ },
+ "99": {
+  "word": "חן",
+  "kind": "name",
+  "tag": "first-name-running",
+  "policy": false
+ },
+ "100": {
+  "word": "נעם",
+  "kind": "name",
+  "tag": "first-name-header",
+  "policy": false
+ },
+ "101": {
+  "word": "נעם",
+  "kind": "name",
+  "tag": "first-name-running",
+  "policy": false
+ },
+ "102": {
+  "word": "טוב",
+  "kind": "name",
+  "tag": "first-name-header",
+  "policy": false
+ },
+ "103": {
+  "word": "טוב",
+  "kind": "name",
+  "tag": "first-name-running",
+  "policy": false
+ },
+ "104": {
+  "word": "טוב",
+  "kind": "plain",
+  "tag": "plain-use",
+  "policy": false
+ },
+ "105": {
+  "word": "טוב",
+  "kind": "mixed",
+  "tag": "plain-then-first_name",
+  "policy": false
+ },
+ "106": {
+  "word": "שלום",
+  "kind": "name",
+  "tag": "first-name-header",
+  "policy": false
+ },
+ "107": {
+  "word": "שלום",
+  "kind": "name",
+  "tag": "first-name-running",
+  "policy": false
+ },
+ "108": {
+  "word": "שלום",
+  "kind": "plain",
+  "tag": "plain-use",
+  "policy": false
+ },
+ "109": {
+  "word": "שלום",
+  "kind": "mixed",
+  "tag": "plain-then-first_name",
+  "policy": false
+ },
+ "110": {
+  "word": "שלום",
+  "kind": "name",
+  "tag": "last-name-header",
+  "policy": false
+ },
+ "111": {
+  "word": "שלום",
+  "kind": "name",
+  "tag": "last-name-running",
+  "policy": false
+ },
+ "112": {
+  "word": "שלום",
+  "kind": "mixed",
+  "tag": "last_name-then-plain",
+  "policy": false
+ },
+ "113": {
+  "word": "יפה",
+  "kind": "name",
+  "tag": "first-name-header",
+  "policy": false
+ },
+ "114": {
+  "word": "יפה",
+  "kind": "name",
+  "tag": "first-name-running",
+  "policy": false
+ },
+ "115": {
+  "word": "יפה",
+  "kind": "plain",
+  "tag": "plain-use",
+  "policy": false
+ },
+ "116": {
+  "word": "יפה",
+  "kind": "mixed",
+  "tag": "first_name-then-plain",
+  "policy": false
+ },
+ "117": {
+  "word": "חיים",
+  "kind": "name",
+  "tag": "first-name-header",
+  "policy": false
+ },
+ "118": {
+  "word": "חיים",
+  "kind": "name",
+  "tag": "first-name-running",
+  "policy": false
+ },
+ "119": {
+  "word": "חיים",
+  "kind": "plain",
+  "tag": "plain-use",
+  "policy": false
+ },
+ "120": {
+  "word": "חיים",
+  "kind": "mixed",
+  "tag": "first_name-then-plain",
+  "policy": false
+ },
+ "121": {
+  "word": "חיים",
+  "kind": "name",
+  "tag": "last-name-header",
+  "policy": false
+ },
+ "122": {
+  "word": "חיים",
+  "kind": "name",
+  "tag": "last-name-running",
+  "policy": false
+ },
+ "123": {
+  "word": "חיים",
+  "kind": "mixed",
+  "tag": "plain-then-last_name",
+  "policy": false
+ },
+ "124": {
+  "word": "אמונה",
+  "kind": "name",
+  "tag": "first-name-header",
+  "policy": false
+ },
+ "125": {
+  "word": "אמונה",
+  "kind": "name",
+  "tag": "first-name-running",
+  "policy": false
+ },
+ "126": {
+  "word": "אמונה",
+  "kind": "plain",
+  "tag": "plain-use",
+  "policy": false
+ },
+ "127": {
+  "word": "אמונה",
+  "kind": "mixed",
+  "tag": "plain-then-first_name",
+  "policy": false
+ },
+ "128": {
+  "word": "תקווה",
+  "kind": "name",
+  "tag": "first-name-header",
+  "policy": false
+ },
+ "129": {
+  "word": "תקווה",
+  "kind": "name",
+  "tag": "first-name-running",
+  "policy": false
+ },
+ "130": {
+  "word": "תקווה",
+  "kind": "plain",
+  "tag": "plain-use",
+  "policy": false
+ },
+ "131": {
+  "word": "תקווה",
+  "kind": "mixed",
+  "tag": "plain-then-first_name",
+  "policy": false
+ },
+ "132": {
+  "word": "אהבה",
+  "kind": "name",
+  "tag": "first-name-header",
+  "policy": false
+ },
+ "133": {
+  "word": "אהבה",
+  "kind": "name",
+  "tag": "first-name-running",
+  "policy": false
+ },
+ "134": {
+  "word": "אהבה",
+  "kind": "plain",
+  "tag": "plain-use",
+  "policy": false
+ },
+ "135": {
+  "word": "אהבה",
+  "kind": "mixed",
+  "tag": "plain-then-first_name",
+  "policy": false
+ },
+ "136": {
+  "word": "שמחה",
+  "kind": "name",
+  "tag": "first-name-header",
+  "policy": false
+ },
+ "137": {
+  "word": "שמחה",
+  "kind": "name",
+  "tag": "first-name-running",
+  "policy": false
+ },
+ "138": {
+  "word": "שמחה",
+  "kind": "plain",
+  "tag": "plain-use",
+  "policy": false
+ },
+ "139": {
+  "word": "שמחה",
+  "kind": "mixed",
+  "tag": "plain-then-first_name",
+  "policy": false
+ },
+ "140": {
+  "word": "נחמה",
+  "kind": "name",
+  "tag": "first-name-header",
+  "policy": false
+ },
+ "141": {
+  "word": "נחמה",
+  "kind": "name",
+  "tag": "first-name-running",
+  "policy": false
+ },
+ "142": {
+  "word": "נחמה",
+  "kind": "plain",
+  "tag": "plain-use",
+  "policy": false
+ },
+ "143": {
+  "word": "נחמה",
+  "kind": "mixed",
+  "tag": "plain-then-first_name",
+  "policy": false
+ },
+ "144": {
+  "word": "מנוחה",
+  "kind": "name",
+  "tag": "first-name-header",
+  "policy": false
+ },
+ "145": {
+  "word": "מנוחה",
+  "kind": "name",
+  "tag": "first-name-running",
+  "policy": false
+ },
+ "146": {
+  "word": "מנוחה",
+  "kind": "plain",
+  "tag": "plain-use",
+  "policy": false
+ },
+ "147": {
+  "word": "מנוחה",
+  "kind": "mixed",
+  "tag": "plain-then-first_name",
+  "policy": false
+ },
+ "148": {
+  "word": "ישע",
+  "kind": "name",
+  "tag": "first-name-header",
+  "policy": false
+ },
+ "149": {
+  "word": "ישע",
+  "kind": "name",
+  "tag": "first-name-running",
+  "policy": false
+ },
+ "150": {
+  "word": "ישע",
+  "kind": "plain",
+  "tag": "plain-use",
+  "policy": false
+ },
+ "151": {
+  "word": "ישע",
+  "kind": "mixed",
+  "tag": "plain-then-first_name",
+  "policy": false
+ },
+ "152": {
+  "word": "דרור",
+  "kind": "name",
+  "tag": "first-name-header",
+  "policy": false
+ },
+ "153": {
+  "word": "דרור",
+  "kind": "name",
+  "tag": "first-name-running",
+  "policy": false
+ },
+ "154": {
+  "word": "זיו",
+  "kind": "name",
+  "tag": "med-org-prefixed-ל",
+  "policy": false
+ },
+ "155": {
+  "word": "זיו",
+  "kind": "name",
+  "tag": "med-org-prefixed-ב",
+  "policy": false
+ },
+ "156": {
+  "word": "זיו",
+  "kind": "name",
+  "tag": "first-name-header",
+  "policy": false
+ },
+ "157": {
+  "word": "זיו",
+  "kind": "name",
+  "tag": "first-name-running",
+  "policy": false
+ },
+ "158": {
+  "word": "נוגה",
+  "kind": "name",
+  "tag": "first-name-header",
+  "policy": false
+ },
+ "159": {
+  "word": "נוגה",
+  "kind": "name",
+  "tag": "first-name-running",
+  "policy": false
+ },
+ "160": {
+  "word": "ברק",
+  "kind": "name",
+  "tag": "first-name-header",
+  "policy": false
+ },
+ "161": {
+  "word": "ברק",
+  "kind": "name",
+  "tag": "first-name-running",
+  "policy": false
+ },
+ "162": {
+  "word": "ברק",
+  "kind": "plain",
+  "tag": "plain-use",
+  "policy": false
+ },
+ "163": {
+  "word": "ברק",
+  "kind": "mixed",
+  "tag": "plain-then-first_name",
+  "policy": false
+ },
+ "164": {
+  "word": "ברק",
+  "kind": "name",
+  "tag": "last-name-header",
+  "policy": false
+ },
+ "165": {
+  "word": "ברק",
+  "kind": "name",
+  "tag": "last-name-running",
+  "policy": false
+ },
+ "166": {
+  "word": "ברק",
+  "kind": "mixed",
+  "tag": "last_name-then-plain",
+  "policy": false
+ },
+ "167": {
+  "word": "רעם",
+  "kind": "name",
+  "tag": "first-name-header",
+  "policy": false
+ },
+ "168": {
+  "word": "רעם",
+  "kind": "name",
+  "tag": "first-name-running",
+  "policy": false
+ },
+ "169": {
+  "word": "סער",
+  "kind": "name",
+  "tag": "first-name-header",
+  "policy": false
+ },
+ "170": {
+  "word": "סער",
+  "kind": "name",
+  "tag": "first-name-running",
+  "policy": false
+ },
+ "171": {
+  "word": "סער",
+  "kind": "plain",
+  "tag": "plain-use",
+  "policy": false
+ },
+ "172": {
+  "word": "סער",
+  "kind": "mixed",
+  "tag": "first_name-then-plain",
+  "policy": false
+ },
+ "173": {
+  "word": "שלג",
+  "kind": "name",
+  "tag": "first-name-header",
+  "policy": false
+ },
+ "174": {
+  "word": "שלג",
+  "kind": "name",
+  "tag": "first-name-running",
+  "policy": false
+ },
+ "175": {
+  "word": "שלג",
+  "kind": "plain",
+  "tag": "plain-use",
+  "policy": false
+ },
+ "176": {
+  "word": "שלג",
+  "kind": "mixed",
+  "tag": "first_name-then-plain",
+  "policy": false
+ },
+ "177": {
+  "word": "ענן",
+  "kind": "name",
+  "tag": "first-name-header",
+  "policy": false
+ },
+ "178": {
+  "word": "ענן",
+  "kind": "name",
+  "tag": "first-name-running",
+  "policy": false
+ },
+ "179": {
+  "word": "טל",
+  "kind": "name",
+  "tag": "first-name-header",
+  "policy": false
+ },
+ "180": {
+  "word": "טל",
+  "kind": "name",
+  "tag": "first-name-running",
+  "policy": false
+ },
+ "181": {
+  "word": "גשם",
+  "kind": "name",
+  "tag": "first-name-header",
+  "policy": false
+ },
+ "182": {
+  "word": "גשם",
+  "kind": "name",
+  "tag": "first-name-running",
+  "policy": false
+ },
+ "183": {
+  "word": "גשם",
+  "kind": "plain",
+  "tag": "plain-use",
+  "policy": false
+ },
+ "184": {
+  "word": "גשם",
+  "kind": "mixed",
+  "tag": "first_name-then-plain",
+  "policy": false
+ },
+ "185": {
+  "word": "שחר",
+  "kind": "name",
+  "tag": "first-name-header",
+  "policy": false
+ },
+ "186": {
+  "word": "שחר",
+  "kind": "name",
+  "tag": "first-name-running",
+  "policy": false
+ },
+ "187": {
+  "word": "שחר",
+  "kind": "plain",
+  "tag": "plain-use",
+  "policy": false
+ },
+ "188": {
+  "word": "שחר",
+  "kind": "mixed",
+  "tag": "first_name-then-plain",
+  "policy": false
+ },
+ "189": {
+  "word": "שחר",
+  "kind": "name",
+  "tag": "last-name-header",
+  "policy": false
+ },
+ "190": {
+  "word": "שחר",
+  "kind": "name",
+  "tag": "last-name-running",
+  "policy": false
+ },
+ "191": {
+  "word": "שחר",
+  "kind": "mixed",
+  "tag": "plain-then-last_name",
+  "policy": false
+ },
+ "192": {
+  "word": "שמש",
+  "kind": "name",
+  "tag": "last-name-header",
+  "policy": false
+ },
+ "193": {
+  "word": "שמש",
+  "kind": "name",
+  "tag": "last-name-running",
+  "policy": false
+ },
+ "194": {
+  "word": "שמש",
+  "kind": "plain",
+  "tag": "plain-use",
+  "policy": false
+ },
+ "195": {
+  "word": "שמש",
+  "kind": "mixed",
+  "tag": "plain-then-last_name",
+  "policy": false
+ },
+ "196": {
+  "word": "ירח",
+  "kind": "name",
+  "tag": "first-name-header",
+  "policy": false
+ },
+ "197": {
+  "word": "ירח",
+  "kind": "name",
+  "tag": "first-name-running",
+  "policy": false
+ },
+ "198": {
+  "word": "כוכב",
+  "kind": "name",
+  "tag": "last-name-header",
+  "policy": false
+ },
+ "199": {
+  "word": "כוכב",
+  "kind": "name",
+  "tag": "last-name-running",
+  "policy": false
+ },
+ "200": {
+  "word": "אור",
+  "kind": "name",
+  "tag": "first-name-header",
+  "policy": false
+ },
+ "201": {
+  "word": "אור",
+  "kind": "name",
+  "tag": "first-name-running",
+  "policy": false
+ },
+ "202": {
+  "word": "אור",
+  "kind": "plain",
+  "tag": "plain-use",
+  "policy": false
+ },
+ "203": {
+  "word": "אור",
+  "kind": "mixed",
+  "tag": "plain-then-first_name",
+  "policy": false
+ },
+ "204": {
+  "word": "אורי",
+  "kind": "name",
+  "tag": "first-name-header",
+  "policy": false
+ },
+ "205": {
+  "word": "אורי",
+  "kind": "name",
+  "tag": "first-name-running",
+  "policy": false
+ },
+ "206": {
+  "word": "אורן",
+  "kind": "name",
+  "tag": "first-name-header",
+  "policy": false
+ },
+ "207": {
+  "word": "אורן",
+  "kind": "name",
+  "tag": "first-name-running",
+  "policy": false
+ },
+ "208": {
+  "word": "אורן",
+  "kind": "plain",
+  "tag": "plain-use",
+  "policy": false
+ },
+ "209": {
+  "word": "אורן",
+  "kind": "mixed",
+  "tag": "plain-then-first_name",
+  "policy": false
+ },
+ "210": {
+  "word": "אילן",
+  "kind": "name",
+  "tag": "first-name-header",
+  "policy": false
+ },
+ "211": {
+  "word": "אילן",
+  "kind": "name",
+  "tag": "first-name-running",
+  "policy": false
+ },
+ "212": {
+  "word": "אילן",
+  "kind": "plain",
+  "tag": "plain-use",
+  "policy": false
+ },
+ "213": {
+  "word": "אילן",
+  "kind": "mixed",
+  "tag": "plain-then-first_name",
+  "policy": false
+ },
+ "214": {
+  "word": "אלון",
+  "kind": "name",
+  "tag": "first-name-header",
+  "policy": false
+ },
+ "215": {
+  "word": "אלון",
+  "kind": "name",
+  "tag": "first-name-running",
+  "policy": false
+ },
+ "216": {
+  "word": "אלון",
+  "kind": "plain",
+  "tag": "plain-use",
+  "policy": false
+ },
+ "217": {
+  "word": "אלון",
+  "kind": "mixed",
+  "tag": "plain-then-first_name",
+  "policy": false
+ },
+ "218": {
+  "word": "ארז",
+  "kind": "name",
+  "tag": "first-name-header",
+  "policy": false
+ },
+ "219": {
+  "word": "ארז",
+  "kind": "name",
+  "tag": "first-name-running",
+  "policy": false
+ },
+ "220": {
+  "word": "דקל",
+  "kind": "name",
+  "tag": "first-name-header",
+  "policy": false
+ },
+ "221": {
+  "word": "דקל",
+  "kind": "name",
+  "tag": "first-name-running",
+  "policy": false
+ },
+ "222": {
+  "word": "דקל",
+  "kind": "plain",
+  "tag": "plain-use",
+  "policy": false
+ },
+ "223": {
+  "word": "דקל",
+  "kind": "mixed",
+  "tag": "plain-then-first_name",
+  "policy": false
+ },
+ "224": {
+  "word": "תמר",
+  "kind": "name",
+  "tag": "first-name-header",
+  "policy": false
+ },
+ "225": {
+  "word": "תמר",
+  "kind": "name",
+  "tag": "first-name-running",
+  "policy": false
+ },
+ "226": {
+  "word": "תמר",
+  "kind": "plain",
+  "tag": "plain-use",
+  "policy": false
+ },
+ "227": {
+  "word": "תמר",
+  "kind": "mixed",
+  "tag": "plain-then-first_name",
+  "policy": false
+ },
+ "228": {
+  "word": "רותם",
+  "kind": "name",
+  "tag": "first-name-header",
+  "policy": false
+ },
+ "229": {
+  "word": "רותם",
+  "kind": "name",
+  "tag": "first-name-running",
+  "policy": false
+ },
+ "230": {
+  "word": "שקד",
+  "kind": "name",
+  "tag": "first-name-header",
+  "policy": false
+ },
+ "231": {
+  "word": "שקד",
+  "kind": "name",
+  "tag": "first-name-running",
+  "policy": false
+ },
+ "232": {
+  "word": "שקד",
+  "kind": "plain",
+  "tag": "plain-use",
+  "policy": false
+ },
+ "233": {
+  "word": "שקד",
+  "kind": "mixed",
+  "tag": "plain-then-first_name",
+  "policy": false
+ },
+ "234": {
+  "word": "זית",
+  "kind": "name",
+  "tag": "first-name-header",
+  "policy": false
+ },
+ "235": {
+  "word": "זית",
+  "kind": "name",
+  "tag": "first-name-running",
+  "policy": false
+ },
+ "236": {
+  "word": "זית",
+  "kind": "plain",
+  "tag": "plain-use",
+  "policy": false
+ },
+ "237": {
+  "word": "זית",
+  "kind": "mixed",
+  "tag": "plain-then-first_name",
+  "policy": false
+ },
+ "238": {
+  "word": "רימון",
+  "kind": "name",
+  "tag": "first-name-header",
+  "policy": false
+ },
+ "239": {
+  "word": "רימון",
+  "kind": "name",
+  "tag": "first-name-running",
+  "policy": false
+ },
+ "240": {
+  "word": "רימון",
+  "kind": "plain",
+  "tag": "plain-use",
+  "policy": false
+ },
+ "241": {
+  "word": "רימון",
+  "kind": "mixed",
+  "tag": "plain-then-first_name",
+  "policy": false
+ },
+ "242": {
+  "word": "תפוח",
+  "kind": "name",
+  "tag": "last-name-header",
+  "policy": false
+ },
+ "243": {
+  "word": "תפוח",
+  "kind": "name",
+  "tag": "last-name-running",
+  "policy": false
+ },
+ "244": {
+  "word": "תפוח",
+  "kind": "plain",
+  "tag": "plain-use",
+  "policy": false
+ },
+ "245": {
+  "word": "תפוח",
+  "kind": "mixed",
+  "tag": "plain-then-last_name",
+  "policy": false
+ },
+ "246": {
+  "word": "ורד",
+  "kind": "name",
+  "tag": "first-name-header",
+  "policy": false
+ },
+ "247": {
+  "word": "ורד",
+  "kind": "name",
+  "tag": "first-name-running",
+  "policy": false
+ },
+ "248": {
+  "word": "ורד",
+  "kind": "plain",
+  "tag": "plain-use",
+  "policy": false
+ },
+ "249": {
+  "word": "ורד",
+  "kind": "mixed",
+  "tag": "plain-then-first_name",
+  "policy": false
+ },
+ "250": {
+  "word": "שושן",
+  "kind": "name",
+  "tag": "first-name-header",
+  "policy": false
+ },
+ "251": {
+  "word": "שושן",
+  "kind": "name",
+  "tag": "first-name-running",
+  "policy": false
+ },
+ "252": {
+  "word": "כלנית",
+  "kind": "name",
+  "tag": "first-name-header",
+  "policy": false
+ },
+ "253": {
+  "word": "כלנית",
+  "kind": "name",
+  "tag": "first-name-running",
+  "policy": false
+ },
+ "254": {
+  "word": "נרקיס",
+  "kind": "name",
+  "tag": "first-name-header",
+  "policy": false
+ },
+ "255": {
+  "word": "נרקיס",
+  "kind": "name",
+  "tag": "first-name-running",
+  "policy": false
+ },
+ "256": {
+  "word": "לילך",
+  "kind": "name",
+  "tag": "first-name-header",
+  "policy": false
+ },
+ "257": {
+  "word": "לילך",
+  "kind": "name",
+  "tag": "first-name-running",
+  "policy": false
+ },
+ "258": {
+  "word": "יסמין",
+  "kind": "name",
+  "tag": "first-name-header",
+  "policy": false
+ },
+ "259": {
+  "word": "יסמין",
+  "kind": "name",
+  "tag": "first-name-running",
+  "policy": false
+ },
+ "260": {
+  "word": "דליה",
+  "kind": "name",
+  "tag": "first-name-header",
+  "policy": false
+ },
+ "261": {
+  "word": "דליה",
+  "kind": "name",
+  "tag": "first-name-running",
+  "policy": false
+ },
+ "262": {
+  "word": "גפן",
+  "kind": "name",
+  "tag": "first-name-header",
+  "policy": false
+ },
+ "263": {
+  "word": "גפן",
+  "kind": "name",
+  "tag": "first-name-running",
+  "policy": false
+ },
+ "264": {
+  "word": "מור",
+  "kind": "name",
+  "tag": "first-name-header",
+  "policy": false
+ },
+ "265": {
+  "word": "מור",
+  "kind": "name",
+  "tag": "first-name-running",
+  "policy": false
+ },
+ "266": {
+  "word": "לבנה",
+  "kind": "name",
+  "tag": "first-name-header",
+  "policy": false
+ },
+ "267": {
+  "word": "לבנה",
+  "kind": "name",
+  "tag": "first-name-running",
+  "policy": false
+ },
+ "268": {
+  "word": "ים",
+  "kind": "name",
+  "tag": "first-name-header",
+  "policy": false
+ },
+ "269": {
+  "word": "ים",
+  "kind": "name",
+  "tag": "first-name-running",
+  "policy": false
+ },
+ "270": {
+  "word": "ים",
+  "kind": "plain",
+  "tag": "plain-use",
+  "policy": false
+ },
+ "271": {
+  "word": "ים",
+  "kind": "mixed",
+  "tag": "plain-then-first_name",
+  "policy": false
+ },
+ "272": {
+  "word": "נהר",
+  "kind": "name",
+  "tag": "first-name-header",
+  "policy": false
+ },
+ "273": {
+  "word": "נהר",
+  "kind": "name",
+  "tag": "first-name-running",
+  "policy": false
+ },
+ "274": {
+  "word": "גיא",
+  "kind": "name",
+  "tag": "first-name-header",
+  "policy": false
+ },
+ "275": {
+  "word": "גיא",
+  "kind": "name",
+  "tag": "first-name-running",
+  "policy": false
+ },
+ "276": {
+  "word": "הר",
+  "kind": "name",
+  "tag": "first-name-header",
+  "policy": false
+ },
+ "277": {
+  "word": "הר",
+  "kind": "name",
+  "tag": "first-name-running",
+  "policy": false
+ },
+ "278": {
+  "word": "רום",
+  "kind": "name",
+  "tag": "first-name-header",
+  "policy": false
+ },
+ "279": {
+  "word": "רום",
+  "kind": "name",
+  "tag": "first-name-running",
+  "policy": false
+ },
+ "280": {
+  "word": "סלע",
+  "kind": "name",
+  "tag": "first-name-header",
+  "policy": false
+ },
+ "281": {
+  "word": "סלע",
+  "kind": "name",
+  "tag": "first-name-running",
+  "policy": false
+ },
+ "282": {
+  "word": "סלע",
+  "kind": "plain",
+  "tag": "plain-use",
+  "policy": false
+ },
+ "283": {
+  "word": "סלע",
+  "kind": "mixed",
+  "tag": "plain-then-first_name",
+  "policy": false
+ },
+ "284": {
+  "word": "אבן",
+  "kind": "name",
+  "tag": "first-name-header",
+  "policy": false
+ },
+ "285": {
+  "word": "אבן",
+  "kind": "name",
+  "tag": "first-name-running",
+  "policy": false
+ },
+ "286": {
+  "word": "אבן",
+  "kind": "plain",
+  "tag": "plain-use",
+  "policy": false
+ },
+ "287": {
+  "word": "אבן",
+  "kind": "mixed",
+  "tag": "plain-then-first_name",
+  "policy": false
+ },
+ "288": {
+  "word": "חול",
+  "kind": "name",
+  "tag": "first-name-header",
+  "policy": false
+ },
+ "289": {
+  "word": "חול",
+  "kind": "name",
+  "tag": "first-name-running",
+  "policy": false
+ },
+ "290": {
+  "word": "חול",
+  "kind": "plain",
+  "tag": "plain-use",
+  "policy": false
+ },
+ "291": {
+  "word": "חול",
+  "kind": "mixed",
+  "tag": "plain-then-first_name",
+  "policy": false
+ },
+ "292": {
+  "word": "מזל",
+  "kind": "name",
+  "tag": "first-name-header",
+  "policy": false
+ },
+ "293": {
+  "word": "מזל",
+  "kind": "name",
+  "tag": "first-name-running",
+  "policy": false
+ },
+ "294": {
+  "word": "מזל",
+  "kind": "plain",
+  "tag": "plain-use",
+  "policy": false
+ },
+ "295": {
+  "word": "מזל",
+  "kind": "mixed",
+  "tag": "plain-then-first_name",
+  "policy": false
+ },
+ "296": {
+  "word": "ברכה",
+  "kind": "name",
+  "tag": "first-name-header",
+  "policy": false
+ },
+ "297": {
+  "word": "ברכה",
+  "kind": "name",
+  "tag": "first-name-running",
+  "policy": false
+ },
+ "298": {
+  "word": "ברכה",
+  "kind": "plain",
+  "tag": "plain-use",
+  "policy": false
+ },
+ "299": {
+  "word": "ברכה",
+  "kind": "mixed",
+  "tag": "plain-then-first_name",
+  "policy": false
+ },
+ "300": {
+  "word": "תודה",
+  "kind": "name",
+  "tag": "first-name-header",
+  "policy": false
+ },
+ "301": {
+  "word": "תודה",
+  "kind": "name",
+  "tag": "first-name-running",
+  "policy": false
+ },
+ "302": {
+  "word": "תודה",
+  "kind": "plain",
+  "tag": "plain-use",
+  "policy": false
+ },
+ "303": {
+  "word": "תודה",
+  "kind": "mixed",
+  "tag": "plain-then-first_name",
+  "policy": false
+ },
+ "304": {
+  "word": "נעמה",
+  "kind": "name",
+  "tag": "first-name-header",
+  "policy": false
+ },
+ "305": {
+  "word": "נעמה",
+  "kind": "name",
+  "tag": "first-name-running",
+  "policy": false
+ },
+ "306": {
+  "word": "עוז",
+  "kind": "name",
+  "tag": "first-name-header",
+  "policy": false
+ },
+ "307": {
+  "word": "עוז",
+  "kind": "name",
+  "tag": "first-name-running",
+  "policy": false
+ },
+ "308": {
+  "word": "עוז",
+  "kind": "plain",
+  "tag": "plain-use",
+  "policy": false
+ },
+ "309": {
+  "word": "עוז",
+  "kind": "mixed",
+  "tag": "plain-then-first_name",
+  "policy": false
+ },
+ "310": {
+  "word": "עדי",
+  "kind": "name",
+  "tag": "first-name-header",
+  "policy": false
+ },
+ "311": {
+  "word": "עדי",
+  "kind": "name",
+  "tag": "first-name-running",
+  "policy": false
+ },
+ "312": {
+  "word": "עדן",
+  "kind": "name",
+  "tag": "first-name-header",
+  "policy": false
+ },
+ "313": {
+  "word": "עדן",
+  "kind": "name",
+  "tag": "first-name-running",
+  "policy": false
+ },
+ "314": {
+  "word": "עידן",
+  "kind": "name",
+  "tag": "first-name-header",
+  "policy": false
+ },
+ "315": {
+  "word": "עידן",
+  "kind": "name",
+  "tag": "first-name-running",
+  "policy": false
+ },
+ "316": {
+  "word": "עידן",
+  "kind": "plain",
+  "tag": "plain-use",
+  "policy": false
+ },
+ "317": {
+  "word": "עידן",
+  "kind": "mixed",
+  "tag": "plain-then-first_name",
+  "policy": false
+ },
+ "318": {
+  "word": "רז",
+  "kind": "name",
+  "tag": "first-name-header",
+  "policy": false
+ },
+ "319": {
+  "word": "רז",
+  "kind": "name",
+  "tag": "first-name-running",
+  "policy": false
+ },
+ "320": {
+  "word": "רן",
+  "kind": "name",
+  "tag": "first-name-header",
+  "policy": false
+ },
+ "321": {
+  "word": "רן",
+  "kind": "name",
+  "tag": "first-name-running",
+  "policy": false
+ },
+ "322": {
+  "word": "שי",
+  "kind": "name",
+  "tag": "first-name-header",
+  "policy": false
+ },
+ "323": {
+  "word": "שי",
+  "kind": "name",
+  "tag": "first-name-running",
+  "policy": false
+ },
+ "324": {
+  "word": "שיר",
+  "kind": "name",
+  "tag": "first-name-header",
+  "policy": false
+ },
+ "325": {
+  "word": "שיר",
+  "kind": "name",
+  "tag": "first-name-running",
+  "policy": false
+ },
+ "326": {
+  "word": "שיר",
+  "kind": "plain",
+  "tag": "plain-use",
+  "policy": false
+ },
+ "327": {
+  "word": "שיר",
+  "kind": "mixed",
+  "tag": "plain-then-first_name",
+  "policy": false
+ },
+ "328": {
+  "word": "דור",
+  "kind": "name",
+  "tag": "first-name-header",
+  "policy": false
+ },
+ "329": {
+  "word": "דור",
+  "kind": "name",
+  "tag": "first-name-running",
+  "policy": false
+ },
+ "330": {
+  "word": "דור",
+  "kind": "plain",
+  "tag": "plain-use",
+  "policy": false
+ },
+ "331": {
+  "word": "דור",
+  "kind": "mixed",
+  "tag": "plain-then-first_name",
+  "policy": false
+ },
+ "332": {
+  "word": "תמיר",
+  "kind": "name",
+  "tag": "first-name-header",
+  "policy": false
+ },
+ "333": {
+  "word": "תמיר",
+  "kind": "name",
+  "tag": "first-name-running",
+  "policy": false
+ },
+ "334": {
+  "word": "אמיר",
+  "kind": "name",
+  "tag": "first-name-header",
+  "policy": false
+ },
+ "335": {
+  "word": "אמיר",
+  "kind": "name",
+  "tag": "first-name-running",
+  "policy": false
+ },
+ "336": {
+  "word": "עמית",
+  "kind": "name",
+  "tag": "first-name-header",
+  "policy": false
+ },
+ "337": {
+  "word": "עמית",
+  "kind": "name",
+  "tag": "first-name-running",
+  "policy": false
+ },
+ "338": {
+  "word": "עמית",
+  "kind": "plain",
+  "tag": "plain-use",
+  "policy": false
+ },
+ "339": {
+  "word": "עמית",
+  "kind": "mixed",
+  "tag": "plain-then-first_name",
+  "policy": false
+ },
+ "340": {
+  "word": "עמוס",
+  "kind": "name",
+  "tag": "first-name-header",
+  "policy": false
+ },
+ "341": {
+  "word": "עמוס",
+  "kind": "name",
+  "tag": "first-name-running",
+  "policy": false
+ },
+ "342": {
+  "word": "עמוס",
+  "kind": "plain",
+  "tag": "plain-use",
+  "policy": false
+ },
+ "343": {
+  "word": "עמוס",
+  "kind": "mixed",
+  "tag": "plain-then-first_name",
+  "policy": false
+ },
+ "344": {
+  "word": "אסף",
+  "kind": "name",
+  "tag": "first-name-header",
+  "policy": false
+ },
+ "345": {
+  "word": "אסף",
+  "kind": "name",
+  "tag": "first-name-running",
+  "policy": false
+ },
+ "346": {
+  "word": "אסף",
+  "kind": "plain",
+  "tag": "plain-use",
+  "policy": false
+ },
+ "347": {
+  "word": "אסף",
+  "kind": "mixed",
+  "tag": "plain-then-first_name",
+  "policy": false
+ },
+ "348": {
+  "word": "אסף",
+  "kind": "name",
+  "tag": "last-name-header",
+  "policy": false
+ },
+ "349": {
+  "word": "אסף",
+  "kind": "name",
+  "tag": "last-name-running",
+  "policy": false
+ },
+ "350": {
+  "word": "אסף",
+  "kind": "mixed",
+  "tag": "last_name-then-plain",
+  "policy": false
+ },
+ "351": {
+  "word": "נוי",
+  "kind": "name",
+  "tag": "first-name-header",
+  "policy": false
+ },
+ "352": {
+  "word": "נוי",
+  "kind": "name",
+  "tag": "first-name-running",
+  "policy": false
+ },
+ "353": {
+  "word": "נועה",
+  "kind": "name",
+  "tag": "first-name-header",
+  "policy": false
+ },
+ "354": {
+  "word": "נועה",
+  "kind": "name",
+  "tag": "first-name-running",
+  "policy": false
+ },
+ "355": {
+  "word": "בר",
+  "kind": "name",
+  "tag": "first-name-header",
+  "policy": false
+ },
+ "356": {
+  "word": "בר",
+  "kind": "name",
+  "tag": "first-name-running",
+  "policy": false
+ },
+ "357": {
+  "word": "בר",
+  "kind": "name",
+  "tag": "last-name-header",
+  "policy": false
+ },
+ "358": {
+  "word": "בר",
+  "kind": "name",
+  "tag": "last-name-running",
+  "policy": false
+ },
+ "359": {
+  "word": "בן",
+  "kind": "name",
+  "tag": "first-name-header",
+  "policy": false
+ },
+ "360": {
+  "word": "בן",
+  "kind": "name",
+  "tag": "first-name-running",
+  "policy": false
+ },
+ "361": {
+  "word": "בן",
+  "kind": "plain",
+  "tag": "plain-use",
+  "policy": false
+ },
+ "362": {
+  "word": "בן",
+  "kind": "mixed",
+  "tag": "first_name-then-plain",
+  "policy": false
+ },
+ "363": {
+  "word": "בת",
+  "kind": "plain",
+  "tag": "plain-use",
+  "policy": false
+ },
+ "364": {
+  "word": "בן",
+  "kind": "name",
+  "tag": "last-name-header",
+  "policy": false
+ },
+ "365": {
+  "word": "בן",
+  "kind": "name",
+  "tag": "last-name-running",
+  "policy": false
+ },
+ "366": {
+  "word": "בן",
+  "kind": "mixed",
+  "tag": "last_name-then-plain",
+  "policy": false
+ },
+ "367": {
+  "word": "קרן",
+  "kind": "name",
+  "tag": "first-name-header",
+  "policy": false
+ },
+ "368": {
+  "word": "קרן",
+  "kind": "name",
+  "tag": "first-name-running",
+  "policy": false
+ },
+ "369": {
+  "word": "קרן",
+  "kind": "plain",
+  "tag": "plain-use",
+  "policy": false
+ },
+ "370": {
+  "word": "קרן",
+  "kind": "mixed",
+  "tag": "first_name-then-plain",
+  "policy": false
+ },
+ "371": {
+  "word": "קרן",
+  "kind": "name",
+  "tag": "last-name-header",
+  "policy": false
+ },
+ "372": {
+  "word": "קרן",
+  "kind": "name",
+  "tag": "last-name-running",
+  "policy": false
+ },
+ "373": {
+  "word": "קרן",
+  "kind": "mixed",
+  "tag": "plain-then-last_name",
+  "policy": false
+ },
+ "374": {
+  "word": "דוד",
+  "kind": "name",
+  "tag": "first-name-header",
+  "policy": false
+ },
+ "375": {
+  "word": "דוד",
+  "kind": "name",
+  "tag": "first-name-running",
+  "policy": false
+ },
+ "376": {
+  "word": "דוד",
+  "kind": "plain",
+  "tag": "plain-use",
+  "policy": false
+ },
+ "377": {
+  "word": "דוד",
+  "kind": "mixed",
+  "tag": "plain-then-first_name",
+  "policy": false
+ },
+ "378": {
+  "word": "דוד",
+  "kind": "name",
+  "tag": "last-name-header",
+  "policy": false
+ },
+ "379": {
+  "word": "דוד",
+  "kind": "name",
+  "tag": "last-name-running",
+  "policy": false
+ },
+ "380": {
+  "word": "דוד",
+  "kind": "mixed",
+  "tag": "last_name-then-plain",
+  "policy": false
+ },
+ "381": {
+  "word": "גב",
+  "kind": "name",
+  "tag": "last-name-header",
+  "policy": false
+ },
+ "382": {
+  "word": "גב",
+  "kind": "name",
+  "tag": "last-name-running",
+  "policy": false
+ },
+ "383": {
+  "word": "גב",
+  "kind": "plain",
+  "tag": "plain-use",
+  "policy": false
+ },
+ "384": {
+  "word": "גב",
+  "kind": "mixed",
+  "tag": "last_name-then-plain",
+  "policy": false
+ },
+ "385": {
+  "word": "גב",
+  "kind": "name",
+  "tag": "first-name-header",
+  "policy": false
+ },
+ "386": {
+  "word": "גב",
+  "kind": "name",
+  "tag": "first-name-running",
+  "policy": false
+ },
+ "387": {
+  "word": "גב",
+  "kind": "mixed",
+  "tag": "plain-then-first_name",
+  "policy": false
+ },
+ "388": {
+  "word": "רפי",
+  "kind": "name",
+  "tag": "first-name-header",
+  "policy": false
+ },
+ "389": {
+  "word": "רפי",
+  "kind": "name",
+  "tag": "first-name-running",
+  "policy": false
+ },
+ "390": {
+  "word": "אריאל",
+  "kind": "name",
+  "tag": "loc-prefixed-ב",
+  "policy": false
+ },
+ "391": {
+  "word": "אריאל",
+  "kind": "name",
+  "tag": "loc-prefixed-מ",
+  "policy": false
+ },
+ "392": {
+  "word": "אריאל",
+  "kind": "name",
+  "tag": "first-name-header",
+  "policy": false
+ },
+ "393": {
+  "word": "אריאל",
+  "kind": "name",
+  "tag": "first-name-running",
+  "policy": false
+ },
+ "394": {
+  "word": "כרמל",
+  "kind": "name",
+  "tag": "med-org-prefixed-ל",
+  "policy": false
+ },
+ "395": {
+  "word": "כרמל",
+  "kind": "name",
+  "tag": "med-org-prefixed-ב",
+  "policy": false
+ },
+ "396": {
+  "word": "כרמל",
+  "kind": "name",
+  "tag": "first-name-header",
+  "policy": false
+ },
+ "397": {
+  "word": "כרמל",
+  "kind": "name",
+  "tag": "first-name-running",
+  "policy": false
+ },
+ "398": {
+  "word": "כרמל",
+  "kind": "name",
+  "tag": "med-org-prefixed-ל",
+  "policy": false
+ },
+ "399": {
+  "word": "כרמל",
+  "kind": "name",
+  "tag": "med-org-prefixed-ב",
+  "policy": false
+ },
+ "400": {
+  "word": "כרמל",
+  "kind": "name",
+  "tag": "last-name-header",
+  "policy": false
+ },
+ "401": {
+  "word": "כרמל",
+  "kind": "name",
+  "tag": "last-name-running",
+  "policy": false
+ },
+ "402": {
+  "word": "הדסה",
+  "kind": "name",
+  "tag": "med-org-prefixed-ל",
+  "policy": false
+ },
+ "403": {
+  "word": "הדסה",
+  "kind": "name",
+  "tag": "med-org-prefixed-ב",
+  "policy": false
+ },
+ "404": {
+  "word": "הדסה",
+  "kind": "name",
+  "tag": "first-name-header",
+  "policy": false
+ },
+ "405": {
+  "word": "הדסה",
+  "kind": "name",
+  "tag": "first-name-running",
+  "policy": false
+ },
+ "406": {
+  "word": "הדס",
+  "kind": "name",
+  "tag": "first-name-header",
+  "policy": false
+ },
+ "407": {
+  "word": "הדס",
+  "kind": "name",
+  "tag": "first-name-running",
+  "policy": false
+ },
+ "408": {
+  "word": "מאיר",
+  "kind": "name",
+  "tag": "med-org-prefixed-ל",
+  "policy": false
+ },
+ "409": {
+  "word": "מאיר",
+  "kind": "name",
+  "tag": "med-org-prefixed-ב",
+  "policy": false
+ },
+ "410": {
+  "word": "מאיר",
+  "kind": "name",
+  "tag": "first-name-header",
+  "policy": false
+ },
+ "411": {
+  "word": "מאיר",
+  "kind": "name",
+  "tag": "first-name-running",
+  "policy": false
+ },
+ "412": {
+  "word": "מאיר",
+  "kind": "name",
+  "tag": "med-org-prefixed-ל",
+  "policy": false
+ },
+ "413": {
+  "word": "מאיר",
+  "kind": "name",
+  "tag": "med-org-prefixed-ב",
+  "policy": false
+ },
+ "414": {
+  "word": "מאיר",
+  "kind": "name",
+  "tag": "last-name-header",
+  "policy": false
+ },
+ "415": {
+  "word": "מאיר",
+  "kind": "name",
+  "tag": "last-name-running",
+  "policy": false
+ },
+ "416": {
+  "word": "שיבא",
+  "kind": "name",
+  "tag": "med-org-prefixed-ל",
+  "policy": false
+ },
+ "417": {
+  "word": "שיבא",
+  "kind": "name",
+  "tag": "med-org-prefixed-ב",
+  "policy": false
+ },
+ "418": {
+  "word": "סורוקה",
+  "kind": "name",
+  "tag": "med-org-prefixed-ל",
+  "policy": false
+ },
+ "419": {
+  "word": "סורוקה",
+  "kind": "name",
+  "tag": "med-org-prefixed-ב",
+  "policy": false
+ },
+ "420": {
+  "word": "סורוקה",
+  "kind": "name",
+  "tag": "last-name-header",
+  "policy": false
+ },
+ "421": {
+  "word": "סורוקה",
+  "kind": "name",
+  "tag": "last-name-running",
+  "policy": false
+ },
+ "422": {
+  "word": "בילינסון",
+  "kind": "name",
+  "tag": "med-org-prefixed-ל",
+  "policy": false
+ },
+ "423": {
+  "word": "בילינסון",
+  "kind": "name",
+  "tag": "med-org-prefixed-ב",
+  "policy": false
+ },
+ "424": {
+  "word": "בילינסון",
+  "kind": "name",
+  "tag": "last-name-header",
+  "policy": false
+ },
+ "425": {
+  "word": "בילינסון",
+  "kind": "name",
+  "tag": "last-name-running",
+  "policy": false
+ },
+ "426": {
+  "word": "וולפסון",
+  "kind": "name",
+  "tag": "med-org-prefixed-ל",
+  "policy": false
+ },
+ "427": {
+  "word": "וולפסון",
+  "kind": "name",
+  "tag": "med-org-prefixed-ב",
+  "policy": false
+ },
+ "428": {
+  "word": "וולפסון",
+  "kind": "name",
+  "tag": "last-name-header",
+  "policy": false
+ },
+ "429": {
+  "word": "וולפסון",
+  "kind": "name",
+  "tag": "last-name-running",
+  "policy": false
+ },
+ "430": {
+  "word": "קפלן",
+  "kind": "name",
+  "tag": "med-org-prefixed-ל",
+  "policy": false
+ },
+ "431": {
+  "word": "קפלן",
+  "kind": "name",
+  "tag": "med-org-prefixed-ב",
+  "policy": false
+ },
+ "432": {
+  "word": "קפלן",
+  "kind": "name",
+  "tag": "last-name-header",
+  "policy": false
+ },
+ "433": {
+  "word": "קפלן",
+  "kind": "name",
+  "tag": "last-name-running",
+  "policy": false
+ },
+ "434": {
+  "word": "ברזילי",
+  "kind": "name",
+  "tag": "med-org-prefixed-ל",
+  "policy": false
+ },
+ "435": {
+  "word": "ברזילי",
+  "kind": "name",
+  "tag": "med-org-prefixed-ב",
+  "policy": false
+ },
+ "436": {
+  "word": "ברזילי",
+  "kind": "name",
+  "tag": "last-name-header",
+  "policy": false
+ },
+ "437": {
+  "word": "ברזילי",
+  "kind": "name",
+  "tag": "last-name-running",
+  "policy": false
+ },
+ "438": {
+  "word": "פוריה",
+  "kind": "name",
+  "tag": "med-org-prefixed-ל",
+  "policy": false
+ },
+ "439": {
+  "word": "פוריה",
+  "kind": "name",
+  "tag": "med-org-prefixed-ב",
+  "policy": false
+ },
+ "440": {
+  "word": "העמק",
+  "kind": "name",
+  "tag": "med-org-prefixed-ל",
+  "policy": false
+ },
+ "441": {
+  "word": "העמק",
+  "kind": "name",
+  "tag": "med-org-prefixed-ב",
+  "policy": false
+ },
+ "442": {
+  "word": "שמיר",
+  "kind": "name",
+  "tag": "med-org-prefixed-ל",
+  "policy": false
+ },
+ "443": {
+  "word": "שמיר",
+  "kind": "name",
+  "tag": "med-org-prefixed-ב",
+  "policy": false
+ },
+ "444": {
+  "word": "שמיר",
+  "kind": "name",
+  "tag": "first-name-header",
+  "policy": false
+ },
+ "445": {
+  "word": "שמיר",
+  "kind": "name",
+  "tag": "first-name-running",
+  "policy": false
+ },
+ "446": {
+  "word": "לניאדו",
+  "kind": "name",
+  "tag": "med-org-prefixed-ל",
+  "policy": false
+ },
+ "447": {
+  "word": "לניאדו",
+  "kind": "name",
+  "tag": "med-org-prefixed-ב",
+  "policy": false
+ },
+ "448": {
+  "word": "לניאדו",
+  "kind": "name",
+  "tag": "last-name-header",
+  "policy": false
+ },
+ "449": {
+  "word": "לניאדו",
+  "kind": "name",
+  "tag": "last-name-running",
+  "policy": false
+ },
+ "450": {
+  "word": "הלל",
+  "kind": "name",
+  "tag": "med-org-prefixed-ל",
+  "policy": false
+ },
+ "451": {
+  "word": "הלל",
+  "kind": "name",
+  "tag": "med-org-prefixed-ב",
+  "policy": false
+ },
+ "452": {
+  "word": "הלל",
+  "kind": "name",
+  "tag": "first-name-header",
+  "policy": false
+ },
+ "453": {
+  "word": "הלל",
+  "kind": "name",
+  "tag": "first-name-running",
+  "policy": false
+ },
+ "454": {
+  "word": "יפה",
+  "kind": "name",
+  "tag": "med-org-prefixed-ל",
+  "policy": false
+ },
+ "455": {
+  "word": "יפה",
+  "kind": "name",
+  "tag": "med-org-prefixed-ב",
+  "policy": false
+ },
+ "456": {
+  "word": "יפה",
+  "kind": "name",
+  "tag": "last-name-header",
+  "policy": false
+ },
+ "457": {
+  "word": "יפה",
+  "kind": "name",
+  "tag": "last-name-running",
+  "policy": false
+ },
+ "458": {
+  "word": "יפה",
+  "kind": "mixed",
+  "tag": "last_name-then-plain",
+  "policy": false
+ },
+ "459": {
+  "word": "אסותא",
+  "kind": "name",
+  "tag": "med-org-prefixed-ל",
+  "policy": false
+ },
+ "460": {
+  "word": "אסותא",
+  "kind": "name",
+  "tag": "med-org-prefixed-ב",
+  "policy": false
+ },
+ "461": {
+  "word": "אלישע",
+  "kind": "name",
+  "tag": "med-org-prefixed-ל",
+  "policy": false
+ },
+ "462": {
+  "word": "אלישע",
+  "kind": "name",
+  "tag": "med-org-prefixed-ב",
+  "policy": false
+ },
+ "463": {
+  "word": "אלישע",
+  "kind": "name",
+  "tag": "first-name-header",
+  "policy": false
+ },
+ "464": {
+  "word": "אלישע",
+  "kind": "name",
+  "tag": "first-name-running",
+  "policy": false
+ },
+ "465": {
+  "word": "רמב\"ם",
+  "kind": "name",
+  "tag": "med-org-prefixed-ל",
+  "policy": false
+ },
+ "466": {
+  "word": "רמב\"ם",
+  "kind": "name",
+  "tag": "med-org-prefixed-ב",
+  "policy": false
+ },
+ "467": {
+  "word": "איכילוב",
+  "kind": "name",
+  "tag": "med-org-prefixed-ל",
+  "policy": false
+ },
+ "468": {
+  "word": "איכילוב",
+  "kind": "name",
+  "tag": "med-org-prefixed-ב",
+  "policy": false
+ },
+ "469": {
+  "word": "איכילוב",
+  "kind": "name",
+  "tag": "last-name-header",
+  "policy": false
+ },
+ "470": {
+  "word": "איכילוב",
+  "kind": "name",
+  "tag": "last-name-running",
+  "policy": false
+ },
+ "471": {
+  "word": "סוראסקי",
+  "kind": "name",
+  "tag": "med-org-prefixed-ל",
+  "policy": false
+ },
+ "472": {
+  "word": "סוראסקי",
+  "kind": "name",
+  "tag": "med-org-prefixed-ב",
+  "policy": false
+ },
+ "473": {
+  "word": "סוראסקי",
+  "kind": "name",
+  "tag": "last-name-header",
+  "policy": false
+ },
+ "474": {
+  "word": "סוראסקי",
+  "kind": "name",
+  "tag": "last-name-running",
+  "policy": false
+ },
+ "475": {
+  "word": "שערי צדק",
+  "kind": "name",
+  "tag": "med-org-prefixed-ל",
+  "policy": false
+ },
+ "476": {
+  "word": "שערי צדק",
+  "kind": "name",
+  "tag": "med-org-prefixed-ב",
+  "policy": false
+ },
+ "477": {
+  "word": "מכבי",
+  "kind": "name",
+  "tag": "org-prefixed-ב",
+  "policy": false
+ },
+ "478": {
+  "word": "מכבי",
+  "kind": "name",
+  "tag": "org-plain",
+  "policy": false
+ },
+ "479": {
+  "word": "מכבי",
+  "kind": "name",
+  "tag": "med-org-prefixed-ל",
+  "policy": false
+ },
+ "480": {
+  "word": "מכבי",
+  "kind": "name",
+  "tag": "med-org-prefixed-ב",
+  "policy": false
+ },
+ "481": {
+  "word": "מכבי",
+  "kind": "name",
+  "tag": "last-name-header",
+  "policy": false
+ },
+ "482": {
+  "word": "מכבי",
+  "kind": "name",
+  "tag": "last-name-running",
+  "policy": false
+ },
+ "483": {
+  "word": "כללית",
+  "kind": "name",
+  "tag": "med-org-prefixed-ל",
+  "policy": false
+ },
+ "484": {
+  "word": "כללית",
+  "kind": "name",
+  "tag": "med-org-prefixed-ב",
+  "policy": false
+ },
+ "485": {
+  "word": "כללית",
+  "kind": "plain",
+  "tag": "plain-use",
+  "policy": false
+ },
+ "486": {
+  "word": "מאוחדת",
+  "kind": "name",
+  "tag": "med-org-prefixed-ל",
+  "policy": false
+ },
+ "487": {
+  "word": "מאוחדת",
+  "kind": "name",
+  "tag": "med-org-prefixed-ב",
+  "policy": false
+ },
+ "488": {
+  "word": "מאוחדת",
+  "kind": "plain",
+  "tag": "plain-use",
+  "policy": false
+ },
+ "489": {
+  "word": "לאומית",
+  "kind": "name",
+  "tag": "med-org-prefixed-ל",
+  "policy": false
+ },
+ "490": {
+  "word": "לאומית",
+  "kind": "name",
+  "tag": "med-org-prefixed-ב",
+  "policy": false
+ },
+ "491": {
+  "word": "לאומית",
+  "kind": "plain",
+  "tag": "plain-use",
+  "policy": false
+ },
+ "492": {
+  "word": "דן",
+  "kind": "name",
+  "tag": "loc-prefixed-ב",
+  "policy": false
+ },
+ "493": {
+  "word": "דן",
+  "kind": "name",
+  "tag": "loc-prefixed-מ",
+  "policy": false
+ },
+ "494": {
+  "word": "דן",
+  "kind": "name",
+  "tag": "first-name-header",
+  "policy": false
+ },
+ "495": {
+  "word": "דן",
+  "kind": "name",
+  "tag": "first-name-running",
+  "policy": false
+ },
+ "496": {
+  "word": "שרון",
+  "kind": "name",
+  "tag": "loc-prefixed-ב",
+  "policy": false
+ },
+ "497": {
+  "word": "שרון",
+  "kind": "name",
+  "tag": "loc-prefixed-מ",
+  "policy": false
+ },
+ "498": {
+  "word": "שרון",
+  "kind": "name",
+  "tag": "first-name-header",
+  "policy": false
+ },
+ "499": {
+  "word": "שרון",
+  "kind": "name",
+  "tag": "first-name-running",
+  "policy": false
+ },
+ "500": {
+  "word": "גולן",
+  "kind": "name",
+  "tag": "loc-prefixed-ב",
+  "policy": false
+ },
+ "501": {
+  "word": "גולן",
+  "kind": "name",
+  "tag": "loc-prefixed-מ",
+  "policy": false
+ },
+ "502": {
+  "word": "גולן",
+  "kind": "name",
+  "tag": "first-name-header",
+  "policy": false
+ },
+ "503": {
+  "word": "גולן",
+  "kind": "name",
+  "tag": "first-name-running",
+  "policy": false
+ },
+ "504": {
+  "word": "גליל",
+  "kind": "name",
+  "tag": "loc-prefixed-ב",
+  "policy": false
+ },
+ "505": {
+  "word": "גליל",
+  "kind": "name",
+  "tag": "loc-prefixed-מ",
+  "policy": false
+ },
+ "506": {
+  "word": "גליל",
+  "kind": "name",
+  "tag": "first-name-header",
+  "policy": false
+ },
+ "507": {
+  "word": "גליל",
+  "kind": "name",
+  "tag": "first-name-running",
+  "policy": false
+ },
+ "508": {
+  "word": "נגב",
+  "kind": "name",
+  "tag": "loc-prefixed-ב",
+  "policy": false
+ },
+ "509": {
+  "word": "נגב",
+  "kind": "name",
+  "tag": "loc-prefixed-מ",
+  "policy": false
+ },
+ "510": {
+  "word": "עמק",
+  "kind": "name",
+  "tag": "loc-prefixed-ב",
+  "policy": false
+ },
+ "511": {
+  "word": "עמק",
+  "kind": "name",
+  "tag": "loc-prefixed-מ",
+  "policy": false
+ },
+ "512": {
+  "word": "ירדן",
+  "kind": "name",
+  "tag": "loc-prefixed-ב",
+  "policy": false
+ },
+ "513": {
+  "word": "ירדן",
+  "kind": "name",
+  "tag": "loc-prefixed-מ",
+  "policy": false
+ },
+ "514": {
+  "word": "ירדן",
+  "kind": "name",
+  "tag": "first-name-header",
+  "policy": false
+ },
+ "515": {
+  "word": "ירדן",
+  "kind": "name",
+  "tag": "first-name-running",
+  "policy": false
+ },
+ "516": {
+  "word": "כנרת",
+  "kind": "name",
+  "tag": "loc-prefixed-ב",
+  "policy": false
+ },
+ "517": {
+  "word": "כנרת",
+  "kind": "name",
+  "tag": "loc-prefixed-מ",
+  "policy": false
+ },
+ "518": {
+  "word": "גילה",
+  "kind": "name",
+  "tag": "loc-prefixed-ב",
+  "policy": false
+ },
+ "519": {
+  "word": "גילה",
+  "kind": "name",
+  "tag": "loc-prefixed-מ",
+  "policy": false
+ },
+ "520": {
+  "word": "גילה",
+  "kind": "name",
+  "tag": "first-name-header",
+  "policy": false
+ },
+ "521": {
+  "word": "גילה",
+  "kind": "name",
+  "tag": "first-name-running",
+  "policy": false
+ },
+ "522": {
+  "word": "אילת",
+  "kind": "name",
+  "tag": "loc-prefixed-ב",
+  "policy": false
+ },
+ "523": {
+  "word": "אילת",
+  "kind": "name",
+  "tag": "loc-prefixed-מ",
+  "policy": false
+ },
+ "524": {
+  "word": "אילת",
+  "kind": "name",
+  "tag": "first-name-header",
+  "policy": false
+ },
+ "525": {
+  "word": "אילת",
+  "kind": "name",
+  "tag": "first-name-running",
+  "policy": false
+ },
+ "526": {
+  "word": "ערד",
+  "kind": "name",
+  "tag": "loc-prefixed-ב",
+  "policy": false
+ },
+ "527": {
+  "word": "ערד",
+  "kind": "name",
+  "tag": "loc-prefixed-מ",
+  "policy": false
+ },
+ "528": {
+  "word": "ערד",
+  "kind": "name",
+  "tag": "first-name-header",
+  "policy": false
+ },
+ "529": {
+  "word": "ערד",
+  "kind": "name",
+  "tag": "first-name-running",
+  "policy": false
+ },
+ "530": {
+  "word": "עומר",
+  "kind": "name",
+  "tag": "loc-prefixed-ב",
+  "policy": false
+ },
+ "531": {
+  "word": "עומר",
+  "kind": "name",
+  "tag": "loc-prefixed-מ",
+  "policy": false
+ },
+ "532": {
+  "word": "עומר",
+  "kind": "name",
+  "tag": "first-name-header",
+  "policy": false
+ },
+ "533": {
+  "word": "עומר",
+  "kind": "name",
+  "tag": "first-name-running",
+  "policy": false
+ },
+ "534": {
+  "word": "אפרת",
+  "kind": "name",
+  "tag": "loc-prefixed-ב",
+  "policy": false
+ },
+ "535": {
+  "word": "אפרת",
+  "kind": "name",
+  "tag": "loc-prefixed-מ",
+  "policy": false
+ },
+ "536": {
+  "word": "אפרת",
+  "kind": "name",
+  "tag": "first-name-header",
+  "policy": false
+ },
+ "537": {
+  "word": "אפרת",
+  "kind": "name",
+  "tag": "first-name-running",
+  "policy": false
+ },
+ "538": {
+  "word": "אלעד",
+  "kind": "name",
+  "tag": "loc-prefixed-ב",
+  "policy": false
+ },
+ "539": {
+  "word": "אלעד",
+  "kind": "name",
+  "tag": "loc-prefixed-מ",
+  "policy": false
+ },
+ "540": {
+  "word": "אלעד",
+  "kind": "name",
+  "tag": "first-name-header",
+  "policy": false
+ },
+ "541": {
+  "word": "אלעד",
+  "kind": "name",
+  "tag": "first-name-running",
+  "policy": false
+ },
+ "542": {
+  "word": "בארי",
+  "kind": "name",
+  "tag": "loc-prefixed-ב",
+  "policy": false
+ },
+ "543": {
+  "word": "בארי",
+  "kind": "name",
+  "tag": "loc-prefixed-מ",
+  "policy": false
+ },
+ "544": {
+  "word": "בארי",
+  "kind": "name",
+  "tag": "first-name-header",
+  "policy": false
+ },
+ "545": {
+  "word": "בארי",
+  "kind": "name",
+  "tag": "first-name-running",
+  "policy": false
+ },
+ "546": {
+  "word": "שילה",
+  "kind": "name",
+  "tag": "loc-prefixed-ב",
+  "policy": false
+ },
+ "547": {
+  "word": "שילה",
+  "kind": "name",
+  "tag": "loc-prefixed-מ",
+  "policy": false
+ },
+ "548": {
+  "word": "שילה",
+  "kind": "name",
+  "tag": "first-name-header",
+  "policy": false
+ },
+ "549": {
+  "word": "שילה",
+  "kind": "name",
+  "tag": "first-name-running",
+  "policy": false
+ },
+ "550": {
+  "word": "עלי",
+  "kind": "name",
+  "tag": "loc-prefixed-ב",
+  "policy": false
+ },
+ "551": {
+  "word": "עלי",
+  "kind": "name",
+  "tag": "loc-prefixed-מ",
+  "policy": false
+ },
+ "552": {
+  "word": "עלי",
+  "kind": "name",
+  "tag": "first-name-header",
+  "policy": false
+ },
+ "553": {
+  "word": "עלי",
+  "kind": "name",
+  "tag": "first-name-running",
+  "policy": false
+ },
+ "554": {
+  "word": "עלי",
+  "kind": "plain",
+  "tag": "plain-use",
+  "policy": false
+ },
+ "555": {
+  "word": "עלי",
+  "kind": "mixed",
+  "tag": "plain-then-first_name",
+  "policy": false
+ },
+ "556": {
+  "word": "עכו",
+  "kind": "name",
+  "tag": "loc-prefixed-ב",
+  "policy": false
+ },
+ "557": {
+  "word": "עכו",
+  "kind": "name",
+  "tag": "loc-prefixed-מ",
+  "policy": false
+ },
+ "558": {
+  "word": "לוד",
+  "kind": "name",
+  "tag": "loc-prefixed-ב",
+  "policy": false
+ },
+ "559": {
+  "word": "לוד",
+  "kind": "name",
+  "tag": "loc-prefixed-מ",
+  "policy": false
+ },
+ "560": {
+  "word": "חולון",
+  "kind": "name",
+  "tag": "loc-prefixed-ב",
+  "policy": false
+ },
+ "561": {
+  "word": "חולון",
+  "kind": "name",
+  "tag": "loc-prefixed-מ",
+  "policy": false
+ },
+ "562": {
+  "word": "יבנה",
+  "kind": "name",
+  "tag": "loc-prefixed-ב",
+  "policy": false
+ },
+ "563": {
+  "word": "יבנה",
+  "kind": "name",
+  "tag": "loc-prefixed-מ",
+  "policy": false
+ },
+ "564": {
+  "word": "שדרות",
+  "kind": "name",
+  "tag": "loc-prefixed-ב",
+  "policy": false
+ },
+ "565": {
+  "word": "שדרות",
+  "kind": "name",
+  "tag": "loc-prefixed-מ",
+  "policy": false
+ },
+ "566": {
+  "word": "מעלות",
+  "kind": "name",
+  "tag": "loc-prefixed-ב",
+  "policy": false
+ },
+ "567": {
+  "word": "מעלות",
+  "kind": "name",
+  "tag": "loc-prefixed-מ",
+  "policy": false
+ },
+ "568": {
+  "word": "מעלות",
+  "kind": "plain",
+  "tag": "plain-use",
+  "policy": false
+ },
+ "569": {
+  "word": "דימונה",
+  "kind": "name",
+  "tag": "loc-prefixed-ב",
+  "policy": false
+ },
+ "570": {
+  "word": "דימונה",
+  "kind": "name",
+  "tag": "loc-prefixed-מ",
+  "policy": false
+ },
+ "571": {
+  "word": "טירה",
+  "kind": "name",
+  "tag": "loc-prefixed-ב",
+  "policy": false
+ },
+ "572": {
+  "word": "טירה",
+  "kind": "name",
+  "tag": "loc-prefixed-מ",
+  "policy": false
+ },
+ "573": {
+  "word": "צפת",
+  "kind": "name",
+  "tag": "loc-prefixed-ב",
+  "policy": false
+ },
+ "574": {
+  "word": "צפת",
+  "kind": "name",
+  "tag": "loc-prefixed-מ",
+  "policy": false
+ },
+ "575": {
+  "word": "נתניה",
+  "kind": "name",
+  "tag": "loc-prefixed-ב",
+  "policy": false
+ },
+ "576": {
+  "word": "נתניה",
+  "kind": "name",
+  "tag": "loc-prefixed-מ",
+  "policy": false
+ },
+ "577": {
+  "word": "חדרה",
+  "kind": "name",
+  "tag": "loc-prefixed-ב",
+  "policy": false
+ },
+ "578": {
+  "word": "חדרה",
+  "kind": "name",
+  "tag": "loc-prefixed-מ",
+  "policy": false
+ },
+ "579": {
+  "word": "נוף",
+  "kind": "name",
+  "tag": "loc-prefixed-ב",
+  "policy": false
+ },
+ "580": {
+  "word": "נוף",
+  "kind": "name",
+  "tag": "loc-prefixed-מ",
+  "policy": false
+ },
+ "581": {
+  "word": "נוף",
+  "kind": "name",
+  "tag": "first-name-header",
+  "policy": false
+ },
+ "582": {
+  "word": "נוף",
+  "kind": "name",
+  "tag": "first-name-running",
+  "policy": false
+ },
+ "583": {
+  "word": "פרץ",
+  "kind": "name",
+  "tag": "last-name-header",
+  "policy": false
+ },
+ "584": {
+  "word": "פרץ",
+  "kind": "name",
+  "tag": "last-name-running",
+  "policy": false
+ },
+ "585": {
+  "word": "פרץ",
+  "kind": "plain",
+  "tag": "plain-use",
+  "policy": false
+ },
+ "586": {
+  "word": "פרץ",
+  "kind": "mixed",
+  "tag": "last_name-then-plain",
+  "policy": false
+ },
+ "587": {
+  "word": "פרץ",
+  "kind": "name",
+  "tag": "first-name-header",
+  "policy": false
+ },
+ "588": {
+  "word": "פרץ",
+  "kind": "name",
+  "tag": "first-name-running",
+  "policy": false
+ },
+ "589": {
+  "word": "פרץ",
+  "kind": "mixed",
+  "tag": "plain-then-first_name",
+  "policy": false
+ },
+ "590": {
+  "word": "נסים",
+  "kind": "name",
+  "tag": "first-name-header",
+  "policy": false
+ },
+ "591": {
+  "word": "נסים",
+  "kind": "name",
+  "tag": "first-name-running",
+  "policy": false
+ },
+ "592": {
+  "word": "ניסים",
+  "kind": "name",
+  "tag": "last-name-header",
+  "policy": false
+ },
+ "593": {
+  "word": "ניסים",
+  "kind": "name",
+  "tag": "last-name-running",
+  "policy": false
+ },
+ "594": {
+  "word": "עוזר",
+  "kind": "name",
+  "tag": "first-name-header",
+  "policy": false
+ },
+ "595": {
+  "word": "עוזר",
+  "kind": "name",
+  "tag": "first-name-running",
+  "policy": false
+ },
+ "596": {
+  "word": "עוזר",
+  "kind": "plain",
+  "tag": "plain-use",
+  "policy": false
+ },
+ "597": {
+  "word": "עוזר",
+  "kind": "mixed",
+  "tag": "plain-then-first_name",
+  "policy": false
+ },
+ "598": {
+  "word": "עוזר",
+  "kind": "name",
+  "tag": "last-name-header",
+  "policy": false
+ },
+ "599": {
+  "word": "עוזר",
+  "kind": "name",
+  "tag": "last-name-running",
+  "policy": false
+ },
+ "600": {
+  "word": "עוזר",
+  "kind": "mixed",
+  "tag": "last_name-then-plain",
+  "policy": false
+ },
+ "601": {
+  "word": "מלך",
+  "kind": "name",
+  "tag": "last-name-header",
+  "policy": false
+ },
+ "602": {
+  "word": "מלך",
+  "kind": "name",
+  "tag": "last-name-running",
+  "policy": false
+ },
+ "603": {
+  "word": "נחום",
+  "kind": "name",
+  "tag": "first-name-header",
+  "policy": false
+ },
+ "604": {
+  "word": "נחום",
+  "kind": "name",
+  "tag": "first-name-running",
+  "policy": false
+ },
+ "605": {
+  "word": "אדם",
+  "kind": "name",
+  "tag": "first-name-header",
+  "policy": false
+ },
+ "606": {
+  "word": "אדם",
+  "kind": "name",
+  "tag": "first-name-running",
+  "policy": false
+ },
+ "607": {
+  "word": "אדם",
+  "kind": "plain",
+  "tag": "plain-use",
+  "policy": false
+ },
+ "608": {
+  "word": "אדם",
+  "kind": "mixed",
+  "tag": "first_name-then-plain",
+  "policy": false
+ },
+ "609": {
+  "word": "אדם",
+  "kind": "name",
+  "tag": "last-name-header",
+  "policy": false
+ },
+ "610": {
+  "word": "אדם",
+  "kind": "name",
+  "tag": "last-name-running",
+  "policy": false
+ },
+ "611": {
+  "word": "אדם",
+  "kind": "mixed",
+  "tag": "plain-then-last_name",
+  "policy": false
+ },
+ "612": {
+  "word": "אנוש",
+  "kind": "name",
+  "tag": "first-name-header",
+  "policy": false
+ },
+ "613": {
+  "word": "אנוש",
+  "kind": "name",
+  "tag": "first-name-running",
+  "policy": false
+ },
+ "614": {
+  "word": "אנוש",
+  "kind": "plain",
+  "tag": "plain-use",
+  "policy": false
+ },
+ "615": {
+  "word": "אנוש",
+  "kind": "mixed",
+  "tag": "plain-then-first_name",
+  "policy": false
+ },
+ "616": {
+  "word": "חכם",
+  "kind": "name",
+  "tag": "last-name-header",
+  "policy": false
+ },
+ "617": {
+  "word": "חכם",
+  "kind": "name",
+  "tag": "last-name-running",
+  "policy": false
+ },
+ "618": {
+  "word": "דאון",
+  "kind": "name",
+  "tag": "last-name-header",
+  "policy": false
+ },
+ "619": {
+  "word": "דאון",
+  "kind": "name",
+  "tag": "last-name-running",
+  "policy": false
+ },
+ "620": {
+  "word": "דאון",
+  "kind": "plain",
+  "tag": "plain-use",
+  "policy": false
+ },
+ "621": {
+  "word": "דאון",
+  "kind": "mixed",
+  "tag": "plain-then-last_name",
+  "policy": false
+ },
+ "622": {
+  "word": "פרקינסון",
+  "kind": "name",
+  "tag": "last-name-header",
+  "policy": false
+ },
+ "623": {
+  "word": "פרקינסון",
+  "kind": "name",
+  "tag": "last-name-running",
+  "policy": false
+ },
+ "624": {
+  "word": "פרקינסון",
+  "kind": "plain",
+  "tag": "plain-use",
+  "policy": false
+ },
+ "625": {
+  "word": "פרקינסון",
+  "kind": "mixed",
+  "tag": "plain-then-last_name",
+  "policy": false
+ },
+ "626": {
+  "word": "אלצהיימר",
+  "kind": "name",
+  "tag": "last-name-header",
+  "policy": false
+ },
+ "627": {
+  "word": "אלצהיימר",
+  "kind": "name",
+  "tag": "last-name-running",
+  "policy": false
+ },
+ "628": {
+  "word": "אלצהיימר",
+  "kind": "plain",
+  "tag": "plain-use",
+  "policy": false
+ },
+ "629": {
+  "word": "אלצהיימר",
+  "kind": "mixed",
+  "tag": "plain-then-last_name",
+  "policy": false
+ },
+ "630": {
+  "word": "הנטינגטון",
+  "kind": "name",
+  "tag": "last-name-header",
+  "policy": false
+ },
+ "631": {
+  "word": "הנטינגטון",
+  "kind": "name",
+  "tag": "last-name-running",
+  "policy": false
+ },
+ "632": {
+  "word": "הנטינגטון",
+  "kind": "plain",
+  "tag": "plain-use",
+  "policy": false
+ },
+ "633": {
+  "word": "הנטינגטון",
+  "kind": "mixed",
+  "tag": "plain-then-last_name",
+  "policy": false
+ },
+ "634": {
+  "word": "קרוהן",
+  "kind": "name",
+  "tag": "last-name-header",
+  "policy": false
+ },
+ "635": {
+  "word": "קרוהן",
+  "kind": "name",
+  "tag": "last-name-running",
+  "policy": false
+ },
+ "636": {
+  "word": "קרוהן",
+  "kind": "plain",
+  "tag": "plain-use",
+  "policy": false
+ },
+ "637": {
+  "word": "קרוהן",
+  "kind": "mixed",
+  "tag": "plain-then-last_name",
+  "policy": false
+ },
+ "638": {
+  "word": "הודג'קין",
+  "kind": "name",
+  "tag": "last-name-header",
+  "policy": false
+ },
+ "639": {
+  "word": "הודג'קין",
+  "kind": "name",
+  "tag": "last-name-running",
+  "policy": false
+ },
+ "640": {
+  "word": "הודג'קין",
+  "kind": "plain",
+  "tag": "plain-use",
+  "policy": false
+ },
+ "641": {
+  "word": "הודג'קין",
+  "kind": "mixed",
+  "tag": "plain-then-last_name",
+  "policy": false
+ },
+ "642": {
+  "word": "גרייבס",
+  "kind": "name",
+  "tag": "last-name-header",
+  "policy": false
+ },
+ "643": {
+  "word": "גרייבס",
+  "kind": "name",
+  "tag": "last-name-running",
+  "policy": false
+ },
+ "644": {
+  "word": "גרייבס",
+  "kind": "plain",
+  "tag": "plain-use",
+  "policy": false
+ },
+ "645": {
+  "word": "גרייבס",
+  "kind": "mixed",
+  "tag": "plain-then-last_name",
+  "policy": false
+ },
+ "646": {
+  "word": "הוטשימוטו",
+  "kind": "name",
+  "tag": "last-name-header",
+  "policy": false
+ },
+ "647": {
+  "word": "הוטשימוטו",
+  "kind": "name",
+  "tag": "last-name-running",
+  "policy": false
+ },
+ "648": {
+  "word": "הוטשימוטו",
+  "kind": "plain",
+  "tag": "plain-use",
+  "policy": false
+ },
+ "649": {
+  "word": "הוטשימוטו",
+  "kind": "mixed",
+  "tag": "plain-then-last_name",
+  "policy": false
+ },
+ "650": {
+  "word": "בכטרב",
+  "kind": "name",
+  "tag": "last-name-header",
+  "policy": false
+ },
+ "651": {
+  "word": "בכטרב",
+  "kind": "name",
+  "tag": "last-name-running",
+  "policy": false
+ },
+ "652": {
+  "word": "בכטרב",
+  "kind": "plain",
+  "tag": "plain-use",
+  "policy": false
+ },
+ "653": {
+  "word": "בכטרב",
+  "kind": "mixed",
+  "tag": "plain-then-last_name",
+  "policy": false
+ },
+ "654": {
+  "word": "וילסון",
+  "kind": "name",
+  "tag": "last-name-header",
+  "policy": false
+ },
+ "655": {
+  "word": "וילסון",
+  "kind": "name",
+  "tag": "last-name-running",
+  "policy": false
+ },
+ "656": {
+  "word": "וילסון",
+  "kind": "plain",
+  "tag": "plain-use",
+  "policy": false
+ },
+ "657": {
+  "word": "וילסון",
+  "kind": "mixed",
+  "tag": "plain-then-last_name",
+  "policy": false
+ },
+ "658": {
+  "word": "מרפן",
+  "kind": "name",
+  "tag": "last-name-header",
+  "policy": false
+ },
+ "659": {
+  "word": "מרפן",
+  "kind": "name",
+  "tag": "last-name-running",
+  "policy": false
+ },
+ "660": {
+  "word": "מרפן",
+  "kind": "plain",
+  "tag": "plain-use",
+  "policy": false
+ },
+ "661": {
+  "word": "מרפן",
+  "kind": "mixed",
+  "tag": "plain-then-last_name",
+  "policy": false
+ },
+ "662": {
+  "word": "טורט",
+  "kind": "name",
+  "tag": "last-name-header",
+  "policy": false
+ },
+ "663": {
+  "word": "טורט",
+  "kind": "name",
+  "tag": "last-name-running",
+  "policy": false
+ },
+ "664": {
+  "word": "טורט",
+  "kind": "plain",
+  "tag": "plain-use",
+  "policy": false
+ },
+ "665": {
+  "word": "טורט",
+  "kind": "mixed",
+  "tag": "plain-then-last_name",
+  "policy": false
+ },
+ "666": {
+  "word": "אספרגר",
+  "kind": "name",
+  "tag": "last-name-header",
+  "policy": false
+ },
+ "667": {
+  "word": "אספרגר",
+  "kind": "name",
+  "tag": "last-name-running",
+  "policy": false
+ },
+ "668": {
+  "word": "אספרגר",
+  "kind": "plain",
+  "tag": "plain-use",
+  "policy": false
+ },
+ "669": {
+  "word": "אספרגר",
+  "kind": "mixed",
+  "tag": "plain-then-last_name",
+  "policy": false
+ },
+ "670": {
+  "word": "קושינג",
+  "kind": "name",
+  "tag": "last-name-header",
+  "policy": false
+ },
+ "671": {
+  "word": "קושינג",
+  "kind": "name",
+  "tag": "last-name-running",
+  "policy": false
+ },
+ "672": {
+  "word": "קושינג",
+  "kind": "plain",
+  "tag": "plain-use",
+  "policy": false
+ },
+ "673": {
+  "word": "קושינג",
+  "kind": "mixed",
+  "tag": "plain-then-last_name",
+  "policy": false
+ },
+ "674": {
+  "word": "אדיסון",
+  "kind": "name",
+  "tag": "last-name-header",
+  "policy": false
+ },
+ "675": {
+  "word": "אדיסון",
+  "kind": "name",
+  "tag": "last-name-running",
+  "policy": false
+ },
+ "676": {
+  "word": "אדיסון",
+  "kind": "plain",
+  "tag": "plain-use",
+  "policy": false
+ },
+ "677": {
+  "word": "אדיסון",
+  "kind": "mixed",
+  "tag": "plain-then-last_name",
+  "policy": false
+ },
+ "678": {
+  "word": "ברקיט",
+  "kind": "name",
+  "tag": "last-name-header",
+  "policy": false
+ },
+ "679": {
+  "word": "ברקיט",
+  "kind": "name",
+  "tag": "last-name-running",
+  "policy": false
+ },
+ "680": {
+  "word": "ברקיט",
+  "kind": "plain",
+  "tag": "plain-use",
+  "policy": false
+ },
+ "681": {
+  "word": "ברקיט",
+  "kind": "mixed",
+  "tag": "plain-then-last_name",
+  "policy": false
+ },
+ "682": {
+  "word": "שוגרן",
+  "kind": "name",
+  "tag": "last-name-header",
+  "policy": false
+ },
+ "683": {
+  "word": "שוגרן",
+  "kind": "name",
+  "tag": "last-name-running",
+  "policy": false
+ },
+ "684": {
+  "word": "שוגרן",
+  "kind": "plain",
+  "tag": "plain-use",
+  "policy": false
+ },
+ "685": {
+  "word": "שוגרן",
+  "kind": "mixed",
+  "tag": "plain-then-last_name",
+  "policy": false
+ },
+ "686": {
+  "word": "בהצ'ט",
+  "kind": "name",
+  "tag": "last-name-header",
+  "policy": false
+ },
+ "687": {
+  "word": "בהצ'ט",
+  "kind": "name",
+  "tag": "last-name-running",
+  "policy": false
+ },
+ "688": {
+  "word": "בהצ'ט",
+  "kind": "plain",
+  "tag": "plain-use",
+  "policy": false
+ },
+ "689": {
+  "word": "בהצ'ט",
+  "kind": "mixed",
+  "tag": "plain-then-last_name",
+  "policy": false
+ },
+ "690": {
+  "word": "ליים",
+  "kind": "name",
+  "tag": "last-name-header",
+  "policy": false
+ },
+ "691": {
+  "word": "ליים",
+  "kind": "name",
+  "tag": "last-name-running",
+  "policy": false
+ },
+ "692": {
+  "word": "ליים",
+  "kind": "plain",
+  "tag": "plain-use",
+  "policy": false
+ },
+ "693": {
+  "word": "ליים",
+  "kind": "mixed",
+  "tag": "plain-then-last_name",
+  "policy": false
+ },
+ "694": {
+  "word": "קוקסאקי",
+  "kind": "name",
+  "tag": "last-name-header",
+  "policy": false
+ },
+ "695": {
+  "word": "קוקסאקי",
+  "kind": "name",
+  "tag": "last-name-running",
+  "policy": false
+ },
+ "696": {
+  "word": "קוקסאקי",
+  "kind": "plain",
+  "tag": "plain-use",
+  "policy": false
+ },
+ "697": {
+  "word": "קוקסאקי",
+  "kind": "mixed",
+  "tag": "plain-then-last_name",
+  "policy": false
+ },
+ "698": {
+  "word": "אבולה",
+  "kind": "name",
+  "tag": "last-name-header",
+  "policy": false
+ },
+ "699": {
+  "word": "אבולה",
+  "kind": "name",
+  "tag": "last-name-running",
+  "policy": false
+ },
+ "700": {
+  "word": "אבולה",
+  "kind": "plain",
+  "tag": "plain-use",
+  "policy": false
+ },
+ "701": {
+  "word": "אבולה",
+  "kind": "mixed",
+  "tag": "plain-then-last_name",
+  "policy": false
+ },
+ "702": {
+  "word": "זיקה",
+  "kind": "name",
+  "tag": "last-name-header",
+  "policy": false
+ },
+ "703": {
+  "word": "זיקה",
+  "kind": "name",
+  "tag": "last-name-running",
+  "policy": false
+ },
+ "704": {
+  "word": "זיקה",
+  "kind": "plain",
+  "tag": "plain-use",
+  "policy": false
+ },
+ "705": {
+  "word": "זיקה",
+  "kind": "mixed",
+  "tag": "plain-then-last_name",
+  "policy": false
+ },
+ "706": {
+  "word": "רייטר",
+  "kind": "name",
+  "tag": "last-name-header",
+  "policy": false
+ },
+ "707": {
+  "word": "רייטר",
+  "kind": "name",
+  "tag": "last-name-running",
+  "policy": false
+ },
+ "708": {
+  "word": "רייטר",
+  "kind": "plain",
+  "tag": "plain-use",
+  "policy": false
+ },
+ "709": {
+  "word": "רייטר",
+  "kind": "mixed",
+  "tag": "plain-then-last_name",
+  "policy": false
+ },
+ "710": {
+  "word": "גילברט",
+  "kind": "name",
+  "tag": "last-name-header",
+  "policy": false
+ },
+ "711": {
+  "word": "גילברט",
+  "kind": "name",
+  "tag": "last-name-running",
+  "policy": false
+ },
+ "712": {
+  "word": "גילברט",
+  "kind": "plain",
+  "tag": "plain-use",
+  "policy": false
+ },
+ "713": {
+  "word": "גילברט",
+  "kind": "mixed",
+  "tag": "plain-then-last_name",
+  "policy": false
+ },
+ "714": {
+  "word": "פאג'ט",
+  "kind": "name",
+  "tag": "last-name-header",
+  "policy": false
+ },
+ "715": {
+  "word": "פאג'ט",
+  "kind": "name",
+  "tag": "last-name-running",
+  "policy": false
+ },
+ "716": {
+  "word": "פאג'ט",
+  "kind": "plain",
+  "tag": "plain-use",
+  "policy": false
+ },
+ "717": {
+  "word": "פאג'ט",
+  "kind": "mixed",
+  "tag": "plain-then-last_name",
+  "policy": false
+ },
+ "718": {
+  "word": "קאווסאקי",
+  "kind": "name",
+  "tag": "last-name-header",
+  "policy": false
+ },
+ "719": {
+  "word": "קאווסאקי",
+  "kind": "name",
+  "tag": "last-name-running",
+  "policy": false
+ },
+ "720": {
+  "word": "קאווסאקי",
+  "kind": "plain",
+  "tag": "plain-use",
+  "policy": false
+ },
+ "721": {
+  "word": "קאווסאקי",
+  "kind": "mixed",
+  "tag": "plain-then-last_name",
+  "policy": false
+ },
+ "722": {
+  "word": "אפשטיין",
+  "kind": "name",
+  "tag": "last-name-header",
+  "policy": false
+ },
+ "723": {
+  "word": "אפשטיין",
+  "kind": "name",
+  "tag": "last-name-running",
+  "policy": false
+ },
+ "724": {
+  "word": "אפשטיין",
+  "kind": "plain",
+  "tag": "plain-use",
+  "policy": false
+ },
+ "725": {
+  "word": "אפשטיין",
+  "kind": "mixed",
+  "tag": "plain-then-last_name",
+  "policy": false
+ },
+ "726": {
+  "word": "מרקל",
+  "kind": "name",
+  "tag": "last-name-header",
+  "policy": false
+ },
+ "727": {
+  "word": "מרקל",
+  "kind": "name",
+  "tag": "last-name-running",
+  "policy": false
+ },
+ "728": {
+  "word": "מרקל",
+  "kind": "plain",
+  "tag": "plain-use",
+  "policy": false
+ },
+ "729": {
+  "word": "מרקל",
+  "kind": "mixed",
+  "tag": "plain-then-last_name",
+  "policy": false
+ },
+ "730": {
+  "word": "טובה",
+  "kind": "name",
+  "tag": "first-name-header",
+  "policy": false
+ },
+ "731": {
+  "word": "טובה",
+  "kind": "name",
+  "tag": "first-name-running",
+  "policy": false
+ },
+ "732": {
+  "word": "טובה",
+  "kind": "plain",
+  "tag": "plain-use",
+  "policy": false
+ },
+ "733": {
+  "word": "טובה",
+  "kind": "mixed",
+  "tag": "plain-then-first_name",
+  "policy": false
+ },
+ "734": {
+  "word": "שמר",
+  "kind": "name",
+  "tag": "first-name-header",
+  "policy": false
+ },
+ "735": {
+  "word": "שמר",
+  "kind": "name",
+  "tag": "first-name-running",
+  "policy": false
+ },
+ "736": {
+  "word": "שמר",
+  "kind": "plain",
+  "tag": "plain-use",
+  "policy": false
+ },
+ "737": {
+  "word": "שמר",
+  "kind": "mixed",
+  "tag": "plain-then-first_name",
+  "policy": false
+ },
+ "738": {
+  "word": "זכר",
+  "kind": "name",
+  "tag": "first-name-header",
+  "policy": false
+ },
+ "739": {
+  "word": "זכר",
+  "kind": "name",
+  "tag": "first-name-running",
+  "policy": false
+ },
+ "740": {
+  "word": "זכר",
+  "kind": "plain",
+  "tag": "plain-use",
+  "policy": false
+ },
+ "741": {
+  "word": "זכר",
+  "kind": "mixed",
+  "tag": "plain-then-first_name",
+  "policy": false
+ },
+ "742": {
+  "word": "מתן",
+  "kind": "name",
+  "tag": "first-name-header",
+  "policy": false
+ },
+ "743": {
+  "word": "מתן",
+  "kind": "name",
+  "tag": "first-name-running",
+  "policy": false
+ },
+ "744": {
+  "word": "מתן",
+  "kind": "plain",
+  "tag": "plain-use",
+  "policy": false
+ },
+ "745": {
+  "word": "מתן",
+  "kind": "mixed",
+  "tag": "plain-then-first_name",
+  "policy": false
+ },
+ "746": {
+  "word": "מתנה",
+  "kind": "name",
+  "tag": "first-name-header",
+  "policy": false
+ },
+ "747": {
+  "word": "מתנה",
+  "kind": "name",
+  "tag": "first-name-running",
+  "policy": false
+ },
+ "748": {
+  "word": "שלמה",
+  "kind": "name",
+  "tag": "first-name-header",
+  "policy": false
+ },
+ "749": {
+  "word": "שלמה",
+  "kind": "name",
+  "tag": "first-name-running",
+  "policy": false
+ },
+ "750": {
+  "word": "שלמה",
+  "kind": "plain",
+  "tag": "plain-use",
+  "policy": false
+ },
+ "751": {
+  "word": "שלמה",
+  "kind": "mixed",
+  "tag": "plain-then-first_name",
+  "policy": false
+ },
+ "752": {
+  "word": "שלם",
+  "kind": "name",
+  "tag": "last-name-header",
+  "policy": false
+ },
+ "753": {
+  "word": "שלם",
+  "kind": "name",
+  "tag": "last-name-running",
+  "policy": false
+ },
+ "754": {
+  "word": "שלם",
+  "kind": "plain",
+  "tag": "plain-use",
+  "policy": false
+ },
+ "755": {
+  "word": "שלם",
+  "kind": "mixed",
+  "tag": "plain-then-last_name",
+  "policy": false
+ },
+ "756": {
+  "word": "אמת",
+  "kind": "name",
+  "tag": "first-name-header",
+  "policy": false
+ },
+ "757": {
+  "word": "אמת",
+  "kind": "name",
+  "tag": "first-name-running",
+  "policy": false
+ },
+ "758": {
+  "word": "אמת",
+  "kind": "plain",
+  "tag": "plain-use",
+  "policy": false
+ },
+ "759": {
+  "word": "אמת",
+  "kind": "mixed",
+  "tag": "plain-then-first_name",
+  "policy": false
+ },
+ "760": {
+  "word": "צדק",
+  "kind": "name",
+  "tag": "first-name-header",
+  "policy": false
+ },
+ "761": {
+  "word": "צדק",
+  "kind": "name",
+  "tag": "first-name-running",
+  "policy": false
+ },
+ "762": {
+  "word": "חסד",
+  "kind": "name",
+  "tag": "first-name-header",
+  "policy": false
+ },
+ "763": {
+  "word": "חסד",
+  "kind": "name",
+  "tag": "first-name-running",
+  "policy": false
+ },
+ "764": {
+  "word": "טבע",
+  "kind": "name",
+  "tag": "org-prefixed-ב",
+  "policy": false
+ },
+ "765": {
+  "word": "טבע",
+  "kind": "name",
+  "tag": "org-plain",
+  "policy": false
+ },
+ "766": {
+  "word": "טבע",
+  "kind": "name",
+  "tag": "last-name-header",
+  "policy": false
+ },
+ "767": {
+  "word": "טבע",
+  "kind": "name",
+  "tag": "last-name-running",
+  "policy": false
+ },
+ "768": {
+  "word": "טבע",
+  "kind": "plain",
+  "tag": "plain-use",
+  "policy": false
+ },
+ "769": {
+  "word": "טבע",
+  "kind": "mixed",
+  "tag": "plain-then-last_name",
+  "policy": false
+ },
+ "770": {
+  "word": "פז",
+  "kind": "name",
+  "tag": "org-prefixed-ב",
+  "policy": false
+ },
+ "771": {
+  "word": "פז",
+  "kind": "name",
+  "tag": "org-plain",
+  "policy": false
+ },
+ "772": {
+  "word": "פז",
+  "kind": "name",
+  "tag": "first-name-header",
+  "policy": false
+ },
+ "773": {
+  "word": "פז",
+  "kind": "name",
+  "tag": "first-name-running",
+  "policy": false
+ },
+ "774": {
+  "word": "הראל",
+  "kind": "name",
+  "tag": "org-prefixed-ב",
+  "policy": false
+ },
+ "775": {
+  "word": "הראל",
+  "kind": "name",
+  "tag": "org-plain",
+  "policy": false
+ },
+ "776": {
+  "word": "הראל",
+  "kind": "name",
+  "tag": "first-name-header",
+  "policy": false
+ },
+ "777": {
+  "word": "הראל",
+  "kind": "name",
+  "tag": "first-name-running",
+  "policy": false
+ },
+ "778": {
+  "word": "מגדל",
+  "kind": "name",
+  "tag": "org-prefixed-ב",
+  "policy": false
+ },
+ "779": {
+  "word": "מגדל",
+  "kind": "name",
+  "tag": "org-plain",
+  "policy": false
+ },
+ "780": {
+  "word": "מגדל",
+  "kind": "name",
+  "tag": "last-name-header",
+  "policy": false
+ },
+ "781": {
+  "word": "מגדל",
+  "kind": "name",
+  "tag": "last-name-running",
+  "policy": false
+ },
+ "782": {
+  "word": "מגדל",
+  "kind": "plain",
+  "tag": "plain-use",
+  "policy": false
+ },
+ "783": {
+  "word": "מגדל",
+  "kind": "mixed",
+  "tag": "plain-then-last_name",
+  "policy": false
+ },
+ "784": {
+  "word": "כלל",
+  "kind": "name",
+  "tag": "org-prefixed-ב",
+  "policy": false
+ },
+ "785": {
+  "word": "כלל",
+  "kind": "name",
+  "tag": "org-plain",
+  "policy": false
+ },
+ "786": {
+  "word": "כלל",
+  "kind": "plain",
+  "tag": "plain-use",
+  "policy": false
+ },
+ "787": {
+  "word": "מנורה",
+  "kind": "name",
+  "tag": "org-prefixed-ב",
+  "policy": false
+ },
+ "788": {
+  "word": "מנורה",
+  "kind": "name",
+  "tag": "org-plain",
+  "policy": false
+ },
+ "789": {
+  "word": "מנורה",
+  "kind": "name",
+  "tag": "first-name-header",
+  "policy": false
+ },
+ "790": {
+  "word": "מנורה",
+  "kind": "name",
+  "tag": "first-name-running",
+  "policy": false
+ },
+ "791": {
+  "word": "מנורה",
+  "kind": "plain",
+  "tag": "plain-use",
+  "policy": false
+ },
+ "792": {
+  "word": "מנורה",
+  "kind": "mixed",
+  "tag": "first_name-then-plain",
+  "policy": false
+ },
+ "793": {
+  "word": "אגד",
+  "kind": "name",
+  "tag": "org-prefixed-ב",
+  "policy": false
+ },
+ "794": {
+  "word": "אגד",
+  "kind": "name",
+  "tag": "org-plain",
+  "policy": false
+ },
+ "795": {
+  "word": "אגד",
+  "kind": "plain",
+  "tag": "plain-use",
+  "policy": false
+ },
+ "796": {
+  "word": "תנובה",
+  "kind": "name",
+  "tag": "org-prefixed-ב",
+  "policy": false
+ },
+ "797": {
+  "word": "תנובה",
+  "kind": "name",
+  "tag": "org-plain",
+  "policy": false
+ },
+ "798": {
+  "word": "תנובה",
+  "kind": "name",
+  "tag": "first-name-header",
+  "policy": false
+ },
+ "799": {
+  "word": "תנובה",
+  "kind": "name",
+  "tag": "first-name-running",
+  "policy": false
+ },
+ "800": {
+  "word": "מזרחי",
+  "kind": "name",
+  "tag": "org-prefixed-ב",
+  "policy": false
+ },
+ "801": {
+  "word": "מזרחי",
+  "kind": "name",
+  "tag": "org-plain",
+  "policy": false
+ },
+ "802": {
+  "word": "מזרחי",
+  "kind": "name",
+  "tag": "last-name-header",
+  "policy": false
+ },
+ "803": {
+  "word": "מזרחי",
+  "kind": "name",
+  "tag": "last-name-running",
+  "policy": false
+ },
+ "804": {
+  "word": "לאומי",
+  "kind": "name",
+  "tag": "org-prefixed-ב",
+  "policy": false
+ },
+ "805": {
+  "word": "לאומי",
+  "kind": "name",
+  "tag": "org-plain",
+  "policy": false
+ },
+ "806": {
+  "word": "לאומי",
+  "kind": "name",
+  "tag": "last-name-header",
+  "policy": false
+ },
+ "807": {
+  "word": "לאומי",
+  "kind": "name",
+  "tag": "last-name-running",
+  "policy": false
+ },
+ "808": {
+  "word": "הפועלים",
+  "kind": "name",
+  "tag": "org-prefixed-ב",
+  "policy": false
+ },
+ "809": {
+  "word": "הפועלים",
+  "kind": "name",
+  "tag": "org-plain",
+  "policy": false
+ }
+}

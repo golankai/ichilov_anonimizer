@@ -9,7 +9,10 @@ the model: run `inference\run_dummy.bat` and compare with the 2026-11-08 first r
 Decisions: F6 dropped (prefix inside the masked span is fine; score `*-prefixed` tags leniently); months alone are masked
 (policy, hospital counts them); F8 will propagate only names NOT in `inference/lexicons/ambiguous_words.tsv`.
 Still open from section 2 below: F8 (+ strict/lenient switch), F9, F10, F11, F12.
-Open for later, not started: ambiguous-word cases in the fake test set (traps tier) and in synthetic training data;
+Done after that: `training/synth_eval_ambiguous/` (809 docs: name / plain / mixed use of every word of the list; own folder so
+`training/synth_eval` and its tests are untouched; score it with `train.py --synth-eval-dir training/synth_eval_ambiguous`;
+decide whether `train.py` should load both folders). List now has ORG, `phi_head`, `plain_example`.
+Open for later, not started: the same words in the pipeline test set `inference/dummy_data`, and in synthetic training data;
 corpus counts for the list; batching (O1).
 
 Original note (before the rules): nothing in the pipeline had been fixed yet. Everything below is planned.

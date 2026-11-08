@@ -201,11 +201,14 @@ F8 (document consistency: needs a stop-list and the strict/lenient switch), F9-F
 
 ## 5c. Ambiguous words list (started, decisions of 2026-11-08)
 
-`inference/lexicons/ambiguous_words.tsv` (217 words): only words that **could be PHI** and also mean something else, so a
+`inference/lexicons/ambiguous_words.tsv` (226 words, 242 rows): only words that **could be PHI** and also mean something else, so a
 patient's value can look like an ordinary word, or the reverse. Columns: `word`, `can_be_phi_as` (the labels it can
 legitimately carry, e.g. `DATE|FIRST_NAME` for יוני, `MED_ORG|LAST_NAME` for מאיר), `other_meaning`, `category`
 (month, season, nature, plant, common_word, verb, function_word, organ, family, hospital, hmo, place, disease_eponym),
-`clinical_frequency`. First collection from memory, not verified against corpus counts.
+`clinical_frequency`, plus `phi_head` (head noun inside an ORG / MED_ORG span) and `plain_example` (a sentence where the
+word is only a word; empty where none is natural). Includes ORG (banks, insurers, companies, clubs whose name is a word:
+מזרחי, לאומי, הפועלים, טבע, פז, הראל, מגדל, כלל, מנורה, אגד, תנובה, מכבי). First collection from memory, not verified
+against corpus counts.
 Deliberately **not** in the list: words that are never a name, date, place or organisation (חולי, חולה, כאב, חום, דופק,
 body parts used as a surname, titles מר/רב, drugs); they are not an ambiguity problem because nobody has them as a value.
 
@@ -216,8 +219,9 @@ How the list will be used (decided):
 2. **Document-level consistency (F8) works in the opposite direction:** if the model finds a name/city/organisation and
    that string is **not** in this list, every other occurrence in the same document is masked too (prefix tolerant).
    If the string **is** in the list, no propagation: each occurrence is left to the model.
-3. **Test cases (later, not created yet):** each word in plain use and as a name, added to the fake test set
-   (`make_dummy_data.py`, traps tier) to see which ones the model gets wrong.
+3. **Evaluation set (done 2026-11-09):** `training/synth_eval_ambiguous/` (generator `training/make_ambiguous_eval.py`):
+   each word as a name (must be masked), in plain use (nothing masked) and both in one document. 809 documents, scored
+   with `--synth-eval-dir training/synth_eval_ambiguous`. Still not added to the pipeline test set `inference/dummy_data`.
 4. **Synthetic training data (later, not created yet):** the same words in both uses as hard cases for T2/T3, once
    synthetic training data is made.
 5. Next improvement of the list: counts of each word in real discharge text (script run on the hospital side, only
