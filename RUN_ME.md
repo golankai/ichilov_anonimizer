@@ -7,12 +7,12 @@ Every block says where to run it (LOCAL = laptop, GPU = hospital machine) and wh
 
 Campaign `night-20261108-1846` is analysed (3 seeds per recipe). Pick: **C_mix_half** = real data + half the synthetic set, mixed.
 Best test F1 among the mixed recipes, best pipeline masked (0.956) and fewest leaks (32), lowest extra predictions (1.3), small seed spread.
-Best epochs of C were 5, 4, 6, so production uses **5 epochs**. The production synthetic file is the all-words variant (no held-out words).
+Production uses **6 epochs, fixed** (`train-all` has no validation split, so no early stopping; epoch 6 was the best epoch in most campaign runs). The production synthetic file is the all-words variant (no held-out words).
 
 ```
 cd "D:\DeID KAI\ichilov_anonimizer"
 git pull
-python -X utf8 training\train.py train-all --epochs 5 --extra-train training\synth_train\synth_train_all.jsonl --extra-fraction 0.5 --seed 42
+python -X utf8 training\train.py train-all --epochs 6 --extra-train training\synth_train\synth_train_all.jsonl --extra-fraction 0.5 --seed 42
 ```
 
 - Output: `training\models\<name>_<timestamp>\` (git-ignored, stays on the GPU machine; hand over from there).
