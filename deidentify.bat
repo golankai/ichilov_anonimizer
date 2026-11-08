@@ -15,5 +15,5 @@ set MODELARG=
 if not "%~3"=="" set MODELARG=--model "%~3"
 REM Uses .venv if setup.bat made one; otherwise the python of the active environment (e.g. a conda env).
 set PY=python
-if exist ".venv\Scripts\python.exe" set PY=.venv\Scripts\python.exe
+if exist ".venv\pyvenv.cfg" if exist ".venv\Scripts\python.exe" set PY=.venv\Scripts\python.exe
 "%PY%" -X utf8 inference\de_identify.py --input "%~f1" --mode %MODE% %MODELARG%

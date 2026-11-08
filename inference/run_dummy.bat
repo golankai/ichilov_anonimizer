@@ -3,7 +3,7 @@ rem Run the model on the fake sample files and push the results (inference\dummy
 rem Uses the python of the active environment (or .venv). Usage: inference\run_dummy.bat [model_name]
 cd /d "%~dp0.."
 set PY=python
-if exist ".venv\Scripts\python.exe" set PY=.venv\Scripts\python.exe
+if exist ".venv\pyvenv.cfg" if exist ".venv\Scripts\python.exe" set PY=.venv\Scripts\python.exe
 set MODELARG=
 if not "%~1"=="" set MODELARG=--model "%~1"
 for %%F in (test test_long) do (

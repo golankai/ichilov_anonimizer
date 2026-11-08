@@ -4,5 +4,5 @@
 cd "$(dirname "$0")"
 [ -n "$1" ] || { echo "Usage: ./deidentify.sh path/to/file.csv [label|mask|x] [model_name]"; exit 1; }
 MODEL=(); [ -n "$3" ] && MODEL=(--model "$3")
-PY=python; [ -x .venv/bin/python ] && PY=.venv/bin/python   # else the active environment
+PY=python; [ -f .venv/pyvenv.cfg ] && [ -x .venv/bin/python ] && PY=.venv/bin/python   # else the active environment
 exec "$PY" -X utf8 inference/de_identify.py --input "$(realpath "$1")" --mode "${2:-label}" "${MODEL[@]}"
