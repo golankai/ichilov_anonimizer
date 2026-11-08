@@ -201,6 +201,7 @@ def ner_mask_stage(
     max_tokens: Optional[int] = None,
     overlap_tokens: int = DEFAULT_OVERLAP,
     use_rules: bool = False,
+    consistency: bool = True,
 ):
     """
     Factory returning a stage that:
@@ -280,7 +281,7 @@ def ner_mask_stage(
 
         if use_rules:
             # Deterministic repairs/additions on spans of the original text (utils/rules.py).
-            entities_found = apply_rules(text, entities_found)
+            entities_found = apply_rules(text, entities_found, consistency=consistency)
 
         for ent in entities_found:
             label = ent["label"]

@@ -222,3 +222,103 @@ def test_rules_alone_cover_formats_they_are_responsible_for():
                 misses.append((g["tag"], d["text"][g["start"]:g["end"]]))
     assert total > 150
     assert misses == []
+
+
+# ---------------------------------------------------------------- phone (F13)
+@pytest.mark.parametrize("phone", ["054-1071719", "0541071719", "+972-54-1071719", "03-5551234", "054 107 1719", "02-6777777"])
+def test_phone_is_one_contact_span(phone):
+    t = f"טלפון {phone} לבירור"
+    assert labels(t) == [("CONTACT", phone)]
+
+
+def test_phone_replaces_partial_model_span():
+    t = "נייד +972-54-1071719."
+    got = labels(t, [span(t, "54-1071719", "CONTACT")])
+    assert got == [("CONTACT", "+972-54-1071719")]
+
+
+@pytest.mark.parametrize("text", ["ת.ז. 031234567", "מספר תיק 0541071719", "מינון 0.5-1071719", "ערך 25.10.1990"])
+def test_phone_rule_leaves_ids_dates_and_numbers_alone(text):
+    assert all(l != "CONTACT" for l, _ in labels(text))
+
+
+# ---------------------------------------------------------------- age (F14)
+@pytest.mark.parametrize("text, age", [("מטופל בן 92 הגיע", "92"), ("מטופלת בת 101.", "101"), ("גיל 95, עצמאי", "95"), ("בן: 90", "90")])
+def test_age_above_89(text, age):
+    assert labels(text) == [("AGE_ABOVE_89", age)]
+
+
+@pytest.mark.parametrize("text", ["בן 89 הגיע", "בן 45", "תינוק בן 90 ימים", "גיל 95%", "בן 9", "בן 130"])
+def test_not_an_age_above_89(text):
+    assert labels(text) == []
+
+
+def test_age_not_added_when_model_has_it():
+    t = "בן 92"
+    assert labels(t, [span(t, "92", "AGE_ABOVE_89")]) == [("AGE_ABOVE_89", "92")]
+
+
+# ---------------------------------------------------------------- document consistency (F8)
+def _has(t, spans, value, label):
+    return (label, value) in labels(t, spans)
+
+
+def test_repeated_name_is_masked_with_and_without_prefix():
+    t = "הגיע מיכל לוי. בבדיקה נמצא כי למיכל חום, ומיכל ישנה."
+    got = labels(t, [span(t, "מיכל", "FIRST_NAME")])
+    assert got.count(("FIRST_NAME", "מיכל")) == 3  # plain, ל-prefixed, ו-prefixed; prefix letters stay outside
+
+
+def test_ambiguous_word_is_not_propagated():
+    t = "אושר נכנס. הניתוח אושר אתמול."  # אושר is both a name and a verb
+    spans = [span(t, "אושר", "FIRST_NAME")]
+    assert labels(t, spans) == [("FIRST_NAME", "אושר")]
+
+
+def test_consistency_switch_off():
+    t = "הגיעה מיכל. מיכל חמה."
+    spans = [span(t, "מיכל", "FIRST_NAME")]
+    assert len(apply_rules(t, [dict(s) for s in spans], consistency=False)) == 1
+    assert len(apply_rules(t, [dict(s) for s in spans])) == 2
+
+
+def test_part_of_a_longer_word_is_not_masked():
+    t = "הגיע רון כהן. רונית שלו הגיעה, ורון שלו נשאר."
+    got = labels(t, [span(t, "רון", "FIRST_NAME")])
+    assert ("FIRST_NAME", "רונית") not in got and got.count(("FIRST_NAME", "רון")) == 2
+
+
+def test_consistency_never_overrides_existing_spans():
+    t = "דן כהן ודן כהן"
+    spans = [span(t, "כהן", "LAST_NAME")]
+    assert [s for s in apply_rules(t, spans) if s["start"] < 6] == [spans[0]]
+
+
+def test_dates_ids_and_contact_are_not_propagated():
+    t = "ביום 15.03.2024 נבדק. ב-15.03.2024 שוב."
+    got = labels(t, [span(t, "15.03.2024", "DATE")])
+    assert [l for l, _ in got] == ["DATE", "DATE"]  # both by the date rule, not by propagation
+
+
+def test_consistency_on_fake_truth_recovers_repeats_without_touching_traps():
+    """The 'model' finds only the non-repeat mentions; F8 must find the repeats and add nothing outside the truth."""
+    from utils.rules import CONSISTENCY_LABELS, ambiguous_words
+    amb = ambiguous_words()
+    outside, repeats, recovered = [], 0, 0
+    for d in _truth_rows():
+        model = [
+            {"start": g["start"], "end": g["end"], "text": d["text"][g["start"]:g["end"]], "label": g["label"]}
+            for g in d["label"] if "repeat" not in g["tag"]
+        ]
+        got = apply_rules(d["text"], model)
+        for s in got:
+            if not any(s["start"] < g["end"] and g["start"] < s["end"] for g in d["label"]):
+                outside.append((d["tier"], d["id"], d["text"][s["start"]:s["end"]]))
+        for g in d["label"]:
+            # words on the ambiguous list are left to the model on purpose (decision 2026-11-08)
+            if "repeat" in g["tag"] and g["label"] in CONSISTENCY_LABELS and d["text"][g["start"]:g["end"]] not in amb:
+                repeats += 1
+                recovered += any(s["start"] == g["start"] and s["end"] == g["end"] and s["label"] == g["label"] for s in got)
+    assert outside == []
+    assert repeats > 50
+    assert recovered == repeats, (recovered, repeats)

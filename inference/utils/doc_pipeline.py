@@ -39,6 +39,7 @@ def build_doc_pipeline(
     max_tokens: Optional[int] = None,
     overlap_tokens: int = DEFAULT_OVERLAP,
     use_rules: bool = False,
+    consistency: bool = True,
 ) -> Stage:
     """
     Builds a document-level pipeline.
@@ -106,6 +107,7 @@ def build_doc_pipeline(
         max_tokens=max_tokens,
         overlap_tokens=overlap_tokens,
         use_rules=use_rules,
+        consistency=consistency,
     )
 
     core_stages: List[Tuple[str, Stage]] = [

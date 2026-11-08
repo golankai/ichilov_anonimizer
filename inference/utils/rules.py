@@ -10,9 +10,16 @@ Rules (see docs/HOSPITAL_FEEDBACK_AND_FIXES.md):
   F1  digit runs the model left visible are masked (case numbers, IDs), with guards for lab values and doses
   F7  two surnames (or first names) joined by a hyphen are one span
   --  `ת.ז. 123456789` style IDs with context (what the old normalize_ids stage did, without rewriting the text)
+  F13 Israeli phone numbers (`054-1234567`, `+972-54-1234567`, `03-1234567`) are one CONTACT span
+  F14 age 90-120 after בן / בת / גיל is AGE_ABOVE_89 (when the model left it visible)
+  F8  document consistency: a name / city / organisation the model masked is masked at its other occurrences in the
+      same document too (Hebrew prefix stays outside), except strings in lexicons/ambiguous_words.tsv.
+      Switch: `consistency=False` in apply_rules, `--no-consistency` in de_identify.py
 """
+import csv
 import re
-from typing import Any, Dict, List
+from pathlib import Path
+from typing import Any, Dict, List, Optional, Set
 
 Span = Dict[str, Any]
 
@@ -86,6 +93,40 @@ MEASURE_BEFORE_RE = re.compile(
 )
 
 HYPHEN_JOIN_LABELS = {"LAST_NAME", "FIRST_NAME"}
+
+# Israeli phone: mobile 05X + 7 digits, landline 0X + 7 digits, optionally +972 (no leading 0). A separator
+# (dash or one space) may follow the area code and sit inside the 7 digits as 3+4.
+PHONE_RE = re.compile(
+    r"(?<![\w.,/:+\-])(?:\+972[\s\-]?|972\-|0)(?:5\d|[2-4689]|7\d)[\s\-]?\d{3}[\s\-]?\d{4}(?![\w]|[.,]\d|/\d|:\d)"
+)
+# Age 90-120 right after the age word. Not before a duration or percent (`בן 95 ימים`).
+AGE_RE = re.compile(
+    rf"(?<![{_HEB}])(?:כ|ל)?(?:בן|בת|בני|גיל)\s*[:\-]?\s*(?P<n>(?:9\d|1[01]\d|120))(?![\d%/:]|[.,]\d)"
+)
+AGE_NOT_AGE_AFTER_RE = re.compile(r"^\s*(?:ימים|יום|שבועות|חודשים|דקות|שעות|שניות|mg|ס\"מ|ק\"ג|%)", re.I)
+
+# F8 -----------------------------------------------------------------------
+CONSISTENCY_LABELS = {"FIRST_NAME", "LAST_NAME", "LOC", "ORG", "MED_ORG"}
+# One or two prefix letters (ו ב כ ל מ ה ש) may sit in front of a repeated value: `למיכל`, `ובחיפה`, `שהרופא`.
+_PREFIX = "[ובכלמהש]{0,2}-?"
+_AMBIGUOUS_FILE = Path(__file__).resolve().parent.parent / "lexicons" / "ambiguous_words.tsv"
+_ambiguous_cache: Optional[Set[str]] = None
+
+
+def ambiguous_words() -> Set[str]:
+    """Words that can be PHI and also ordinary words (lexicons/ambiguous_words.tsv); empty set if the file is missing."""
+    global _ambiguous_cache
+    if _ambiguous_cache is None:
+        words: Set[str] = set()
+        try:
+            with open(_AMBIGUOUS_FILE, encoding="utf-8-sig", newline="") as f:
+                for row in csv.DictReader(f, delimiter="\t"):
+                    if row.get("word"):
+                        words.add(row["word"].strip())
+        except OSError:
+            pass
+        _ambiguous_cache = words
+    return _ambiguous_cache
 
 
 # ---------------------------------------------------------------- helpers
@@ -248,6 +289,57 @@ def rule_hyphen_names(text: str, spans: List[Span]) -> List[Span]:
     return out
 
 
+def rule_phones(text: str, spans: List[Span]) -> List[Span]:
+    """Israeli phone numbers as one CONTACT span, replacing partial model spans. IDs / case numbers are not overwritten."""
+    for m in PHONE_RE.finditer(text):
+        if any(s["label"] in ("ID", "INNER_ID") and _overlaps(s, m.start(), m.end()) for s in spans):
+            continue
+        # `מספר תיק 0541071719`: after an identifier word it is a case number, left to the digit-run rule
+        if ID_CONTEXT_WORDS.search(text[max(0, m.start() - 20):m.start()]):
+            continue
+        spans = _replace_overlapping(spans, _span(text, m.start(), m.end(), "CONTACT"))
+    return spans
+
+
+def rule_age(text: str, spans: List[Span]) -> List[Span]:
+    """`בן 92` / `גיל 95`: the number is AGE_ABOVE_89 if the model did not already cover it."""
+    for m in AGE_RE.finditer(text):
+        start, end = m.start("n"), m.end("n")
+        if _is_covered(spans, start, end) or AGE_NOT_AGE_AFTER_RE.match(text[end:end + 12]):
+            continue
+        spans.append(_span(text, start, end, "AGE_ABOVE_89"))
+    return spans
+
+
+def rule_consistency(text: str, spans: List[Span]) -> List[Span]:
+    """F8: mask the other occurrences of every name / city / organisation the model masked in this document.
+
+    Only whole words (a Hebrew prefix may precede and stays outside the span), only values of 3+ letters, only values
+    none of whose words is in the ambiguous-words list, and never over a span that already exists.
+    """
+    ambiguous = ambiguous_words()
+    votes: Dict[str, Dict[str, int]] = {}
+    for s in spans:
+        v = s["text"].strip()
+        if s["label"] not in CONSISTENCY_LABELS or len(v) < 3 or not re.fullmatch(rf"[{_HEB}\- \"'״׳]+", v):
+            continue
+        if any(w in ambiguous for w in re.split(r"[\s\-]+", v)):
+            continue
+        votes.setdefault(v, {}).setdefault(s["label"], 0)
+        votes[v][s["label"]] += 1
+    added: List[Span] = []
+    # longest values first, so `כפר סבא` is placed before a shorter value inside it
+    for v in sorted(votes, key=len, reverse=True):
+        label = max(votes[v], key=votes[v].get)
+        pattern = re.compile(rf"(?<![{_HEB}\w])(?:{_PREFIX})?(?P<v>{re.escape(v)})(?![{_HEB}\w])")
+        for m in pattern.finditer(text):
+            start, end = m.start("v"), m.end("v")
+            if _is_covered(spans, start, end) or _is_covered(added, start, end):
+                continue
+            added.append(_span(text, start, end, label))
+    return spans + added
+
+
 def resolve_overlaps(spans: List[Span]) -> List[Span]:
     """Keep the longest span when two overlap (earlier wins ties), return sorted by start."""
     kept: List[Span] = []
@@ -258,8 +350,11 @@ def resolve_overlaps(spans: List[Span]) -> List[Span]:
     return kept
 
 
-def apply_rules(text: str, spans: List[Span]) -> List[Span]:
-    """Run all rules over the model's spans and return the final, non-overlapping, sorted spans."""
+def apply_rules(text: str, spans: List[Span], consistency: bool = True) -> List[Span]:
+    """Run all rules over the model's spans and return the final, non-overlapping, sorted spans.
+
+    `consistency=False` switches off F8 (masking repeated values), the only rule that adds names the model did not mark.
+    """
     spans = [dict(s) for s in spans]
     spans = rule_emails(text, spans)
     spans = rule_dates(text, spans)
@@ -268,5 +363,10 @@ def apply_rules(text: str, spans: List[Span]) -> List[Span]:
     spans = rule_context_ids(text, spans)
     spans = rule_merge_dates(text, spans)
     spans = rule_hyphen_names(text, spans)
+    spans = rule_phones(text, spans)
     spans = rule_digit_runs(text, spans)
-    return resolve_overlaps(spans)
+    spans = rule_age(text, spans)
+    spans = resolve_overlaps(spans)
+    if consistency:
+        spans = resolve_overlaps(rule_consistency(text, spans))
+    return spans

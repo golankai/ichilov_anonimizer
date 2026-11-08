@@ -199,6 +199,16 @@ Dropped by decision (2026-11-08): F6 - a Hebrew prefix inside the masked span (`
 Left out for now:
 F8 (document consistency: needs a stop-list and the strict/lenient switch), F9-F12.
 
+## 5b2. Rules added 2026-11-09 (after the first training campaign)
+
+| Fix | What it does |
+|---|---|
+| F8 | A name / city / organisation the model masked is masked at its other occurrences in the document (Hebrew prefix of 1-2 letters stays outside, whole words only, 3+ letters, never over an existing span). Values with a word in `lexicons/ambiguous_words.tsv` are skipped. Off with `--no-consistency` (lenient mode). Reason: in the campaign about 13 of ~33 leaks per seed were a first name repeated with a prefix (`name-repeat-prefixed`). Checked on the fake truth with the first mentions given as "model output": every non-ambiguous repeat found, nothing outside the truth. |
+| F13 | Israeli phone numbers (`054-1234567`, `+972-54-1234567`, `03-1234567`) are one CONTACT span; not after an identifier word, not over ID/INNER_ID spans. |
+| F14 | A number 90-120 right after בן / בת / גיל is AGE_ABOVE_89 when the model did not mark it; not before ימים/חודשים/%. |
+
+INNER_ID is left as it was (decision 2026-11-09): the real data has almost no examples and no reliable shape, so no relabel rule.
+
 ## 5c. Ambiguous words list (started, decisions of 2026-11-08)
 
 `inference/lexicons/ambiguous_words.tsv` (226 words, 242 rows): only words that **could be PHI** and also mean something else, so a

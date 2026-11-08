@@ -62,6 +62,7 @@ def run_processing_loop(
     max_tokens: Optional[int] = None,
     overlap_tokens: int = DEFAULT_OVERLAP,
     use_rules: bool = True,
+    consistency: bool = True,
 ) -> Tuple[List[str], List[List[Dict[str, Any]]]]:
     """
     Iterates through the dataframe and returns processed columns for all records,
@@ -79,6 +80,7 @@ def run_processing_loop(
         max_tokens=max_tokens,
         overlap_tokens=overlap_tokens,
         use_rules=use_rules,
+        consistency=consistency,
     )
 
     deid_texts: List[str] = []
@@ -159,6 +161,7 @@ def run(
     output_tag: str = "",
     output_dir: Optional[str] = None,
     use_rules: bool = True,
+    consistency: bool = True,
 ) -> None:
     """
     The main execution flow for the pipeline-based variant.
@@ -198,6 +201,7 @@ def run(
         max_tokens=max_tokens,
         overlap_tokens=overlap_tokens,
         use_rules=use_rules,
+        consistency=consistency,
     )
     save_output(df, input_file, deid_col, ent_col, mode, output_format, output_tag, output_dir)
     print(f"End time:   {datetime.now():%Y-%m-%d %H:%M:%S} (took {time.time() - started:.0f}s)")
@@ -279,6 +283,12 @@ def main() -> None:
         action="store_true",
         help="Switch off the deterministic rules (utils/rules.py) and use the old date/ID rewriting stages.",
     )
+    parser.add_argument(
+        "--no-consistency",
+        action="store_true",
+        help="Lenient mode: do not mask the repeated occurrences of a name / city / organisation the model masked "
+        "(rule F8). Default (strict): they are masked, except words in lexicons/ambiguous_words.tsv.",
+    )
     args = parser.parse_args()
 
     model = resolve_model(args.model)
@@ -315,6 +325,7 @@ def main() -> None:
         output_tag=output_tag,
         output_dir=args.output_dir,
         use_rules=not args.no_rules,
+        consistency=not args.no_consistency,
     )
 
 
