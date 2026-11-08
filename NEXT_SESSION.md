@@ -12,6 +12,10 @@ Still open from section 2 below: F8 (+ strict/lenient switch), F9, F10, F11, F12
 Done after that: `training/synth_eval_ambiguous/` (809 docs: name / plain / mixed use of every word of the list; own folder so
 `training/synth_eval` and its tests are untouched; score it with `train.py --synth-eval-dir training/synth_eval_ambiguous`;
 decide whether `train.py` should load both folders). List now has ORG, `phi_head`, `plain_example`.
+Note for the pipeline side: the real corpus annotates a date as DAY/MONTH/YEAR pieces (see `training/synth_eval/README.md`), the
+model therefore emits pieces; `inference/utils/rules.py` merges them into ONE DATE span (right for masking: `[DATE]`), but
+`inference/dummy_data` truth and `score_dummy.py` still assume one span per date, so "exact boundaries" on DATE will not match
+until the scorer accepts either (decide).
 Open for later, not started: the same words in the pipeline test set `inference/dummy_data`, and in synthetic training data;
 corpus counts for the list; batching (O1).
 

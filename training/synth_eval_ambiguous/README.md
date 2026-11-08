@@ -18,12 +18,12 @@ load two folders.) `ambiguous.meta.json` maps each id to `word`, `kind`, `tag`, 
 | `plain` | 108 | the word in its ordinary sense (`plain_example` column): **nothing masked** (every prediction is a precision loss) |
 | `mixed` | 113 | name sentence and plain sentence of the same word in one document, in both orders: only the name is masked. The hard case, and the test bed for any "mask every other occurrence" rule (F8) |
 
-Entities: FIRST_NAME 527, LAST_NAME 527, DATE 34, LOC 60, MED_ORG 56, ORG 24. Not covered: ID, INNER_ID, CONTACT, AGE_ABOVE_89
+Entities: FIRST_NAME 527, LAST_NAME 527, DATE 51, LOC 60, MED_ORG 56, ORG 24. Not covered: ID, INNER_ID, CONTACT, AGE_ABOVE_89
 (not ambiguous words).
 
 Conventions as in `inference/dummy_data/README.md`: Hebrew prefix outside the entity (`ב` + `חיפה`), title outside, head noun
-inside a MED_ORG / ORG span (`בית החולים הדסה`, `בנק מזרחי`). **`policy: true`** (month alone, month + year as one DATE span; Hebrew
-months get Hebrew years) is a convention we assumed; the hospital counts months, the other synthetic set leaves them out.
+inside a MED_ORG / ORG span (`בית החולים הדסה`, `בנק מזרחי`). **Dates are separate pieces** as in the real annotation (`ambiguous` month + year = two DATE spans; see `training/synth_eval/README.md`,
+"Dates are three spans"). **`policy: true`** (month alone or month + year as a date; Hebrew months get Hebrew years) is a convention we assumed; the hospital counts months, the other synthetic set leaves them out.
 Known simplifications: first names are not matched to grammatical gender; some co-names are themselves in the list.
 
 Reading the numbers: group by `kind` and `word` (the meta file). A word that is masked in `name` but also in `plain` is the

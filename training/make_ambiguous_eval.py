@@ -14,7 +14,7 @@ folder on purpose: ``training/synth_eval`` has a fixed set of files that tests c
 
 Conventions (as in ``inference/dummy_data/README.md``): a Hebrew prefix is outside the entity, a title is outside, a
 medical organisation / company includes its head noun. ``policy: true`` marks conventions we only assumed (month alone
-or month + year as a DATE span). Everything is invented. Deterministic (fixed seed);
+or month + year as a DATE span). Dates are split into DAY/MONTH/YEAR pieces (a month + year is two DATE spans). Everything is invented. Deterministic (fixed seed);
 ``training/tests/test_ambiguous_eval.py`` checks that re-generating reproduces the committed files.
 
 Run:  python training/make_ambiguous_eval.py
@@ -22,6 +22,7 @@ Run:  python training/make_ambiguous_eval.py
 import csv
 import json
 import random
+import re
 import sys
 from pathlib import Path
 
@@ -125,9 +126,32 @@ def render():
     return docs
 
 
+_DATE_SEP = re.compile(r"[\s./\-]+")
+
+
+def split_date_spans(text, spans):
+    """Real annotation: a date is DAY, MONTH and YEAR spans (renamed DATE on load), separators unlabeled
+    (measured by training/check_date_layout.py). Same rule as training/make_synth_eval.py, copied so the two
+    generators stay independent."""
+    out = []
+    for sp in spans:
+        if sp["label"] != "DATE":
+            out.append(sp)
+            continue
+        pos = sp["start"]
+        for piece in _DATE_SEP.split(text[sp["start"]:sp["end"]]):
+            if not piece:
+                continue
+            a = text.index(piece, pos)
+            out.append({**sp, "start": a, "end": a + len(piece)})
+            pos = a + len(piece)
+    return sorted(out, key=lambda x: x["start"])
+
+
 def serialize(docs):
     lines, meta = [], {}
     for i, (text, spans, m) in enumerate(docs, 1):
+        spans = split_date_spans(text, spans)
         lines.append(json.dumps(
             {"id": i, "text": text, "label": [{"start": s["start"], "end": s["end"], "label": s["label"]} for s in spans]},
             ensure_ascii=False))
@@ -147,7 +171,7 @@ def main(out=OUT):
     kinds, labels = {}, {}
     for _t, spans, m in docs:
         kinds[m["kind"]] = kinds.get(m["kind"], 0) + 1
-        for s in spans:
+        for s in split_date_spans(_t, spans):
             labels[s["label"]] = labels.get(s["label"], 0) + 1
     print(f"{len(docs)} documents: " + ", ".join(f"{k} {v}" for k, v in sorted(kinds.items())))
     print("entities: " + ", ".join(f"{k} {v}" for k, v in sorted(labels.items())))
