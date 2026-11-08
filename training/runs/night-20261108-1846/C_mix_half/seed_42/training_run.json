@@ -1,0 +1,1186 @@
+{
+  "schema_version": 2,
+  "status": "completed",
+  "run_kind": "train",
+  "started_at": "2026-11-08T20:23:29",
+  "command": "training\\run_campaign.py --campaign night-20261108-1846",
+  "working_directory": "D:\\DeID KAI\\ichilov_anonimizer",
+  "code": {
+    "git_commit": "6dd8a2a18c3eb185ee86c80cfbe1c752f9e18420",
+    "git_branch": "main",
+    "training_code_uncommitted_changes": true
+  },
+  "base_model": {
+    "name_or_path": "D:\\HeMed All\\HeMed Final Model\\model_non_anon",
+    "model_type": "bert",
+    "architectures": [
+      "BertForMaskedLM"
+    ],
+    "vocab_size": 130011,
+    "hidden_size": 768,
+    "num_hidden_layers": 12,
+    "max_position_embeddings": 512,
+    "pretrained_head_labels": 0
+  },
+  "data": {
+    "data_dir": "D:\\De ID All\\NER_anon_dataset\\regular",
+    "ignore_list_applied": false,
+    "splits": {
+      "train": {
+        "file": "D:\\De ID All\\NER_anon_dataset\\regular\\train.jsonl",
+        "size_bytes": 3586273,
+        "sha256": "de3b18fa8f374b2187d2ec54e92c753d4939f801054b7dbb3c53599e05d12dbb",
+        "n_documents": 3757,
+        "n_entities": 3866,
+        "entities_per_label": {
+          "AGE_ABOVE_89": 125,
+          "CONTACT": 205,
+          "DATE": 2097,
+          "FIRST_NAME": 268,
+          "ID": 23,
+          "INNER_ID": 3,
+          "LAST_NAME": 620,
+          "LOC": 183,
+          "MED_ORG": 271,
+          "ORG": 71
+        }
+      },
+      "validation": {
+        "file": "D:\\De ID All\\NER_anon_dataset\\regular\\dev.jsonl",
+        "size_bytes": 500245,
+        "sha256": "1d115e9a1c78ddb02523caa9f59500bc024bc37905a661f2079ff6a724c4c8cd",
+        "n_documents": 470,
+        "n_entities": 546,
+        "entities_per_label": {
+          "AGE_ABOVE_89": 16,
+          "CONTACT": 27,
+          "DATE": 303,
+          "FIRST_NAME": 39,
+          "LAST_NAME": 89,
+          "LOC": 22,
+          "MED_ORG": 42,
+          "ORG": 8
+        }
+      },
+      "test": {
+        "file": "D:\\De ID All\\NER_anon_dataset\\regular\\test.jsonl",
+        "size_bytes": 493185,
+        "sha256": "7d90b65647bfe394f619701d4b46c86284c600d66a7414dbad9a750bf3a3d877",
+        "n_documents": 470,
+        "n_entities": 534,
+        "entities_per_label": {
+          "AGE_ABOVE_89": 14,
+          "CONTACT": 18,
+          "DATE": 296,
+          "FIRST_NAME": 37,
+          "LAST_NAME": 85,
+          "LOC": 25,
+          "MED_ORG": 47,
+          "ORG": 12
+        }
+      }
+    },
+    "extra_train": {
+      "files": [
+        "D:\\DeID KAI\\ichilov_anonimizer\\training\\synth_train\\synth_train.jsonl"
+      ],
+      "fraction": 0.5,
+      "documents": 1500,
+      "mode": "mixed",
+      "real_train_documents": 3757
+    },
+    "synthetic_eval_sets": {
+      "long": {
+        "file": "D:\\DeID KAI\\ichilov_anonimizer\\training\\synth_eval\\long.jsonl",
+        "size_bytes": 466288,
+        "sha256": "e59d35c42c03d072c83ed7826fc2ff36ff8e83675ba5440ae55694d6b438b8ab",
+        "n_documents": 24,
+        "n_entities": 2328,
+        "entities_per_label": {
+          "AGE_ABOVE_89": 59,
+          "CONTACT": 201,
+          "DATE": 585,
+          "FIRST_NAME": 406,
+          "ID": 127,
+          "INNER_ID": 132,
+          "LAST_NAME": 406,
+          "LOC": 145,
+          "MED_ORG": 131,
+          "ORG": 136
+        }
+      },
+      "rare_hard": {
+        "file": "D:\\DeID KAI\\ichilov_anonimizer\\training\\synth_eval\\rare_hard.jsonl",
+        "size_bytes": 156133,
+        "sha256": "aac3fa40c68503fdb473adeccdd062ccb86a63f049dee714c7b02cbd1194e589",
+        "n_documents": 586,
+        "n_entities": 1059,
+        "entities_per_label": {
+          "AGE_ABOVE_89": 42,
+          "CONTACT": 91,
+          "DATE": 327,
+          "FIRST_NAME": 118,
+          "ID": 80,
+          "INNER_ID": 73,
+          "LAST_NAME": 118,
+          "LOC": 78,
+          "MED_ORG": 68,
+          "ORG": 64
+        }
+      },
+      "ambiguous": {
+        "file": "D:\\DeID KAI\\ichilov_anonimizer\\training\\synth_eval_ambiguous\\ambiguous.jsonl",
+        "size_bytes": 177934,
+        "sha256": "16fde47a8ec8edb82d1e47235eb31f4cf95cad56c66c4179433d3d9492c7c8e5",
+        "n_documents": 809,
+        "n_entities": 1245,
+        "entities_per_label": {
+          "DATE": 51,
+          "FIRST_NAME": 527,
+          "LAST_NAME": 527,
+          "LOC": 60,
+          "MED_ORG": 56,
+          "ORG": 24
+        }
+      }
+    }
+  },
+  "labels": {
+    "scheme": "BIO",
+    "entity_types": [
+      "FIRST_NAME",
+      "LAST_NAME",
+      "DATE",
+      "AGE_ABOVE_89",
+      "LOC",
+      "ORG",
+      "MED_ORG",
+      "CONTACT",
+      "ID",
+      "INNER_ID"
+    ],
+    "num_labels": 21,
+    "label_mapping_applied": {
+      "DAY": "DATE",
+      "MONTH": "DATE",
+      "YEAR": "DATE"
+    }
+  },
+  "windowing": {
+    "max_length_tokens": 512,
+    "stride_overlap_tokens": 128,
+    "edge_margin_tokens": 64,
+    "edge_margin_note": "tokens within this distance of an inner window edge get label -100 (ignored by loss and metrics) in multi-window documents"
+  },
+  "notes": null,
+  "seed": 42,
+  "early_stopping_patience": 2,
+  "hyperparameters": {
+    "output_dir": "D:\\DeID KAI\\ichilov_anonimizer\\training\\models\\night-20261108-1846\\C_mix_half\\seed_42",
+    "overwrite_output_dir": false,
+    "do_train": false,
+    "do_eval": true,
+    "do_predict": false,
+    "eval_strategy": "epoch",
+    "prediction_loss_only": false,
+    "per_device_train_batch_size": 8,
+    "per_device_eval_batch_size": 8,
+    "per_gpu_train_batch_size": null,
+    "per_gpu_eval_batch_size": null,
+    "gradient_accumulation_steps": 1,
+    "eval_accumulation_steps": null,
+    "eval_delay": 0,
+    "torch_empty_cache_steps": null,
+    "learning_rate": 5e-05,
+    "weight_decay": 0.01,
+    "adam_beta1": 0.9,
+    "adam_beta2": 0.999,
+    "adam_epsilon": 1e-08,
+    "max_grad_norm": 1.0,
+    "num_train_epochs": 6,
+    "max_steps": -1,
+    "lr_scheduler_type": "linear",
+    "lr_scheduler_kwargs": {},
+    "warmup_ratio": 0.0,
+    "warmup_steps": 0,
+    "log_level": "passive",
+    "log_level_replica": "warning",
+    "log_on_each_node": true,
+    "logging_dir": "D:\\DeID KAI\\ichilov_anonimizer\\training\\models\\night-20261108-1846\\C_mix_half\\seed_42\\runs\\Nov08_20-23-29_im-ws",
+    "logging_strategy": "steps",
+    "logging_first_step": false,
+    "logging_steps": 500,
+    "logging_nan_inf_filter": true,
+    "save_strategy": "epoch",
+    "save_steps": 500,
+    "save_total_limit": 2,
+    "save_safetensors": true,
+    "save_on_each_node": false,
+    "save_only_model": false,
+    "restore_callback_states_from_checkpoint": false,
+    "no_cuda": false,
+    "use_cpu": false,
+    "use_mps_device": false,
+    "seed": 42,
+    "data_seed": 42,
+    "jit_mode_eval": false,
+    "bf16": false,
+    "fp16": false,
+    "fp16_opt_level": "O1",
+    "half_precision_backend": "auto",
+    "bf16_full_eval": false,
+    "fp16_full_eval": false,
+    "tf32": null,
+    "local_rank": 0,
+    "ddp_backend": null,
+    "tpu_num_cores": null,
+    "tpu_metrics_debug": false,
+    "debug": [],
+    "dataloader_drop_last": false,
+    "eval_steps": null,
+    "dataloader_num_workers": 0,
+    "dataloader_prefetch_factor": null,
+    "past_index": -1,
+    "run_name": null,
+    "disable_tqdm": false,
+    "remove_unused_columns": true,
+    "label_names": null,
+    "load_best_model_at_end": true,
+    "metric_for_best_model": "f1",
+    "greater_is_better": true,
+    "ignore_data_skip": false,
+    "fsdp": [],
+    "fsdp_min_num_params": 0,
+    "fsdp_config": {
+      "min_num_params": 0,
+      "xla": false,
+      "xla_fsdp_v2": false,
+      "xla_fsdp_grad_ckpt": false
+    },
+    "fsdp_transformer_layer_cls_to_wrap": null,
+    "accelerator_config": {
+      "split_batches": false,
+      "dispatch_batches": null,
+      "even_batches": true,
+      "use_seedable_sampler": true,
+      "non_blocking": false,
+      "gradient_accumulation_kwargs": null
+    },
+    "parallelism_config": null,
+    "deepspeed": null,
+    "label_smoothing_factor": 0.0,
+    "optim": "adamw_torch",
+    "optim_args": null,
+    "adafactor": false,
+    "group_by_length": false,
+    "length_column_name": "length",
+    "report_to": [
+      "tensorboard"
+    ],
+    "project": "huggingface",
+    "trackio_space_id": "trackio",
+    "ddp_find_unused_parameters": null,
+    "ddp_bucket_cap_mb": null,
+    "ddp_broadcast_buffers": null,
+    "dataloader_pin_memory": true,
+    "dataloader_persistent_workers": false,
+    "skip_memory_metrics": true,
+    "use_legacy_prediction_loop": false,
+    "push_to_hub": false,
+    "resume_from_checkpoint": null,
+    "hub_model_id": null,
+    "hub_strategy": "every_save",
+    "hub_token": "<HUB_TOKEN>",
+    "hub_private_repo": null,
+    "hub_always_push": false,
+    "hub_revision": null,
+    "gradient_checkpointing": false,
+    "gradient_checkpointing_kwargs": null,
+    "include_inputs_for_metrics": false,
+    "include_for_metrics": [],
+    "eval_do_concat_batches": true,
+    "fp16_backend": "auto",
+    "push_to_hub_model_id": null,
+    "push_to_hub_organization": null,
+    "push_to_hub_token": "<PUSH_TO_HUB_TOKEN>",
+    "mp_parameters": "",
+    "auto_find_batch_size": false,
+    "full_determinism": false,
+    "torchdynamo": null,
+    "ray_scope": "last",
+    "ddp_timeout": 1800,
+    "torch_compile": false,
+    "torch_compile_backend": null,
+    "torch_compile_mode": null,
+    "include_tokens_per_second": false,
+    "include_num_input_tokens_seen": "no",
+    "neftune_noise_alpha": null,
+    "optim_target_modules": null,
+    "batch_eval_metrics": false,
+    "eval_on_start": false,
+    "use_liger_kernel": false,
+    "liger_kernel_config": null,
+    "eval_use_gather_object": false,
+    "average_tokens_across_devices": true
+  },
+  "environment": {
+    "python": "3.10.0",
+    "platform": "Windows-10-10.0.19045-SP0",
+    "machine": "IM-WS",
+    "packages": {
+      "torch": "2.6.0+cu124",
+      "transformers": "4.57.0",
+      "datasets": "3.3.2",
+      "accelerate": "1.10.1",
+      "seqeval": "1.2.2",
+      "scikit-learn": "1.7.2",
+      "tokenizers": "0.22.1"
+    },
+    "cuda_available": true,
+    "gpu": {
+      "name": "NVIDIA A40",
+      "memory_gb": 44.7,
+      "torch_cuda": "12.4",
+      "count": 1
+    }
+  },
+  "results": {
+    "epochs_planned": 6,
+    "epochs_completed": 6.0,
+    "stopped_early": false,
+    "best_epoch": 5.0,
+    "global_step": 4008,
+    "best_metric_f1": 0.9301435406698565,
+    "best_model_checkpoint": "D:\\DeID KAI\\ichilov_anonimizer\\training\\models\\night-20261108-1846\\C_mix_half\\seed_42\\checkpoint-3340",
+    "per_epoch_validation": [
+      {
+        "epoch": 1.0,
+        "step": 668,
+        "eval_loss": 0.00926624983549118,
+        "overall": {
+          "precision": 0.8431818181818181,
+          "recall": 0.723196881091618,
+          "f1": 0.7785939139559286,
+          "f2": 0.8003120124804992
+        },
+        "per_label": {
+          "AGE_ABOVE_89": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 16
+          },
+          "CONTACT": {
+            "precision": 0.3333333333333333,
+            "recall": 0.35294117647058826,
+            "f1": 0.34285714285714286,
+            "support": 17
+          },
+          "DATE": {
+            "precision": 0.9449152542372882,
+            "recall": 0.7433333333333333,
+            "f1": 0.8320895522388059,
+            "support": 300
+          },
+          "FIRST_NAME": {
+            "precision": 0.8529411764705882,
+            "recall": 0.7631578947368421,
+            "f1": 0.8055555555555555,
+            "support": 38
+          },
+          "ID": {
+            "precision": 0.0,
+            "support": 0,
+            "recall": null,
+            "f1": null
+          },
+          "LAST_NAME": {
+            "precision": 0.726027397260274,
+            "recall": 0.6091954022988506,
+            "f1": 0.6625,
+            "support": 87
+          },
+          "LOC": {
+            "precision": 0.9090909090909091,
+            "recall": 0.7142857142857143,
+            "f1": 0.8,
+            "support": 14
+          },
+          "MED_ORG": {
+            "precision": 0.8205128205128205,
+            "recall": 0.9142857142857143,
+            "f1": 0.8648648648648648,
+            "support": 35
+          },
+          "ORG": {
+            "precision": 0.4,
+            "recall": 0.3333333333333333,
+            "f1": 0.3636363636363636,
+            "support": 6
+          }
+        }
+      },
+      {
+        "epoch": 2.0,
+        "step": 1336,
+        "eval_loss": 0.005179747007787228,
+        "overall": {
+          "precision": 0.8870370370370371,
+          "recall": 0.9337231968810916,
+          "f1": 0.9097815764482431,
+          "f2": 0.9524521531100478
+        },
+        "per_label": {
+          "AGE_ABOVE_89": {
+            "precision": 0.8421052631578947,
+            "recall": 1.0,
+            "f1": 0.9142857142857143,
+            "support": 16
+          },
+          "CONTACT": {
+            "precision": 0.8888888888888888,
+            "recall": 0.9411764705882353,
+            "f1": 0.9142857142857143,
+            "support": 17
+          },
+          "DATE": {
+            "precision": 0.9258064516129032,
+            "recall": 0.9566666666666667,
+            "f1": 0.9409836065573771,
+            "support": 300
+          },
+          "FIRST_NAME": {
+            "precision": 0.9117647058823529,
+            "recall": 0.8157894736842105,
+            "f1": 0.861111111111111,
+            "support": 38
+          },
+          "LAST_NAME": {
+            "precision": 0.9239130434782609,
+            "recall": 0.9770114942528736,
+            "f1": 0.9497206703910613,
+            "support": 87
+          },
+          "LOC": {
+            "precision": 0.7272727272727273,
+            "recall": 0.5714285714285714,
+            "f1": 0.64,
+            "support": 14
+          },
+          "MED_ORG": {
+            "precision": 0.6666666666666666,
+            "recall": 0.9714285714285714,
+            "f1": 0.7906976744186046,
+            "support": 35
+          },
+          "ORG": {
+            "precision": 0.4,
+            "recall": 0.3333333333333333,
+            "f1": 0.3636363636363636,
+            "support": 6
+          }
+        }
+      },
+      {
+        "epoch": 3.0,
+        "step": 2004,
+        "eval_loss": 0.005338593386113644,
+        "overall": {
+          "precision": 0.8952205882352942,
+          "recall": 0.949317738791423,
+          "f1": 0.9214758751182591,
+          "f2": 0.9602153754113072
+        },
+        "per_label": {
+          "AGE_ABOVE_89": {
+            "precision": 0.8888888888888888,
+            "recall": 1.0,
+            "f1": 0.9411764705882353,
+            "support": 16
+          },
+          "CONTACT": {
+            "precision": 0.7777777777777778,
+            "recall": 0.8235294117647058,
+            "f1": 0.7999999999999999,
+            "support": 17
+          },
+          "DATE": {
+            "precision": 0.9339622641509434,
+            "recall": 0.99,
+            "f1": 0.9611650485436893,
+            "support": 300
+          },
+          "FIRST_NAME": {
+            "precision": 0.8,
+            "recall": 0.8421052631578947,
+            "f1": 0.8205128205128205,
+            "support": 38
+          },
+          "ID": {
+            "precision": 0.0,
+            "support": 0,
+            "recall": null,
+            "f1": null
+          },
+          "LAST_NAME": {
+            "precision": 0.9213483146067416,
+            "recall": 0.9425287356321839,
+            "f1": 0.9318181818181818,
+            "support": 87
+          },
+          "LOC": {
+            "precision": 0.9166666666666666,
+            "recall": 0.7857142857142857,
+            "f1": 0.8461538461538461,
+            "support": 14
+          },
+          "MED_ORG": {
+            "precision": 0.8378378378378378,
+            "recall": 0.8857142857142857,
+            "f1": 0.8611111111111112,
+            "support": 35
+          },
+          "ORG": {
+            "precision": 0.36363636363636365,
+            "recall": 0.6666666666666666,
+            "f1": 0.4705882352941177,
+            "support": 6
+          }
+        }
+      },
+      {
+        "epoch": 4.0,
+        "step": 2672,
+        "eval_loss": 0.005309868138283491,
+        "overall": {
+          "precision": 0.8981481481481481,
+          "recall": 0.9454191033138402,
+          "f1": 0.9211775878442545,
+          "f2": 0.961998803111909
+        },
+        "per_label": {
+          "AGE_ABOVE_89": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 16
+          },
+          "CONTACT": {
+            "precision": 0.875,
+            "recall": 0.8235294117647058,
+            "f1": 0.8484848484848485,
+            "support": 17
+          },
+          "DATE": {
+            "precision": 0.9363057324840764,
+            "recall": 0.98,
+            "f1": 0.9576547231270358,
+            "support": 300
+          },
+          "FIRST_NAME": {
+            "precision": 0.7619047619047619,
+            "recall": 0.8421052631578947,
+            "f1": 0.8,
+            "support": 38
+          },
+          "ID": {
+            "precision": 0.0,
+            "support": 0,
+            "recall": null,
+            "f1": null
+          },
+          "LAST_NAME": {
+            "precision": 0.9010989010989011,
+            "recall": 0.9425287356321839,
+            "f1": 0.9213483146067416,
+            "support": 87
+          },
+          "LOC": {
+            "precision": 0.9166666666666666,
+            "recall": 0.7857142857142857,
+            "f1": 0.8461538461538461,
+            "support": 14
+          },
+          "MED_ORG": {
+            "precision": 0.7857142857142857,
+            "recall": 0.9428571428571428,
+            "f1": 0.8571428571428571,
+            "support": 35
+          },
+          "ORG": {
+            "precision": 0.5,
+            "recall": 0.5,
+            "f1": 0.5,
+            "support": 6
+          }
+        }
+      },
+      {
+        "epoch": 5.0,
+        "step": 3340,
+        "eval_loss": 0.00558493472635746,
+        "overall": {
+          "precision": 0.9135338345864662,
+          "recall": 0.9473684210526315,
+          "f1": 0.9301435406698565,
+          "f2": 0.9636745722005404
+        },
+        "per_label": {
+          "AGE_ABOVE_89": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 16
+          },
+          "CONTACT": {
+            "precision": 0.8235294117647058,
+            "recall": 0.8235294117647058,
+            "f1": 0.8235294117647058,
+            "support": 17
+          },
+          "DATE": {
+            "precision": 0.9455128205128205,
+            "recall": 0.9833333333333333,
+            "f1": 0.9640522875816994,
+            "support": 300
+          },
+          "FIRST_NAME": {
+            "precision": 0.8648648648648649,
+            "recall": 0.8421052631578947,
+            "f1": 0.8533333333333334,
+            "support": 38
+          },
+          "LAST_NAME": {
+            "precision": 0.9010989010989011,
+            "recall": 0.9425287356321839,
+            "f1": 0.9213483146067416,
+            "support": 87
+          },
+          "LOC": {
+            "precision": 0.9166666666666666,
+            "recall": 0.7857142857142857,
+            "f1": 0.8461538461538461,
+            "support": 14
+          },
+          "MED_ORG": {
+            "precision": 0.7857142857142857,
+            "recall": 0.9428571428571428,
+            "f1": 0.8571428571428571,
+            "support": 35
+          },
+          "ORG": {
+            "precision": 0.6,
+            "recall": 0.5,
+            "f1": 0.5454545454545454,
+            "support": 6
+          }
+        }
+      },
+      {
+        "epoch": 6.0,
+        "step": 4008,
+        "eval_loss": 0.0056574526242911816,
+        "overall": {
+          "precision": 0.9118198874296435,
+          "recall": 0.9473684210526315,
+          "f1": 0.9292543021032504,
+          "f2": 0.9637290167865707
+        },
+        "per_label": {
+          "AGE_ABOVE_89": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 16
+          },
+          "CONTACT": {
+            "precision": 0.8333333333333334,
+            "recall": 0.8823529411764706,
+            "f1": 0.8571428571428571,
+            "support": 17
+          },
+          "DATE": {
+            "precision": 0.9512987012987013,
+            "recall": 0.9766666666666667,
+            "f1": 0.9638157894736843,
+            "support": 300
+          },
+          "FIRST_NAME": {
+            "precision": 0.8,
+            "recall": 0.8421052631578947,
+            "f1": 0.8205128205128205,
+            "support": 38
+          },
+          "LAST_NAME": {
+            "precision": 0.9120879120879121,
+            "recall": 0.9540229885057471,
+            "f1": 0.9325842696629213,
+            "support": 87
+          },
+          "LOC": {
+            "precision": 0.8461538461538461,
+            "recall": 0.7857142857142857,
+            "f1": 0.8148148148148148,
+            "support": 14
+          },
+          "MED_ORG": {
+            "precision": 0.7857142857142857,
+            "recall": 0.9428571428571428,
+            "f1": 0.8571428571428571,
+            "support": 35
+          },
+          "ORG": {
+            "precision": 0.6,
+            "recall": 0.5,
+            "f1": 0.5454545454545454,
+            "support": 6
+          }
+        }
+      }
+    ],
+    "train_loss_log": [
+      {
+        "loss": 0.0445,
+        "grad_norm": 0.03937699645757675,
+        "learning_rate": 4.37749500998004e-05,
+        "epoch": 0.7485029940119761,
+        "step": 500
+      },
+      {
+        "loss": 0.0072,
+        "grad_norm": 0.009300077334046364,
+        "learning_rate": 3.75374251497006e-05,
+        "epoch": 1.4970059880239521,
+        "step": 1000
+      },
+      {
+        "loss": 0.0052,
+        "grad_norm": 0.046026553958654404,
+        "learning_rate": 3.12999001996008e-05,
+        "epoch": 2.245508982035928,
+        "step": 1500
+      },
+      {
+        "loss": 0.0035,
+        "grad_norm": 0.05599755793809891,
+        "learning_rate": 2.5062375249500996e-05,
+        "epoch": 2.9940119760479043,
+        "step": 2000
+      },
+      {
+        "loss": 0.0022,
+        "grad_norm": 0.08731565624475479,
+        "learning_rate": 1.8824850299401197e-05,
+        "epoch": 3.7425149700598803,
+        "step": 2500
+      },
+      {
+        "loss": 0.002,
+        "grad_norm": 0.0015570097602903843,
+        "learning_rate": 1.2587325349301399e-05,
+        "epoch": 4.491017964071856,
+        "step": 3000
+      },
+      {
+        "loss": 0.0013,
+        "grad_norm": 0.02555910497903824,
+        "learning_rate": 6.349800399201597e-06,
+        "epoch": 5.2395209580838324,
+        "step": 3500
+      },
+      {
+        "loss": 0.0008,
+        "grad_norm": 0.0013864563079550862,
+        "learning_rate": 1.1227544910179641e-07,
+        "epoch": 5.9880239520958085,
+        "step": 4000
+      }
+    ],
+    "train_summary": {
+      "train_runtime": 534.4771,
+      "train_samples_per_second": 59.946,
+      "train_steps_per_second": 7.499,
+      "total_flos": 4069332327762504.0,
+      "train_loss": 0.008319797894978774,
+      "epoch": 6.0,
+      "step": 4008
+    },
+    "test": {
+      "overall": {
+        "precision": 0.9240246406570842,
+        "recall": 0.9240246406570842,
+        "f1": 0.9240246406570842,
+        "f2": 0.9435736677115988
+      },
+      "per_label": {
+        "AGE_ABOVE_89": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 14
+        },
+        "CONTACT": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 12
+        },
+        "DATE": {
+          "precision": 0.9553264604810997,
+          "recall": 0.9652777777777778,
+          "f1": 0.9602763385146805,
+          "support": 288
+        },
+        "FIRST_NAME": {
+          "precision": 0.7837837837837838,
+          "recall": 0.8055555555555556,
+          "f1": 0.7945205479452055,
+          "support": 36
+        },
+        "LAST_NAME": {
+          "precision": 0.9166666666666666,
+          "recall": 0.9390243902439024,
+          "f1": 0.9277108433734941,
+          "support": 82
+        },
+        "LOC": {
+          "precision": 1.0,
+          "recall": 0.7333333333333333,
+          "f1": 0.846153846153846,
+          "support": 15
+        },
+        "MED_ORG": {
+          "precision": 0.8285714285714286,
+          "recall": 0.90625,
+          "f1": 0.8656716417910447,
+          "support": 32
+        },
+        "ORG": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 8
+        }
+      },
+      "other": {
+        "loss": 0.0042172996327281,
+        "runtime": 3.257,
+        "samples_per_second": 149.524,
+        "steps_per_second": 18.729
+      }
+    },
+    "synthetic": {
+      "long": {
+        "overall": {
+          "precision": 0.7913007109995818,
+          "recall": 0.8331131660061647,
+          "f1": 0.8116688116688117,
+          "f2": 0.9124103842899765
+        },
+        "per_label": {
+          "AGE_ABOVE_89": {
+            "precision": 1.0,
+            "recall": 0.7966101694915254,
+            "f1": 0.8867924528301886,
+            "support": 59
+          },
+          "CONTACT": {
+            "precision": 0.389937106918239,
+            "recall": 0.5904761904761905,
+            "f1": 0.4696969696969697,
+            "support": 210
+          },
+          "DATE": {
+            "precision": 0.9489603024574669,
+            "recall": 0.9766536964980544,
+            "f1": 0.9626078619367211,
+            "support": 514
+          },
+          "FIRST_NAME": {
+            "precision": 0.9875621890547264,
+            "recall": 0.9754299754299754,
+            "f1": 0.9814585908529049,
+            "support": 407
+          },
+          "ID": {
+            "precision": 0.3076923076923077,
+            "recall": 0.6929133858267716,
+            "f1": 0.42615012106537536,
+            "support": 127
+          },
+          "INNER_ID": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "support": 134
+          },
+          "LAST_NAME": {
+            "precision": 0.9663461538461539,
+            "recall": 0.9901477832512315,
+            "f1": 0.9781021897810218,
+            "support": 406
+          },
+          "LOC": {
+            "precision": 0.8322981366459627,
+            "recall": 0.9241379310344827,
+            "f1": 0.8758169934640522,
+            "support": 145
+          },
+          "MED_ORG": {
+            "precision": 0.8223684210526315,
+            "recall": 0.9541984732824428,
+            "f1": 0.88339222614841,
+            "support": 131
+          },
+          "ORG": {
+            "precision": 0.9125,
+            "recall": 0.5289855072463768,
+            "f1": 0.6697247706422018,
+            "support": 138
+          }
+        },
+        "other": {
+          "loss": 0.16622191667556763,
+          "runtime": 1.988,
+          "samples_per_second": 59.356,
+          "steps_per_second": 7.545
+        }
+      },
+      "rare_hard": {
+        "overall": {
+          "precision": 0.784741144414169,
+          "recall": 0.8396501457725948,
+          "f1": 0.811267605633803,
+          "f2": 0.9595145539015834
+        },
+        "per_label": {
+          "AGE_ABOVE_89": {
+            "precision": 0.8947368421052632,
+            "recall": 0.8095238095238095,
+            "f1": 0.8500000000000001,
+            "support": 42
+          },
+          "CONTACT": {
+            "precision": 0.46,
+            "recall": 0.5054945054945055,
+            "f1": 0.4816753926701571,
+            "support": 91
+          },
+          "DATE": {
+            "precision": 0.9603960396039604,
+            "recall": 0.9797979797979798,
+            "f1": 0.9700000000000001,
+            "support": 297
+          },
+          "FIRST_NAME": {
+            "precision": 0.9206349206349206,
+            "recall": 0.9830508474576272,
+            "f1": 0.9508196721311476,
+            "support": 118
+          },
+          "ID": {
+            "precision": 0.3472222222222222,
+            "recall": 0.9375,
+            "f1": 0.5067567567567567,
+            "support": 80
+          },
+          "INNER_ID": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "support": 73
+          },
+          "LAST_NAME": {
+            "precision": 0.9590163934426229,
+            "recall": 0.9915254237288136,
+            "f1": 0.9749999999999999,
+            "support": 118
+          },
+          "LOC": {
+            "precision": 0.9390243902439024,
+            "recall": 0.9871794871794872,
+            "f1": 0.9625,
+            "support": 78
+          },
+          "MED_ORG": {
+            "precision": 0.918918918918919,
+            "recall": 1.0,
+            "f1": 0.9577464788732395,
+            "support": 68
+          },
+          "ORG": {
+            "precision": 1.0,
+            "recall": 0.625,
+            "f1": 0.7692307692307693,
+            "support": 64
+          }
+        },
+        "other": {
+          "loss": 0.2906157672405243,
+          "runtime": 1.123,
+          "samples_per_second": 521.815,
+          "steps_per_second": 65.895
+        }
+      },
+      "ambiguous": {
+        "overall": {
+          "precision": 0.96045197740113,
+          "recall": 0.9690553745928339,
+          "f1": 0.9647344953384678,
+          "f2": 0.9779532250856547
+        },
+        "per_label": {
+          "DATE": {
+            "precision": 0.5555555555555556,
+            "recall": 0.5882352941176471,
+            "f1": 0.5714285714285715,
+            "support": 34
+          },
+          "FIRST_NAME": {
+            "precision": 0.9700374531835206,
+            "recall": 0.9829222011385199,
+            "f1": 0.9764373232799247,
+            "support": 527
+          },
+          "LAST_NAME": {
+            "precision": 0.9905482041587902,
+            "recall": 0.9943074003795066,
+            "f1": 0.9924242424242424,
+            "support": 527
+          },
+          "LOC": {
+            "precision": 0.9803921568627451,
+            "recall": 0.8333333333333334,
+            "f1": 0.9009009009009009,
+            "support": 60
+          },
+          "MED_ORG": {
+            "precision": 0.8484848484848485,
+            "recall": 1.0,
+            "f1": 0.9180327868852458,
+            "support": 56
+          },
+          "ORG": {
+            "precision": 0.9565217391304348,
+            "recall": 0.9166666666666666,
+            "f1": 0.9361702127659574,
+            "support": 24
+          }
+        },
+        "other": {
+          "loss": 0.031596407294273376,
+          "runtime": 1.441,
+          "samples_per_second": 561.415,
+          "steps_per_second": 70.784
+        }
+      },
+      "ambig_seen": {
+        "overall": {
+          "precision": 0.9623717217787914,
+          "recall": 0.9701149425287356,
+          "f1": 0.9662278191184889,
+          "f2": 0.9788359788359788
+        },
+        "per_label": {
+          "DATE": {
+            "precision": 0.5333333333333333,
+            "recall": 0.5714285714285714,
+            "f1": 0.5517241379310344,
+            "support": 28
+          },
+          "FIRST_NAME": {
+            "precision": 0.9812834224598931,
+            "recall": 0.9839142091152815,
+            "f1": 0.9825970548862114,
+            "support": 373
+          },
+          "LAST_NAME": {
+            "precision": 0.9867021276595744,
+            "recall": 0.9946380697050938,
+            "f1": 0.9906542056074765,
+            "support": 373
+          },
+          "LOC": {
+            "precision": 1.0,
+            "recall": 0.8823529411764706,
+            "f1": 0.9375,
+            "support": 34
+          },
+          "MED_ORG": {
+            "precision": 0.875,
+            "recall": 1.0,
+            "f1": 0.9333333333333333,
+            "support": 42
+          },
+          "ORG": {
+            "precision": 0.9473684210526315,
+            "recall": 0.9,
+            "f1": 0.9230769230769231,
+            "support": 20
+          }
+        },
+        "other": {
+          "loss": 0.026412934064865112,
+          "runtime": 1.05,
+          "samples_per_second": 547.616,
+          "steps_per_second": 68.571
+        }
+      },
+      "ambig_heldout": {
+        "overall": {
+          "precision": 0.9558011049723757,
+          "recall": 0.9664804469273743,
+          "f1": 0.9611111111111111,
+          "f2": 0.9758551307847082
+        },
+        "per_label": {
+          "DATE": {
+            "precision": 0.6666666666666666,
+            "recall": 0.6666666666666666,
+            "f1": 0.6666666666666666,
+            "support": 6
+          },
+          "FIRST_NAME": {
+            "precision": 0.94375,
+            "recall": 0.9805194805194806,
+            "f1": 0.9617834394904459,
+            "support": 154
+          },
+          "LAST_NAME": {
+            "precision": 1.0,
+            "recall": 0.9935064935064936,
+            "f1": 0.9967426710097721,
+            "support": 154
+          },
+          "LOC": {
+            "precision": 0.9523809523809523,
+            "recall": 0.7692307692307693,
+            "f1": 0.8510638297872339,
+            "support": 26
+          },
+          "MED_ORG": {
+            "precision": 0.7777777777777778,
+            "recall": 1.0,
+            "f1": 0.8750000000000001,
+            "support": 14
+          },
+          "ORG": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 4
+          }
+        },
+        "other": {
+          "loss": 0.04171318560838699,
+          "runtime": 0.44,
+          "samples_per_second": 531.821,
+          "steps_per_second": 68.182
+        }
+      }
+    },
+    "synthetic_note": "Synthetic sets are scored after training only; they never select the epoch."
+  },
+  "finished_at": "2026-11-08T20:32:35",
+  "duration_seconds": 546.3
+}

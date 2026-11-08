@@ -1,0 +1,61 @@
+{
+ "campaign": "night-20261108-1846",
+ "started": "2026-11-08T18:53:25",
+ "base_model": "D:\\HeMed All\\HeMed Final Model\\model_non_anon",
+ "data_dir": "D:\\De ID All\\NER_anon_dataset\\regular",
+ "seeds": [
+  42,
+  43,
+  44
+ ],
+ "epochs": 6,
+ "limit": null,
+ "pipeline_variants": [
+  "rules",
+  "norules"
+ ],
+ "experiments": [
+  {
+   "id": "A_real",
+   "desc": "real data only (baseline)",
+   "extra": null
+  },
+  {
+   "id": "B_mix_full",
+   "desc": "real + all 3000 synthetic, shuffled together",
+   "extra": "D:\\DeID KAI\\ichilov_anonimizer\\training\\synth_train\\synth_train.jsonl",
+   "fraction": 1.0
+  },
+  {
+   "id": "D_staged_1ep",
+   "desc": "1 epoch on synthetic first, then real",
+   "extra": "D:\\DeID KAI\\ichilov_anonimizer\\training\\synth_train\\synth_train.jsonl",
+   "staged": true,
+   "stage1_epochs": 1
+  },
+  {
+   "id": "C_mix_half",
+   "desc": "real + half of the synthetic (1500), shuffled",
+   "extra": "D:\\DeID KAI\\ichilov_anonimizer\\training\\synth_train\\synth_train.jsonl",
+   "fraction": 0.5
+  },
+  {
+   "id": "E_mix_quarter",
+   "desc": "real + a quarter of the synthetic (750), shuffled",
+   "extra": "D:\\DeID KAI\\ichilov_anonimizer\\training\\synth_train\\synth_train.jsonl",
+   "fraction": 0.25
+  },
+  {
+   "id": "F_staged_2ep",
+   "desc": "2 epochs on synthetic first, then real",
+   "extra": "D:\\DeID KAI\\ichilov_anonimizer\\training\\synth_train\\synth_train.jsonl",
+   "staged": true,
+   "stage1_epochs": 2
+  }
+ ],
+ "code": {
+  "git_commit": "6dd8a2a18c3eb185ee86c80cfbe1c752f9e18420",
+  "git_branch": "main",
+  "training_code_uncommitted_changes": true
+ }
+}

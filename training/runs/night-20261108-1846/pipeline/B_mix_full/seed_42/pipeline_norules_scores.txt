@@ -1,0 +1,124 @@
+
+$ C:\ProgramData\anaconda3\envs\pii\python.exe -X utf8 D:\DeID KAI\ichilov_anonimizer\inference\score_dummy.py --results-dir D:\DeID KAI\ichilov_anonimizer\training\runs\night-20261108-1846\pipeline\B_mix_full\seed_42\outputs_norules --json-out D:\DeID KAI\ichilov_anonimizer\training\runs\night-20261108-1846\pipeline\B_mix_full\seed_42\pipeline_norules.json
+
+PER TIER
+                                        n  masked% partial missed  label%  exact%  survive
+  t1_simple                           112     85.4      14      0    97.9    88.5    0/109
+  t2_formats                          128     63.0      42      2    90.6    55.5    2/125
+  t3_traps                             43     80.6       6      0   100.0    96.8    0/40 
+  t4_notes                            300      -         0      0     -       -     51/288
+  t5_long                             146      -         0      0     -       -     24/139
+
+PER LABEL (all tiers)
+                                        n  masked% partial missed  label%  exact%  survive
+  AGE_ABOVE_89                         27    100.0       0      0   100.0   100.0    0/2  
+  CONTACT                              80     75.0       6      0   100.0    62.5    1/80 
+  DATE                                134     19.4      50      0    98.4    67.7    0/134
+  FIRST_NAME                          181     96.3       0      2   100.0    92.6   76/178
+  ID                                   30     83.3       1      0   100.0    83.3    0/30 
+  INNER_ID                             34    100.0       0      0     0.0     0.0    0/34 
+  LAST_NAME                           141    100.0       0      0   100.0    95.8    0/141
+  LOC                                  38     80.0       3      0   100.0     6.7    0/38 
+  MED_ORG                              49     85.7       2      0    71.4    57.1    0/49 
+  ORG                                  15    100.0       0      0   100.0    85.7    0/15 
+
+PER SITUATION (label: tag)
+                                        n  masked% partial missed  label%  exact%  survive
+  AGE_ABOVE_89: age-above-89           26    100.0       0      0   100.0   100.0    0/2  
+  AGE_ABOVE_89: age-above-89-context    1    100.0       0      0   100.0   100.0    0/0  
+  CONTACT: email-after-label            1    100.0       0      0   100.0     0.0    0/1  
+  CONTACT: email-digits                 1      0.0       1      0   100.0     0.0    0/1  
+  CONTACT: email-dotted-local          22      0.0       1      0   100.0     0.0    1/22 
+  CONTACT: email-hyphen                 1      0.0       1      0   100.0     0.0    0/1  
+  CONTACT: email-many-dots              1      0.0       1      0   100.0     0.0    0/1  
+  CONTACT: email-simple                 1      0.0       1      0   100.0     0.0    0/1  
+  CONTACT: email-underscore             1    100.0       0      0   100.0     0.0    0/1  
+  CONTACT: phone-fax                    1    100.0       0      0   100.0   100.0    0/1  
+  CONTACT: phone-landline              19    100.0       0      0   100.0   100.0    0/19 
+  CONTACT: phone-mobile                28    100.0       0      0   100.0    80.0    0/28 
+  CONTACT: phone-mobile-0               1    100.0       0      0   100.0   100.0    0/1  
+  CONTACT: phone-mobile-1               1    100.0       0      0   100.0   100.0    0/1  
+  CONTACT: phone-mobile-2               1      0.0       1      0   100.0     0.0    0/1  
+  CONTACT: phone-mobile-3               1    100.0       0      0   100.0   100.0    0/1  
+  DATE: date-hebrew-calendar            5      0.0       5      0   100.0     0.0    0/5  
+  DATE: date-hebrew-calendar (policy)    1    100.0       0      0   100.0     0.0    0/1  
+  DATE: date-iso                        3      0.0       3      0   100.0   100.0    0/3  
+  DATE: date-month-only (policy)        4    100.0       0      0   100.0     0.0    0/4  
+  DATE: date-month-year (policy)        4    100.0       0      0   100.0     0.0    0/4  
+  DATE: date-no-punctuation             3    100.0       0      0    66.7     0.0    0/3  
+  DATE: date-numeric-dash               3      0.0       3      0   100.0   100.0    0/3  
+  DATE: date-numeric-dot               44      0.0      17      0   100.0   100.0    0/44 
+  DATE: date-numeric-dot-nopad         15      -         0      0     -       -      0/15 
+  DATE: date-numeric-slash             19      0.0       7      0   100.0   100.0    0/19 
+  DATE: date-two-digit-year             3      0.0       3      0   100.0   100.0    0/3  
+  DATE: date-with-prefix               12      0.0      12      0   100.0    75.0    0/12 
+  DATE: date-written-hebrew            15      -         0      0     -       -      0/15 
+  DATE: date-written-prefixed-month     3      -         0      0     -       -      0/3  
+  FIRST_NAME: -                        74    100.0       0      0   100.0   100.0   27/74 
+  FIRST_NAME: first-name-only           1    100.0       0      0   100.0     0.0    0/1  
+  FIRST_NAME: name-bare                 1    100.0       0      0   100.0   100.0    0/1  
+  FIRST_NAME: name-is-common-word       4    100.0       0      0   100.0   100.0    0/1  
+  FIRST_NAME: name-is-month-name        2    100.0       0      0   100.0   100.0    0/2  
+  FIRST_NAME: name-prefixed             3     33.3       0      2   100.0     0.0    2/3  
+  FIRST_NAME: name-relative            19      -         0      0     -       -      0/19 
+  FIRST_NAME: name-repeat              26      -         0      0     -       -     24/26 
+  FIRST_NAME: name-repeat-prefixed     22      -         0      0     -       -     21/22 
+  FIRST_NAME: name-staff               24      -         0      0     -       -      2/24 
+  FIRST_NAME: name-with-title           5    100.0       0      0   100.0   100.0    0/5  
+  ID: id-dash-check-digit               1      0.0       1      0   100.0     0.0    0/1  
+  ID: id-eight-digits                   1    100.0       0      0   100.0   100.0    0/1  
+  ID: id-no-context                     1    100.0       0      0   100.0   100.0    0/1  
+  ID: id-with-context                  26    100.0       0      0   100.0   100.0    0/26 
+  ID: passport-number (policy)          1    100.0       0      0   100.0   100.0    0/1  
+  INNER_ID: inner-id                   32    100.0       0      0     0.0     0.0    0/32 
+  INNER_ID: inner-id-letter             1    100.0       0      0     0.0     0.0    0/1  
+  INNER_ID: inner-id-no-context         1    100.0       0      0     0.0     0.0    0/1  
+  LAST_NAME: -                         60    100.0       0      0   100.0   100.0    0/60 
+  LAST_NAME: last-name-only             1    100.0       0      0   100.0   100.0    0/1  
+  LAST_NAME: name-prefixed              2    100.0       0      0   100.0   100.0    0/2  
+  LAST_NAME: name-repeat               45      -         0      0     -       -      0/45 
+  LAST_NAME: name-repeat-title         12      -         0      0     -       -      0/12 
+  LAST_NAME: name-staff                12      -         0      0     -       -      0/12 
+  LAST_NAME: name-with-title            5    100.0       0      0   100.0   100.0    0/5  
+  LAST_NAME: surname-hyphenated         4    100.0       0      0   100.0    50.0    0/4  
+  LOC: address (policy)                 3      0.0       3      0   100.0     0.0    0/3  
+  LOC: city-bare                        1    100.0       0      0   100.0   100.0    0/1  
+  LOC: city-prefixed                   34    100.0       0      0   100.0     0.0    0/34 
+  MED_ORG: medorg-prefixed             47     83.3       2      0    66.7    66.7    0/47 
+  MED_ORG: medorg-short-prefixed        2    100.0       0      0   100.0     0.0    0/2  
+  ORG: org-prefixed                    15    100.0       0      0   100.0    85.7    0/15 
+
+OVER-MASKING (things that should stay readable)
+  declared traps hit: 1 of 54
+    [t2_formats #115] '89' masked as AGE_ABOVE_89  (age 89 is not above 89)
+  extra predictions on non-PHI text: 2
+    [t2_formats #64] 'H' -> FIRST_NAME
+    [t2_formats #119] 'גיל' -> FIRST_NAME
+
+LEAKS: 64 truth spans are not fully masked (listing 24)
+    [t2_formats #83] missed  FIRST_NAME    name-prefixed                'אסף'
+    [t2_formats #84] missed  FIRST_NAME    name-prefixed                'נועם'
+    [t1_simple #1] partial DATE          date-numeric-dot             '22.02.1988'
+    [t1_simple #3] partial DATE          date-numeric-slash           '10/05/1991'
+    [t1_simple #8] partial DATE          date-numeric-dot             '28.03.2023'
+    [t1_simple #11] partial DATE          date-numeric-dot             '05.04.1943'
+    [t1_simple #13] partial DATE          date-numeric-slash           '20/06/2018'
+    [t1_simple #18] partial DATE          date-numeric-dot             '13.10.1994'
+    [t1_simple #21] partial DATE          date-numeric-dot             '14.05.1991'
+    [t1_simple #23] partial DATE          date-numeric-slash           '09/10/1992'
+    [t1_simple #28] partial DATE          date-numeric-dot             '27.05.2017'
+    [t1_simple #31] partial DATE          date-numeric-dot             '20.09.2012'
+    [t1_simple #33] partial DATE          date-numeric-slash           '15/03/2001'
+    [t1_simple #38] partial DATE          date-numeric-dot             '03.08.1944'
+    [t2_formats #1] partial DATE          date-numeric-dot             '26.01.1963'
+    [t2_formats #2] partial DATE          date-numeric-dot             '28.02.2009'
+    [t2_formats #3] partial DATE          date-numeric-dot             '13.03.1990'
+    [t2_formats #7] partial DATE          date-numeric-slash           '01/12/2001'
+    [t2_formats #8] partial DATE          date-numeric-slash           '23/12/2021'
+    [t2_formats #9] partial DATE          date-numeric-slash           '20/12/1962'
+    [t2_formats #10] partial DATE          date-numeric-dash            '17-12-2016'
+    [t2_formats #11] partial DATE          date-numeric-dash            '05-01-2010'
+    [t2_formats #12] partial DATE          date-numeric-dash            '04-11-1990'
+    [t2_formats #13] partial DATE          date-two-digit-year          '22.03.50'
+
+OFFSET DRIFT: 33 documents have entity offsets that do not fit the original text ({'t1_simple': 4, 't2_formats': 9, 't3_traps': 4, 't4_notes': 12, 't5_long': 4}). They were scored by the 'survive' check only.

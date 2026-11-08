@@ -1,0 +1,510 @@
+
+$ C:\ProgramData\anaconda3\envs\pii\python.exe -X utf8 D:\DeID KAI\ichilov_anonimizer\inference\de_identify.py --input D:\DeID KAI\ichilov_anonimizer\inference\dummy_data\t1_simple.csv --output-dir D:\DeID KAI\ichilov_anonimizer\training\runs\night-20261108-1846\pipeline\F_staged_2ep\seed_42\outputs_rules --model D:\DeID KAI\ichilov_anonimizer\training\models\night-20261108-1846\F_staged_2ep\seed_42 --output-format csv
+C:\ProgramData\anaconda3\envs\pii\lib\site-packages\transformers\utils\hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+Device set to use cuda:0
+Start time: 2026-11-08 21:30:24
+--- Using GPU (CUDA) ---
+Row 1/40
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 2/40
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 3/40
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 4/40
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 5/40
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 6/40
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 7/40
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 8/40
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 9/40
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 10/40
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 11/40
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+You seem to be using the pipelines sequentially on GPU. In order to maximize efficiency please use a dataset
+Row 12/40
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 13/40
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 14/40
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 15/40
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 16/40
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 17/40
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 18/40
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 19/40
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 20/40
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 21/40
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 22/40
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 23/40
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 24/40
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 25/40
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 26/40
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 27/40
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 28/40
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 29/40
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 30/40
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 31/40
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 32/40
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 33/40
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 34/40
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 35/40
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 36/40
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 37/40
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 38/40
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 39/40
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 40/40
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+
+Success! CSV saved to:   D:\DeID KAI\ichilov_anonimizer\training\runs\night-20261108-1846\pipeline\F_staged_2ep\seed_42\outputs_rules\t1_simple_deid_label_pipeline_seed_42.csv
+Success! JSON saved to:  D:\DeID KAI\ichilov_anonimizer\training\runs\night-20261108-1846\pipeline\F_staged_2ep\seed_42\outputs_rules\t1_simple_deid_label_pipeline_seed_42.json
+End time:   2026-11-08 21:30:26 (took 2s)
+
+$ C:\ProgramData\anaconda3\envs\pii\python.exe -X utf8 D:\DeID KAI\ichilov_anonimizer\inference\de_identify.py --input D:\DeID KAI\ichilov_anonimizer\inference\dummy_data\t2_formats.csv --output-dir D:\DeID KAI\ichilov_anonimizer\training\runs\night-20261108-1846\pipeline\F_staged_2ep\seed_42\outputs_rules --model D:\DeID KAI\ichilov_anonimizer\training\models\night-20261108-1846\F_staged_2ep\seed_42 --output-format csv
+C:\ProgramData\anaconda3\envs\pii\lib\site-packages\transformers\utils\hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+Device set to use cuda:0
+Start time: 2026-11-08 21:30:37
+--- Using GPU (CUDA) ---
+Row 1/119
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 2/119
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 3/119
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 4/119
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 5/119
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 6/119
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 7/119
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 8/119
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 9/119
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 10/119
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 11/119
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+You seem to be using the pipelines sequentially on GPU. In order to maximize efficiency please use a dataset
+Row 12/119
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 13/119
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 14/119
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 15/119
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 16/119
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 17/119
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 18/119
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 19/119
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 20/119
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 21/119
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 22/119
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 23/119
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 24/119
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 25/119
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 26/119
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 27/119
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 28/119
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 29/119
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 30/119
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 31/119
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 32/119
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 33/119
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 34/119
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 35/119
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 36/119
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 37/119
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 38/119
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 39/119
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 40/119
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 41/119
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 42/119
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 43/119
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 44/119
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 45/119
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 46/119
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 47/119
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 48/119
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 49/119
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 50/119
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 51/119
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 52/119
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 53/119
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 54/119
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 55/119
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 56/119
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 57/119
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 58/119
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 59/119
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 60/119
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 61/119
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 62/119
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 63/119
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 64/119
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 65/119
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 66/119
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 67/119
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 68/119
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 69/119
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 70/119
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 71/119
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 72/119
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 73/119
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 74/119
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 75/119
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 76/119
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 77/119
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 78/119
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 79/119
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 80/119
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 81/119
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 82/119
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 83/119
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 84/119
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 85/119
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 86/119
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 87/119
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 88/119
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 89/119
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 90/119
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 91/119
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 92/119
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 93/119
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 94/119
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 95/119
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 96/119
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 97/119
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 98/119
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 99/119
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 100/119
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 101/119
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 102/119
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 103/119
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 104/119
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 105/119
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 106/119
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 107/119
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 108/119
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 109/119
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 110/119
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 111/119
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 112/119
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 113/119
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 114/119
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 115/119
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 116/119
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 117/119
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 118/119
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 119/119
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+
+Success! CSV saved to:   D:\DeID KAI\ichilov_anonimizer\training\runs\night-20261108-1846\pipeline\F_staged_2ep\seed_42\outputs_rules\t2_formats_deid_label_pipeline_seed_42.csv
+Success! JSON saved to:  D:\DeID KAI\ichilov_anonimizer\training\runs\night-20261108-1846\pipeline\F_staged_2ep\seed_42\outputs_rules\t2_formats_deid_label_pipeline_seed_42.json
+End time:   2026-11-08 21:30:40 (took 2s)
+
+$ C:\ProgramData\anaconda3\envs\pii\python.exe -X utf8 D:\DeID KAI\ichilov_anonimizer\inference\de_identify.py --input D:\DeID KAI\ichilov_anonimizer\inference\dummy_data\t3_traps.csv --output-dir D:\DeID KAI\ichilov_anonimizer\training\runs\night-20261108-1846\pipeline\F_staged_2ep\seed_42\outputs_rules --model D:\DeID KAI\ichilov_anonimizer\training\models\night-20261108-1846\F_staged_2ep\seed_42 --output-format csv
+C:\ProgramData\anaconda3\envs\pii\lib\site-packages\transformers\utils\hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+Device set to use cuda:0
+Start time: 2026-11-08 21:30:51
+--- Using GPU (CUDA) ---
+Row 1/50
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 2/50
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 3/50
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 4/50
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 5/50
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 6/50
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 7/50
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 8/50
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 9/50
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 10/50
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 11/50
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+You seem to be using the pipelines sequentially on GPU. In order to maximize efficiency please use a dataset
+Row 12/50
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 13/50
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 14/50
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 15/50
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 16/50
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 17/50
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 18/50
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 19/50
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 20/50
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 21/50
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 22/50
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 23/50
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 24/50
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 25/50
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 26/50
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 27/50
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 28/50
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 29/50
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 30/50
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 31/50
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 32/50
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 33/50
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 34/50
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 35/50
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 36/50
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 37/50
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 38/50
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 39/50
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 40/50
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 41/50
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 42/50
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 43/50
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 44/50
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 45/50
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 46/50
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 47/50
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 48/50
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 49/50
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 50/50
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+
+Success! CSV saved to:   D:\DeID KAI\ichilov_anonimizer\training\runs\night-20261108-1846\pipeline\F_staged_2ep\seed_42\outputs_rules\t3_traps_deid_label_pipeline_seed_42.csv
+Success! JSON saved to:  D:\DeID KAI\ichilov_anonimizer\training\runs\night-20261108-1846\pipeline\F_staged_2ep\seed_42\outputs_rules\t3_traps_deid_label_pipeline_seed_42.json
+End time:   2026-11-08 21:30:52 (took 2s)
+
+$ C:\ProgramData\anaconda3\envs\pii\python.exe -X utf8 D:\DeID KAI\ichilov_anonimizer\inference\de_identify.py --input D:\DeID KAI\ichilov_anonimizer\inference\dummy_data\t4_notes.csv --output-dir D:\DeID KAI\ichilov_anonimizer\training\runs\night-20261108-1846\pipeline\F_staged_2ep\seed_42\outputs_rules --model D:\DeID KAI\ichilov_anonimizer\training\models\night-20261108-1846\F_staged_2ep\seed_42 --output-format csv
+C:\ProgramData\anaconda3\envs\pii\lib\site-packages\transformers\utils\hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+Device set to use cuda:0
+Start time: 2026-11-08 21:31:03
+--- Using GPU (CUDA) ---
+Row 1/12
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 2/12
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 3/12
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 4/12
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 5/12
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 6/12
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 7/12
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 8/12
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 9/12
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 10/12
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 11/12
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+You seem to be using the pipelines sequentially on GPU. In order to maximize efficiency please use a dataset
+Row 12/12
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+
+Success! CSV saved to:   D:\DeID KAI\ichilov_anonimizer\training\runs\night-20261108-1846\pipeline\F_staged_2ep\seed_42\outputs_rules\t4_notes_deid_label_pipeline_seed_42.csv
+Success! JSON saved to:  D:\DeID KAI\ichilov_anonimizer\training\runs\night-20261108-1846\pipeline\F_staged_2ep\seed_42\outputs_rules\t4_notes_deid_label_pipeline_seed_42.json
+End time:   2026-11-08 21:31:05 (took 1s)
+
+$ C:\ProgramData\anaconda3\envs\pii\python.exe -X utf8 D:\DeID KAI\ichilov_anonimizer\inference\de_identify.py --input D:\DeID KAI\ichilov_anonimizer\inference\dummy_data\t5_long.csv --output-dir D:\DeID KAI\ichilov_anonimizer\training\runs\night-20261108-1846\pipeline\F_staged_2ep\seed_42\outputs_rules --model D:\DeID KAI\ichilov_anonimizer\training\models\night-20261108-1846\F_staged_2ep\seed_42 --output-format csv
+C:\ProgramData\anaconda3\envs\pii\lib\site-packages\transformers\utils\hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+Device set to use cuda:0
+Start time: 2026-11-08 21:31:15
+--- Using GPU (CUDA) ---
+Row 1/4
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 2/4
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+Row 3/4
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+You seem to be using the pipelines sequentially on GPU. In order to maximize efficiency please use a dataset
+Row 4/4
+INFO:__main__:========== PROCESSING NEW DOCUMENT ==========
+
+Success! CSV saved to:   D:\DeID KAI\ichilov_anonimizer\training\runs\night-20261108-1846\pipeline\F_staged_2ep\seed_42\outputs_rules\t5_long_deid_label_pipeline_seed_42.csv
+Success! JSON saved to:  D:\DeID KAI\ichilov_anonimizer\training\runs\night-20261108-1846\pipeline\F_staged_2ep\seed_42\outputs_rules\t5_long_deid_label_pipeline_seed_42.json
+End time:   2026-11-08 21:31:18 (took 3s)

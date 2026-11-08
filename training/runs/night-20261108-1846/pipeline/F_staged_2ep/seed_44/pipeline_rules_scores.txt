@@ -1,0 +1,123 @@
+
+$ C:\ProgramData\anaconda3\envs\pii\python.exe -X utf8 D:\DeID KAI\ichilov_anonimizer\inference\score_dummy.py --results-dir D:\DeID KAI\ichilov_anonimizer\training\runs\night-20261108-1846\pipeline\F_staged_2ep\seed_44\outputs_rules --json-out D:\DeID KAI\ichilov_anonimizer\training\runs\night-20261108-1846\pipeline\F_staged_2ep\seed_44\pipeline_rules.json
+
+PER TIER
+                                        n  masked% partial missed  label%  exact%  survive
+  t1_simple                           112     97.3       2      1    93.7    84.8    1/109
+  t2_formats                          128     96.1       4      1    89.0    71.1    1/125
+  t3_traps                             43    100.0       0      0    97.7    95.3    0/40 
+  t4_notes                            300     94.0       3     15    94.7    86.0   50/288
+  t5_long                             146     90.4       9      5    90.8    72.6   25/139
+
+PER LABEL (all tiers)
+                                        n  masked% partial missed  label%  exact%  survive
+  AGE_ABOVE_89                         27    100.0       0      0   100.0   100.0    0/2  
+  CONTACT                              80     97.5       2      0   100.0    97.5    0/80 
+  DATE                                134    100.0       0      0   100.0    93.3    0/134
+  FIRST_NAME                          181     88.4       0     21    98.1    82.3   76/178
+  ID                                   30    100.0       0      0    93.3    90.0    0/30 
+  INNER_ID                             34     94.1       2      0     0.0     0.0    0/34 
+  LAST_NAME                           141    100.0       0      0    99.3    97.9    0/141
+  LOC                                  38     86.8       4      1   100.0     2.6    1/38 
+  MED_ORG                              49     85.7       7      0    85.7    81.6    0/49 
+  ORG                                  15     80.0       3      0    80.0    40.0    0/15 
+
+PER SITUATION (label: tag)
+                                        n  masked% partial missed  label%  exact%  survive
+  AGE_ABOVE_89: age-above-89           26    100.0       0      0   100.0   100.0    0/2  
+  AGE_ABOVE_89: age-above-89-context    1    100.0       0      0   100.0   100.0    0/0  
+  CONTACT: email-after-label            1    100.0       0      0   100.0   100.0    0/1  
+  CONTACT: email-digits                 1    100.0       0      0   100.0   100.0    0/1  
+  CONTACT: email-dotted-local          22    100.0       0      0   100.0   100.0    0/22 
+  CONTACT: email-hyphen                 1    100.0       0      0   100.0   100.0    0/1  
+  CONTACT: email-many-dots              1    100.0       0      0   100.0   100.0    0/1  
+  CONTACT: email-simple                 1    100.0       0      0   100.0   100.0    0/1  
+  CONTACT: email-underscore             1    100.0       0      0   100.0   100.0    0/1  
+  CONTACT: phone-fax                    1    100.0       0      0   100.0   100.0    0/1  
+  CONTACT: phone-landline              19    100.0       0      0   100.0   100.0    0/19 
+  CONTACT: phone-mobile                28     96.4       1      0   100.0    96.4    0/28 
+  CONTACT: phone-mobile-0               1    100.0       0      0   100.0   100.0    0/1  
+  CONTACT: phone-mobile-1               1    100.0       0      0   100.0   100.0    0/1  
+  CONTACT: phone-mobile-2               1      0.0       1      0   100.0     0.0    0/1  
+  CONTACT: phone-mobile-3               1    100.0       0      0   100.0   100.0    0/1  
+  DATE: date-hebrew-calendar            5    100.0       0      0   100.0   100.0    0/5  
+  DATE: date-hebrew-calendar (policy)    1    100.0       0      0   100.0     0.0    0/1  
+  DATE: date-iso                        3    100.0       0      0   100.0   100.0    0/3  
+  DATE: date-month-only (policy)        4    100.0       0      0   100.0     0.0    0/4  
+  DATE: date-month-year (policy)        4    100.0       0      0   100.0     0.0    0/4  
+  DATE: date-no-punctuation             3    100.0       0      0   100.0   100.0    0/3  
+  DATE: date-numeric-dash               3    100.0       0      0   100.0   100.0    0/3  
+  DATE: date-numeric-dot               44    100.0       0      0   100.0   100.0    0/44 
+  DATE: date-numeric-dot-nopad         15    100.0       0      0   100.0   100.0    0/15 
+  DATE: date-numeric-slash             19    100.0       0      0   100.0   100.0    0/19 
+  DATE: date-two-digit-year             3    100.0       0      0   100.0   100.0    0/3  
+  DATE: date-with-prefix               12    100.0       0      0   100.0   100.0    0/12 
+  DATE: date-written-hebrew            15    100.0       0      0   100.0   100.0    0/15 
+  DATE: date-written-prefixed-month     3    100.0       0      0   100.0   100.0    0/3  
+  FIRST_NAME: -                        74     98.6       0      1   100.0    98.6   28/74 
+  FIRST_NAME: first-name-only           1    100.0       0      0   100.0     0.0    0/1  
+  FIRST_NAME: name-bare                 1    100.0       0      0   100.0   100.0    0/1  
+  FIRST_NAME: name-is-common-word       4    100.0       0      0    75.0    75.0    0/1  
+  FIRST_NAME: name-is-month-name        2    100.0       0      0   100.0   100.0    0/2  
+  FIRST_NAME: name-prefixed             3     66.7       0      1    50.0     0.0    1/3  
+  FIRST_NAME: name-relative            19    100.0       0      0   100.0   100.0    0/19 
+  FIRST_NAME: name-repeat              26     92.3       0      2   100.0    92.3   24/26 
+  FIRST_NAME: name-repeat-prefixed     22     27.3       0     16   100.0     0.0   21/22 
+  FIRST_NAME: name-staff               24     95.8       0      1   100.0    95.8    2/24 
+  FIRST_NAME: name-with-title           5    100.0       0      0    80.0    80.0    0/5  
+  ID: id-dash-check-digit               1    100.0       0      0   100.0   100.0    0/1  
+  ID: id-eight-digits                   1    100.0       0      0   100.0     0.0    0/1  
+  ID: id-no-context                     1    100.0       0      0     0.0     0.0    0/1  
+  ID: id-with-context                  26    100.0       0      0    96.2    96.2    0/26 
+  ID: passport-number (policy)          1    100.0       0      0   100.0   100.0    0/1  
+  INNER_ID: inner-id                   32     93.8       2      0     0.0     0.0    0/32 
+  INNER_ID: inner-id-letter             1    100.0       0      0     0.0     0.0    0/1  
+  INNER_ID: inner-id-no-context         1    100.0       0      0     0.0     0.0    0/1  
+  LAST_NAME: -                         60    100.0       0      0   100.0   100.0    0/60 
+  LAST_NAME: last-name-only             1    100.0       0      0   100.0   100.0    0/1  
+  LAST_NAME: name-prefixed              2    100.0       0      0    50.0    50.0    0/2  
+  LAST_NAME: name-repeat               45    100.0       0      0   100.0   100.0    0/45 
+  LAST_NAME: name-repeat-title         12    100.0       0      0   100.0   100.0    0/12 
+  LAST_NAME: name-staff                12    100.0       0      0   100.0   100.0    0/12 
+  LAST_NAME: name-with-title            5    100.0       0      0   100.0   100.0    0/5  
+  LAST_NAME: surname-hyphenated         4    100.0       0      0   100.0    50.0    0/4  
+  LOC: address (policy)                 3      0.0       3      0   100.0     0.0    0/3  
+  LOC: city-bare                        1    100.0       0      0   100.0   100.0    0/1  
+  LOC: city-prefixed                   34     94.1       1      1   100.0     0.0    1/34 
+  MED_ORG: medorg-prefixed             47     85.1       7      0    85.1    85.1    0/47 
+  MED_ORG: medorg-short-prefixed        2    100.0       0      0   100.0     0.0    0/2  
+  ORG: org-prefixed                    15     80.0       3      0    80.0    40.0    0/15 
+
+OVER-MASKING (things that should stay readable)
+  declared traps hit: 1 of 58
+    [t2_formats #115] '89' masked as AGE_ABOVE_89  (age 89 is not above 89)
+  extra predictions on non-PHI text: 3
+    [t1_simple #7] 'באוניברסיטת' -> ORG
+    [t1_simple #17] 'בעיריית' -> ORG
+    [t2_formats #111] 'בעיריית' -> ORG
+
+LEAKS: 40 truth spans are not fully masked (listing 24)
+    [t1_simple #7] missed  FIRST_NAME    -                            'בני'
+    [t2_formats #84] missed  FIRST_NAME    name-prefixed                'נועם'
+    [t4_notes #1] missed  FIRST_NAME    name-repeat-prefixed         'מיכל'
+    [t4_notes #2] missed  FIRST_NAME    name-repeat-prefixed         'משה'
+    [t4_notes #3] missed  FIRST_NAME    name-repeat-prefixed         'יוסף'
+    [t4_notes #4] missed  FIRST_NAME    name-repeat                  'בני'
+    [t4_notes #4] missed  FIRST_NAME    name-repeat-prefixed         'בני'
+    [t4_notes #5] missed  FIRST_NAME    name-repeat-prefixed         'מיכל'
+    [t4_notes #6] missed  FIRST_NAME    name-repeat-prefixed         'זהר'
+    [t4_notes #7] missed  FIRST_NAME    name-repeat                  'איתן'
+    [t4_notes #7] missed  FIRST_NAME    name-repeat-prefixed         'איתן'
+    [t4_notes #8] missed  FIRST_NAME    name-staff                   'איתן'
+    [t4_notes #8] missed  FIRST_NAME    name-repeat-prefixed         'יעל'
+    [t4_notes #9] missed  FIRST_NAME    name-repeat-prefixed         'מירב'
+    [t4_notes #10] missed  FIRST_NAME    name-repeat-prefixed         'אסף'
+    [t4_notes #11] missed  FIRST_NAME    name-repeat-prefixed         'דוד'
+    [t4_notes #12] missed  FIRST_NAME    name-repeat-prefixed         'אורי'
+    [t5_long #2] missed  FIRST_NAME    name-repeat-prefixed         'נועם'
+    [t5_long #3] missed  FIRST_NAME    name-repeat-prefixed         'רועי'
+    [t5_long #3] missed  FIRST_NAME    name-repeat-prefixed         'רועי'
+    [t5_long #4] missed  FIRST_NAME    name-repeat-prefixed         'משה'
+    [t2_formats #101] partial LOC           address                      'רחוב הרימון 68, פתח תקווה'
+    [t2_formats #102] partial LOC           address                      'רחוב רוטשילד 14, פתח תקווה'
+    [t2_formats #103] partial LOC           address                      'רחוב הגפן 100, עפולה'
