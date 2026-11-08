@@ -1,0 +1,1316 @@
+[
+  {
+    "id": 1,
+    "text": "המטופל דוד כהן בן 45 אושפז ביום 15.03.2024 במחלקה פנימית ב' בבית החולים איכילוב.",
+    "deid text": "המטופל [FIRST_NAME] [LAST_NAME] בן 45 אושפז ביום [DATE].[DATE].[DATE] במחלקה פנימית ב' בבית החולים [MED_ORG].",
+    "entities": [
+      {
+        "start": 7,
+        "end": 10,
+        "text": "דוד",
+        "label": "FIRST_NAME"
+      },
+      {
+        "start": 11,
+        "end": 14,
+        "text": "כהן",
+        "label": "LAST_NAME"
+      },
+      {
+        "start": 32,
+        "end": 34,
+        "text": "15",
+        "label": "DATE"
+      },
+      {
+        "start": 35,
+        "end": 37,
+        "text": "03",
+        "label": "DATE"
+      },
+      {
+        "start": 38,
+        "end": 42,
+        "text": "2024",
+        "label": "DATE"
+      },
+      {
+        "start": 72,
+        "end": 79,
+        "text": "איכילוב",
+        "label": "MED_ORG"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "text": "הגב' שרה לוי מרחוב הרצל 23 תל אביב התקשרה למספר 03-5551234 לקביעת תור.",
+    "deid text": "הגב' [FIRST_NAME] [LAST_NAME] [LOC] התקשרה למספר [CONTACT] לקביעת תור.",
+    "entities": [
+      {
+        "start": 5,
+        "end": 8,
+        "text": "שרה",
+        "label": "FIRST_NAME"
+      },
+      {
+        "start": 9,
+        "end": 12,
+        "text": "לוי",
+        "label": "LAST_NAME"
+      },
+      {
+        "start": 13,
+        "end": 34,
+        "text": "מרחוב הרצל 23 תל אביב",
+        "label": "LOC"
+      },
+      {
+        "start": 48,
+        "end": 58,
+        "text": "03-5551234",
+        "label": "CONTACT"
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "text": "מטופל בן 92 עם היסטוריה של יתר לחץ דם הגיע לחדר מיון ברמב\"ם בתאריך 01.02.2024.",
+    "deid text": "מטופל בן [AGE_ABOVE_89] עם היסטוריה של יתר לחץ דם הגיע לחדר מיון [MED_ORG] בתאריך [DATE].[DATE].[DATE].",
+    "entities": [
+      {
+        "start": 9,
+        "end": 11,
+        "text": "92",
+        "label": "AGE_ABOVE_89"
+      },
+      {
+        "start": 53,
+        "end": 59,
+        "text": "ברמב\"ם",
+        "label": "MED_ORG"
+      },
+      {
+        "start": 67,
+        "end": 69,
+        "text": "01",
+        "label": "DATE"
+      },
+      {
+        "start": 70,
+        "end": 72,
+        "text": "02",
+        "label": "DATE"
+      },
+      {
+        "start": 73,
+        "end": 77,
+        "text": "2024",
+        "label": "DATE"
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "text": "ד\"ר משה אברהם מהמרפאה הקהילתית בירושלים המליץ על טיפול תרופתי חדש.",
+    "deid text": "ד\"ר [FIRST_NAME] [LAST_NAME] מהמרפאה הקהילתית [LOC] המליץ על טיפול תרופתי חדש.",
+    "entities": [
+      {
+        "start": 4,
+        "end": 7,
+        "text": "משה",
+        "label": "FIRST_NAME"
+      },
+      {
+        "start": 8,
+        "end": 13,
+        "text": "אברהם",
+        "label": "LAST_NAME"
+      },
+      {
+        "start": 31,
+        "end": 39,
+        "text": "בירושלים",
+        "label": "LOC"
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "text": "המטופלת רחל כהן ת.ז. 123456789 נולדה ב-10/05/1980 והיא מתגוררת בחיפה.",
+    "deid text": "המטופלת [FIRST_NAME] [LAST_NAME] ת.ז. [ID] נולדה ב-[DATE].[DATE].[DATE] והיא מתגוררת [LOC].",
+    "entities": [
+      {
+        "start": 8,
+        "end": 11,
+        "text": "רחל",
+        "label": "FIRST_NAME"
+      },
+      {
+        "start": 12,
+        "end": 15,
+        "text": "כהן",
+        "label": "LAST_NAME"
+      },
+      {
+        "start": 21,
+        "end": 30,
+        "text": "123456789",
+        "label": "ID"
+      },
+      {
+        "start": 34,
+        "end": 36,
+        "text": "10",
+        "label": "DATE"
+      },
+      {
+        "start": 37,
+        "end": 39,
+        "text": "05",
+        "label": "DATE"
+      },
+      {
+        "start": 40,
+        "end": 44,
+        "text": "1980",
+        "label": "DATE"
+      },
+      {
+        "start": 58,
+        "end": 63,
+        "text": "בחיפה",
+        "label": "LOC"
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "text": "פנייה טלפונית מאת יוסף דהן למספר 052-9876543 בנוגע לתוצאות בדיקות מעבדה.",
+    "deid text": "פנייה טלפונית מאת [FIRST_NAME] [LAST_NAME] למספר [CONTACT] בנוגע לתוצאות בדיקות מעבדה.",
+    "entities": [
+      {
+        "start": 18,
+        "end": 22,
+        "text": "יוסף",
+        "label": "FIRST_NAME"
+      },
+      {
+        "start": 23,
+        "end": 26,
+        "text": "דהן",
+        "label": "LAST_NAME"
+      },
+      {
+        "start": 33,
+        "end": 44,
+        "text": "052-9876543",
+        "label": "CONTACT"
+      }
+    ]
+  },
+  {
+    "id": 7,
+    "text": "מטופל מספר פנימי 987654 אושפז במרכז הרפואי הדסה עין כרם ביום 20.12.2023.",
+    "deid text": "מטופל מספר פנימי [CONTACT] אושפז במרכז הרפואי [MED_ORG] [LOC] [MED_ORG] ביום [DATE].[DATE].[DATE].",
+    "entities": [
+      {
+        "start": 17,
+        "end": 23,
+        "text": "987654",
+        "label": "CONTACT"
+      },
+      {
+        "start": 43,
+        "end": 47,
+        "text": "הדסה",
+        "label": "MED_ORG"
+      },
+      {
+        "start": 48,
+        "end": 51,
+        "text": "עין",
+        "label": "LOC"
+      },
+      {
+        "start": 52,
+        "end": 55,
+        "text": "כרם",
+        "label": "MED_ORG"
+      },
+      {
+        "start": 61,
+        "end": 63,
+        "text": "20",
+        "label": "DATE"
+      },
+      {
+        "start": 64,
+        "end": 66,
+        "text": "12",
+        "label": "DATE"
+      },
+      {
+        "start": 67,
+        "end": 71,
+        "text": "2023",
+        "label": "DATE"
+      }
+    ]
+  },
+  {
+    "id": 8,
+    "text": "הילד נועם גולן בן 8 שנים הגיע עם הוריו לחדר מיון בתאריך 05.01.2024.",
+    "deid text": "הילד [FIRST_NAME] [LAST_NAME] בן 8 שנים הגיע עם הוריו לחדר מיון בתאריך [DATE].[DATE].[DATE].",
+    "entities": [
+      {
+        "start": 5,
+        "end": 9,
+        "text": "נועם",
+        "label": "FIRST_NAME"
+      },
+      {
+        "start": 10,
+        "end": 14,
+        "text": "גולן",
+        "label": "LAST_NAME"
+      },
+      {
+        "start": 56,
+        "end": 58,
+        "text": "05",
+        "label": "DATE"
+      },
+      {
+        "start": 59,
+        "end": 61,
+        "text": "01",
+        "label": "DATE"
+      },
+      {
+        "start": 62,
+        "end": 66,
+        "text": "2024",
+        "label": "DATE"
+      }
+    ]
+  },
+  {
+    "id": 9,
+    "text": "הגב' מירב שפירא גרה ברח' בן יהודה 15, רמת גן ומספר הטלפון שלה הוא 054-1234567.",
+    "deid text": "הגב' [FIRST_NAME] [LAST_NAME] גרה ברח' [LOC] ומספר הטלפון שלה הוא [CONTACT].",
+    "entities": [
+      {
+        "start": 5,
+        "end": 9,
+        "text": "מירב",
+        "label": "FIRST_NAME"
+      },
+      {
+        "start": 10,
+        "end": 15,
+        "text": "שפירא",
+        "label": "LAST_NAME"
+      },
+      {
+        "start": 25,
+        "end": 44,
+        "text": "בן יהודה 15, רמת גן",
+        "label": "LOC"
+      },
+      {
+        "start": 66,
+        "end": 77,
+        "text": "054-1234567",
+        "label": "CONTACT"
+      }
+    ]
+  },
+  {
+    "id": 10,
+    "text": "מטופלת בת 94 עם דמנציה אלצהיימר מתגוררת בבית אבות נווה שלום בנתניה.",
+    "deid text": "מטופלת בת [AGE_ABOVE_89] עם דמנציה אלצהיימר מתגוררת בבית אבות [MED_ORG] [LOC] [LOC].",
+    "entities": [
+      {
+        "start": 10,
+        "end": 12,
+        "text": "94",
+        "label": "AGE_ABOVE_89"
+      },
+      {
+        "start": 50,
+        "end": 54,
+        "text": "נווה",
+        "label": "MED_ORG"
+      },
+      {
+        "start": 55,
+        "end": 59,
+        "text": "שלום",
+        "label": "LOC"
+      },
+      {
+        "start": 60,
+        "end": 66,
+        "text": "בנתניה",
+        "label": "LOC"
+      }
+    ]
+  },
+  {
+    "id": 11,
+    "text": "טיפול רפואי בוצע על ידי צוות המרפאה של קופת חולים מכבי בסניף באר שבע.",
+    "deid text": "טיפול רפואי בוצע על ידי צוות המרפאה של קופת חולים [MED_ORG] בסניף [LOC].",
+    "entities": [
+      {
+        "start": 50,
+        "end": 54,
+        "text": "מכבי",
+        "label": "MED_ORG"
+      },
+      {
+        "start": 61,
+        "end": 68,
+        "text": "באר שבע",
+        "label": "LOC"
+      }
+    ]
+  },
+  {
+    "id": 12,
+    "text": "אורי בן דוד ת.ז. 234567890 עבר ניתוח ב-25.11.2023 בבית החולים בני ציון.",
+    "deid text": "[FIRST_NAME] [LAST_NAME] ת.ז. [ID] עבר ניתוח ב-[DATE].[DATE].[DATE] בבית החולים [MED_ORG].",
+    "entities": [
+      {
+        "start": 0,
+        "end": 4,
+        "text": "אורי",
+        "label": "FIRST_NAME"
+      },
+      {
+        "start": 5,
+        "end": 11,
+        "text": "בן דוד",
+        "label": "LAST_NAME"
+      },
+      {
+        "start": 17,
+        "end": 26,
+        "text": "234567890",
+        "label": "ID"
+      },
+      {
+        "start": 34,
+        "end": 36,
+        "text": "25",
+        "label": "DATE"
+      },
+      {
+        "start": 37,
+        "end": 39,
+        "text": "11",
+        "label": "DATE"
+      },
+      {
+        "start": 40,
+        "end": 44,
+        "text": "2023",
+        "label": "DATE"
+      },
+      {
+        "start": 57,
+        "end": 65,
+        "text": "בני ציון",
+        "label": "MED_ORG"
+      }
+    ]
+  },
+  {
+    "id": 13,
+    "text": "המטופל אליהו משה התקשר ליום שלישי 12.06.2024 למרפאה שברח' ויצמן 45 רחובות.",
+    "deid text": "המטופל [FIRST_NAME] [FIRST_NAME] התקשר ליום שלישי [DATE].[DATE].[DATE] למרפאה שברח' [LOC].",
+    "entities": [
+      {
+        "start": 7,
+        "end": 12,
+        "text": "אליהו",
+        "label": "FIRST_NAME"
+      },
+      {
+        "start": 13,
+        "end": 16,
+        "text": "משה",
+        "label": "FIRST_NAME"
+      },
+      {
+        "start": 34,
+        "end": 36,
+        "text": "12",
+        "label": "DATE"
+      },
+      {
+        "start": 37,
+        "end": 39,
+        "text": "06",
+        "label": "DATE"
+      },
+      {
+        "start": 40,
+        "end": 44,
+        "text": "2024",
+        "label": "DATE"
+      },
+      {
+        "start": 58,
+        "end": 73,
+        "text": "ויצמן 45 רחובות",
+        "label": "LOC"
+      }
+    ]
+  },
+  {
+    "id": 14,
+    "text": "פנייה מאיימייל: cohen.david@gmail.com לקבלת מידע רפואי נוסף.",
+    "deid text": "פנייה מאיימייל: [CONTACT] לקבלת מידע רפואי נוסף.",
+    "entities": [
+      {
+        "start": 16,
+        "end": 37,
+        "text": "cohen.david@gmail.com",
+        "label": "CONTACT"
+      }
+    ]
+  },
+  {
+    "id": 15,
+    "text": "המטופלת תמר אשכנזי בת 67 מרחוב דיזנגוף 100 תל אביב אושפזה ב-18.09.2023.",
+    "deid text": "המטופלת [FIRST_NAME] [LAST_NAME] בת 67 מרחוב [LOC] אושפזה ב-[DATE].[DATE].[DATE].",
+    "entities": [
+      {
+        "start": 8,
+        "end": 11,
+        "text": "תמר",
+        "label": "FIRST_NAME"
+      },
+      {
+        "start": 12,
+        "end": 18,
+        "text": "אשכנזי",
+        "label": "LAST_NAME"
+      },
+      {
+        "start": 31,
+        "end": 50,
+        "text": "דיזנגוף 100 תל אביב",
+        "label": "LOC"
+      },
+      {
+        "start": 60,
+        "end": 62,
+        "text": "18",
+        "label": "DATE"
+      },
+      {
+        "start": 63,
+        "end": 65,
+        "text": "09",
+        "label": "DATE"
+      },
+      {
+        "start": 66,
+        "end": 70,
+        "text": "2023",
+        "label": "DATE"
+      }
+    ]
+  },
+  {
+    "id": 16,
+    "text": "מטופל בן 91 עם אי ספיקת לב כרונית מגיע למעקב קבוע במכון הלב בשיבא.",
+    "deid text": "מטופל בן [AGE_ABOVE_89] עם אי ספיקת לב כרונית מגיע למעקב קבוע במכון הלב [MED_ORG].",
+    "entities": [
+      {
+        "start": 9,
+        "end": 11,
+        "text": "91",
+        "label": "AGE_ABOVE_89"
+      },
+      {
+        "start": 60,
+        "end": 65,
+        "text": "בשיבא",
+        "label": "MED_ORG"
+      }
+    ]
+  },
+  {
+    "id": 17,
+    "text": "ד\"ר אסתר רוזנברג מהמחלקה האונקולוגית בסוראסקי המליצה על טיפול כימותרפי.",
+    "deid text": "ד\"ר [FIRST_NAME] [LAST_NAME] מהמחלקה האונקולוגית [ORG][MED_ORG] המליצה על טיפול כימותרפי.",
+    "entities": [
+      {
+        "start": 4,
+        "end": 8,
+        "text": "אסתר",
+        "label": "FIRST_NAME"
+      },
+      {
+        "start": 9,
+        "end": 16,
+        "text": "רוזנברג",
+        "label": "LAST_NAME"
+      },
+      {
+        "start": 37,
+        "end": 41,
+        "text": "בסור",
+        "label": "ORG"
+      },
+      {
+        "start": 41,
+        "end": 45,
+        "text": "אסקי",
+        "label": "MED_ORG"
+      }
+    ]
+  },
+  {
+    "id": 18,
+    "text": "יעל כץ בת 35 שנים התקשרה למספר 02-6661234 לקבלת ייעוץ רפואי.",
+    "deid text": "[FIRST_NAME] [LAST_NAME] בת 35 שנים התקשרה למספר [CONTACT] לקבלת ייעוץ רפואי.",
+    "entities": [
+      {
+        "start": 0,
+        "end": 3,
+        "text": "יעל",
+        "label": "FIRST_NAME"
+      },
+      {
+        "start": 4,
+        "end": 6,
+        "text": "כץ",
+        "label": "LAST_NAME"
+      },
+      {
+        "start": 31,
+        "end": 41,
+        "text": "02-6661234",
+        "label": "CONTACT"
+      }
+    ]
+  },
+  {
+    "id": 19,
+    "text": "מטופל מס' פנימי H-456789 עבר CT ב-30.04.2024 במכון הדימות ברמב\"ם.",
+    "deid text": "מטופל מס' פנימי [CONTACT] עבר CT ב-[DATE].[DATE].[DATE] במכון הדימות [MED_ORG].",
+    "entities": [
+      {
+        "start": 16,
+        "end": 24,
+        "text": "H-456789",
+        "label": "CONTACT"
+      },
+      {
+        "start": 34,
+        "end": 36,
+        "text": "30",
+        "label": "DATE"
+      },
+      {
+        "start": 37,
+        "end": 39,
+        "text": "04",
+        "label": "DATE"
+      },
+      {
+        "start": 40,
+        "end": 44,
+        "text": "2024",
+        "label": "DATE"
+      },
+      {
+        "start": 58,
+        "end": 64,
+        "text": "ברמב\"ם",
+        "label": "MED_ORG"
+      }
+    ]
+  },
+  {
+    "id": 20,
+    "text": "אברהם לוין ת.ז. 345678901 מתגורר בקיבוץ יגור והגיע לטיפול בתאריך 14.08.2023.",
+    "deid text": "[FIRST_NAME] [LAST_NAME] ת.ז. [ID] מתגורר בקיבוץ [MED_ORG] והגיע לטיפול בתאריך [DATE].[DATE].[DATE].",
+    "entities": [
+      {
+        "start": 0,
+        "end": 5,
+        "text": "אברהם",
+        "label": "FIRST_NAME"
+      },
+      {
+        "start": 6,
+        "end": 10,
+        "text": "לוין",
+        "label": "LAST_NAME"
+      },
+      {
+        "start": 16,
+        "end": 25,
+        "text": "345678901",
+        "label": "ID"
+      },
+      {
+        "start": 35,
+        "end": 39,
+        "text": "יגור",
+        "label": "MED_ORG"
+      },
+      {
+        "start": 60,
+        "end": 62,
+        "text": "14",
+        "label": "DATE"
+      },
+      {
+        "start": 63,
+        "end": 65,
+        "text": "08",
+        "label": "DATE"
+      },
+      {
+        "start": 66,
+        "end": 70,
+        "text": "2023",
+        "label": "DATE"
+      }
+    ]
+  },
+  {
+    "id": 21,
+    "text": "נוסעת מחו\"ל לאה גרינברג מספר דרכון 98765432 אושפזה במחלקה פנימית ב' בכרמל ב-22.08.2023.",
+    "deid text": "נוסעת מחו\"ל [FIRST_NAME] [LAST_NAME] מספר דרכון [ID] אושפזה במחלקה פנימית ב' [MED_ORG] ב-[DATE].[DATE].[DATE].",
+    "entities": [
+      {
+        "start": 12,
+        "end": 15,
+        "text": "לאה",
+        "label": "FIRST_NAME"
+      },
+      {
+        "start": 16,
+        "end": 23,
+        "text": "גרינברג",
+        "label": "LAST_NAME"
+      },
+      {
+        "start": 35,
+        "end": 43,
+        "text": "98765432",
+        "label": "ID"
+      },
+      {
+        "start": 64,
+        "end": 69,
+        "text": "בכרמל",
+        "label": "MED_ORG"
+      },
+      {
+        "start": 72,
+        "end": 74,
+        "text": "22",
+        "label": "DATE"
+      },
+      {
+        "start": 75,
+        "end": 77,
+        "text": "08",
+        "label": "DATE"
+      },
+      {
+        "start": 78,
+        "end": 82,
+        "text": "2023",
+        "label": "DATE"
+      }
+    ]
+  },
+  {
+    "id": 22,
+    "text": "ד\"ר אורן לוי מהמרפאה הקהילתית בפתח תקווה הפנה את המטופלת חנה מרקוס ת.ז. 567890123 לבדיקת MRI בבית החולים מאיר ב-07.05.2024.",
+    "deid text": "ד\"ר [FIRST_NAME] [LAST_NAME] מהמרפאה הקהילתית [LOC] הפנה את המטופלת [FIRST_NAME] [LAST_NAME] ת.ז. [ID] לבדיקת MRI בבית החולים [MED_ORG] ב-[DATE].[DATE].[DATE].",
+    "entities": [
+      {
+        "start": 4,
+        "end": 8,
+        "text": "אורן",
+        "label": "FIRST_NAME"
+      },
+      {
+        "start": 9,
+        "end": 12,
+        "text": "לוי",
+        "label": "LAST_NAME"
+      },
+      {
+        "start": 30,
+        "end": 40,
+        "text": "בפתח תקווה",
+        "label": "LOC"
+      },
+      {
+        "start": 57,
+        "end": 60,
+        "text": "חנה",
+        "label": "FIRST_NAME"
+      },
+      {
+        "start": 61,
+        "end": 66,
+        "text": "מרקוס",
+        "label": "LAST_NAME"
+      },
+      {
+        "start": 72,
+        "end": 81,
+        "text": "567890123",
+        "label": "ID"
+      },
+      {
+        "start": 100,
+        "end": 104,
+        "text": "מאיר",
+        "label": "MED_ORG"
+      },
+      {
+        "start": 107,
+        "end": 109,
+        "text": "07",
+        "label": "DATE"
+      },
+      {
+        "start": 110,
+        "end": 112,
+        "text": "05",
+        "label": "DATE"
+      },
+      {
+        "start": 113,
+        "end": 117,
+        "text": "2024",
+        "label": "DATE"
+      }
+    ]
+  },
+  {
+    "id": 23,
+    "text": "סיכום אשפוז: חיים גבאי ת.ז. 456789012 בן 67 אושפז בבית החולים לניאדו מתאריך 12.01.2024 עד 18.01.2024. בוצע ניתוח כריתת ערמונית. לשאלות לאחר השחרור ניתן לפנות בטלפון 09-8604900 או במייל chaim.gabai@walla.co.il.",
+    "deid text": "סיכום אשפוז: [FIRST_NAME] [LAST_NAME] ת.ז. [ID] בן 67 אושפז בבית החולים [MED_ORG] מתאריך [DATE].[DATE].[DATE] עד [DATE].[DATE].[DATE]. בוצע ניתוח כריתת ערמונית. לשאלות לאחר השחרור ניתן לפנות בטלפון [CONTACT] או במייל [CONTACT].",
+    "entities": [
+      {
+        "start": 13,
+        "end": 17,
+        "text": "חיים",
+        "label": "FIRST_NAME"
+      },
+      {
+        "start": 18,
+        "end": 22,
+        "text": "גבאי",
+        "label": "LAST_NAME"
+      },
+      {
+        "start": 28,
+        "end": 37,
+        "text": "456789012",
+        "label": "ID"
+      },
+      {
+        "start": 57,
+        "end": 63,
+        "text": "לניאדו",
+        "label": "MED_ORG"
+      },
+      {
+        "start": 71,
+        "end": 73,
+        "text": "12",
+        "label": "DATE"
+      },
+      {
+        "start": 74,
+        "end": 76,
+        "text": "01",
+        "label": "DATE"
+      },
+      {
+        "start": 77,
+        "end": 81,
+        "text": "2024",
+        "label": "DATE"
+      },
+      {
+        "start": 85,
+        "end": 87,
+        "text": "18",
+        "label": "DATE"
+      },
+      {
+        "start": 88,
+        "end": 90,
+        "text": "01",
+        "label": "DATE"
+      },
+      {
+        "start": 91,
+        "end": 95,
+        "text": "2024",
+        "label": "DATE"
+      },
+      {
+        "start": 160,
+        "end": 170,
+        "text": "09-8604900",
+        "label": "CONTACT"
+      },
+      {
+        "start": 180,
+        "end": 203,
+        "text": "chaim.gabai@walla.co.il",
+        "label": "CONTACT"
+      }
+    ]
+  },
+  {
+    "id": 24,
+    "text": "מלכה רוטמן ילידת 3 בינואר 1940 אובחנה עם סרטן שד במרכז הרפואי שיבא ב-14.03.2024 והופנתה לטיפול אונקולוגי.",
+    "deid text": "[FIRST_NAME] [LAST_NAME] ילידת [DATE]-[DATE]-[DATE] אובחנה עם סרטן שד במרכז הרפואי [MED_ORG] ב-[DATE].[DATE].[DATE] והופנתה לטיפול אונקולוגי.",
+    "entities": [
+      {
+        "start": 0,
+        "end": 4,
+        "text": "מלכה",
+        "label": "FIRST_NAME"
+      },
+      {
+        "start": 5,
+        "end": 10,
+        "text": "רוטמן",
+        "label": "LAST_NAME"
+      },
+      {
+        "start": 17,
+        "end": 21,
+        "text": "1940",
+        "label": "DATE"
+      },
+      {
+        "start": 22,
+        "end": 24,
+        "text": "01",
+        "label": "DATE"
+      },
+      {
+        "start": 25,
+        "end": 27,
+        "text": "03",
+        "label": "DATE"
+      },
+      {
+        "start": 59,
+        "end": 63,
+        "text": "שיבא",
+        "label": "MED_ORG"
+      },
+      {
+        "start": 66,
+        "end": 68,
+        "text": "14",
+        "label": "DATE"
+      },
+      {
+        "start": 69,
+        "end": 71,
+        "text": "03",
+        "label": "DATE"
+      },
+      {
+        "start": 72,
+        "end": 76,
+        "text": "2024",
+        "label": "DATE"
+      }
+    ]
+  },
+  {
+    "id": 25,
+    "text": "מטופל בן 93 מאושפז בגריאטריה בבית החולים פוריה. ניתן ליצור קשר עם בן המשפחה דוד שושני במספר 054-7654321 או בדוא\"ל d.shoshani@gmail.com.",
+    "deid text": "מטופל בן [AGE_ABOVE_89] מאושפז בגריאטריה בבית החולים [MED_ORG]. ניתן ליצור קשר עם בן המשפחה [FIRST_NAME] [LAST_NAME] במספר [CONTACT] או בדוא\"ל [CONTACT].",
+    "entities": [
+      {
+        "start": 9,
+        "end": 11,
+        "text": "93",
+        "label": "AGE_ABOVE_89"
+      },
+      {
+        "start": 41,
+        "end": 46,
+        "text": "פוריה",
+        "label": "MED_ORG"
+      },
+      {
+        "start": 76,
+        "end": 79,
+        "text": "דוד",
+        "label": "FIRST_NAME"
+      },
+      {
+        "start": 80,
+        "end": 85,
+        "text": "שושני",
+        "label": "LAST_NAME"
+      },
+      {
+        "start": 92,
+        "end": 103,
+        "text": "054-7654321",
+        "label": "CONTACT"
+      },
+      {
+        "start": 114,
+        "end": 134,
+        "text": "d.shoshani@gmail.com",
+        "label": "CONTACT"
+      }
+    ]
+  },
+  {
+    "id": 26,
+    "text": "ביקור מרפאה מיום 2 במרץ 2024: המטופלת רנה אוחנה בת 55 הגרה ברחוב לוחמי הגטאות 7 ירושלים הגיעה עם תלונות על כאבי ראש חוזרים. ד\"ר סמי כהן הורה על בדיקות דם ב-05.03.2024 והפנה לנוירולוג. לתיאום ניתן לפנות בטלפון 02-6776677.",
+    "deid text": "ביקור מרפאה מיום [DATE]-[CONTACT]02: המטופלת [FIRST_NAME] [LAST_NAME] בת 55 הגרה ברחוב [LOC] הגיעה עם תלונות על כאבי ראש חוזרים. ד\"ר [FIRST_NAME] [LAST_NAME] הורה על בדיקות דם ב-[DATE].[DATE].[DATE] והפנה לנוירולוג. לתיאום ניתן לפנות בטלפון [CONTACT].",
+    "entities": [
+      {
+        "start": 17,
+        "end": 21,
+        "text": "2024",
+        "label": "DATE"
+      },
+      {
+        "start": 22,
+        "end": 25,
+        "text": "03-",
+        "label": "CONTACT"
+      },
+      {
+        "start": 37,
+        "end": 40,
+        "text": "רנה",
+        "label": "FIRST_NAME"
+      },
+      {
+        "start": 41,
+        "end": 46,
+        "text": "אוחנה",
+        "label": "LAST_NAME"
+      },
+      {
+        "start": 64,
+        "end": 86,
+        "text": "לוחמי הגטאות 7 ירושלים",
+        "label": "LOC"
+      },
+      {
+        "start": 127,
+        "end": 130,
+        "text": "סמי",
+        "label": "FIRST_NAME"
+      },
+      {
+        "start": 131,
+        "end": 134,
+        "text": "כהן",
+        "label": "LAST_NAME"
+      },
+      {
+        "start": 155,
+        "end": 157,
+        "text": "05",
+        "label": "DATE"
+      },
+      {
+        "start": 158,
+        "end": 160,
+        "text": "03",
+        "label": "DATE"
+      },
+      {
+        "start": 161,
+        "end": 165,
+        "text": "2024",
+        "label": "DATE"
+      },
+      {
+        "start": 208,
+        "end": 218,
+        "text": "02-6776677",
+        "label": "CONTACT"
+      }
+    ]
+  },
+  {
+    "id": 27,
+    "text": "שני מטופלים שאושפזו יחד: אביב שפיר ת.ז. 112233445 ולילה חסן ת.ז. 556677889 שהו בחדר 204 בבית החולים זיו בצפת ב-10.02.2024.",
+    "deid text": "שני מטופלים שאושפזו יחד: [FIRST_NAME] [LAST_NAME] ת.ז. [ID] [FIRST_NAME] [LAST_NAME] ת.ז. [ID] שהו בחדר 204 בבית החולים [MED_ORG] בצפת ב-[DATE].[DATE].[DATE].",
+    "entities": [
+      {
+        "start": 25,
+        "end": 29,
+        "text": "אביב",
+        "label": "FIRST_NAME"
+      },
+      {
+        "start": 30,
+        "end": 34,
+        "text": "שפיר",
+        "label": "LAST_NAME"
+      },
+      {
+        "start": 40,
+        "end": 49,
+        "text": "112233445",
+        "label": "ID"
+      },
+      {
+        "start": 45,
+        "end": 50,
+        "text": "ולילה",
+        "label": "FIRST_NAME"
+      },
+      {
+        "start": 51,
+        "end": 54,
+        "text": "חסן",
+        "label": "LAST_NAME"
+      },
+      {
+        "start": 65,
+        "end": 74,
+        "text": "556677889",
+        "label": "ID"
+      },
+      {
+        "start": 90,
+        "end": 93,
+        "text": "זיו",
+        "label": "MED_ORG"
+      },
+      {
+        "start": 101,
+        "end": 103,
+        "text": "10",
+        "label": "DATE"
+      },
+      {
+        "start": 104,
+        "end": 106,
+        "text": "02",
+        "label": "DATE"
+      },
+      {
+        "start": 107,
+        "end": 111,
+        "text": "2024",
+        "label": "DATE"
+      }
+    ]
+  },
+  {
+    "id": 28,
+    "text": "המטופל ח'אלד עבד אל-רחמן מתגורר ברחוב חלוצים 3 נצרת ת.ז. 321654987 הגיע לחדר מיון ב-17.04.2024 עם תלונות על כאבי חזה.",
+    "deid text": "המטופל [LAST_NAME] [LAST_NAME] מתגורר [LOC] [LOC] ת.ז. [ID] הגיע לחדר מיון ב-[DATE].[DATE].[DATE] עם תלונות על כאבי חזה.",
+    "entities": [
+      {
+        "start": 7,
+        "end": 12,
+        "text": "ח'אלד",
+        "label": "LAST_NAME"
+      },
+      {
+        "start": 13,
+        "end": 24,
+        "text": "עבד אל-רחמן",
+        "label": "LAST_NAME"
+      },
+      {
+        "start": 32,
+        "end": 37,
+        "text": "ברחוב",
+        "label": "LOC"
+      },
+      {
+        "start": 38,
+        "end": 51,
+        "text": "חלוצים 3 נצרת",
+        "label": "LOC"
+      },
+      {
+        "start": 57,
+        "end": 66,
+        "text": "321654987",
+        "label": "ID"
+      },
+      {
+        "start": 79,
+        "end": 81,
+        "text": "17",
+        "label": "DATE"
+      },
+      {
+        "start": 82,
+        "end": 84,
+        "text": "04",
+        "label": "DATE"
+      },
+      {
+        "start": 85,
+        "end": 89,
+        "text": "2024",
+        "label": "DATE"
+      }
+    ]
+  },
+  {
+    "id": 29,
+    "text": "תיק מעקב: ביקורים ב-15 בספטמבר 2023 וב-10.11.2023. מטופלת בטיפול ד\"ר מרים בן-שחר. לפניות: טלפון 03-7234567 כתובת רחוב ויצמן 88 רמת השרון.",
+    "deid text": "תיק מעקב: ביקורים ב-[DATE]-[DATE][CONTACT][DATE] וב-[DATE].[DATE].[DATE]. מטופלת בטיפול ד\"ר [FIRST_NAME] [LAST_NAME]. לפניות: טלפון [CONTACT] כתובת רחוב [LOC].",
+    "entities": [
+      {
+        "start": 20,
+        "end": 24,
+        "text": "2023",
+        "label": "DATE"
+      },
+      {
+        "start": 25,
+        "end": 27,
+        "text": "09",
+        "label": "DATE"
+      },
+      {
+        "start": 27,
+        "end": 28,
+        "text": "-",
+        "label": "CONTACT"
+      },
+      {
+        "start": 28,
+        "end": 30,
+        "text": "15",
+        "label": "DATE"
+      },
+      {
+        "start": 34,
+        "end": 36,
+        "text": "10",
+        "label": "DATE"
+      },
+      {
+        "start": 37,
+        "end": 39,
+        "text": "11",
+        "label": "DATE"
+      },
+      {
+        "start": 40,
+        "end": 44,
+        "text": "2023",
+        "label": "DATE"
+      },
+      {
+        "start": 64,
+        "end": 68,
+        "text": "מרים",
+        "label": "FIRST_NAME"
+      },
+      {
+        "start": 69,
+        "end": 75,
+        "text": "בן-שחר",
+        "label": "LAST_NAME"
+      },
+      {
+        "start": 91,
+        "end": 101,
+        "text": "03-7234567",
+        "label": "CONTACT"
+      },
+      {
+        "start": 113,
+        "end": 131,
+        "text": "ויצמן 88 רמת השרון",
+        "label": "LOC"
+      }
+    ]
+  },
+  {
+    "id": 30,
+    "text": "דוח עובד סוציאלי: המטופלת פנינה אוחנה בת 78 ת.ז. 789012345 מתגוררת לבדה ברחוב הרב קוק 12 בני ברק. בתה נורית ניתן ליצור קשר בטלפון 050-3344556. המטופלת עוקבת אחר טיפול בבית החולים מעיני הישועה מאז 20.06.2022.",
+    "deid text": "דוח עובד סוציאלי: המטופלת פנינה [LAST_NAME] בת 78 ת.ז. [ID] מתגוררת לבדה ברחוב [LOC]. בתה [FIRST_NAME] ניתן ליצור קשר בטלפון [CONTACT]. המטופלת עוקבת אחר טיפול בבית החולים [MED_ORG] מאז [DATE].[DATE].[DATE].",
+    "entities": [
+      {
+        "start": 32,
+        "end": 37,
+        "text": "אוחנה",
+        "label": "LAST_NAME"
+      },
+      {
+        "start": 49,
+        "end": 58,
+        "text": "789012345",
+        "label": "ID"
+      },
+      {
+        "start": 73,
+        "end": 91,
+        "text": "הרב קוק 12 בני ברק",
+        "label": "LOC"
+      },
+      {
+        "start": 97,
+        "end": 102,
+        "text": "נורית",
+        "label": "FIRST_NAME"
+      },
+      {
+        "start": 125,
+        "end": 136,
+        "text": "050-3344556",
+        "label": "CONTACT"
+      },
+      {
+        "start": 174,
+        "end": 186,
+        "text": "מעיני הישועה",
+        "label": "MED_ORG"
+      },
+      {
+        "start": 191,
+        "end": 193,
+        "text": "20",
+        "label": "DATE"
+      },
+      {
+        "start": 194,
+        "end": 196,
+        "text": "06",
+        "label": "DATE"
+      },
+      {
+        "start": 197,
+        "end": 201,
+        "text": "2022",
+        "label": "DATE"
+      }
+    ]
+  }
+]
