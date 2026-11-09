@@ -8,4 +8,4 @@ Rule-only change: colleagues get it with `git pull`; the model in `D:\De ID All\
 
 ## Colleagues' e-mail
 
-Not sent yet: Hebrew draft `EMAIL_DRAFT_HE.md` (for you only); instructions `DEID_INSTRUCTIONS_RUN.md`.
+Sent (2026-11-09). Their instructions: `DEID_INSTRUCTIONS_RUN.md`. Wait for their feedback; rule-only fixes reach them via `git pull`.
