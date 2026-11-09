@@ -56,6 +56,14 @@ deidentify.bat C:\path\to\your_file.csv label real_plus_half_synth_all_data
 
 (`label` is the masking style, see below. Linux/macOS: `./deidentify.sh /path/to/your_file.csv label real_plus_half_synth_all_data`)
 
+The last word of the command is the **name of the model folder** inside `models\`. To try a different model (for example the old one), put its folder in `models\` and change only that name:
+
+```text
+deidentify.bat C:\path\to\your_file.csv label real_only_all_data
+```
+
+Running the same file with both models and comparing the results is very welcome. If I train an improved model later, I will add it to the same server folder (`D:\De ID All\NER_anon_models\`) and tell you its name: copy it to `models\` the same way, run `git pull`, and use the same command with the new name. Nothing else changes.
+
 The model name is added to the names of the result files, so runs with different models never overwrite each other.
 
 Results are saved next to the input file: a CSV (the original columns plus `de_identified_text` and `identified_entities`) and a JSON file with the exact positions.
