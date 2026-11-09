@@ -1,5 +1,6 @@
 import os
 import argparse
+import hashlib
 import json
 import logging
 import re
@@ -52,6 +53,63 @@ def resolve_model(arg: Optional[str]) -> Optional[str]:
     return None
 
 
+def output_base(original_path: str, output_dir: Optional[str]) -> str:
+    base, _ = os.path.splitext(original_path)
+    if output_dir:  # default: next to the input file
+        base = os.path.join(output_dir, os.path.basename(base))
+    return base
+
+
+def input_fingerprint(df: pd.DataFrame) -> str:
+    h = hashlib.sha1()
+    for i, t in zip(df["id"].astype(str), df["text"]):
+        h.update(i.encode("utf-8"))
+        h.update(b"\x00")
+        h.update(t.encode("utf-8"))
+        h.update(b"\x01")
+    return h.hexdigest()
+
+
+def load_checkpoint(path: Path, meta: Optional[Dict[str, Any]], df: pd.DataFrame) -> Dict[int, Tuple[str, list]]:
+    """Rows finished by an earlier, interrupted run: {row index: (de-identified text, entities)}.
+    Only used if input, model and options are exactly the same; otherwise the old file is set aside."""
+    if not path.is_file():
+        return {}
+    ids = df["id"].astype(str).tolist()
+    done: Dict[int, Tuple[str, list]] = {}
+    try:
+        with open(path, encoding="utf-8") as f:
+            first = json.loads(f.readline())
+            if first.get("meta") != meta:
+                raise ValueError("input, model or options changed")
+            for line in f:
+                if not line.strip():
+                    continue
+                try:
+                    r = json.loads(line)
+                except ValueError:
+                    continue  # half-written line of the crashed run
+                if 0 <= r["i"] < len(ids) and ids[r["i"]] == r["id"]:
+                    done[r["i"]] = (r["t"], r["e"])
+    except (ValueError, KeyError, OSError) as exc:
+        stale = path.with_suffix(".stale")
+        print(f"Ignoring the earlier progress file ({exc}); moved to {stale.name}. Starting from the beginning.")
+        os.replace(path, stale)
+        return {}
+    return done
+
+
+def open_checkpoint(path: Path, meta: Optional[Dict[str, Any]], append: bool):
+    path.parent.mkdir(parents=True, exist_ok=True)
+    f = open(path, "a" if append else "w", encoding="utf-8")
+    if append:
+        f.write("\n")  # a half-written last line must not swallow the next record
+    else:
+        f.write(json.dumps({"meta": meta}, ensure_ascii=False) + "\n")
+        f.flush()
+    return f
+
+
 def run_processing_loop(
     df: pd.DataFrame,
     ner_pipe: Any,
@@ -63,7 +121,9 @@ def run_processing_loop(
     overlap_tokens: int = DEFAULT_OVERLAP,
     use_rules: bool = True,
     consistency: bool = True,
-) -> Tuple[List[str], List[List[Dict[str, Any]]]]:
+    checkpoint_path: Optional[Path] = None,
+    checkpoint_meta: Optional[Dict[str, Any]] = None,
+) -> Tuple[List[str], List[List[Dict[str, Any]]], List[Any]]:
     """
     Iterates through the dataframe and returns processed columns for all records,
     using the composed document pipeline.
@@ -83,19 +143,43 @@ def run_processing_loop(
         consistency=consistency,
     )
 
+    total = len(df)
+    done = load_checkpoint(checkpoint_path, checkpoint_meta, df) if checkpoint_path else {}
+    if done:
+        print(f"Resuming: {len(done)} of {total} documents were already processed in the earlier run ({checkpoint_path.name}).")
+    ckpt = open_checkpoint(checkpoint_path, checkpoint_meta, append=bool(done)) if checkpoint_path else None
+
     deid_texts: List[str] = []
     ent_logs: List[List[Dict[str, Any]]] = []
-
-    # for _, row in tqdm(df.iterrows(), total=len(df), desc="De-identifying (pipeline)"):
-    total = len(df)
-    for n, (_, row) in enumerate(df.iterrows(), 1):
-        print(f"Row {n}/{total}", flush=True)
-        doc = DeidDoc(text=row["text"])
-        doc = doc_pipeline(doc)
-        deid_texts.append(doc.text)
-        ent_logs.append(doc.entities)
-
-    return deid_texts, ent_logs
+    failed: List[Any] = []
+    bar = tqdm(total=total, initial=len(done), desc="De-identifying", unit="doc", smoothing=0.05, mininterval=2, dynamic_ncols=True)
+    try:
+        for n, (_, row) in enumerate(df.iterrows()):
+            if n in done:
+                deid_texts.append(done[n][0])
+                ent_logs.append(done[n][1])
+                continue
+            try:
+                doc = doc_pipeline(DeidDoc(text=row["text"]))
+                deid_texts.append(doc.text)
+                ent_logs.append(doc.entities)
+                if ckpt:
+                    ckpt.write(json.dumps({"i": n, "id": str(row["id"]), "t": doc.text, "e": doc.entities}, ensure_ascii=False) + "\n")
+                    ckpt.flush()
+            except Exception as exc:  # one bad document must not stop the run; it is fully masked, never left in clear text
+                failed.append(row["id"])
+                tqdm.write(f"WARNING: document id={row['id']} (row {n + 1}) failed: {type(exc).__name__}: {str(exc)[:200]}")
+                deid_texts.append("[PROCESSING_ERROR]")
+                ent_logs.append([])
+            bar.update(1)
+    finally:
+        bar.close()
+        if ckpt:
+            ckpt.close()
+    if failed:
+        print(f"\n{len(failed)} document(s) failed and were replaced by [PROCESSING_ERROR] (ids: {failed[:20]}{' ...' if len(failed) > 20 else ''}). "
+              f"Run the same command again to retry only these.")
+    return deid_texts, ent_logs, failed
 
 
 def save_output(
@@ -118,10 +202,10 @@ def save_output(
         " | ".join([f"{ent['text']}({ent['label']})" for ent in ents]) for ents in ent_col
     ]
 
-    base, ext = os.path.splitext(original_path)
-    if output_dir:  # default: next to the input file
+    _, ext = os.path.splitext(original_path)
+    base = output_base(original_path, output_dir)
+    if output_dir:
         os.makedirs(output_dir, exist_ok=True)
-        base = os.path.join(output_dir, os.path.basename(base))
     if output_format in ("csv", "both"):
         output_csv_path = f"{base}_deid_{mode}_pipeline{output_tag}{ext}"
         output_df.to_csv(output_csv_path, index=False, encoding="utf-8-sig")
@@ -162,6 +246,7 @@ def run(
     output_dir: Optional[str] = None,
     use_rules: bool = True,
     consistency: bool = True,
+    restart: bool = False,
 ) -> None:
     """
     The main execution flow for the pipeline-based variant.
@@ -191,7 +276,16 @@ def run(
     # Always log a per-document banner, independent of --observe-stages.
     header = make_pipeline_start_stage(logger)
 
-    deid_col, ent_col = run_processing_loop(
+    # Progress file: every finished document is appended, so a crash / Ctrl+C resumes instead of restarting.
+    checkpoint_path = Path(f"{output_base(input_file, output_dir)}_deid_{mode}_pipeline{output_tag}.progress.jsonl")
+    if restart and checkpoint_path.exists():
+        checkpoint_path.unlink()
+    checkpoint_meta = {
+        "v": 1, "input": input_fingerprint(df), "n": len(df), "model": str(model_path), "mode": mode,
+        "rules": use_rules, "consistency": consistency, "max_tokens": max_tokens, "overlap": overlap_tokens,
+    }
+
+    deid_col, ent_col, failed = run_processing_loop(
         df,
         ner_pipe,
         mode,
@@ -202,8 +296,12 @@ def run(
         overlap_tokens=overlap_tokens,
         use_rules=use_rules,
         consistency=consistency,
+        checkpoint_path=checkpoint_path,
+        checkpoint_meta=checkpoint_meta,
     )
     save_output(df, input_file, deid_col, ent_col, mode, output_format, output_tag, output_dir)
+    if not failed:  # keep the progress file if some documents failed: the next run retries only those
+        checkpoint_path.unlink(missing_ok=True)
     print(f"End time:   {datetime.now():%Y-%m-%d %H:%M:%S} (took {time.time() - started:.0f}s)")
 
 
@@ -289,6 +387,12 @@ def main() -> None:
         help="Lenient mode: do not mask the repeated occurrences of a name / city / organisation the model masked "
         "(rule F8). Default (strict): they are masked, except words in lexicons/ambiguous_words.tsv.",
     )
+    parser.add_argument(
+        "--restart",
+        action="store_true",
+        help="Ignore the progress file of an interrupted run and start from the beginning. "
+        "Default: an interrupted run resumes where it stopped (same input, model and options).",
+    )
     args = parser.parse_args()
 
     model = resolve_model(args.model)
@@ -311,7 +415,8 @@ def main() -> None:
         format="%(levelname)s:%(name)s:%(message)s",
     )
     # Our logger: promote to INFO/DEBUG based on --verbose
-    logger.setLevel(logging.DEBUG if args.verbose else logging.INFO)
+    # One INFO banner per document would bury the progress bar on large files: only with the debugging flags.
+    logger.setLevel(logging.DEBUG if args.verbose else logging.INFO if (args.observe_stages or args.log_replacements) else logging.WARNING)
 
     run(
         args.input,
@@ -326,6 +431,7 @@ def main() -> None:
         output_dir=args.output_dir,
         use_rules=not args.no_rules,
         consistency=not args.no_consistency,
+        restart=args.restart,
     )
 
 

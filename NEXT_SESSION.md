@@ -90,3 +90,5 @@ Measure each with `inference\run_dummy.bat`; compare against the baseline from s
 3. Pick recipe; production model: `train-all --extra-train training\synth_train\synth_train_all.jsonl` (all real + all synthetic words).
 4. Still open: ask annotator about `second_` ids; verify real CONTACT `-`-only spans; enlarge pipeline long set (t5_long has 4 docs); hospital feedback F8-F12.
 - Privacy note: example strings the user pasted earlier remain in the session transcript (~/.claude/projects/.../a44546ad-...jsonl); not in repo.
+
+Update (2026-11-09, late): `inference/de_identify.py` now shows a tqdm bar with ETA, resumes an interrupted run from `<output>_deid_<mode>_pipeline<tag>.progress.jsonl` (same input, model and options; `--restart` ignores it), and masks a failing document as `[PROCESSING_ERROR]` instead of stopping. Tests: 137 pass. Not yet tried on a real model.

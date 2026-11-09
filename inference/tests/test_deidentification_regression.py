@@ -152,9 +152,63 @@ def test_non_string_text_is_coerced():
 
 def test_run_processing_loop_returns_one_result_per_row():
     df = pd.DataFrame({"id": [1, 2], "text": ["John", "nothing here"]})
-    texts, ents = run_processing_loop(df, SubstringNer({"John": "FIRST_NAME"}), "label")
+    texts, ents, failed = run_processing_loop(df, SubstringNer({"John": "FIRST_NAME"}), "label")
     assert texts == ["[FIRST_NAME]", "nothing here"]
     assert [len(e) for e in ents] == [1, 0]
+    assert failed == []
+
+
+class CountingNer(SubstringNer):
+    """Counts calls and can crash on a chosen text, to test resume."""
+
+    def __init__(self, mapping, crash_on=None):
+        super().__init__(mapping)
+        self.calls = 0
+        self.crash_on = crash_on
+
+    def __call__(self, sentence):
+        self.calls += 1
+        if self.crash_on and self.crash_on in sentence:
+            raise RuntimeError("boom")
+        return super().__call__(sentence)
+
+
+def _loop(df, ner, ckpt, meta=None):
+    return run_processing_loop(df, ner, "label", checkpoint_path=ckpt, checkpoint_meta=meta or {"v": 1})
+
+
+def test_failed_document_is_masked_not_leaked_and_retried_on_rerun(tmp_path):
+    df = pd.DataFrame({"id": [1, 2, 3], "text": ["John a", "BAD John", "John c"]})
+    ckpt = tmp_path / "x.progress.jsonl"
+    texts, _, failed = _loop(df, CountingNer({"John": "FIRST_NAME"}, crash_on="BAD"), ckpt)
+    assert failed == [2] and texts[1] == "[PROCESSING_ERROR]" and "John" not in " ".join(texts)
+    ner = CountingNer({"John": "FIRST_NAME"})
+    texts, _, failed = _loop(df, ner, ckpt)  # only the failed row is processed again
+    assert failed == [] and ner.calls >= 1 and texts[1] == "BAD [FIRST_NAME]"
+    assert texts[0] == "[FIRST_NAME] a"
+
+
+def test_resume_skips_finished_documents(tmp_path):
+    df = pd.DataFrame({"id": [1, 2, 3], "text": ["John a", "John b", "John c"]})
+    ckpt = tmp_path / "x.progress.jsonl"
+    first = CountingNer({"John": "FIRST_NAME"})
+    full, ents_full, _ = _loop(df, first, ckpt)
+    # simulate a crash after two documents: keep the header and two records, plus a half-written line
+    lines = ckpt.read_text(encoding="utf-8").splitlines()
+    ckpt.write_text("\n".join(lines[:3]) + '\n{"i": 2, "id": "3", "t": "[FIRS', encoding="utf-8")
+    second = CountingNer({"John": "FIRST_NAME"})
+    texts, ents, failed = _loop(df, second, ckpt)
+    assert texts == full and ents == ents_full and failed == []
+    assert 0 < second.calls < first.calls  # only the third document was processed
+
+
+def test_changed_input_or_options_ignores_old_progress(tmp_path):
+    ckpt = tmp_path / "x.progress.jsonl"
+    _loop(pd.DataFrame({"id": [1], "text": ["John"]}), CountingNer({"John": "FIRST_NAME"}), ckpt, {"v": 1, "input": "a"})
+    ner = CountingNer({"John": "FIRST_NAME"})
+    texts, _, _ = _loop(pd.DataFrame({"id": [1], "text": ["John"]}), ner, ckpt, {"v": 1, "input": "b"})
+    assert ner.calls >= 1 and texts == ["[FIRST_NAME]"]
+    assert ckpt.with_suffix(".stale").exists()
 
 
 def test_save_output_writes_consistent_csv_and_json(tmp_path):

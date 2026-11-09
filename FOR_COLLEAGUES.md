@@ -51,6 +51,10 @@ deidentify.bat C:\path\to\your_file.csv
 
 Results are saved next to the input file: a CSV (the original columns plus `de_identified_text` and `identified_entities`) and a JSON file with the exact positions.
 
+While it runs you see a progress bar with the speed and the estimated time left. Large files are safe to interrupt: every finished document is saved to a `*.progress.jsonl` file next to the output. If the run crashes (or you press Ctrl+C), run exactly the same command again and it continues where it stopped. Use `--restart` (with `python -X utf8 inference\de_identify.py`) to start from the beginning instead. The progress file is deleted when the run finishes. A document that fails is written as `[PROCESSING_ERROR]` (never left unmasked) and listed at the end; running the same command again retries only those.
+
+The progress file contains the de-identified text and the found entities (which include the original strings), so treat it like the output files and delete it if a run is abandoned.
+
 To try it first on a synthetic example (no real data):
 
 ```text
