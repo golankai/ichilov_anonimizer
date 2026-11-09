@@ -1,18 +1,11 @@
 # RUN_ME
 
-Updated 2026-11-09. Goal: see why medical organisations fail (diagnostic only, nothing is sent anywhere).
+Updated 2026-11-09. Nothing to run on the GPU machine right now.
 
-## GPU machine
+Done this session: the organisation diagnostic showed that most "partial/wider" MED_ORG cases were scorer artifacts (see `training/runs/medorg-diagnostic/medorg_fake.txt`). The scorer now ignores whitespace between predicted pieces, and a new deterministic rule (`rule_med_org_lexicon`, list in `inference/lexicons/med_orgs.tsv`) masks well-known hospitals and health funds the model misses. Ambiguous words (`כללית`, `מאיר`, `גהה`) are masked only after an institution word. Extend the list by adding lines to the TSV.
 
-1. `cd "D:\DeID KAI\ichilov_anonimizer"`
-2. `git pull`
-3. `python -X utf8 training\diagnose_medorg.py training\models\model_non_anon_20261109-0144`
-   (fake set only; prints a summary and writes `training\runs\medorg-diagnostic\medorg_fake.txt`)
-4. `training\push_results.bat`  (pushes only the fake-text listing)
-5. Tell Claude it is done.
-
-Optional, for the real data (counts only, no text): add `--real-split test`. Caution: the production model was trained on that split, so the numbers will look too good. Skip it unless you have a model trained without the test split.
+Rule-only change: colleagues get it with `git pull`; the model in `D:\De ID All\NER_anon_models\real_plus_half_synth_all_data` is unchanged and needs no re-publish.
 
 ## Colleagues' e-mail
 
-Not sent yet. The Hebrew draft is `EMAIL_DRAFT_HE.md` (for you only); the colleagues' instructions are `DEID_INSTRUCTIONS_RUN.md`. The new model is already in `D:\De ID All\NER_anon_models\real_plus_half_synth_all_data`.
+Not sent yet: Hebrew draft `EMAIL_DRAFT_HE.md` (for you only); instructions `DEID_INSTRUCTIONS_RUN.md`.

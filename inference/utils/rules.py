@@ -19,7 +19,7 @@ Rules (see docs/HOSPITAL_FEEDBACK_AND_FIXES.md):
 import csv
 import re
 from pathlib import Path
-from typing import Any, Dict, List, Optional, Set
+from typing import Any, Dict, List, Optional, Set, Tuple
 
 Span = Dict[str, Any]
 
@@ -127,6 +127,38 @@ def ambiguous_words() -> Set[str]:
             pass
         _ambiguous_cache = words
     return _ambiguous_cache
+
+
+_MED_ORG_FILE = Path(__file__).resolve().parent.parent / "lexicons" / "med_orgs.tsv"
+_med_org_cache: Optional[List[Tuple["re.Pattern", bool]]] = None
+# Words that, right before a name, show it is the institution (`מרפאת כללית`, `בית חולים מאיר`, `קופת חולים מאוחדת`).
+_ORG_CONTEXT = (r"(?:[ובכלמהש]{0,2}(?:בית\s+החולים|בית\s+חולים|בי[\"״']ח|ביה[\"״']ח|המרכז\s+הרפואי|מרכז\s+רפואי|מרפאת|מרפאה|"
+                r"קופת\s+חולים|קופ[\"״']ח|קופת|שירותי\s+בריאות|מכון|מוסד))")
+
+
+def _med_org_patterns() -> List[Tuple["re.Pattern", bool]]:
+    """Compiled patterns of lexicons/med_orgs.tsv: (regex, needs_context). Empty if the file is missing."""
+    global _med_org_cache
+    if _med_org_cache is None:
+        out: List[Tuple["re.Pattern", bool]] = []
+        try:
+            with open(_MED_ORG_FILE, encoding="utf-8-sig", newline="") as f:
+                rows = list(csv.DictReader(f, delimiter="	"))
+        except OSError:
+            rows = []
+        for row in sorted((r for r in rows if r.get("name")), key=lambda r: -len(r["name"])):
+            name = re.escape(row["name"].strip()).replace(r"\-", " ").replace(r"\ ", " ").replace(" ", r"[\s\-]+").replace('"', '["״”]')
+            mode = row.get("context", "0").strip()
+            ctx = mode == "1"
+            if mode == "2":  # only with one attached prefix letter: `בכללית`, `למאוחדת`
+                pat = rf"(?<![{_HEB}\w])[בלמ](?P<v>{name})(?![{_HEB}\w])"
+            elif ctx:
+                pat = rf"(?<![{_HEB}\w]){_ORG_CONTEXT}\s*[\s\-]?(?:ה)?(?P<v>{name})(?![{_HEB}\w])"
+            else:
+                pat = rf"(?<![{_HEB}\w])(?:{_PREFIX})?(?P<v>{name})(?![{_HEB}\w])"
+            out.append((re.compile(pat), ctx))
+        _med_org_cache = out
+    return _med_org_cache
 
 
 # ---------------------------------------------------------------- helpers
@@ -340,6 +372,22 @@ def rule_consistency(text: str, spans: List[Span]) -> List[Span]:
     return spans + added
 
 
+def rule_med_org_lexicon(text: str, spans: List[Span]) -> List[Span]:
+    """Mask well-known hospitals / health funds (lexicons/med_orgs.tsv) the model missed, as MED_ORG, bare name only.
+
+    Names that are also ordinary words (`כללית`, `מאיר`, `גהה`) are masked only right after an institution word
+    (`מרפאת`, `בית חולים`, `קופת חולים` ...). Never over a span that already exists.
+    """
+    added: List[Span] = []
+    for pattern, _ctx in _med_org_patterns():
+        for m in pattern.finditer(text):
+            start, end = m.start("v"), m.end("v")
+            if _is_covered(spans, start, end) or _is_covered(added, start, end):
+                continue
+            added.append(_span(text, start, end, "MED_ORG"))
+    return spans + added
+
+
 def resolve_overlaps(spans: List[Span]) -> List[Span]:
     """Keep the longest span when two overlap (earlier wins ties), return sorted by start."""
     kept: List[Span] = []
@@ -366,6 +414,7 @@ def apply_rules(text: str, spans: List[Span], consistency: bool = True) -> List[
     spans = rule_phones(text, spans)
     spans = rule_digit_runs(text, spans)
     spans = rule_age(text, spans)
+    spans = rule_med_org_lexicon(text, spans)
     spans = resolve_overlaps(spans)
     if consistency:
         spans = resolve_overlaps(rule_consistency(text, spans))

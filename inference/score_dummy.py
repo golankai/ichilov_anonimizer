@@ -37,7 +37,7 @@ def find_output(results_dir, stem, mode):
     return hits[0] if hits else None
 
 
-def cover(span, preds):
+def cover(span, preds, text=None):
     """(covered chars, best overlapping prediction)"""
     covered, best, best_ov = set(), None, 0
     for p in preds:
@@ -46,6 +46,9 @@ def cover(span, preds):
             covered.update(range(a, b))
             if b - a > best_ov:
                 best, best_ov = p, b - a
+    if text is not None and covered:
+        # whitespace between two predicted pieces ("[כללית] [בחולון]") carries no information: not a leak
+        covered.update(i for i in range(span["start"], span["end"]) if text[i].isspace())
     return len(covered), best
 
 
@@ -107,7 +110,7 @@ def score_doc(truth, out):
         checkable = len(value) >= 3 and value not in keep_strings
         row["survive"] = (value in deid) if checkable else None
         if not drift:
-            n, best = cover(s, preds)
+            n, best = cover(s, preds, text)
             row["status"] = "masked" if n == s["end"] - s["start"] else ("partial" if n else "missed")
             row["label_ok"] = bool(best and best["label"] == s["label"]) if n else False
             row["exact"] = any(p["start"] == s["start"] and p["end"] == s["end"] and p["label"] == s["label"]

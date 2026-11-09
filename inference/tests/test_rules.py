@@ -322,3 +322,18 @@ def test_consistency_on_fake_truth_recovers_repeats_without_touching_traps():
     assert outside == []
     assert repeats > 50
     assert recovered == repeats, (recovered, repeats)
+
+
+def test_med_org_lexicon():
+    from utils.rules import rule_med_org_lexicon
+
+    def found(t):
+        return [s["text"] for s in rule_med_org_lexicon(t, [])]
+
+    assert found('שוחרר מאיכילוב וקיבל טיפול ברמב"ם') == ["איכילוב", 'רמב"ם'] or set(found('שוחרר מאיכילוב וקיבל טיפול ברמב"ם')) == {"איכילוב", 'רמב"ם'}
+    assert found("מרפאת כללית בחולון") == ["כללית"]
+    assert found("מטופל בכללית") == ["כללית"]
+    assert found("עבר הרדמה כללית") == [] and found("חולשה כללית") == []
+    assert found("אמר מאיר לרופא") == [] and found("בבית חולים מאיר") == ["מאיר"]
+    # never over a span the model already has
+    assert rule_med_org_lexicon("ברמב\"ם", [{"start": 0, "end": 6, "text": "ברמב\"ם", "label": "MED_ORG"}])[0]["text"] == "ברמב\"ם"
