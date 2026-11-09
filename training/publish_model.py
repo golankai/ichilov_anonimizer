@@ -1,4 +1,4 @@
-"""Copy a trained model to the shared models folder, with only the files inference needs.
+r"""Copy a trained model to the shared models folder, with only the files inference needs.
 
 Default: the production model (real data + half the synthetic set) -> D:\De ID All\NER_anon_models\real_plus_half_synth_all_data
 Usage:   python -X utf8 training\publish_model.py
